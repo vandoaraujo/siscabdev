@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="org.apache.log4j.BasicConfigurator,org.apache.log4j.Level,org.apache.log4j.Logger" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,8 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-  
-  
+ 
  <SCRIPT language="JavaScript">
   	function validate()
   	{
@@ -35,10 +35,9 @@
 	 	<img src="img/cobm.jpg" border=0>
 	 	<p>Tela Login</p>
 	 	
-	      <form action ="ServletLogin" method="post"> 
+	      <form action ="ServletLogin" name="frm" method="post"> 
 	    	            
-	    	            
-     			
+	    	                			
 		<table class="bloco5" width="200" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td class="texto" width="70"> Login: </td>

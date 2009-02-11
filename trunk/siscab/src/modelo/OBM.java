@@ -42,7 +42,6 @@ public class OBM {
 		
 		private boolean statusObm;
 		
-			
 		public int getId() {
 			return id;
 		}
