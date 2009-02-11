@@ -25,7 +25,7 @@ public class HibernateUtil {
 	private HibernateUtil(){
 		
 		AnnotationConfiguration conf = new AnnotationConfiguration();
-		conf.configure();
+		conf.configure("hibernate.cfg.xml");
 		conf.addAnnotatedClass(OBM.class);
 		conf.addAnnotatedClass(Usuario.class);
 		factory = conf.buildSessionFactory();	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*,modelo.OBM" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,25 +10,38 @@
 <body>
 
 
-
 <div id="texto">
 	<h2>Cadastrar Novo Usuario</h2>
 	
 	
-	<form action="" method="post" class="NovoUsuarioServlet">
+	<form action="NovoUsuarioServlet" method="post">
 	<fieldset>
+	
 	<label>Nome: <input name="nome" type="text" /><br></label>
 	<label>NumRegistro: <input name="registro" type="text" /></label><br>
 	<label>nomeGuerra: <input name="nomeGuerra" type="text" /></label><br>
-	<label>obm: <select name="obm"/> </label>
-	<label>perfil: <select name="perfil"/></label><br>
+	<label>Obm: <select name="obm">
+	
+	<!-- Popula a combo que aparecerá na tela -->
+	<%
+ 	ArrayList<OBM> obms = (ArrayList)request.getAttribute("obms");
+ 	 for(OBM s: obms){
+	 out.println("<option>"+s.getNome()+"<option>");
+ 	}
+	out.println("</select>");
+	%>
+	
+	 </label><br>
+	<label>perfil: <select name="perfil">
+	<option>Admin
+	<option>Atendente
+	<option>Comandante
+	</select>
+	</label><br>
 	<label>Email: <input name="email" type="text" /></label><br>
 	<label>Senha: <input name="senha" type="text" /></label><br>
-	
-	<label class="labelmensagem">Mensagem <textarea name="mensagem"></textarea></label>
-	
 	</fieldset>
-	<input type="submit" value="Enviar" class="botao botrig"/>
+	<input type="submit" value="Cadastrar"/>
 	</form>
 	</div>
 		

@@ -57,6 +57,8 @@ public class ServletLogin extends HttpServlet {
 	
 	public void validaUsuario(HttpServletRequest req, Usuario usu, HttpServletResponse response) throws ServletException, IOException{
 		
+		UsuarioDao.getInstance().fechaSession();
+		
 		if(usu == null)
 		{	
 			HttpSession session = req.getSession();
