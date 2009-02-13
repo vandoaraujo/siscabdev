@@ -18,6 +18,7 @@ import dao.UsuarioDao;
  * Servlet implementation class NovoUsuarioServlet
  */
 public class NovoUsuarioServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -46,6 +47,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 	
 	protected void salva (HttpServletRequest request, HttpServletResponse response, PrintWriter out) 
 	{
+					
 			int numRegistro = Integer.parseInt(request.getParameter("registro"));
 			String nomeGuerra = request.getParameter("nomeGuerra");
 			String obm = request.getParameter("obm");

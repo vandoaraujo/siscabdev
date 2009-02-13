@@ -1,9 +1,10 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import modelo.Usuario;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -43,8 +44,6 @@ public class UsuarioDao {
 
 	public List<Usuario> listar(){
 		List<Usuario> l = session.createQuery("from modelo.Usuario").list();
-		
-		
 		return l;
 		
 	}
@@ -75,6 +74,36 @@ public class UsuarioDao {
 		return p;		
 		
 	}
+
+	public List<Usuario> procurarUsuariosParametro(Integer registro, String nomeGuerra) {
+
 		
+		List<Usuario> usu = (List<Usuario>) session.createQuery("from modelo.Usuario u where u.nomeGuerra=:nome and u.numRegistro=:registro")
+		.setString("nome", nomeGuerra).setInteger("registro", registro).list();  
+	
+		
+		/*List<Usuario> usuarios =
+		(List<Usuario>) session.createQuery("from modelo.Usuario u where u.nome=:nome1 and registro=:registro1").setString("nome1", nomeGuerra).setInteger("registro1", registro).list();  
+			
+		/*Criteria c = session.createCriteria(Usuario.class);
+		c.add(Restrictions.like("nome", nomeGuerra));
+		c.add(Restrictions.like("registro", registro));*/
+		
+		//List<Usuario> usuarios =(List<Usuario>) session.createQuery("Usuario u where u.nome = 'nome' or registro = 'registro'")
+		//.setString("nome", "%" + nomeGuerra + "%").setString("registro", "%" + registro + "%");
+		
+		/*for(Usuario usuario :  (List<Usuario>) c.list()){
+			   	usu.add(usuario);
+			
+		}*/
+		
+		/*c.setMaxResults(20);
+		usu = c.list();*/
+		
+		return usu;
+	}
+
 
 }
+
+

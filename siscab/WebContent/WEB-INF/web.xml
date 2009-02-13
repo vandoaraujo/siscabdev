@@ -33,6 +33,16 @@
 		<servlet-class>
 		controle.NovoUsuarioServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		BuscarUsuario</display-name>
+		<servlet-name>BuscarUsuario</servlet-name>
+		<servlet-class>
+		controle.BuscarUsuario</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
 		<url-pattern>/ServletNovoUsuario</url-pattern>
@@ -40,6 +50,10 @@
 	<servlet-mapping>
 		<servlet-name>NovoUsuarioServlet</servlet-name>
 		<url-pattern>/NovoUsuarioServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BuscarUsuario</servlet-name>
+		<url-pattern>/BuscarUsuario</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
@@ -49,4 +63,8 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	<error-page>  
+    <exception-type>java.lang.RuntimeException</exception-type>  
+    <location>/erro.jsp</location>  
+   </error-page> 
 </web-app>
