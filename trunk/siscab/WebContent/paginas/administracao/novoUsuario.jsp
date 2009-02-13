@@ -17,7 +17,6 @@
 	<form action="NovoUsuarioServlet" method="post">
 	<fieldset>
 	
-	<label>Nome: <input name="nome" type="text" /><br></label>
 	<label>NumRegistro: <input name="registro" type="text" /></label><br>
 	<label>nomeGuerra: <input name="nomeGuerra" type="text" /></label><br>
 	<label>Obm: <select name="obm">
@@ -33,9 +32,11 @@
 	
 	 </label><br>
 	<label>perfil: <select name="perfil">
-	<option>Admin
-	<option>Atendente
-	<option>Comandante
+	<option>ADMIN 
+	<option>ATENDENTE
+	<option>OPERADOR
+	<option>CONTROLADOR
+	<option>COMANDANTE
 	</select>
 	</label><br>
 	<label>Email: <input name="email" type="text" /></label><br>

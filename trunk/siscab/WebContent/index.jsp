@@ -9,7 +9,7 @@
 </head>
 <body>
  
- <SCRIPT language="JavaScript">
+ <script language="JavaScript">
   	function validate()
   	{
 	  		
@@ -22,7 +22,7 @@
   		document.frm.submit;
 	
   	}
-	</SCRIPT>
+	</script>
 	
  	
  	<h2>Sistema de Controle de Atendimento de Bombeiros - SISCAB</h2>
@@ -50,7 +50,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" class="campo_centralizado">
-				<input type="submit" name="evento" value="Login" class="botao">
+				<input type="submit" name="evento" value="Login">
 			</td>
 		</tr>
 		</table>

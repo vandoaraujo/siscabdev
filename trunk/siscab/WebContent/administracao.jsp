@@ -13,8 +13,7 @@
 	<div id="menu">
 	<ul>
 	<li><a href="ServletNovoUsuario">Novo Usuario</a></li>
-	<li><a href="">Procurar Usuarios</a></li>
-	<li><a href="">Listar Usuários</a></li>
+	<li><a href="buscarUsuario.jsp" style="BACKGROUND-COLOR: #c0c0c0;">Procurar Usuarios</a></li>
 	</ul>
 	</div>
 	</div>

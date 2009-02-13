@@ -23,7 +23,7 @@ Funciona!!!
 	<li><a href="">Módulo de Registro de Atendimentos</a></li>
 	<li><a href="">Módulo de Cadastro de Atendimentos Passivos </a></li>
 	<li><a href="">Módulo de Consultas e Estatísticas </a></li>
-	<li><a href="administracao.jsp">Módulo de Administração e Manutenção do Sistema</a></li>
+	<li><a href="administracao.jsp">Módulo de Administração do Sistema</a></li>
 	</ul>
 	</div>
 	</div>
