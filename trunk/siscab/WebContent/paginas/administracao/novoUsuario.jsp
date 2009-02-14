@@ -42,7 +42,9 @@
 	<label>Email: <input name="email" type="text" /></label><br>
 	<label>Senha: <input name="senha" type="text" /></label><br>
 	</fieldset>
-	<input type="submit" value="Cadastrar"/>
+	<input type="submit" value="Cadastrar" onclick="this.form.operacaoARealizar.value=1"/>
+	<input type="hidden" name="operacaoARealizar" value ="">
+	 <input type="hidden" name="registroUsuario" value ="1"> 
 	</form>
 	</div>
 		

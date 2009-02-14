@@ -61,8 +61,6 @@ public class ServletLogin extends HttpServlet {
 		
 		if(usu == null)
 		{	
-			HttpSession session = req.getSession();
-			req.setAttribute("session", session);
 			RequestDispatcher view = req.getRequestDispatcher("/usuarioNaoEncontrado.jsp");
 			view.forward(req, response);
 			
@@ -71,7 +69,7 @@ public class ServletLogin extends HttpServlet {
 			
 			HttpSession session = req.getSession();
 			req.setAttribute("session", session);
-			req.setAttribute("usuario",usu);
+			session.setAttribute("usuario", usu);
 			RequestDispatcher view = req.getRequestDispatcher("/paginaPrincipal.jsp");
 			view.forward(req, response);
 			
