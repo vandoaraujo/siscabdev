@@ -11,7 +11,7 @@
 <img src="img/cobm.jpg" border=0><p>
 
 
-Usuário ${usuario.nomeGuerra} salvo com sucesso!   <br>
+Usuário ${nomeUsuario} , ${mensagem}<br>
 
 Retorne ao menu: <h4><a href="paginaPrincipal.jsp" title="MENU">MENU</a></h4>
 

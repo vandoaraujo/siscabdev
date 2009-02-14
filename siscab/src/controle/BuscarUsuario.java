@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Usuario;
 import dao.UsuarioDao;
@@ -39,16 +40,22 @@ public class BuscarUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		Integer registro = Integer.parseInt(request.getParameter("registro"));
+		int registro=0;
+		String registro1 = request.getParameter("registro");
 		String nomeGuerra = request.getParameter("nomeGuerra");
-		
-		 usu= UsuarioDao.getInstance().procurarUsuariosParametro(registro, nomeGuerra);
+				
+		registro = Integer.parseInt(registro1);
+		if(registro1.equals("")){
+			registro=0;
+		}
+			
+		 usu= UsuarioDao.getInstance().procurarUsuariosParametro2(registro, nomeGuerra);
 		UsuarioDao.getInstance().fechaSession();
 		
-		System.out.println(usu.size());
-		
-		request.setAttribute("usuarios", usu);
-		
+		System.out.println("RESULTADO DA QUERY" + usu.size());
+				
+		request.setAttribute("usuarios",usu);
+				
 		RequestDispatcher view = request.getRequestDispatcher("listaUsuarios.jsp");
 		try {
 			view.forward(request, response);

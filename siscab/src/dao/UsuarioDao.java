@@ -3,7 +3,6 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Usuario;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -41,6 +40,27 @@ public class UsuarioDao {
 		
 		
 	}
+	
+	public void deletar(Usuario usuario) {
+		
+		Transaction t = session.beginTransaction();
+		session.delete(usuario);
+		t.commit();
+		session.flush();
+		session.close();
+		System.out.println("DELETADO");
+	}
+	
+	public void atualizar(Usuario ator) {
+		
+		Transaction t = session.beginTransaction();
+		session.update(ator);
+		t.commit();
+		session.flush();
+		session.close();
+		System.out.println("ATUALIZADO");
+		
+	}
 
 	public List<Usuario> listar(){
 		List<Usuario> l = session.createQuery("from modelo.Usuario").list();
@@ -75,34 +95,37 @@ public class UsuarioDao {
 		
 	}
 
+	@Deprecated
 	public List<Usuario> procurarUsuariosParametro(Integer registro, String nomeGuerra) {
-
-		
-		List<Usuario> usu = (List<Usuario>) session.createQuery("from modelo.Usuario u where u.nomeGuerra=:nome and u.numRegistro=:registro")
-		.setString("nome", nomeGuerra).setInteger("registro", registro).list();  
 	
-		
-		/*List<Usuario> usuarios =
-		(List<Usuario>) session.createQuery("from modelo.Usuario u where u.nome=:nome1 and registro=:registro1").setString("nome1", nomeGuerra).setInteger("registro1", registro).list();  
-			
-		/*Criteria c = session.createCriteria(Usuario.class);
-		c.add(Restrictions.like("nome", nomeGuerra));
-		c.add(Restrictions.like("registro", registro));*/
-		
-		//List<Usuario> usuarios =(List<Usuario>) session.createQuery("Usuario u where u.nome = 'nome' or registro = 'registro'")
-		//.setString("nome", "%" + nomeGuerra + "%").setString("registro", "%" + registro + "%");
-		
-		/*for(Usuario usuario :  (List<Usuario>) c.list()){
-			   	usu.add(usuario);
-			
-		}*/
-		
-		/*c.setMaxResults(20);
-		usu = c.list();*/
-		
+		List<Usuario> usu = (List<Usuario>) session.createQuery("from modelo.Usuario u where u.nomeGuerra=:nome or u.numRegistro=:registro")
+		.setString("nome", '%'+nomeGuerra+'%').setInteger("registro",'%'+registro+'%').list();  
 		return usu;
 	}
+	@Deprecated
+	public List<Usuario> procurarUsuariosParametro1(Integer registro, String nomeGuerra) {
+		
+		Criteria c = session.createCriteria(Usuario.class);
+		c.add(Restrictions.or(Restrictions.like("nomeGuerra", '%'+ nomeGuerra + '%'),Restrictions.like("numRegistro", '%'+registro+'%')));
+		
+		List<Usuario> usu = (List<Usuario>)c.list();
+		return usu;
+		
+	}
+	
+	public List<Usuario> procurarUsuariosParametro2(Integer registro, String nomeGuerra) {
+					
+		List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("numRegistro like '" +registro+ "%'")).list();
+		return usuario;
+	}
 
+	public Usuario BuscaUsuarioId(Integer id) {
+		
+		Usuario u = (Usuario) session.load(Usuario.class, id);
+		return u;
+	}
+
+	
 
 }
 

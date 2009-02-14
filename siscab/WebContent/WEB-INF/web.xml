@@ -42,6 +42,15 @@
 		<servlet-class>
 		controle.BuscarUsuario</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EditaUsuario</display-name>
+		<servlet-name>EditaUsuario</servlet-name>
+		<servlet-class>
+		controle.EditaUsuario</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -54,6 +63,10 @@
 	<servlet-mapping>
 		<servlet-name>BuscarUsuario</servlet-name>
 		<url-pattern>/BuscarUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditaUsuario</servlet-name>
+		<url-pattern>/EditaUsuario</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
