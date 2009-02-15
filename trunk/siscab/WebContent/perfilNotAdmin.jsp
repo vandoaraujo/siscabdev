@@ -6,13 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>SISCAB</title>
+<title>Insert title here</title>
 </head>
 <body>
+<img src="img/cobm.jpg" border=0><p style="BACKGROUND-COLOR: #0080ff;">
 
-<img src="img/cobm.jpg" border=0>
-
-<br>Bem vindo,<br>
+Bem vindo,<br>
 
 <%  
    Vector siscab = new Vector();
@@ -23,27 +22,19 @@
    String grava = data.format(cal.getTime());  
 %>
 
- Usuário: <%=usu.getNomeGuerra() %>, logado com sucesso! <br>
+ Usuário: <%=usu.getNomeGuerra() %>, ${mensagem}. Seu perfil atual é <%=usu.getPerfil() %>
  
- Dia Atual: <%= grava %><p>
+ Favor contactar o administrador para ter acesso a determinada página.<br>
+ vandoaraujo@hotmail.com<p>
+ 
+ 
+ 
+ 
+<h1><a href="index.jsp" title="login">Tela Login</a></h1>
+ 
 
+ 
 
-
-<div id="cabecalho">
-	<h1><a href="paginaPrincipal.jsp" title="MENU">MENU</a></h1>
-	<div id="menu">
-	<ul>
-	<li><a href="">Módulo de Recebimento de Chamadas</a></li>
-	<li><a href="">Módulo de Despachos de Viatura</a></li>
-	<li><a href="">Módulo de Registro de Atendimentos</a></li>
-	<li><a href="">Módulo de Cadastro de Atendimentos Passivos </a></li>
-	<li><a href="">Módulo de Consultas e Estatísticas </a></li>
-	<li><a href="administracao.jsp">Módulo de Administração do Sistema</a></li>
-	</ul>
-	</div>
-	</div>
-	
-	</ul>
 
 </body>
 </html>

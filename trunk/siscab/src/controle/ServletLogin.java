@@ -48,10 +48,9 @@ public class ServletLogin extends HttpServlet {
 	{
 		//Faz chamada ao Banco de Dados instanciando uma SessionFactory
 		
-		String nomeGuerra = request.getParameter("nome");
+		int numRegistro = Integer.parseInt(request.getParameter("numRegistro"));
 		String senha = request.getParameter("senha");
-		
-		Usuario usu = UsuarioDao.getInstance().buscarUsuario(nomeGuerra, senha);
+		Usuario usu = UsuarioDao.getInstance().buscarUsuario(numRegistro, senha);
 		validaUsuario(request,usu,response);
 	}
 	
@@ -65,13 +64,29 @@ public class ServletLogin extends HttpServlet {
 			view.forward(req, response);
 			
 		}
+		
 		else{
 			
-			HttpSession session = req.getSession();
-			req.setAttribute("session", session);
-			session.setAttribute("usuario", usu);
-			RequestDispatcher view = req.getRequestDispatcher("/paginaPrincipal.jsp");
-			view.forward(req, response);
+			if(usu.getPerfil().equals("ADMIN")){
+				HttpSession session = req.getSession();
+				req.setAttribute("session", session);
+				session.setAttribute("usuario", usu);
+				RequestDispatcher view = req.getRequestDispatcher("/paginaPrincipal.jsp");
+				view.forward(req, response);
+			}
+			
+			else if(!usu.getPerfil().equals("ADMIN")){
+				
+				HttpSession session = req.getSession();
+				req.setAttribute("session", session);
+				session.setAttribute("usuario", usu);
+				req.setAttribute("mensagem", "Seu perfil não é de administrador!");
+				RequestDispatcher view = req.getRequestDispatcher("/perfilNotAdmin.jsp");
+				view.forward(req, response);
+
+			}
+			
+			
 			
 		}
 			
