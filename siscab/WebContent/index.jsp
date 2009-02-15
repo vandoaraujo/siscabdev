@@ -41,8 +41,8 @@
 	    	                			
 		<table class="bloco5" width="200" border="0" cellpadding="0" cellspacing="0">
 		<tr>
-			<td class="texto" width="70"> Login: </td>
-			<td class="campo" width="130"><input name="nome" type="text" size="15"></td>
+			<td class="texto" width="70"> Login(numRegistro): </td>
+			<td class="campo" width="130"><input name="numRegistro" type="text" size="15"></td>
 		</tr>
 		<tr>
 

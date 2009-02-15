@@ -7,12 +7,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="obm")
@@ -28,7 +32,11 @@ public class OBM {
 		@Cascade(CascadeType.DELETE_ORPHAN)
 		private Collection<Usuario> usuarios;
 		
-		private String municipio;
+		@ManyToOne(fetch = FetchType.EAGER)
+		@JoinColumn(name = "municipio_id", insertable=true, updatable =true)
+		@Fetch(FetchMode.JOIN)
+		@Cascade(CascadeType.SAVE_UPDATE)
+		private Municipio municipio;
 		
 		private String bairro;
 		
@@ -66,11 +74,11 @@ public class OBM {
 			this.usuarios = usuarios;
 		}
 
-		public String getMunicipio() {
+		public Municipio getMunicipio() {
 			return municipio;
 		}
 
-		public void setMunicipio(String municipio) {
+		public void setMunicipio(Municipio municipio) {
 			this.municipio = municipio;
 		}
 

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- 
+ <img src="img/cobm.jpg" border=0><p>
  <div id="cabecalho">
 	<h1><a href="paginaPrincipal.jsp" title="MENU USUÁRIO">MENU</a></h1>
 	<div id="menu">

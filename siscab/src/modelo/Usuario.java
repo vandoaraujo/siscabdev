@@ -29,12 +29,13 @@ public class Usuario {
 	private String nomeGuerra;
 	@Column
 	private String email;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "obm_id", insertable=true, updatable =true)
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private OBM obm;
-	@Column
+	
 	private String perfil;
 	@Column
 	private String senha;
@@ -44,7 +45,9 @@ public class Usuario {
 	private String statusConexao;
 	
 	
-	/*public enum PerfilUsuario{
+	
+	public enum PerfilUsuario{
+		
 		ADMIN(1,"Administrador do Sistema"), ATENDENTE(2,"Atendente do COCB")
 		,OPERADOR(3,"Operador da OBM"),CONTROLADOR(4,"Controlador da OBM"),
 		COMANDANTE(5,"Comandante");
@@ -62,21 +65,14 @@ public class Usuario {
 		
 	}
 	
-	
-	private PerfilUsuario perfilEnum;
-	public PerfilUsuario getPerfilEnum(){return this.perfilEnum;}
-	public void setDay(PerfilUsuario perfilEnum) {this.perfilEnum = perfilEnum;}
-	
-	public void itera(){
-		
-		for(PerfilUsuario perfil : PerfilUsuario.values()){
-			System.out.println(perfil.getNome());
-			
-		}
+	public String getPerfil() {
+		return perfil;
 	}
 	
-	*/
-
+	public void setPerfil(String perfil){
+		this.perfil=perfil;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -106,12 +102,6 @@ public class Usuario {
 	}
 	public void setObm(OBM obm) {
 		this.obm = obm;
-	}
-	public String getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
 	}
 	public String getSenha() {
 		return senha;

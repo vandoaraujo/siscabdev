@@ -20,6 +20,7 @@
         <property name="hbm2ddl.auto">update</property>
   	    <mapping class="modelo.obm"/>
   	    <mapping class="modelo.Usuario"/>
+	    <mapping class="modelo.Municipio"/>	
   	    
   	    
 	</session-factory>

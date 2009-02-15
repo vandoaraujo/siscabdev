@@ -17,6 +17,8 @@ public class UsuarioDao {
 	
 	
 	public static UsuarioDao getInstance(){
+		//Verificar sessoes...
+		//if(singleton == null)
 		singleton = new UsuarioDao();
 		return singleton;
 		
@@ -68,19 +70,15 @@ public class UsuarioDao {
 		
 	}
 	
-	public Usuario buscarUsuario(String nomeGuerra, String senha){
+	public Usuario buscarUsuario(int numRegistro, String senha){
 		
-		Transaction tx = session.beginTransaction();
-		Usuario usu = (Usuario) session.createQuery("from modelo.Usuario u where u.nomeGuerra=:login and u.senha=:senha").setString("login", nomeGuerra).setString("senha", senha).uniqueResult();  
+		Usuario usu = (Usuario) session.createQuery("from modelo.Usuario u where u.numRegistro=:login and u.senha=:senha").setInteger("login", numRegistro).setString("senha", senha).uniqueResult();  
 		return usu;
 	}
 	
 	public Usuario listarUsuariosNome(String nome){
 		
-		Transaction tx = session.beginTransaction();  
 		Usuario usu = (Usuario) session.createQuery("from modelo.Usuario u where u.nome=:nome").setString("nome", nome).uniqueResult();  
-		tx.commit();
-		
 		return usu;		
 		
 	}
