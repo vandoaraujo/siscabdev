@@ -41,6 +41,27 @@ public class OBMDao {
 		session.close();
 		
 	}
+		
+	public void deletar(OBM obm) {
+		
+		Transaction t = session.beginTransaction();
+		session.delete(obm);
+		t.commit();
+		session.flush();
+		session.close();
+		System.out.println("DELETADO");
+	}
+	
+	public void atualizar(OBM obm) {
+		
+		Transaction t = session.beginTransaction();
+		session.update(obm);
+		t.commit();
+		session.flush();
+		session.close();
+		System.out.println("ATUALIZADO");
+		
+	}
 
 
 	public List<OBM> listarTodasOBMs(){
@@ -56,6 +77,12 @@ public class OBMDao {
 		tx.commit();
 		return obm;		
 		
+	}
+	
+	public OBM BuscaOBMId(Integer id) {
+		
+		OBM obm = (OBM) session.load(OBM.class, id);
+		return obm;
 	}
 	
 	

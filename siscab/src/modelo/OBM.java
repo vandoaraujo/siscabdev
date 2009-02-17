@@ -48,7 +48,7 @@ public class OBM {
 		
 		private float coordY;
 		
-		private boolean statusObm;
+		private int statusObm;
 		
 		public int getId() {
 			return id;
@@ -122,11 +122,11 @@ public class OBM {
 			this.coordY = coordY;
 		}
 
-		public boolean getStatus() {
+		public int getStatus() {
 			return statusObm;
 		}
 
-		public void setStatus(boolean status) {
+		public void setStatus(int status) {
 			this.statusObm = status;
 		}
 
