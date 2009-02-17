@@ -14,6 +14,8 @@
 	<ul>
 	<li><a href="ServletNovoUsuario">Novo Usuario</a></li>
 	<li><a href="buscarUsuario.jsp" style="BACKGROUND-COLOR: #c0c0c0;">Procurar Usuarios</a></li>
+	<li><a href="ObmControle">OBMS</a></li>
+	
 	</ul>
 	</div>
 	</div>

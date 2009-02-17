@@ -39,8 +39,8 @@
 	<option>COMANDANTE
 	</select>
 	</label><br>
-	<label>Email: <input name="email" type="text" size="30" value=${usuario.email} }/></label><br>
-	<label>Senha: <input name="senha" type="text" size="30" value=${usuario.senha} }/></label><br>
+	<label>Email: <input name="email" type="text" size="30" value=${usuario.email} /></label><br>
+	<label>Senha: <input name="senha" type="text" size="30" value=${usuario.senha} /></label><br>
 	</fieldset>
 	<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>
 	<input type="submit" value="Deletar" onclick="this.form.operacaoARealizar.value=3"/>

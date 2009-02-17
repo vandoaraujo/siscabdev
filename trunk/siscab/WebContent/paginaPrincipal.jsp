@@ -33,7 +33,7 @@
 	<h1><a href="paginaPrincipal.jsp" title="MENU">MENU</a></h1>
 	<div id="menu">
 	<ul>
-	<li><a href="">Módulo de Recebimento de Chamadas</a></li>
+	<li><a href="recebimentoChamados.jsp">Módulo de Recebimento de Chamadas</a></li>
 	<li><a href="">Módulo de Despachos de Viatura</a></li>
 	<li><a href="">Módulo de Registro de Atendimentos</a></li>
 	<li><a href="">Módulo de Cadastro de Atendimentos Passivos </a></li>

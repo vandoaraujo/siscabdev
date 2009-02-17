@@ -5,8 +5,12 @@
 <title>Erro</title>  
 <link href="css/estilo.css" rel="stylesheet" type="text/css" />  
 </head>  
-<body>  
-<div>  
+<body>
+<h2><font color="blue">SISCAB EXCEPTION!</font> </h2>
+
+  
+<div>
+ERRO:<p>  
 <%exception.printStackTrace(new java.io.PrintWriter(out, true));%>  
 </div>  
 </body>  

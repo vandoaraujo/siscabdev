@@ -51,6 +51,33 @@
 		<servlet-class>
 		controle.EditaUsuario</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		ObmControle</display-name>
+		<servlet-name>ObmControle</servlet-name>
+		<servlet-class>
+		controle.ObmControle</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EditaOBM</display-name>
+		<servlet-name>EditaOBM</servlet-name>
+		<servlet-class>
+		controle.EditaOBM</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		CrudOBM</display-name>
+		<servlet-name>CrudOBM</servlet-name>
+		<servlet-class>
+		controle.CrudOBM</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -67,6 +94,18 @@
 	<servlet-mapping>
 		<servlet-name>EditaUsuario</servlet-name>
 		<url-pattern>/EditaUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ObmControle</servlet-name>
+		<url-pattern>/ObmControle</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditaOBM</servlet-name>
+		<url-pattern>/EditaOBM</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CrudOBM</servlet-name>
+		<url-pattern>/CrudOBM</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
