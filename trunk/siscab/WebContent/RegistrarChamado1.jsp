@@ -14,7 +14,7 @@ Cadastro de Chamados<br>
 
 
 
-<form action="registraChamado" method="post">
+<form action="LocalizaOcorrencia" method="post">
 <table>
 
 <tr>Numero gerado: <input name="idChamado" type="text" readonly="readonly" value=${idChamado}></tr>
@@ -62,7 +62,7 @@ Cadastro de Chamados<br>
 	<tr>Logradouro: <input name="logradouro" type="text" size=20></tr><p>
 	<tr>num.Complemento: <input name="numComplemento" type="text" size=6></tr><p>
 	<tr>CoordX: <input name="coordX" type="text" size=20></tr><p>
-	<tr>CoordY: <input name="cordY" type="text" size=20></tr><p>
+	<tr>CoordY: <input name="coordY" type="text" size=20></tr><p>
 	
 	<tr>OBM: <select name="obmReceberSolicitacao">
 	
@@ -71,25 +71,27 @@ Cadastro de Chamados<br>
 	<%
  	ArrayList<OBM> obms = (ArrayList)request.getAttribute("obms");
  	 for(OBM s: obms){
-	 out.println("<option>"+s.getNome()+"<option>");
+	 out.println("<option>"+s.getNome());
  	}
 	out.println("</select>");
 	%></tr>
 	
-	<tr>NaturezaChamado: <select name="naturezaChamado">
+		//Repassa os atributos de Atendimentos, pois pode haver Ocorrencias Próximas
+		request.setAttribute("tipoOcorrencia", tipoOcorrencia);
+		request.setAttribute("municipio", municipio);
+		request.setAttribute("bairro", bairro);
+		request.setAttribute("logradouro", logradouro);
+		request.setAttribute("numComplemento", numComplemento);
+		request.setAttribute("coordY", coordY);
+		request.setAttribute("coordX", coordX);
+		request.setAttribute("obmSolicitacao", obmReceberSolicitacao);
+		//parametros de chamado
+		request.setAttribute("naturezaChamados", nChamados);
+		request.setAttribute("objChamado", chamado);
 	
-	<!-- Popula a combo de natureza de Chamados que aparecerá na tela Verificar após o clique do botao-->
-	<%
-		 
- 	ArrayList<String> nChamados = (ArrayList)request.getAttribute("NaturezaChamados");
-	for(int i=0;i<nChamados.size();i++){
-	 out.print("<option>"+nChamados.get(i));
- 	}
-	out.println("</select>");
-	%></tr>
+	
 			
 	<input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=1" >
-	<input type="submit" value="Procurar Ocorrências Próximas" onclick="this.form.operacaoARealizar.value=2"/>
 	<input type="hidden" name="operacaoARealizar" value ="">
 	<input type="hidden" name="registroOcorrencia" value ="1"> 
 	</table>
