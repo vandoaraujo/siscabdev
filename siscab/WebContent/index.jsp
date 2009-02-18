@@ -29,12 +29,12 @@ function validate()
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
-		<td>
+		<td style="background-image:url(img/cabecalho.jpg); background-repeat:no-repeat;">
 			<center>
-			<table border="0" cellpadding="0" cellspacing="0">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
-					<td>  	
-					 	<img src="img/cabecalho.jpg">
+					<td align="right" style="padding-right:20px;">  	
+					 	<img src="img/logo.png">
 					 </td>
 				</tr>
 				<tr>
