@@ -16,19 +16,18 @@ Cadastro de Chamados<br>
 
 <form action="registraChamado" method="post">
 <table>
-<tr>Usuário: <input name="usuario" type="text" readonly="readonly" value=${u.nomeGuerra}></tr>
-<tr>Obm do Usuário: <input name="obmUsuario" type="text" readonly="readonly" value=${u.obm.nome}></tr>
+<tr>Usuário: <input name="usuario" type="text" readonly="readonly" value=${usuario.nomeGuerra}></tr>
+<tr>Obm do Usuário: <input name="obmUsuario" type="text" readonly="readonly" value=${usuario.obm.nome}></tr>
 <tr>Data registrada: <input name="dataRegistrada" type="text" readonly="readonly" value=${data}></tr>
 <tr>Hora registrada: <input name="horaRegistrada" type="text" readonly="readonly" value=${hora}></tr>
-<tr>Natureza Chamado: <input name="obmUsuario" type="text" readonly="readonly" value=${u.obm.nome}></tr>
   	  	  	
 <tr>NaturezaChamado: <select name="naturezaChamado">
 	
 	<!-- Popula a combo que aparecerá na tela -->
 	<%
 		 
- 	ArrayList<NaturezaChamados> nChamados = (ArrayList)request.getAttribute("nChamados");
-	
+ 	ArrayList<String> nChamados = (ArrayList)request.getAttribute("NaturezaChamados");
+	nChamados.isEmpty();
 	for(int i=0;i<nChamados.size();i++){
 	 out.println("<option>"+nChamados.get(i));
  	}
@@ -42,9 +41,9 @@ Cadastro de Chamados<br>
 
 	<tr>Nome Solicitante: <input name="nomeSolicitante" type="text" ></tr>
 	<tr>Telefone Solicitante: <input name="telefoneSolicitante" type="text"></tr>
-	<tr>Num aproximado vítimas: <input name="numAproximadoVitimas" type="text"></tr>
+	<tr>Num aproximado vítimas: <input name="numAproximadoVitimas" type="text" size=8><p>
 	<tr>Info Complementares: <textArea NAME="infoComplementares" COLS=30 ROWS=4></textArea></tr>
-	<input type="submit" value="Registrar" onclick="this.form.operacaoARealizar.value=1"/>
+	<input type="submit" value="Registrar" onclick="this.form.operacaoARealizar.value=1" >
 	<input type="submit" value="Procurar Ocorrências Próximas" onclick="this.form.operacaoARealizar.value=2"/>
 	<input type="hidden" name="operacaoARealizar" value ="">
 	 <input type="hidden" name="registroOcorrencia" value ="1"> 
