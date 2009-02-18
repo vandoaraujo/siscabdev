@@ -87,6 +87,15 @@
 		<servlet-class>
 		controle.RegistrarChamado</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		LocalizaOcorrencia</display-name>
+		<servlet-name>LocalizaOcorrencia</servlet-name>
+		<servlet-class>
+		controle.LocalizaOcorrencia</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -119,6 +128,10 @@
 	<servlet-mapping>
 		<servlet-name>RegistrarChamado</servlet-name>
 		<url-pattern>/RegistrarChamado</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LocalizaOcorrencia</servlet-name>
+		<url-pattern>/LocalizaOcorrencia</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

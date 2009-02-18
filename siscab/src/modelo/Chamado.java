@@ -91,12 +91,6 @@ public class Chamado {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNomesolicitante() {
-		return nomesolicitante;
-	}
-	public void setNomesolicitante(String nomesolicitante) {
-		this.nomesolicitante = nomesolicitante;
-	}
 	public int getNumaproxvitimas() {
 		return numaproxvitimas;
 	}

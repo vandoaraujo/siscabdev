@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Municipio;
-import modelo.NaturezaChamados;
 import modelo.OBM;
 import modelo.TiposOcorrencia;
 import modelo.Usuario;
@@ -60,8 +61,9 @@ public class RegistrarChamado extends HttpServlet {
 		  hora1 = formata.format(agora);  
 		     
 		  System.out.print(data1);	
-		  System.out.print(hora1);  
+		  System.out.print(hora1); 
 		  
+	 		  
 		  //Fazer demais lógicas deste caso de USO ---
 		  //Verifica próximo ID
 		  int id= ChamadoDao.getInstance().listaUltimoId();	
@@ -73,11 +75,6 @@ public class RegistrarChamado extends HttpServlet {
 		  
 		  List<Municipio> municipios = (List<Municipio>)MunicipioDao.getInstance().listarTodosMunicipios();
 		
-		  
-		  //Cria objeto NaturezaChamados
-		  NaturezaChamados n = new NaturezaChamados();
-		  ArrayList<String> nChamados =  n.getAr();
-		  
 		  TiposOcorrencia tipo = new TiposOcorrencia();
 		  ArrayList<String> nTiposOcorrencia = tipo.getAr();
 		  
@@ -87,7 +84,6 @@ public class RegistrarChamado extends HttpServlet {
 		  request.setAttribute("obms", obms);
 		  request.setAttribute("municipios", municipios);
 		  request.setAttribute("tipoOcorrencia", nTiposOcorrencia);
-		  request.setAttribute("NaturezaChamados", nChamados);
 		  request.setAttribute("usuario", u);
 		  request.setAttribute("idChamado", id);
 		  request.setAttribute("data", data1);
