@@ -22,6 +22,7 @@
   	    <mapping class="modelo.Usuario"/>
 	    <mapping class="modelo.Municipio"/>
 	    <mapping class="modelo.Chamado"/>
+	    <mapping class="modelo.Atendimentos"/>
 	    	
   	    
   	    

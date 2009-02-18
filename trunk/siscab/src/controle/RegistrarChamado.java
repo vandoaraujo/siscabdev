@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,9 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Municipio;
 import modelo.NaturezaChamados;
+import modelo.OBM;
+import modelo.TiposOcorrencia;
 import modelo.Usuario;
 import dao.ChamadoDao;
+import dao.MunicipioDao;
+import dao.OBMDao;
 import dao.UsuarioDao;
 
 /**
@@ -42,12 +48,6 @@ public class RegistrarChamado extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-		/*Locale locale = new Locale("pt","BR");
-		GregorianCalendar calendar = new GregorianCalendar();
-		SimpleDateFormat formatador = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH':'mm'h'",locale);
-		System.out.println(formatador.format(calendar.getTime())); */
 		
 		  String data = "dd/MM/yyyy";  
 		  String hora = "HH:mm";  
@@ -71,12 +71,22 @@ public class RegistrarChamado extends HttpServlet {
 		  System.out.println("######################" + UsuarioDao.getUsuarioLogado().getNomeGuerra()+ "##############");
 		  System.out.println(UsuarioDao.getUsuarioLogado().getObm().getNome());
 		  
+		  List<Municipio> municipios = (List<Municipio>)MunicipioDao.getInstance().listarTodosMunicipios();
+		
+		  
 		  //Cria objeto NaturezaChamados
 		  NaturezaChamados n = new NaturezaChamados();
 		  ArrayList<String> nChamados =  n.getAr();
 		  
+		  TiposOcorrencia tipo = new TiposOcorrencia();
+		  ArrayList<String> nTiposOcorrencia = tipo.getAr();
 		  
-		  //Verifica Nome do Usuario e OBM Atual
+		  ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance().listarTodasOBMs();
+		  		  
+		  //Parametros utilizados na próxima página
+		  request.setAttribute("obms", obms);
+		  request.setAttribute("municipios", municipios);
+		  request.setAttribute("tipoOcorrencia", nTiposOcorrencia);
 		  request.setAttribute("NaturezaChamados", nChamados);
 		  request.setAttribute("usuario", u);
 		  request.setAttribute("idChamado", id);
@@ -84,8 +94,7 @@ public class RegistrarChamado extends HttpServlet {
 		  request.setAttribute("hora", hora1);
 		 			
 		  RequestDispatcher view = request.getRequestDispatcher("/RegistrarChamado1.jsp");
-			
-		
+				
 			
 		try {
 			view.forward(request, response);
