@@ -78,6 +78,15 @@
 		<servlet-class>
 		controle.CrudOBM</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		RegistrarChamado</display-name>
+		<servlet-name>RegistrarChamado</servlet-name>
+		<servlet-class>
+		controle.RegistrarChamado</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -106,6 +115,10 @@
 	<servlet-mapping>
 		<servlet-name>CrudOBM</servlet-name>
 		<url-pattern>/CrudOBM</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegistrarChamado</servlet-name>
+		<url-pattern>/RegistrarChamado</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
