@@ -3,6 +3,7 @@ package controle;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.NaturezaChamados;
 import modelo.Usuario;
 import dao.ChamadoDao;
 import dao.UsuarioDao;
@@ -48,7 +50,7 @@ public class RegistrarChamado extends HttpServlet {
 		System.out.println(formatador.format(calendar.getTime())); */
 		
 		  String data = "dd/MM/yyyy";  
-		  String hora = "h:mm - a";  
+		  String hora = "HH:mm";  
 		  String data1, hora1;  
 		     
 		  Date agora = new java.util.Date();;  
@@ -58,33 +60,29 @@ public class RegistrarChamado extends HttpServlet {
 		  hora1 = formata.format(agora);  
 		     
 		  System.out.print(data1);	
-		  System.out.println("##########################");
 		  System.out.print(hora1);  
 		  
 		  //Fazer demais lógicas deste caso de USO ---
-		  
-		  
 		  //Verifica próximo ID
-		  int id= ChamadoDao.getInstance().listaUltimoId();
-	
-		  
+		  int id= ChamadoDao.getInstance().listaUltimoId();	
 		  id++;
-		  System.out.println("#####################" + id + "############################");
-		  
-		  UsuarioDao.getUsuarioLogado();
+			  
+		  Usuario u =UsuarioDao.getUsuarioLogado();
 		  System.out.println("######################" + UsuarioDao.getUsuarioLogado().getNomeGuerra()+ "##############");
 		  System.out.println(UsuarioDao.getUsuarioLogado().getObm().getNome());
 		  
+		  //Cria objeto NaturezaChamados
+		  NaturezaChamados n = new NaturezaChamados();
+		  List nChamados =  n.getAr();
 		  
 		  
-		  //Verifica Nome do Usuario e OBM Atual 
-		  
-		 
+		  //Verifica Nome do Usuario e OBM Atual
+		  request.setAttribute("NaturezaChamados", nChamados);
+		  request.setAttribute("usuario", u);
 		  request.setAttribute("idChamado", id);
 		  request.setAttribute("data", data1);
 		  request.setAttribute("hora", hora1);
-		 
-			
+		 			
 		  RequestDispatcher view = request.getRequestDispatcher("/RegistrarChamado1.jsp");
 			
 		
