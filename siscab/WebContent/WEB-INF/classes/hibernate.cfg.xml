@@ -21,6 +21,7 @@
   	    <mapping class="modelo.OBM"/>
   	    <mapping class="modelo.Usuario"/>
 	    <mapping class="modelo.Municipio"/>	
+  	    <mapping class="modelo.Chamado"/>
   	    
   	    
 	</session-factory>

@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<img src="img/fundo_cabecalho.jpg" border=0><p>
+
+<h1>MENU</h1><p>
+
+<a href="RegistrarChamado">Novo Chamado</a>
+
+
+
+
+
 
 </body>
 </html>

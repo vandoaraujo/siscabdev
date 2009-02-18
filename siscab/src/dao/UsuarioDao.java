@@ -15,10 +15,13 @@ public class UsuarioDao {
 	// Singleton
 	private static UsuarioDao singleton = null;
 	
+	private static Usuario usuarioLogado;
+	
 	
 	public static UsuarioDao getInstance(){
 		//Verificar sessoes...
 		//if(singleton == null)
+		
 		singleton = new UsuarioDao();
 		return singleton;
 		
@@ -72,7 +75,8 @@ public class UsuarioDao {
 	
 	public Usuario buscarUsuario(int numRegistro, String senha){
 		
-		Usuario usu = (Usuario) session.createQuery("from modelo.Usuario u where u.numRegistro=:login and u.senha=:senha").setInteger("login", numRegistro).setString("senha", senha).uniqueResult();  
+		Usuario usu = (Usuario) session.createQuery("from modelo.Usuario u where u.numRegistro=:login and u.senha=:senha").setInteger("login", numRegistro).setString("senha", senha).uniqueResult();
+		usuarioLogado=usu;
 		return usu;
 	}
 	
@@ -121,6 +125,14 @@ public class UsuarioDao {
 		
 		Usuario u = (Usuario) session.load(Usuario.class, id);
 		return u;
+	}
+
+	public static Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 
 	
