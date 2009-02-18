@@ -2,8 +2,8 @@ package controle;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -73,7 +73,7 @@ public class RegistrarChamado extends HttpServlet {
 		  
 		  //Cria objeto NaturezaChamados
 		  NaturezaChamados n = new NaturezaChamados();
-		  List nChamados =  n.getAr();
+		  ArrayList<String> nChamados =  n.getAr();
 		  
 		  
 		  //Verifica Nome do Usuario e OBM Atual
