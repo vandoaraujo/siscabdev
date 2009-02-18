@@ -15,7 +15,7 @@ public class NaturezaChamados {
 		ar.add("Queda de ligação");
 		ar.add("Orientação");
 		ar.add("Informação sobre atendimento");
-				
+	
 	}
 
 
@@ -26,8 +26,6 @@ public class NaturezaChamados {
 	public void setAr(ArrayList<String> ar) {
 		this.ar = ar;
 	}
-	
-
 	
 
 }
