@@ -23,6 +23,20 @@ Cadastro de Chamados<br>
 <tr>Data registrada: <input name="dataRegistrada" type="text" readonly="readonly" value=${data}></tr>
 <tr>Hora registrada: <input name="horaRegistrada" type="text" readonly="readonly" value=${hora}></tr>
   	  	  	
+  	<tr>Município: <select name="municipio">
+	
+	<!-- Popula a combo de municipios que aparecerá na tela -->
+	<%
+    
+ 	ArrayList<Municipio> municipio = (ArrayList)request.getAttribute("municipios");
+ 	 for(Municipio m: municipio){
+	 out.println("<option>"+m.getMunicipio_nome());
+ 	}
+	out.println("</select>");
+	%>
+	
+	<tr>Bairro: <input name="bairro" type="text" size=20>&nbsp;&nbsp;&nbsp; <input type="submit" value="Procurar Ocorrencias Proximas" onclick="this.form.operacaoARealizar.value=2" ></tr>  	  	
+  	
 	<tr>Origem: <select name="origem">
 	<option>Telefone 
 	<option>Pessoalmente
@@ -32,6 +46,9 @@ Cadastro de Chamados<br>
 	<tr>Telefone Solicitante: <input name="telefoneSolicitante" type="text"></tr>
 	<tr>Num aproximado vítimas: <input name="numAproximadoVitimas" type="text" size=8><p>
 	<tr>Info Complementares: <textArea NAME="infoComplementares" COLS=30 ROWS=4></textArea></tr>
+	
+	
+	
 	
 		
 	<tr>Tipo de Ocorrencia: <select name="tipoOcorrencia">
@@ -46,19 +63,9 @@ Cadastro de Chamados<br>
 	out.println("</select>");
 	%></tr>
 	
-	<tr>Município: <select name="municipio">
+
 	
-	<!-- Popula a combo de municipios que aparecerá na tela -->
-	<%
-    
- 	ArrayList<Municipio> municipio = (ArrayList)request.getAttribute("municipios");
- 	 for(Municipio m: municipio){
-	 out.println("<option>"+m.getMunicipio_nome());
- 	}
-	out.println("</select>");
-	%>
 	
-	<tr>Bairro: <input name="bairro" type="text" size=20></tr><p>
 	<tr>Logradouro: <input name="logradouro" type="text" size=20></tr><p>
 	<tr>num.Complemento: <input name="numComplemento" type="text" size=6></tr><p>
 	<tr>CoordX: <input name="coordX" type="text" size=20></tr><p>
@@ -75,22 +82,9 @@ Cadastro de Chamados<br>
  	}
 	out.println("</select>");
 	%></tr>
+	<p>
 	
-		//Repassa os atributos de Atendimentos, pois pode haver Ocorrencias Próximas
-		request.setAttribute("tipoOcorrencia", tipoOcorrencia);
-		request.setAttribute("municipio", municipio);
-		request.setAttribute("bairro", bairro);
-		request.setAttribute("logradouro", logradouro);
-		request.setAttribute("numComplemento", numComplemento);
-		request.setAttribute("coordY", coordY);
-		request.setAttribute("coordX", coordX);
-		request.setAttribute("obmSolicitacao", obmReceberSolicitacao);
-		//parametros de chamado
-		request.setAttribute("naturezaChamados", nChamados);
-		request.setAttribute("objChamado", chamado);
-	
-	
-			
+		
 	<input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=1" >
 	<input type="hidden" name="operacaoARealizar" value ="">
 	<input type="hidden" name="registroOcorrencia" value ="1"> 
