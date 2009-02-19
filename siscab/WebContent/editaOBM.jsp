@@ -77,8 +77,8 @@
 								</tr>
 								<tr>	
 									<td><label>Status:</label></td>
-									<td>Ativa <input name="statusObm" type="radio" value="ativa" <%= (obmVO.getStatus()!=1)? " checked" : "" %> > &nbsp;&nbsp;&nbsp;
-							  			Inativa: <input name="statusObm" type="radio" value="inativa" <%= (obmVO.getStatus()!=0)? " checked" : "" %></td>
+									<td>Ativa <input name="statusObm" type="radio" value="ativa" <%=  (obmVO.getStatus()==0)? " checked" : "" %> > &nbsp;&nbsp;&nbsp;
+							  			Inativa: <input name="statusObm" type="radio" value="inativa" <%= (obmVO.getStatus()==1)? " checked" : "" %></td>
 								</tr>
 								<tr>
 									<td colspan="2">
