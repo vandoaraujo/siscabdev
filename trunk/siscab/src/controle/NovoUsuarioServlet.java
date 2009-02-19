@@ -185,8 +185,6 @@ public class NovoUsuarioServlet extends HttpServlet {
 		usu.setSenha(senha);
 		usu.setStatus(status);
 		UsuarioDao.getInstance().atualizar(usu);
-		despacha(request, response, "alterar", usu.getNomeGuerra());
-		
+		despacha(request, response, "alterar", usu.getNomeGuerra());		
 	}
-
 }

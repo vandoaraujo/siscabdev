@@ -49,7 +49,7 @@ public class ServletLogin extends HttpServlet {
 		//Faz chamada ao Banco de Dados instanciando uma SessionFactory
 		
 		int numRegistro = Integer.parseInt(request.getParameter("numRegistro"));
-		String senha = request.getParameter("senha");
+		String senha = request.getParameter("senha"); 
 		Usuario usu = UsuarioDao.getInstance().buscarUsuario(numRegistro, senha);
 		validaUsuario(request,usu,response);
 	}
