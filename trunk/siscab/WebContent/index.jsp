@@ -42,8 +42,8 @@ function validate()
 						<center>
 						<table width="100%" border="0" cellpadding="0" cellspacing="0">
 							<tr style="height:110px" valign="top">
-								<td colspan="2">
-									<center><h2>Seja bem-vindo. Para acessar o sistema, entre com o número de registro e senha.</h2></center>
+								<td colspan="2" style="padding-top:10px;">
+									<center><h3>Seja bem-vindo. Para acessar o sistema, entre com o número de registro e senha.</h3></center>
 								</td>
 							</tr>
 							<tr>
