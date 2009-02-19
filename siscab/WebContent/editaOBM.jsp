@@ -80,7 +80,7 @@
 									<td>Ativa <input name="statusObm" type="radio" value="ativa" <%= (obmVO.getStatus()!=1)? " checked" : "" %> > &nbsp;&nbsp;&nbsp;
 							  			Inativa: <input name="statusObm" type="radio" value="inativa" <%= (obmVO.getStatus()!=0)? " checked" : "" %></td>
 								</tr>
-								<tr>	
+								<tr>
 									<td colspan="2">
 										<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>
 										<input type="submit" value="Deletar" onclick="this.form.operacaoARealizar.value=3"/>							
