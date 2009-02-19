@@ -54,6 +54,11 @@ public class Atendimentos {
 	private OBM obm_id;
 	
 	private String status_atendimento;
+	
+	/*•	Pendente;
+	•	Em andamento;
+	•	Finalizado.*/
+
 
 	public int getId() {
 		return id;

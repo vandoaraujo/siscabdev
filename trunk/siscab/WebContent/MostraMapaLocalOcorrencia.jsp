@@ -12,6 +12,22 @@
 <body>
 <h4> Configurar esta tela pra visualizar um mapa do Google Maps</h4><br>
 
+
+Variáveis passadas para o JSP que podem ser utilizadas.
+
+		request.setAttribute("tipoOcorrencia", tipoOcorrencia);
+		request.setAttribute("municipio", municipio);
+		request.setAttribute("bairro", bairro);
+		request.setAttribute("logradouro", logradouro);
+		request.setAttribute("numComplemento", numComplemento);
+		request.setAttribute("coordY", coordY);
+		request.setAttribute("coordX", coordX);
+		request.setAttribute("obmSolicitacao", obmReceberSolicitacao);
+		//parametros de chamado
+		request.setAttribute("naturezaChamados", nChamados);
+		request.setAttribute("objChamado", chamado);
+
+
 		<form action="" method="post">
 		
 		
@@ -30,7 +46,6 @@
 			
 			
 			<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
-			<input type="submit" value="Procurar Ocorrências Próximas" onclick="this.form.operacaoARealizar.value=2"/>
 			<input type="hidden" name="operacaoARealizar" value ="">
 			<input type="hidden" name="registroOcorrencia" value ="1"> 
 			</form>
