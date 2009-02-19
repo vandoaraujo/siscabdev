@@ -29,7 +29,6 @@ DROP TABLE IF EXISTS `atendimentos`;
 CREATE TABLE `atendimentos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `atendimento_numero` varchar(10) NOT NULL DEFAULT '',
-  `tipoocorrencia_id` int(10) NOT NULL DEFAULT '0',
   `chamado_id` int(10) NOT NULL DEFAULT '1',
   `municipio_id` int(10) NOT NULL DEFAULT '0',
   `bairro` varchar(40) NOT NULL DEFAULT '',
@@ -38,21 +37,26 @@ CREATE TABLE `atendimentos` (
   `coordx` double DEFAULT NULL,
   `coordy` double DEFAULT NULL,
   `obm_id` int(10) NOT NULL DEFAULT '0',
-  `status_atendimento` int(1) NOT NULL DEFAULT '1',
+  `status_atendimento` varchar(30) NOT NULL DEFAULT '1',
+  `tipoocorrencia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_atendimentos_1` (`obm_id`),
-  KEY `FK_atendimentos_municipio` (`municipio_id`),
-  KEY `FK_atendimentos_ocorrencia` (`tipoocorrencia_id`),
-  CONSTRAINT `FK_atendimentos_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`),
-  CONSTRAINT `FK_atendimentos_ocorrencia` FOREIGN KEY (`tipoocorrencia_id`) REFERENCES `tiposocorrencias` (`id`),
-  CONSTRAINT `FK_atendimentos_1` FOREIGN KEY (`obm_id`) REFERENCES `chamados` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
+  KEY `FK7E7914A34D8464F2` (`municipio_id`),
+  KEY `FK7E7914A32A076032` (`chamado_id`),
+  KEY `FK7E7914A3413BCBD2` (`obm_id`),
+  CONSTRAINT `FK7E7914A32A076032` FOREIGN KEY (`chamado_id`) REFERENCES `chamados` (`id`),
+  CONSTRAINT `FK7E7914A3413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
+  CONSTRAINT `FK7E7914A34D8464F2` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`),
+  CONSTRAINT `FK_atendimentos_1` FOREIGN KEY (`obm_id`) REFERENCES `chamados` (`id`),
+  CONSTRAINT `FK_atendimentos_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
 
 --
 -- Dumping data for table `atendimentos`
 --
 
 /*!40000 ALTER TABLE `atendimentos` DISABLE KEYS */;
+INSERT INTO `atendimentos` (`id`,`atendimento_numero`,`chamado_id`,`municipio_id`,`bairro`,`logradouro`,`numcompl`,`coordx`,`coordy`,`obm_id`,`status_atendimento`,`tipoocorrencia`) VALUES 
+ (1,'1',1,1,'taua','rua A','10',145.67,189.87,1,'Pendente','Orientação');
 /*!40000 ALTER TABLE `atendimentos` ENABLE KEYS */;
 
 
@@ -83,7 +87,7 @@ CREATE TABLE `avisossistema` (
 DROP TABLE IF EXISTS `chamados`;
 CREATE TABLE `chamados` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `naturezachamado_id` int(1) NOT NULL DEFAULT '0',
+  `naturezachamado` varchar(50) NOT NULL DEFAULT '0',
   `origem` varchar(50) DEFAULT NULL,
   `nomesolicitante` varchar(60) DEFAULT NULL,
   `telefonesolicitante` varchar(30) DEFAULT NULL,
@@ -93,17 +97,18 @@ CREATE TABLE `chamados` (
   `horainicio` datetime NOT NULL,
   `horatermino` datetime NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `FK_tbchamados_1` (`obm_id`),
-  KEY `FK_chamados_natureza` (`naturezachamado_id`),
-  CONSTRAINT `FK_chamados_natureza` FOREIGN KEY (`naturezachamado_id`) REFERENCES `naturezaschamados` (`id`),
+  KEY `FK55502018413BCBD2` (`obm_id`),
+  CONSTRAINT `FK55502018413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK_tbchamados_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
 
 --
 -- Dumping data for table `chamados`
 --
 
 /*!40000 ALTER TABLE `chamados` DISABLE KEYS */;
+INSERT INTO `chamados` (`id`,`naturezachamado`,`origem`,`nomesolicitante`,`telefonesolicitante`,`numaproxvitimas`,`infocomplementares`,`obm_id`,`horainicio`,`horatermino`) VALUES 
+ (1,'Orientacao','telefone','Vando Araujo','33630507',0,'orientacao',1,'2011-00-00 00:00:00','2011-03-00 00:00:00');
 /*!40000 ALTER TABLE `chamados` ENABLE KEYS */;
 
 
@@ -336,7 +341,7 @@ CREATE TABLE `obm` (
   KEY `FK1ACFA4D8464F2` (`municipio_id`),
   CONSTRAINT `FK1ACFA4D8464F2` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`),
   CONSTRAINT `FK_obm_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `obm`
@@ -344,7 +349,8 @@ CREATE TABLE `obm` (
 
 /*!40000 ALTER TABLE `obm` DISABLE KEYS */;
 INSERT INTO `obm` (`id`,`nome`,`municipio_id`,`bairro`,`logradouro`,`numCompl`,`coordX`,`coordY`,`statusObm`) VALUES 
- (1,'PracaTiradentes',61,'Centro','Rua A','Quadra15',178.8,174.9,1);
+ (1,'PracaTiradentes',6,'Centro','Praça','lote 5',178.8,174.9,1),
+ (3,'Univercidade',44,'centro','rua a','16',178,179,0);
 /*!40000 ALTER TABLE `obm` ENABLE KEYS */;
 
 
