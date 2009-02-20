@@ -96,6 +96,15 @@
 		<servlet-class>
 		controle.LocalizaOcorrencia</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		FinalizarChamadoIniciarAtendimento</display-name>
+		<servlet-name>FinalizarChamadoIniciarAtendimento</servlet-name>
+		<servlet-class>
+		controle.FinalizarChamadoIniciarAtendimento</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -132,6 +141,10 @@
 	<servlet-mapping>
 		<servlet-name>LocalizaOcorrencia</servlet-name>
 		<url-pattern>/LocalizaOcorrencia</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FinalizarChamadoIniciarAtendimento</servlet-name>
+		<url-pattern>/FinalizarChamadoIniciarAtendimento</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

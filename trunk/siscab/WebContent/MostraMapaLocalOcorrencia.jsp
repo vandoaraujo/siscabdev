@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Chamado" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,24 +14,21 @@
 <h4> Configurar esta tela pra visualizar um mapa do Google Maps</h4><br>
 
 
-Variáveis passadas para o JSP que podem ser utilizadas.
 
-		request.setAttribute("tipoOcorrencia", tipoOcorrencia);
-		request.setAttribute("municipio", municipio);
-		request.setAttribute("bairro", bairro);
-		request.setAttribute("logradouro", logradouro);
-		request.setAttribute("numComplemento", numComplemento);
-		request.setAttribute("coordY", coordY);
-		request.setAttribute("coordX", coordX);
-		request.setAttribute("obmSolicitacao", obmReceberSolicitacao);
-		//parametros de chamado
-		request.setAttribute("naturezaChamados", nChamados);
-		request.setAttribute("objChamado", chamado);
+	<form action="FinalizarChamadoIniciarAtendimento" method="post">
+		<table>
+		<tr><td>Origem do Chamado: <input name="origemChamado" type="text" readonly="readonly" value=${origemChamado}></td></tr>
+		<tr><td>Nome do Solicitante: <input name="nomeSolicitante" type="text" readonly="readonly" value=${nomeSolicitante}></td></tr>
+		<tr><td>Telefone: <input name="telefone" type="text" readonly="readonly" value=${telefone}></td></tr>
+		<tr><td>Número Aproximado de Vitimas: <input name="numAproxVitimas" type="text" readonly="readonly" value=${aproxVitimas}></td></tr>
+		<tr><td>Obm Solicitada: <input name="obmSolicitada" type="text" readonly="readonly" value=${nomeObmUsuario}></td></tr>
+		<tr><td> <input name="infoComplementares" type="hidden" readonly="readonly" value=${infoComplementares}></td></tr>
+		<tr><td> <input name="numeroChamado" type="hidden" readonly="readonly" value=${numeroChamado}></td></tr>
+	
 
-
-		<form action="" method="post">
+		</table>
 		
-		
+				
 		
 		<tr>NaturezaChamado: <select name="naturezaChamado">
 			

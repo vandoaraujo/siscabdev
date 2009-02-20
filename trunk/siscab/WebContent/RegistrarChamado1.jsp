@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.NaturezaChamados,modelo.Municipio" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,16 +13,19 @@
   	
 Cadastro de Chamados<br>
 
-
-
 <form action="LocalizaOcorrencia" method="post">
 <table>
+<%! String grava = null;%>>
+
+	<% SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy - hh:mm");
+
+			Calendar cal = Calendar.getInstance(); 
+			grava = data.format(cal.getTime());  %>
 
 <tr>Numero gerado: <input name="idChamado" type="text" readonly="readonly" value=${idChamado}></tr>
 <tr>Usuário: <input name="usuario" type="text" readonly="readonly" value=${usuario.nomeGuerra}></tr>
 <tr>Obm do Usuário: <input name="obmUsuario" type="text" readonly="readonly" value=${usuario.obm.nome}></tr>
-<tr>Data registrada: <input name="dataRegistrada" type="text" readonly="readonly" value=${data}></tr>
-<tr>Hora registrada: <input name="horaRegistrada" type="text" readonly="readonly" value=${hora}></tr>
+<tr>Data registrada: <input name="dataRegistrada" type="text" readonly="readonly" value=<%=grava %> size=40  ></tr>
   	  	  	
   	<tr>Município: <select name="municipio">
 	
@@ -47,44 +51,7 @@ Cadastro de Chamados<br>
 	<tr>Num aproximado vítimas: <input name="numAproximadoVitimas" type="text" size=8><p>
 	<tr>Info Complementares: <textArea NAME="infoComplementares" COLS=30 ROWS=4></textArea></tr>
 	
-	
-	
-	
-		
-	<tr>Tipo de Ocorrencia: <select name="tipoOcorrencia">
-	
-	<!-- Popula a combo de tipos de Ocorrencia que aparecerá na tela -->
-	<%
-		 
- 	ArrayList<String> tipoOcorrencia = (ArrayList)request.getAttribute("tipoOcorrencia");
-	for(int i=0;i<tipoOcorrencia.size();i++){
-	 out.print("<option>"+tipoOcorrencia.get(i));
- 	}
-	out.println("</select>");
-	%></tr>
-	
-
-	
-	
-	<tr>Logradouro: <input name="logradouro" type="text" size=20></tr><p>
-	<tr>num.Complemento: <input name="numComplemento" type="text" size=6></tr><p>
-	<tr>CoordX: <input name="coordX" type="text" size=20></tr><p>
-	<tr>CoordY: <input name="coordY" type="text" size=20></tr><p>
-	
-	<tr>OBM: <select name="obmReceberSolicitacao">
-	
-		
-	<!-- Popula a combo de OBMS que aparecerá na tela -->
-	<%
- 	ArrayList<OBM> obms = (ArrayList)request.getAttribute("obms");
- 	 for(OBM s: obms){
-	 out.println("<option>"+s.getNome());
- 	}
-	out.println("</select>");
-	%></tr>
-	<p>
-	
-		
+			
 	<input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=1" >
 	<input type="hidden" name="operacaoARealizar" value ="">
 	<input type="hidden" name="registroOcorrencia" value ="1"> 
