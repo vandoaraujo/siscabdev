@@ -2,8 +2,10 @@ package controle;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Chamado;
 import modelo.OBM;
+import modelo.StatusAtendimento;
 import dao.ChamadoDao;
 import dao.OBMDao;
 
@@ -55,19 +58,21 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		String obmSolicitada = request.getParameter("obmSolicitada");
 		String infoComplementares = request.getParameter("infoComplementares");
 		String origemChamado =  request.getParameter("origemChamado");
-		String naturezaChamado = request.getParameter("naturezaChamados");
+		String naturezaChamado = request.getParameter("naturezaChamado");
 		String id =  request.getParameter("numeroChamado");
 		int identificadorChamado = Integer.parseInt(id);
+		String municipio = request.getParameter("municipio");
+		String bairro = request.getParameter("bairro");
 		
-		String dataHora = request.getParameter("dataHora");
-			
-		DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy - HH:mm");  
-		java.sql.Date data = null;
-		try {
-			data = new java.sql.Date(fmt.parse(dataHora).getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}  
+		
+		GregorianCalendar calendar =  new GregorianCalendar();
+		calendar.add(GregorianCalendar.MONTH, 0);
+		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
+		calendar.add(GregorianCalendar.MINUTE, 0);
+		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		String grava = formata.format(calendar.getTime());
+		Date data = new Date(formata.format(calendar.getTime()));
+
 			
 		//Criacao do Objeto Chamado com os campos da tela
 		Chamado chamado = new Chamado();
@@ -84,25 +89,33 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		chamado.setObm(obmUsuario);
 		chamado.setOrigem(origemChamado);
 		chamado.setTelefoneSolicitante(telefone);
-		
+		chamado.setNaturezaChamado(naturezaChamado);
+					
 		ChamadoDao.getInstance().salvar(chamado);
 		
-		request.setAttribute("idNumeroAtendimento", identificadorChamado);
-		request.setAttribute("obmAtendimento", obmUsuario);
-		
+	
+			
 		System.out.println("############### SALVO COM SUCESSO!!!!!!!!! ####################");
 		
 		if(naturezaChamado.equals("Solicitação de socorro")){
 			
+			
+			request.setAttribute("municipio", municipio);
+			request.setAttribute("bairro", bairro);
+			request.setAttribute("idNumeroAtendimento", identificadorChamado);
+			request.setAttribute("obmAtendimento", obmSolicitada);
 			RequestDispatcher view = request.getRequestDispatcher("/RegistrarAtendimento.jsp");
 			view.forward(request, response);
 		}
 		else{
 			
-			RequestDispatcher view = request.getRequestDispatcher("/RegistrarAtendimento.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/FinalizarChamado.jsp");
 			view.forward(request, response);
 			
 		}
+		
+		
+
 
 
 	}

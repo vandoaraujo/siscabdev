@@ -10,24 +10,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-  	
-Cadastro de Chamados<br>
 
 <form action="LocalizaOcorrencia" method="post">
 <table>
-<%! String grava = null;%>>
+<%! String grava = null;%>
 
-	<% SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy - hh:mm");
-
+	<% SimpleDateFormat data = new SimpleDateFormat("HH:mm");
 			Calendar cal = Calendar.getInstance(); 
-			grava = data.format(cal.getTime());  %>
+			grava = data.format(cal.getTimeInMillis());  %>
+			
+	<h2 font color="blue">Cadastro de Chamados</font></h2><br>		
+
+
+Hora do Chamado: <%= grava %>
 
 <tr>Numero gerado: <input name="idChamado" type="text" readonly="readonly" value=${idChamado}></tr>
 <tr>Usuário: <input name="usuario" type="text" readonly="readonly" value=${usuario.nomeGuerra}></tr>
 <tr>Obm do Usuário: <input name="obmUsuario" type="text" readonly="readonly" value=${usuario.obm.nome}></tr>
-<tr>Data registrada: <input name="dataRegistrada" type="text" readonly="readonly" value=<%=grava %> size=40  ></tr>
   	  	  	
-  	<tr>Município: <select name="municipio">
+<tr>Município: <select name="municipio">
 	
 	<!-- Popula a combo de municipios que aparecerá na tela -->
 	<%

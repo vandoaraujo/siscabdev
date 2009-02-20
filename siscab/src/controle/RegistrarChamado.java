@@ -45,32 +45,23 @@ public class RegistrarChamado extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-			/*SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy - hh:mm");
-			Calendar cal = Calendar.getInstance(); 
-			String grava = data.format(cal.getTime()); 
-			*/
-			
-			//DATA - JAPA
+				
 			GregorianCalendar calendar =  new GregorianCalendar();
 			calendar.add(GregorianCalendar.MONTH, 0);
 			calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
 			calendar.add(GregorianCalendar.MINUTE, 0);
-			DateFormat formata = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 			String grava = formata.format(calendar.getTime());
-			
 			String horaData = grava;
 			
-			
-			
-			System.out.println("HORA ATUAL" + grava);
+			System.out.println("HORA ATUAL NO SERVLET REGISTRAR CHAMADO" + grava);
 			
 			System.out.println("HORA ATUAL" + grava.toString());
 
 		
 		  //Fazer demais lógicas deste caso de USO ---
 		  //Verifica próximo ID
-		  int id= ChamadoDao.getInstance().listaUltimoId();	
+		  Integer id= ChamadoDao.getInstance().listaUltimoId();	
 		  id++;
 			  
 		  Usuario u =UsuarioDao.getUsuarioLogado();

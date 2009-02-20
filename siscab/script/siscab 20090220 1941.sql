@@ -94,13 +94,13 @@ CREATE TABLE `chamados` (
   `numaproxvitimas` int(10) DEFAULT NULL,
   `infocomplementares` varchar(255) DEFAULT NULL,
   `obm_id` int(10) NOT NULL DEFAULT '0',
-  `horainicio` datetime NOT NULL,
-  `horatermino` datetime NOT NULL,
+  `horainicio` datetime DEFAULT NULL,
+  `horatermino` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `FK55502018413BCBD2` (`obm_id`),
   CONSTRAINT `FK55502018413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK_tbchamados_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
 
 --
 -- Dumping data for table `chamados`
@@ -108,7 +108,11 @@ CREATE TABLE `chamados` (
 
 /*!40000 ALTER TABLE `chamados` DISABLE KEYS */;
 INSERT INTO `chamados` (`id`,`naturezachamado`,`origem`,`nomesolicitante`,`telefonesolicitante`,`numaproxvitimas`,`infocomplementares`,`obm_id`,`horainicio`,`horatermino`) VALUES 
- (1,'Orientacao','telefone','Vando Araujo','33630507',0,'orientacao',1,'2011-00-00 00:00:00','2011-03-00 00:00:00');
+ (1,'Orientacao','telefone','Vando Araujo','33630507',0,'orientacao',1,'2011-00-00 00:00:00','2011-03-00 00:00:00'),
+ (2,'Solicitação de socorro','Telefone','vando','247',0,'bka',1,NULL,NULL),
+ (3,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-02-20 16:17:00',NULL),
+ (4,'Orientação','Telefone','vando','2467',0,'bla',1,'2009-02-20 16:29:00',NULL),
+ (5,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-02-20 19:37:00',NULL);
 /*!40000 ALTER TABLE `chamados` ENABLE KEYS */;
 
 
@@ -349,8 +353,8 @@ CREATE TABLE `obm` (
 
 /*!40000 ALTER TABLE `obm` DISABLE KEYS */;
 INSERT INTO `obm` (`id`,`nome`,`municipio_id`,`bairro`,`logradouro`,`numCompl`,`coordX`,`coordY`,`statusObm`) VALUES 
- (1,'PracaTiradentes',6,'Centro','Praça','lote 5',178.8,174.9,1),
- (3,'Univercidade',44,'centro','rua a','16',178,179,0);
+ (1,'PracaTiradentes',6,'Centro','Praça','lote 5',178.8,174.9,0),
+ (3,'Univercidade',44,'centro','rua','16',178,179,1);
 /*!40000 ALTER TABLE `obm` ENABLE KEYS */;
 
 
@@ -501,7 +505,7 @@ CREATE TABLE `usuario` (
   KEY `FKF814F32E413BCBD2` (`obm_id`),
   CONSTRAINT `FKF814F32E413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
