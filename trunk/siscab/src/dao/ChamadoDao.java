@@ -5,6 +5,7 @@ import java.util.List;
 import modelo.Chamado;
 import modelo.OBM;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -68,11 +69,17 @@ public class ChamadoDao {
 		
 	}
 	
-	public int listaUltimoId(){
+	
+	//Otimizar este método
+	public Integer listaUltimoId(){
 		
-		Chamado chama = (Chamado) session.createQuery("from modelo.Chamado order by id desc limit 1").uniqueResult();	
-		int id = chama.getId();
-		return id;
+		int maior = 0;
+		List<Chamado> lista = (List<Chamado>)session.createQuery("from modelo.Chamado").list();
+		for(int i = 0;i<lista.size();i++){
+			Chamado ch = lista.get(i);
+			maior = ch.getId();
+		}
+		return maior;
 	}
 		
 	public Chamado listarChamadoNomeSolicitante(String nomeSolicitante){

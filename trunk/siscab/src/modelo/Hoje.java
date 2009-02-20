@@ -1,8 +1,10 @@
 package modelo;
 
 import java.util.Date;
+import java.util.Locale;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
 
@@ -48,6 +50,23 @@ public class Hoje {
     System.out.println("Hoje e Agora, customizado:\n" +
 
       dataHoraCustomizado.format(hoje));
+    
+    Date dataAtual = null;	
+	//Faz o parse de String em data		
+	String str = "Apr 19, 2005";  
+	DateFormat dt = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());  
+	try {
+		dataAtual = dt.parse(str);
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}  
+			
+	System.out.println("#########################");
+	
+	System.out.println("data" + dataAtual);
+	
+	System.out.println("#########################");
 
   }
 

@@ -23,6 +23,4 @@ public class StatusAtendimento {
 	public void setAr(ArrayList<String> status) {
 		this.statusAtendimento = status;
 	}
-	
-
 }
