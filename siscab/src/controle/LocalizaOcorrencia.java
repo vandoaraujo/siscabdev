@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,10 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Chamado;
 import modelo.Municipio;
 import modelo.NaturezaChamados;
 import modelo.OBM;
+import modelo.TiposOcorrencia;
 import dao.AtendimentosDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
@@ -56,7 +57,7 @@ public class LocalizaOcorrencia extends HttpServlet {
 		String bairro = request.getParameter("bairro");
 		
 		
-		//Seto dois atributos importantes
+		//Set dois atributos importantes
 		request.setAttribute("municipio", municipio);
 		request.setAttribute("bairro", bairro);
 		
@@ -72,21 +73,32 @@ public class LocalizaOcorrencia extends HttpServlet {
 		
 		
 		int numeroGeradoChamado = Integer.parseInt(request.getParameter("idChamado")); //cast
+				
+		//Este parametro não é usado para este caso de Uso...Seria apenas para log.
 		String nomeUsuario = request.getParameter("usuario");
+		
+		//Esta OBm do objeto chamado irá entrar no Caso de Uso transferir Atendimento como OBM default...
 		String nomeObmUsuario = request.getParameter("obmUsuario");
 		
+	
+		//Faz o parse de String em data		
 		String date = request.getParameter("dataRegistrada");
-		DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");  
-		java.sql.Date data = null;
+		DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy - hh:mm");  
+		Date data = null;
 		try {
-			data = new java.sql.Date(fmt.parse(date).getTime());
+			data = new Date(fmt.parse(date).getTime());
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
 		
+		System.out.println("#########################");
+
+		System.out.println("data" + data);
 		
-		//long horaRegistrada = Long.parseLong(request.getParameter("horaRegistrada"));
+		System.out.println("#########################");
+
+		
+	
 		String origemChamado = request.getParameter("origem");
 		String nomeSolicitante =  request.getParameter("nomeSolicitante");
 		String telefone = request.getParameter("telefoneSolicitante");
@@ -94,8 +106,11 @@ public class LocalizaOcorrencia extends HttpServlet {
 		if(aproxVitimas.equals("")) aproxVitimas = "0";
 		int numAproximadoVitimas = Integer.parseInt(aproxVitimas);
 		String infoComplementares = request.getParameter("infoComplementares");
-		String tipoOcorrencia = request.getParameter("tipoOcorrencia");
-	    String logradouro = request.getParameter("logradouro");
+	
+	    
+		//########################################//
+		//Atriibutos de Atendimento, vai para outro servlet
+		/*String logradouro = request.getParameter("logradouro");
 		String numComplemento = request.getParameter("numComplemento");
 		String coordXAuxiliar = request.getParameter("coordX");
 		if(coordXAuxiliar.equals("")) coordXAuxiliar = "0";
@@ -104,35 +119,20 @@ public class LocalizaOcorrencia extends HttpServlet {
 		if(coordYAuxiliar.equals("")) coordYAuxiliar = "0";
 		float coordY = Float.parseFloat(coordYAuxiliar);		
 		String obmReceberSolicitacao = request.getParameter("obmReceberSolicitacao");
+	    String tipoOcorrencia = request.getParameter("tipoOcorrencia");
 		
-	
+		*/
 		
-			
+				
 		//Ver este campo --- JSP passa o valor 1
 		int registroOcorrencia = Integer.parseInt(request.getParameter("registroOcorrencia"));
-		
-
-		
-		//Criacao do Objeto Chamado com os campos da tela
-		Chamado chamado = new Chamado();
-		chamado.setHorainicio(data);
-		//chamado.setHoratermino(horatermino);
-		chamado.setId(numeroGeradoChamado);
-		chamado.setInfocomplementares(infoComplementares);
-		//chamado.setNaturezaChamado(naturezaChamado);
-		chamado.setNomeSolicitante(nomeSolicitante);
-		chamado.setNumaproxvitimas(numAproximadoVitimas);
-		//Buscar no Banco a OBM
-		OBM obmUsuario = OBMDao.getInstance().listarOBMNome(nomeObmUsuario);
-		//OBM que recebeu aquele chamado, não o atendimento
-		chamado.setObm(obmUsuario);
-		chamado.setOrigem(origemChamado);
-		chamado.setTelefoneSolicitante(telefone);
 		
 		//Cria objeto NaturezaChamados que será utilizada na próxima página
 		NaturezaChamados n = new NaturezaChamados();
 		ArrayList<String> nChamados =  n.getAr();
 		
+		
+		/*//aTRIBUTOS DO SERVLET QUE IRÁ TRATAR OS DADOS DE ATENDIMENTO
 		//Repassa os atributos de Atendimentos, pois pode haver Ocorrencias Próximas
 		request.setAttribute("tipoOcorrencia", tipoOcorrencia);
 		request.setAttribute("logradouro", logradouro);
@@ -141,9 +141,29 @@ public class LocalizaOcorrencia extends HttpServlet {
 		request.setAttribute("coordX", coordX);
 		request.setAttribute("obmSolicitacao", obmReceberSolicitacao);
 		//parametros de chamado
-		request.setAttribute("naturezaChamados", nChamados);
-		request.setAttribute("objChamado", chamado);
+		request.setAttribute("chamadoAtual", chamado);
 		
+		*/
+		
+		TiposOcorrencia tipo = new TiposOcorrencia();
+		ArrayList<String> nTiposOcorrencia = tipo.getAr();
+		request.setAttribute("tipoOcorrencia", nTiposOcorrencia);
+		
+		ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance().listarTodasOBMs();
+		
+					
+		
+		request.setAttribute("numeroChamado", numeroGeradoChamado);
+		request.setAttribute("data", date);
+		request.setAttribute("obms", obms);
+		request.setAttribute("origemChamado", origemChamado);
+		request.setAttribute("nomeSolicitante", nomeSolicitante);
+		request.setAttribute("telefone", telefone);
+		request.setAttribute("aproxVitimas", numAproximadoVitimas);
+		request.setAttribute("naturezaChamados", nChamados);
+		request.setAttribute("infoComplementares", infoComplementares);
+		request.setAttribute("nomeObmUsuario", nomeObmUsuario);
+			
 		if(operacaoARealizar == 1){
 			RequestDispatcher view = request.getRequestDispatcher("/MostraMapaLocalOcorrencia.jsp");
 			view.forward(request, response);
