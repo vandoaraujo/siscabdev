@@ -1,12 +1,7 @@
 package controle;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,11 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Municipio;
 import modelo.NaturezaChamados;
 import modelo.OBM;
-import modelo.TiposOcorrencia;
 import dao.AtendimentosDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
@@ -54,9 +49,14 @@ public class LocalizaOcorrencia extends HttpServlet {
 		int operacaoARealizar = Integer.parseInt(request.getParameter("operacaoARealizar"));
 		String municipio = request.getParameter("municipio");
 		String bairro = request.getParameter("bairro");
-				
-		//Set dois atributos importantes
+		bairro.toLowerCase();
+		
+		System.out.println("################# Atributo vindo de Regitsrar Chamado  ---- Municipio");
+		System.out.println(municipio);
+		
+		
 		request.setAttribute("municipio", municipio);
+		//Set dois atributos importantes
 		request.setAttribute("bairro", bairro);
 		
 		if(operacaoARealizar == 2){
@@ -64,6 +64,7 @@ public class LocalizaOcorrencia extends HttpServlet {
 			
 			Municipio mun = MunicipioDao.getInstance().listarMunicipioNome(municipio);
 			List at = AtendimentosDao.getInstance().listarOcorrenciasProximas(mun.getId(), bairro);
+			request.setAttribute("municipio", municipio);
 			request.setAttribute("listaAtendimentosProximos", at);
 		    RequestDispatcher view = request.getRequestDispatcher("/ProcurarOcorrenciasProximas.jsp");
 			view.forward(request, response);
@@ -93,11 +94,10 @@ public class LocalizaOcorrencia extends HttpServlet {
 		NaturezaChamados n = new NaturezaChamados();
 		ArrayList<String> nChamados =  n.getAr();
 		
-			ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance().listarTodasOBMs();
+		ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance().listarTodasOBMs();
 						
-			
-		request.setAttribute("municipio", municipio);
-		request.setAttribute("bairro", bairro);
+	
+	
 		request.setAttribute("numeroChamado", numeroGeradoChamado);
 		request.setAttribute("obms", obms);
 		request.setAttribute("origemChamado", origemChamado);
