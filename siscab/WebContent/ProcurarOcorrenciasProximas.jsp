@@ -38,11 +38,17 @@ Lista de Ocorrencias com este munícipio : <font color="Firebrick">${municipio}</
     </div>
     </td>
     </tr>
+
+   	
    <%} 
+	   
 	
 	
 }%>
 	 
+   <form action="paginaPrincipal.jsp" method="post" style="display:inline;">
+			<input type="submit" value="VoltarMenu"/>
+	   </form>
 
 
 

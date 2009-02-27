@@ -48,8 +48,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		//Parametros --- ver...
 		String operacaoARealizar = request.getParameter("operacaoARealizar");
 		String registroOcorrencia = request.getParameter("registroOcorrencia");
-		
-		
+				
 		String nomeSolicitante = request.getParameter("nomeSolicitante");
 		String telefone = request.getParameter("telefone");
 		String aproxVitimas = request.getParameter("numAproxVitimas");
@@ -64,7 +63,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		String municipio = request.getParameter("municipio");
 		String bairro = request.getParameter("bairro");
 		
-		
+			
 		GregorianCalendar calendar =  new GregorianCalendar();
 		calendar.add(GregorianCalendar.MONTH, 0);
 		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
@@ -114,10 +113,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 			
 		}
 		
-		
-
-
-
+	
 	}
 	
 	

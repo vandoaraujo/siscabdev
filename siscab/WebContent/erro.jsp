@@ -30,7 +30,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Incluir OBM&nbsp;</legend>
+						<fieldset style="width:450px"><legend>&nbsp;SISCAB&nbsp;</legend>
 							ERRO: <div style="color:red; display:inline"><%exception.printStackTrace(new java.io.PrintWriter(out, true));%></div>
 							<p><br></p>
 							<form action="ObmControle" method="post" style="display:inline;">

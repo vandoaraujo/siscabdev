@@ -7,14 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Registrar Atendimento</title>
 <script>
+
 function habilitaCombo(priID, prstHabilita){
     if (prstHabilita == 's')
         document.getElementById(priID).disabled = false;
     else
         document.getElementById(priID).disabled = true;
 }
+
 </script>
 <head> 
 </head>
@@ -24,18 +26,26 @@ Obs: O presente Chamado possui uma Natureza de Solicitação de Socorro.<br>
 
 Tela de Tranferência de Atendimento de Obms<br>
 
+
+<%! String municipio=null; %>
+
+<% municipio = (String)request.getAttribute("municipio"); %>
+
 <form action="EfetivaAtendimento" method="post">
 
+
+
 <tr>Numero gerado: <input name="idAtendimento" type="text" readonly="readonly" value=${idNumeroAtendimento}></tr><br>
-<tr>OBM a Prestar Atendimento: <input name="obmAtendimento" type="text" readonly="readonly" value=${obmSolicitada}></tr><br>
-<tr>Bairro: <input name="bairro" type="text" readonly="readonly" value=${bairro}></tr><br>
-<tr>Município: <input name="municipio" type="text" readonly="readonly" value=${municipio}></tr><br>
+<tr>OBM a Prestar Atendimento: <input name="obmAtendimento" type="text" readonly="readonly" value=${obmAtendimento}></tr><br>
+<tr>Bairro: <input name="bairro" type="text" readonly="readonly" value=<%= request.getAttribute("bairro") %>> </tr><br>
+<tr>Municipio <select name="municipio">
+<option><%= municipio %></option>
+</select>
 	
 	<font color="blue">Você deseja repassar o atendimento da OBM Atual? </font>	Sim: <input name="radiobutton" type="radio" value="sim" onClick="habilitaCombo('seleciona','s');">
-	<br>
-	Não: <input name="radiobutton" type="radio" value="nao" onClick="habilitaCombo('seleciona','n');">
+	Não: <input name="radiobutton" type="radio" value="nao" checked onClick="habilitaCombo('seleciona','n');">
 		
-	<select name="obm" id="seleciona" disabled="disabled">
+	<select name="obmRepassaAtendimento" id="seleciona" disabled="disabled">
 	<!-- Popula a combo que aparecerá na tela -->
 	<%
 	  List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
@@ -49,13 +59,10 @@ Tela de Tranferência de Atendimento de Obms<br>
 	<tr>Coord Y: <input name="coordY" type="text"></tr><br>
 	<tr>Logradouro: <input name="logradouro" type="text" size=30><p><br>
 	<tr>Num. Complemento: <input name="numComplemento" type="text" size=10></tr><br>
-	<tr>Status: <select name="municipio"><br>
-	<option>Pendente</option>
-	</select>
-	
+		
 	<br>Tipo da Ocorrência:
-	<select name="obm">
-	 <% 
+	<select name="tipoOcorrencia">
+		 <% 
 	TiposOcorrencia tipo = new TiposOcorrencia();
 	ArrayList<String> nTiposOcorrencia = tipo.getAr();
 	for(int i=0;i<nTiposOcorrencia.size();i++){

@@ -15,7 +15,9 @@
 <body>
 <h4> Configurar esta tela pra visualizar um mapa do Google Maps</h4><br>
 
+<%! String municipio=null; %>
 
+<% municipio = (String)request.getAttribute("municipio"); %>
 
 	<form action="FinalizarChamadoIniciarAtendimento" method="post">
 		<table>
@@ -26,9 +28,10 @@
 		<tr><td>Obm Solicitada: <input name="obmSolicitada" type="text" readonly="readonly" value=${nomeObmUsuario}></td></tr>
 		<tr><td> <input name="infoComplementares" type="hidden" readonly="readonly" value=${infoComplementares}></td></tr>
 		<tr><td> <input name="numeroChamado" type="hidden" readonly="readonly" value=${numeroChamado}></td></tr>
-		<tr><td> <input name="municipio" type="hidden" readonly="readonly" value=${municipio}></td></tr>
+		<tr><td>Município: <select name="municipio">
+		 <option><%= municipio %></option>
+		</select>
 		<tr><td> <input name="bairro" type="hidden" readonly="readonly" value=${bairro}></td></tr>
-
 		</table>
 				
 		
