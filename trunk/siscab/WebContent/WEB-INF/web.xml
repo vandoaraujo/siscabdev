@@ -114,6 +114,69 @@
 		<servlet-class>
 		controle.EfetivaAtendimento</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AcompanharAtendimentos</display-name>
+		<servlet-name>AcompanharAtendimentos</servlet-name>
+		<servlet-class>
+		controle.AcompanharAtendimentos</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EditaAtendimento</display-name>
+		<servlet-name>EditaAtendimento</servlet-name>
+		<servlet-class>
+		controle.EditaAtendimento</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AplicaAcaoAtendimentoDiversasOpcoes</display-name>
+		<servlet-name>AplicaAcaoAtendimentoDiversasOpcoes</servlet-name>
+		<servlet-class>
+		controle.AplicaAcaoAtendimentoDiversasOpcoes</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AlteraAtendimento</display-name>
+		<servlet-name>AlteraAtendimento</servlet-name>
+		<servlet-class>
+		controle.AlteraAtendimento</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		ViaturasControle</display-name>
+		<servlet-name>ViaturasControle</servlet-name>
+		<servlet-class>
+		controle.ViaturasControle</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		CRUDViatura</display-name>
+		<servlet-name>CRUDViatura</servlet-name>
+		<servlet-class>
+		controle.CRUDViatura</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EditaViatura</display-name>
+		<servlet-name>EditaViatura</servlet-name>
+		<servlet-class>
+		controle.EditaViatura</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -158,6 +221,34 @@
 	<servlet-mapping>
 		<servlet-name>EfetivaAtendimento</servlet-name>
 		<url-pattern>/EfetivaAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AcompanharAtendimentos</servlet-name>
+		<url-pattern>/AcompanharAtendimentos</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditaAtendimento</servlet-name>
+		<url-pattern>/EditaAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AplicaAcaoAtendimentoDiversasOpcoes</servlet-name>
+		<url-pattern>/AplicaAcaoAtendimentoDiversasOpcoes</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AlteraAtendimento</servlet-name>
+		<url-pattern>/AlteraAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViaturasControle</servlet-name>
+		<url-pattern>/ViaturasControle</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CRUDViatura</servlet-name>
+		<url-pattern>/CRUDViatura</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditaViatura</servlet-name>
+		<url-pattern>/EditaViatura</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

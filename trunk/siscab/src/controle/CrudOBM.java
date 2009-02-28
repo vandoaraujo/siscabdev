@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Municipio;
 import modelo.OBM;
+import modelo.SiscabException;
 import modelo.Usuario;
 import dao.MunicipioDao;
 import dao.OBMDao;
@@ -166,7 +167,12 @@ public class CrudOBM extends HttpServlet {
 			
 			OBM obm = OBMDao.getInstance().BuscaOBMId(registro);
 			String nome = obm.getNome();
-			OBMDao.getInstance().deletar(obm);
+			try {
+				OBMDao.getInstance().deletar(obm);
+			} catch (SiscabException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			despacha(request, response, "deletar", nome);
 			
 			

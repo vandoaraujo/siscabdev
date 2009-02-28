@@ -87,6 +87,21 @@ public class AtendimentosDao {
 			return atendimentos;
 		}
 		
+		public Atendimentos BuscaAtendimentoAtendimentoNumero(Integer id) {
+			
+			Atendimentos atendimento = (Atendimentos) session.createQuery("from modelo.Atendimentos a where a.atendimento_numero=:atendimentoid").setInteger("atendimentoid", id).uniqueResult();  
+			return atendimento;
+		}
+		
+		
+		public List<Atendimentos> listarAtendimentosNaoFinalizados(){
+			
+			List<Atendimentos> atendimentos = (List<Atendimentos>) session.createQuery("from modelo.Atendimentos a where a.status_atendimento <> 'Finalizado'").list();  
+			return atendimentos;		
+			
+		}
+		
+		
 		
 }
 

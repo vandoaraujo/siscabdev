@@ -4,8 +4,8 @@ function mmLoadMenus() {
   mm_menu_0217221104_0.addMenuItem("Registrar&nbsp;Chamado","location='RegistrarChamado'");
   mm_menu_0217221104_0.addMenuItem("Transferir&nbsp;Atendimento");
   mm_menu_0217221104_0.addMenuItem("Verificar&nbsp;Rota");
-  mm_menu_0217221104_0.addMenuItem("Acompanhar&nbsp;Atendimento");
-  mm_menu_0217221104_0.addMenuItem("Viaturas");
+  mm_menu_0217221104_0.addMenuItem("Acompanhar&nbsp;Atendimento","location='AcompanharAtendimentos'");
+  mm_menu_0217221104_0.addMenuItem("Viaturas","location='ViaturasControle'");
   mm_menu_0217221104_0.hideOnMouseOut=true;
   mm_menu_0217221104_0.bgColor='#555555';
   mm_menu_0217221104_0.menuBorder=1;
