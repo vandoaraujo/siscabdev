@@ -1,4 +1,5 @@
-<%@ page isErrorPage="true" %>  
+<%@ page isErrorPage="true" %> 
+<%@ page import="java.util.*,modelo.SiscabException" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,7 +32,12 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;SISCAB&nbsp;</legend>
-							ERRO: <div style="color:red; display:inline"><%exception.printStackTrace(new java.io.PrintWriter(out, true));%></div>
+							ERRO: 
+							Siscab Exception: <br>
+							<div style="color:red; display:inline"><%= SiscabException.getMensagem() %></div>
+							
+							Print Stack Trace: <br>
+							 <div style="color:red; display:inline"><%exception.printStackTrace(new java.io.PrintWriter(out, true));%></div>
 							<p><br></p>
 							<form action="ObmControle" method="post" style="display:inline;">
 				 				<input type="submit" value="Voltar"/>

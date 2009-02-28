@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Viatura,modelo.TipoViatura,dao.OBMDao" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +10,6 @@
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
 </head>
-
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
 
@@ -32,18 +31,14 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Cadastrar Novo Usuario&nbsp;</legend>
+						<fieldset style="width:450px"><legend>&nbsp;Cadastrar Nova Viatura&nbsp;</legend>
 							
-							<form action="NovoUsuarioServlet" method="post">
+							<form action="CRUDViatura" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Nº de Registro:</label></td>
-									<td><input name="registro" type="text" /></td>								
-								</tr>
-								<tr>
-									<td><label>Nome de Guerra:</label></td>
-									<td><input name="nomeGuerra" type="text" /></td>								
+									<td><label>Nº Viatura:</label></td>
+									<td><input name="numero" type="text" /></td>								
 								</tr>
 								<tr>
 									<td><label>Obm:</label></td>
@@ -52,7 +47,7 @@
 										
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
-									 	ArrayList<OBM> obms = (ArrayList)request.getAttribute("obms");
+									 	ArrayList<OBM> obms = (ArrayList<OBM>)OBMDao.getInstance().listarTodasOBMs();
 									 	 for(OBM s: obms){
 										 out.println("<option>"+s.getNome()+"</option>");
 									 	}
@@ -61,32 +56,40 @@
 									</td>								
 								</tr>
 								<tr>
-									<td><label>Perfil:</label></td>
+									<td><label>Status Viatura:</label></td>
 									<td>
-										<select name="perfil">
-										<option>ADMIN 
-										<option>ATENDENTE
-										<option>OPERADOR
-										<option>CONTROLADOR
-										<option>COMANDANTE
+										<select name="status">
+										<option>Em atendimento 
+										<option>Em prontidão
+										<option>Inoperante - Sem tripulação
+										<option>Inoperante - Em manutenção
+										<option>Inoperante - Desativada
 										</select>									
 									</td>								
 								</tr>
 								<tr>
-									<td><label>Email:</label></td>
-									<td><input name="email" type="text" /></td>								
-								</tr>
+									<td><label>Tipo Viatura:</label></td>
+									<td>
+										<select name="tipoViatura">
+		 								<% 
+											TipoViatura tipo = new TipoViatura();
+											ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
+											for(int i=0;i<tiposViaturas.size();i++){
+												out.print("<option>"+tiposViaturas.get(i));
+						 				}
+												out.println("</select>");
+									%></td></tr>	
 								<tr>
-									<td><label>Senha:</label></td>
-									<td><input name="senha" type="text" /></td>								
+									<td><label>Obs. Viatura</label></td>
+									<td><TEXTAREA COLS=40 ROWS=5 NAME="obsViatura"/></TEXTAREA></td>								
 								</tr>
 								<tr>
 									<td colspan="2">
 										<input type="submit" value="Cadastrar" onclick="this.form.operacaoARealizar.value=1"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
-								 		<input type="hidden" name="registroUsuario" value ="1"> 
+								 		<input type="hidden" name="registroViatura" value ="1"> 
 										</form>	
-										<form action="administracao_usuario.jsp" method="post" style="display:inline;">
+										<form action="listarViaturas.jsp" method="post" style="display:inline;">
 							 				<input type="submit" value="Voltar"/>
 							 			</form>	
 									</td>								
@@ -98,6 +101,8 @@
 		</td>
 	</tr>
 </table>
+
+
 
 </body>
 </html>

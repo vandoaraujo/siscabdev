@@ -9,8 +9,8 @@
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
 </head>
-
 <body>
+
 <script language="JavaScript1.2">mmLoadMenus();</script>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -31,13 +31,10 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;OBM&nbsp;</legend>
-							OBM ${obm}, <div style="color:red; display:inline">${mensagem}</div>
+						<fieldset style="width:450px"><legend>&nbsp;Viatura&nbsp;</legend>
+							OBM ${viatura.numero}, <div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-
-							<form action="ObmControle" method="post" style="display:inline;">
-				 				<input type="submit" value="Voltar"/>
-				 			</form>																																											
+																																		
 						</fieldset>	
 					</td>
 				</tr>				
@@ -45,6 +42,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 </body>

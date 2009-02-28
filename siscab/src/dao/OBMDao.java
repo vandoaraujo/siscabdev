@@ -1,13 +1,13 @@
 package dao;
 
 import java.util.List;
-import modelo.OBM;
-import modelo.Usuario;
 
-import org.hibernate.Criteria;
+import modelo.OBM;
+import modelo.SiscabException;
+
+import org.hibernate.ObjectDeletedException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 public class OBMDao {
 
@@ -42,14 +42,19 @@ public class OBMDao {
 		
 	}
 		
-	public void deletar(OBM obm) {
-		
+	public void deletar(OBM obm) throws SiscabException {
+		try{
 		Transaction t = session.beginTransaction();
 		session.delete(obm);
 		t.commit();
 		session.flush();
 		session.close();
 		System.out.println("DELETADO");
+		}
+		catch(ObjectDeletedException o){
+			
+			throw new SiscabException("Não é possivel deletar esta OBM devido ela ter associacoes");
+		}
 	}
 	
 	public void atualizar(OBM obm) {
@@ -72,9 +77,7 @@ public class OBMDao {
 		
 	public OBM listarOBMNome(String nome){
 		
-		Transaction tx = session.beginTransaction();  
 		OBM obm = (OBM) session.createQuery("from modelo.OBM o where o.nome=:nome").setString("nome", nome).uniqueResult();  
-		tx.commit();
 		return obm;		
 		
 	}

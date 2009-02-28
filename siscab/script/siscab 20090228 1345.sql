@@ -48,7 +48,7 @@ CREATE TABLE `atendimentos` (
   CONSTRAINT `FK7E7914A34D8464F2` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`),
   CONSTRAINT `FK_atendimentos_1` FOREIGN KEY (`obm_id`) REFERENCES `chamados` (`id`),
   CONSTRAINT `FK_atendimentos_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
 
 --
 -- Dumping data for table `atendimentos`
@@ -56,7 +56,9 @@ CREATE TABLE `atendimentos` (
 
 /*!40000 ALTER TABLE `atendimentos` DISABLE KEYS */;
 INSERT INTO `atendimentos` (`id`,`atendimento_numero`,`chamado_id`,`municipio_id`,`bairro`,`logradouro`,`numcompl`,`coordx`,`coordy`,`obm_id`,`status_atendimento`,`tipoocorrencia`) VALUES 
- (1,'1',1,1,'taua','rua A','10',145.67,189.87,1,'Pendente','Orientação');
+ (1,'20094',18,44,'centro','rua b','10',6867,5796567,3,'Pendente','Animal em situação de risco'),
+ (5,'20092',19,22,'Centro da Cidade','rua Barata','19',65765,69879,1,'Pendente','Mal súbito'),
+ (6,'20096',30,1,'Ilha do Governador','rua','10',67868,67687,1,'Pendente','Mal súbito');
 /*!40000 ALTER TABLE `atendimentos` ENABLE KEYS */;
 
 
@@ -100,7 +102,7 @@ CREATE TABLE `chamados` (
   KEY `FK55502018413BCBD2` (`obm_id`),
   CONSTRAINT `FK55502018413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK_tbchamados_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
 
 --
 -- Dumping data for table `chamados`
@@ -112,7 +114,33 @@ INSERT INTO `chamados` (`id`,`naturezachamado`,`origem`,`nomesolicitante`,`telef
  (2,'Solicitação de socorro','Telefone','vando','247',0,'bka',1,NULL,NULL),
  (3,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-02-20 16:17:00',NULL),
  (4,'Orientação','Telefone','vando','2467',0,'bla',1,'2009-02-20 16:29:00',NULL),
- (5,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-02-20 19:37:00',NULL);
+ (5,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-02-20 19:37:00',NULL),
+ (6,'Solicitação de socorro','Telefone','Vando','2467',0,'bla',1,'2009-02-20 19:43:00',NULL),
+ (7,'Solicitação de socorro','Telefone','vando','2467',0,'bblabla',1,'2009-02-20 19:47:00',NULL),
+ (8,'Trote','Telefone','vando','2467',0,'blabla',3,'2009-02-20 19:57:00',NULL),
+ (9,'Solicitação de socorro','Telefone','vando','2467',0,'blabla',3,'2009-02-20 19:57:00',NULL),
+ (10,'Solicitação de socorro','Telefone','Vando','7907',0,'bla',1,'2009-02-20 20:07:00',NULL),
+ (11,'Solicitação de socorro','Telefone','Luciana','3363',0,'bla',1,'2009-02-21 13:41:00',NULL),
+ (12,'Trote','Telefone','joao','4687',0,'bla',1,'2009-02-26 18:35:00',NULL),
+ (13,'Solicitação de socorro','Telefone','rodrigo','70879',0,'bla',1,'2009-02-26 18:42:00',NULL),
+ (14,'Solicitação de socorro','Telefone','Ronaldo','3363',0,'blabal',1,'2009-02-26 20:01:00',NULL),
+ (15,'Solicitação de socorro','Telefone','renato','6879',0,'bla',1,'2009-02-26 21:00:00',NULL),
+ (16,'Solicitação de socorro','Telefone','vera','7987',0,'blablablabablabalbalballbala',1,'2009-02-26 21:05:00',NULL),
+ (17,'Solicitação de socorro','Telefone','renato','9870',0,'blabla',1,'2009-02-26 21:11:00',NULL),
+ (18,'Solicitação de socorro','Telefone','renato','79878',0,'blablabla',1,'2009-02-26 21:23:00',NULL),
+ (19,'Solicitação de socorro','Telefone','renato','76867',0,'blabla',1,'2009-02-26 21:48:00',NULL),
+ (20,'Solicitação de socorro','Telefone','vera','8689',0,'',1,'2009-02-26 22:00:00',NULL),
+ (21,'Solicitação de socorro','Telefone','789','34',0,'',1,'2009-02-26 22:05:00',NULL),
+ (22,'Solicitação de socorro','Telefone','vera','566',0,'bla',1,'2009-02-26 22:15:00',NULL),
+ (23,'Solicitação de socorro','Telefone','teste','0000',0,'',1,'2009-02-26 22:24:00',NULL),
+ (24,'Solicitação de socorro','Telefone','teste','6768',0,'bla',1,'2009-02-26 22:28:00',NULL),
+ (25,'Solicitação de socorro','Telefone','teste','0000',0,'',1,'2009-02-26 22:33:00',NULL),
+ (26,'Solicitação de socorro','Telefone','vando','0000',0,'bla',1,'2009-02-26 22:46:00',NULL),
+ (27,'Solicitação de socorro','Telefone','vand','000',0,'',1,'2009-02-27 00:11:00',NULL),
+ (28,'Solicitação de socorro','Telefone','vando','000',0,'bla',1,'2009-02-27 00:25:00',NULL),
+ (29,'Solicitação de socorro','Telefone','vando','000',0,'bla',1,'2009-02-27 00:29:00',NULL),
+ (30,'Solicitação de socorro','Telefone','vando','0000',0,'bla',1,'2009-02-27 00:31:00',NULL),
+ (31,'Solicitação de socorro','Telefone','renato','0000',0,'bla',1,'2009-02-27 00:32:00',NULL);
 /*!40000 ALTER TABLE `chamados` ENABLE KEYS */;
 
 
@@ -501,21 +529,26 @@ CREATE TABLE `usuario` (
   `perfil` varchar(50) DEFAULT NULL,
   `senha` varchar(50) DEFAULT NULL,
   `statusUsu` varchar(15) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL,
+  `tipo_viatura` varchar(255) DEFAULT NULL,
+  `viatura_obs` varchar(255) DEFAULT NULL,
+  `viatura_status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKF814F32E413BCBD2` (`obm_id`),
   CONSTRAINT `FKF814F32E413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
 --
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`id`,`numRegistro`,`nomeGuerra`,`email`,`obm_id`,`perfil`,`senha`,`statusUsu`) VALUES 
- (1,123,'araujo','tecladista.vando@gmail.com',1,'ADMIN','000','ativo'),
- (5,456,'bruno','bruno@gmail.com',1,'Comandante','123',NULL),
- (10,777,'Capitao','capitao@gmail.com',1,'OPERADOR','123',NULL);
+INSERT INTO `usuario` (`id`,`numRegistro`,`nomeGuerra`,`email`,`obm_id`,`perfil`,`senha`,`statusUsu`,`numero`,`tipo_viatura`,`viatura_obs`,`viatura_status`) VALUES 
+ (1,123,'araujo','tecladista.vando@gmail',1,'ADMIN','000','ativo',NULL,NULL,NULL,NULL),
+ (5,456,'bruno','bruno@gmail.com',1,'Comandante','123',NULL,NULL,NULL,NULL,NULL),
+ (10,777,'Capitao','capitao@gmail.com',1,'OPERADOR','123',NULL,NULL,NULL,NULL,NULL),
+ (11,777,'FLAVITCHA','FLAMA',3,'ADMIN','987',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
@@ -526,21 +559,23 @@ INSERT INTO `usuario` (`id`,`numRegistro`,`nomeGuerra`,`email`,`obm_id`,`perfil`
 DROP TABLE IF EXISTS `viaturas`;
 CREATE TABLE `viaturas` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `tipoviatura_id` int(10) NOT NULL,
+  `tipo_viatura` varchar(30) NOT NULL,
   `numero` varchar(3) NOT NULL DEFAULT '',
   `obm_id` int(10) NOT NULL,
   `viatura_obs` varchar(255) DEFAULT NULL,
-  `viatura_status` int(1) NOT NULL DEFAULT '1',
+  `viatura_status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_tipoviatura` (`tipoviatura_id`),
-  CONSTRAINT `viaturas_ibfk_1` FOREIGN KEY (`tipoviatura_id`) REFERENCES `tiposviaturas` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Lista de viaturas operacionais usadas no CBMERJ';
+  KEY `FK40589EB5413BCBD2` (`obm_id`),
+  CONSTRAINT `FK40589EB5413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Lista de viaturas operacionais usadas no CBMERJ';
 
 --
 -- Dumping data for table `viaturas`
 --
 
 /*!40000 ALTER TABLE `viaturas` DISABLE KEYS */;
+INSERT INTO `viaturas` (`id`,`tipo_viatura`,`numero`,`obm_id`,`viatura_obs`,`viatura_status`) VALUES 
+ (2,'Auto Busca e Salvamento Leve','v98',1,'teste','Inoperante - Sem tripulação');
 /*!40000 ALTER TABLE `viaturas` ENABLE KEYS */;
 
 
