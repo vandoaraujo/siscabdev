@@ -7,7 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<title>SISCAB - SISTEMA DE CONTROLE DE ATENDIMENTOS DE BOMBEIROS</title>
+	<link href="css/current.css" rel="stylesheet" type="text/css">
+	<script language="JavaScript" src="js/mm_menu.js"></script>
+	<script language="JavaScript" src="js/script.js"></script>
 </head>
 <body>
 
