@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Atendimentos;
+import modelo.VitimaAtendida;
+import dao.VitimaAtendidaDao;
 
 /**
  * Servlet implementation class AplicaAcaoAtendimentoDiversasOpcoes
@@ -82,6 +85,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 			HttpServletResponse response, int registroAtendimento) {
 		
 		
+		
 		RequestDispatcher view;
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("atendimentoAtual", at);
@@ -102,19 +106,21 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private void vitimas(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
-		
+		System.out.println("NUM constatado de vitimas" + at.getChamado_id().getNumaproxvitimas());
+
+		List <VitimaAtendida> vitimas = VitimaAtendidaDao.getInstance().listaVitimasReferenteUmAtendimento(at.getId());
+				
 		RequestDispatcher view;
 		HttpSession sessao = request.getSession();
+		sessao.setAttribute("vitimas", vitimas);
 		sessao.setAttribute("atendimentoAtual", at);
 		view = request.getRequestDispatcher("/iniciarTelaVitimas.jsp");
 		
 	try {
 		view.forward(request, response);
 	} catch (ServletException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		

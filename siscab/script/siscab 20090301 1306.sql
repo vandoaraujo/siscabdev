@@ -529,26 +529,23 @@ CREATE TABLE `usuario` (
   `perfil` varchar(50) DEFAULT NULL,
   `senha` varchar(50) DEFAULT NULL,
   `statusUsu` varchar(15) DEFAULT NULL,
-  `numero` varchar(255) DEFAULT NULL,
-  `tipo_viatura` varchar(255) DEFAULT NULL,
-  `viatura_obs` varchar(255) DEFAULT NULL,
-  `viatura_status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKF814F32E413BCBD2` (`obm_id`),
   CONSTRAINT `FKF814F32E413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
 --
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`id`,`numRegistro`,`nomeGuerra`,`email`,`obm_id`,`perfil`,`senha`,`statusUsu`,`numero`,`tipo_viatura`,`viatura_obs`,`viatura_status`) VALUES 
- (1,123,'araujo','tecladista.vando@gmail',1,'ADMIN','000','ativo',NULL,NULL,NULL,NULL),
- (5,456,'bruno','bruno@gmail.com',1,'Comandante','123',NULL,NULL,NULL,NULL,NULL),
- (10,777,'Capitao','capitao@gmail.com',1,'OPERADOR','123',NULL,NULL,NULL,NULL,NULL),
- (11,777,'FLAVITCHA','FLAMA',3,'ADMIN','987',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `usuario` (`id`,`numRegistro`,`nomeGuerra`,`email`,`obm_id`,`perfil`,`senha`,`statusUsu`) VALUES 
+ (1,123,'araujo','tecladista.vando@gmail',1,'ADMIN','000','ativo'),
+ (5,456,'bruno','bruno@gmail.com',1,'Comandante','123',NULL),
+ (10,777,'Capitao','capitao@gmail.com',1,'OPERADOR','123',NULL),
+ (11,777,'FLAVITCHA','FLAMA',3,'ADMIN','987',NULL),
+ (12,777,'renato','renato@',1,'ADMIN','123',NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
