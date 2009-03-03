@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import modelo.Atendimentos;
+import modelo.OBM;
 import modelo.Usuario;
 import modelo.VitimaAtendida;
 
@@ -74,7 +75,7 @@ public class VitimaAtendidaDao {
 	
 	public List<VitimaAtendida> listaVitimasReferenteUmAtendimento(int atendimentoId){
 		
-		List<VitimaAtendida> vitimas = session.createQuery("from modelo.VitimaAtendida where atendimento=:atendimentoId").setInteger("atendimento", atendimentoId).list();
+		List<VitimaAtendida> vitimas = session.createQuery("from modelo.VitimaAtendida v where v.atendimento_id=:atendimentoVitimas").setInteger("atendimentoVitimas", atendimentoId).list();
 		return vitimas;
 	}
 	
@@ -92,6 +93,12 @@ public class VitimaAtendidaDao {
 		Usuario p = (Usuario) c.setMaxResults(1);
 		return p;		
 		
+	}
+	
+	public VitimaAtendida BuscaVitimaId(Integer id) {
+		
+		VitimaAtendida vitima = (VitimaAtendida) session.load(VitimaAtendida.class, id);
+		return vitima;
 	}
 
 		

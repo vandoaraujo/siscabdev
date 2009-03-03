@@ -177,6 +177,24 @@
 		<servlet-class>
 		controle.EditaViatura</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		CrudVitima</display-name>
+		<servlet-name>CrudVitima</servlet-name>
+		<servlet-class>
+		controle.CrudVitima</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EditaVitima</display-name>
+		<servlet-name>EditaVitima</servlet-name>
+		<servlet-class>
+		controle.EditaVitima</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -249,6 +267,14 @@
 	<servlet-mapping>
 		<servlet-name>EditaViatura</servlet-name>
 		<url-pattern>/EditaViatura</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CrudVitima</servlet-name>
+		<url-pattern>/CrudVitima</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditaVitima</servlet-name>
+		<url-pattern>/EditaVitima</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

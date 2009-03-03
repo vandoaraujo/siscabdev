@@ -33,10 +33,6 @@
 						<fieldset style="width:450px"><legend>&nbsp;Mensagem Atendimento&nbsp;</legend>
 							Atendimento ${atendimento.atendimento_numero}, <div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-
-							<form action="paginaPrincipal.jsp" method="post" style="display:inline;">
-				 				<input type="submit" value="Voltar"/>
-				 			</form>																																											
 						</fieldset>	
 					</td>
 				</tr>				
