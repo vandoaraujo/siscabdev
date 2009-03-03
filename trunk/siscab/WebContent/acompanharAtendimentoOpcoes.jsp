@@ -12,7 +12,24 @@
 	<script language="JavaScript" src="js/script.js"></script>
 </head>
 <body>
-
+<script language="JavaScript1.2">mmLoadMenus();</script>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
+		<td style="background-image:url(img/cabecalho.jpg); background-repeat:no-repeat;">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr style="height:139px;">
+					<td align="right" style="padding-right:20px;">  	
+					 		<img src="img/logo.png">	 	
+					 </td>
+				</tr>
+				<tr>
+					<td style="padding-left:20px;">						
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
+					</td>				
+				</tr>
+</table>
 
 <%! Atendimentos atendimento=null; %>
 
@@ -20,19 +37,26 @@
 request.getSession().setAttribute("atendimentoAtual", atendimento);
 %>
 
-
 <form action="AplicaAcaoAtendimentoDiversasOpcoes" method="post">
 
 
-Atendimento:
+<fieldset style="width:1100px"><legend>&nbsp;Atendimento:&nbsp;</legend>
 
-Municipio: <%= atendimento.getMunicipio_id().getMunicipio_nome() %><br>
+<div style="color:red"><table>
+ <tr>
 
-Bairro: <%= atendimento.getBairro() %><br>
+ <div> 
+Municipio: <div style="color:blue"><%= atendimento.getMunicipio_id().getMunicipio_nome() %><br></div></div>
 
-Logradouro: <%= atendimento.getLogradouro() %><br>
+<div style="color:red">Bairro: <div style="color:blue"><%= atendimento.getBairro() %><br></div></div>
+
+<div style="color:red">Logradouro: <div style="color:blue"><%= atendimento.getLogradouro() %><br></div></div>
 
 
+ </tr>
+</table>
+</fieldset>
+ <br>
 <input type="submit" value="Editar" onclick="this.form.operacaoARealizar.value=2"/>
 <input type="submit" value="Sugestão de Rota" onclick="this.form.operacaoARealizar.value=3"/>
 <input type="submit" value="Viaturas Empenhadas" onclick="this.form.operacaoARealizar.value=4"/>
