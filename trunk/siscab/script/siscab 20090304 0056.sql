@@ -38,28 +38,29 @@ CREATE TABLE `atendimentos` (
   `coordy` double DEFAULT NULL,
   `obm_id` int(10) NOT NULL DEFAULT '0',
   `status_atendimento` varchar(30) NOT NULL DEFAULT '1',
-  `tipoocorrencia` varchar(255) DEFAULT NULL,
+  `tipoocorrencia_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK7E7914A34D8464F2` (`municipio_id`),
   KEY `FK7E7914A32A076032` (`chamado_id`),
   KEY `FK7E7914A3413BCBD2` (`obm_id`),
+  KEY `FK7E7914A31235C51D` (`tipoocorrencia_id`),
+  CONSTRAINT `FK7E7914A31235C51D` FOREIGN KEY (`tipoocorrencia_id`) REFERENCES `tiposocorrencias` (`id`),
   CONSTRAINT `FK7E7914A32A076032` FOREIGN KEY (`chamado_id`) REFERENCES `chamados` (`id`),
   CONSTRAINT `FK7E7914A3413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK7E7914A34D8464F2` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`),
   CONSTRAINT `FK_atendimentos_1` FOREIGN KEY (`obm_id`) REFERENCES `chamados` (`id`),
+  CONSTRAINT `FK_atendimentos_6` FOREIGN KEY (`tipoocorrencia_id`) REFERENCES `tiposocorrencias` (`id`),
   CONSTRAINT `FK_atendimentos_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
 
 --
 -- Dumping data for table `atendimentos`
 --
 
 /*!40000 ALTER TABLE `atendimentos` DISABLE KEYS */;
-INSERT INTO `atendimentos` (`id`,`atendimento_numero`,`chamado_id`,`municipio_id`,`bairro`,`logradouro`,`numcompl`,`coordx`,`coordy`,`obm_id`,`status_atendimento`,`tipoocorrencia`) VALUES 
- (1,'20094',18,44,'centro','rua b','10',6867,5796567,3,'Pendente','Animal em situação de risco'),
- (5,'20092',19,22,'Centro da Cidade','rua Barata','19',65765,69879,1,'Pendente','Mal súbito'),
- (6,'20096',30,1,'Ilha do Governador','rua','10',67868,67687,1,'Pendente','Mal súbito'),
- (7,'20097',33,1,'Ilha','rua Univercidade bla','10',764756540,8347834900,1,'Pendente','Animal em situação de risco');
+INSERT INTO `atendimentos` (`id`,`atendimento_numero`,`chamado_id`,`municipio_id`,`bairro`,`logradouro`,`numcompl`,`coordx`,`coordy`,`obm_id`,`status_atendimento`,`tipoocorrencia_id`) VALUES 
+ (8,'20091',36,1,'centro','rua Banana','11',66,554,1,'Pendente',1),
+ (9,'20099',37,25,'centro','rua B','10',665,777,1,'Pendente',1);
 /*!40000 ALTER TABLE `atendimentos` ENABLE KEYS */;
 
 
@@ -90,7 +91,7 @@ CREATE TABLE `avisossistema` (
 DROP TABLE IF EXISTS `chamados`;
 CREATE TABLE `chamados` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `naturezachamado` varchar(50) NOT NULL DEFAULT '0',
+  `naturezachamado_id` int(10) NOT NULL DEFAULT '0',
   `origem` varchar(50) DEFAULT NULL,
   `nomesolicitante` varchar(60) DEFAULT NULL,
   `telefonesolicitante` varchar(30) DEFAULT NULL,
@@ -101,49 +102,55 @@ CREATE TABLE `chamados` (
   `horatermino` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `FK55502018413BCBD2` (`obm_id`),
+  KEY `FK5550201849BB2B9B` (`naturezachamado_id`),
+  CONSTRAINT `FK5550201849BB2B9B` FOREIGN KEY (`naturezachamado_id`) REFERENCES `naturezaschamados` (`id`),
   CONSTRAINT `FK55502018413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK_tbchamados_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
 
 --
 -- Dumping data for table `chamados`
 --
 
 /*!40000 ALTER TABLE `chamados` DISABLE KEYS */;
-INSERT INTO `chamados` (`id`,`naturezachamado`,`origem`,`nomesolicitante`,`telefonesolicitante`,`numaproxvitimas`,`infocomplementares`,`obm_id`,`horainicio`,`horatermino`) VALUES 
- (1,'Orientacao','telefone','Vando Araujo','33630507',0,'orientacao',1,'2011-00-00 00:00:00','2011-03-00 00:00:00'),
- (2,'Solicitação de socorro','Telefone','vando','247',0,'bka',1,NULL,NULL),
- (3,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-02-20 16:17:00',NULL),
- (4,'Orientação','Telefone','vando','2467',0,'bla',1,'2009-02-20 16:29:00',NULL),
- (5,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-02-20 19:37:00',NULL),
- (6,'Solicitação de socorro','Telefone','Vando','2467',0,'bla',1,'2009-02-20 19:43:00',NULL),
- (7,'Solicitação de socorro','Telefone','vando','2467',0,'bblabla',1,'2009-02-20 19:47:00',NULL),
- (8,'Trote','Telefone','vando','2467',0,'blabla',3,'2009-02-20 19:57:00',NULL),
- (9,'Solicitação de socorro','Telefone','vando','2467',0,'blabla',3,'2009-02-20 19:57:00',NULL),
- (10,'Solicitação de socorro','Telefone','Vando','7907',0,'bla',1,'2009-02-20 20:07:00',NULL),
- (11,'Solicitação de socorro','Telefone','Luciana','3363',0,'bla',1,'2009-02-21 13:41:00',NULL),
- (12,'Trote','Telefone','joao','4687',0,'bla',1,'2009-02-26 18:35:00',NULL),
- (13,'Solicitação de socorro','Telefone','rodrigo','70879',0,'bla',1,'2009-02-26 18:42:00',NULL),
- (14,'Solicitação de socorro','Telefone','Ronaldo','3363',0,'blabal',1,'2009-02-26 20:01:00',NULL),
- (15,'Solicitação de socorro','Telefone','renato','6879',0,'bla',1,'2009-02-26 21:00:00',NULL),
- (16,'Solicitação de socorro','Telefone','vera','7987',0,'blablablabablabalbalballbala',1,'2009-02-26 21:05:00',NULL),
- (17,'Solicitação de socorro','Telefone','renato','9870',0,'blabla',1,'2009-02-26 21:11:00',NULL),
- (18,'Solicitação de socorro','Telefone','renato','79878',0,'blablabla',1,'2009-02-26 21:23:00',NULL),
- (19,'Solicitação de socorro','Telefone','renato','76867',0,'blabla',1,'2009-02-26 21:48:00',NULL),
- (20,'Solicitação de socorro','Telefone','vera','8689',0,'',1,'2009-02-26 22:00:00',NULL),
- (21,'Solicitação de socorro','Telefone','789','34',0,'',1,'2009-02-26 22:05:00',NULL),
- (22,'Solicitação de socorro','Telefone','vera','566',0,'bla',1,'2009-02-26 22:15:00',NULL),
- (23,'Solicitação de socorro','Telefone','teste','0000',0,'',1,'2009-02-26 22:24:00',NULL),
- (24,'Solicitação de socorro','Telefone','teste','6768',0,'bla',1,'2009-02-26 22:28:00',NULL),
- (25,'Solicitação de socorro','Telefone','teste','0000',0,'',1,'2009-02-26 22:33:00',NULL),
- (26,'Solicitação de socorro','Telefone','vando','0000',0,'bla',1,'2009-02-26 22:46:00',NULL),
- (27,'Solicitação de socorro','Telefone','vand','000',0,'',1,'2009-02-27 00:11:00',NULL),
- (28,'Solicitação de socorro','Telefone','vando','000',0,'bla',1,'2009-02-27 00:25:00',NULL),
- (29,'Solicitação de socorro','Telefone','vando','000',0,'bla',1,'2009-02-27 00:29:00',NULL),
- (30,'Solicitação de socorro','Telefone','vando','0000',0,'bla',1,'2009-02-27 00:31:00',NULL),
- (31,'Solicitação de socorro','Telefone','renato','0000',0,'bla',1,'2009-02-27 00:32:00',NULL),
- (32,'Solicitação de socorro','Telefone','vando','2467',0,'bla',1,'2009-03-01 13:45:00',NULL),
- (33,'Solicitação de socorro','Telefone','Bruno','0000',1,'teste',1,'2009-03-03 19:01:00',NULL);
+INSERT INTO `chamados` (`id`,`naturezachamado_id`,`origem`,`nomesolicitante`,`telefonesolicitante`,`numaproxvitimas`,`infocomplementares`,`obm_id`,`horainicio`,`horatermino`) VALUES 
+ (1,1,'telefone','Vando Araujo','33630507',0,'orientacao',1,'2011-00-00 00:00:00','2011-03-00 00:00:00'),
+ (2,1,'Telefone','vando','247',0,'bka',1,NULL,NULL),
+ (3,1,'Telefone','vando','2467',0,'bla',1,'2009-02-20 16:17:00',NULL),
+ (4,1,'Telefone','vando','2467',0,'bla',1,'2009-02-20 16:29:00',NULL),
+ (5,1,'Telefone','vando','2467',0,'bla',1,'2009-02-20 19:37:00',NULL),
+ (6,1,'Telefone','Vando','2467',0,'bla',1,'2009-02-20 19:43:00',NULL),
+ (7,1,'Telefone','vando','2467',0,'bblabla',1,'2009-02-20 19:47:00',NULL),
+ (8,1,'Telefone','vando','2467',0,'blabla',3,'2009-02-20 19:57:00',NULL),
+ (9,1,'Telefone','vando','2467',0,'blabla',3,'2009-02-20 19:57:00',NULL),
+ (10,1,'Telefone','Vando','7907',0,'bla',1,'2009-02-20 20:07:00',NULL),
+ (11,1,'Telefone','Luciana','3363',0,'bla',1,'2009-02-21 13:41:00',NULL),
+ (12,1,'Telefone','joao','4687',0,'bla',1,'2009-02-26 18:35:00',NULL),
+ (13,1,'Telefone','rodrigo','70879',0,'bla',1,'2009-02-26 18:42:00',NULL),
+ (14,1,'Telefone','Ronaldo','3363',0,'blabal',1,'2009-02-26 20:01:00',NULL),
+ (15,1,'Telefone','renato','6879',0,'bla',1,'2009-02-26 21:00:00',NULL),
+ (16,1,'Telefone','vera','7987',0,'blablablabablabalbalballbala',1,'2009-02-26 21:05:00',NULL),
+ (17,1,'Telefone','renato','9870',0,'blabla',1,'2009-02-26 21:11:00',NULL),
+ (18,1,'Telefone','renato','79878',0,'blablabla',1,'2009-02-26 21:23:00',NULL),
+ (19,1,'Telefone','renato','76867',0,'blabla',1,'2009-02-26 21:48:00',NULL),
+ (20,1,'Telefone','vera','8689',0,'',1,'2009-02-26 22:00:00',NULL),
+ (21,1,'Telefone','789','34',0,'',1,'2009-02-26 22:05:00',NULL),
+ (22,1,'Telefone','vera','566',0,'bla',1,'2009-02-26 22:15:00',NULL),
+ (23,1,'Telefone','teste','0000',0,'',1,'2009-02-26 22:24:00',NULL),
+ (24,1,'Telefone','teste','6768',0,'bla',1,'2009-02-26 22:28:00',NULL),
+ (25,1,'Telefone','teste','0000',0,'',1,'2009-02-26 22:33:00',NULL),
+ (26,1,'Telefone','vando','0000',0,'bla',1,'2009-02-26 22:46:00',NULL),
+ (27,1,'Telefone','vand','000',0,'',1,'2009-02-27 00:11:00',NULL),
+ (28,1,'Telefone','vando','000',0,'bla',1,'2009-02-27 00:25:00',NULL),
+ (29,1,'Telefone','vando','000',0,'bla',1,'2009-02-27 00:29:00',NULL),
+ (30,1,'Telefone','vando','0000',0,'bla',1,'2009-02-27 00:31:00',NULL),
+ (31,1,'Telefone','renato','0000',0,'bla',1,'2009-02-27 00:32:00',NULL),
+ (32,1,'Telefone','vando','2467',0,'bla',1,'2009-03-01 13:45:00',NULL),
+ (33,1,'Telefone','Bruno','0000',1,'teste',1,'2009-03-03 19:01:00',NULL),
+ (34,1,'Telefone','vando','8907',0,'bla',1,'2009-03-03 23:36:00',NULL),
+ (35,1,'Telefone','teste','7897',0,'bla',1,'2009-03-03 23:39:00',NULL),
+ (36,1,'Telefone','teste','787',0,'bla',1,'2009-03-03 23:41:00',NULL),
+ (37,1,'Telefone','maria','908989',0,'bla',1,'2009-03-04 00:35:00',NULL);
 /*!40000 ALTER TABLE `chamados` ENABLE KEYS */;
 
 
@@ -612,11 +619,6 @@ CREATE TABLE `vitimas` (
 --
 
 /*!40000 ALTER TABLE `vitimas` DISABLE KEYS */;
-INSERT INTO `vitimas` (`id`,`atendimento_id`,`nome`,`idade`,`sexo`,`cor`,`vitima_situacao`,`hospitaldestino`) VALUES 
- (2,1,'Maria',19,'F',2,2,'Hospital Teste'),
- (3,5,'marcelo',35,'M',2,1,''),
- (4,7,'bruno',32,'M',1,3,''),
- (5,7,'joao',10,'M',4,5,'');
 /*!40000 ALTER TABLE `vitimas` ENABLE KEYS */;
 
 

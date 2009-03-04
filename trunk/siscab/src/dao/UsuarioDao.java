@@ -1,9 +1,10 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import modelo.OBM;
 import modelo.Usuario;
-import org.apache.log4j.Logger;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -133,6 +134,14 @@ public class UsuarioDao {
 		List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("numRegistro like '" +registro+ "%'")).list();
 		return usuario;
 	}
+	
+	/*public List<OBM> procurarUsuariosParametro3(OBM nomeObm) {
+		
+		List<OBM> Pegaobm = session.createCriteria(OBM.class).add(Restrictions.sqlRestriction("nome like '" +nomeObm+ "%'")).list();
+		OBM o = (OBM) Pegaobm;
+		o.getUsuarios();
+		return Pegaobm;
+	}*/
 	
 
 

@@ -2,30 +2,39 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="naturezaschamados")
 public class NaturezaChamados {
 	
-	private ArrayList<String> ar;
-		
-	public NaturezaChamados(){
-		
-		ar = new ArrayList<String>();
-		ar.add("Solicitação de socorro");
-		ar.add("Trote");
-		ar.add("Engano/Desistência");
-		ar.add("Queda de ligação");
-		ar.add("Orientação");
-		ar.add("Informação sobre atendimento");
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
+	private String naturezachamado_descricao;
+
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	public ArrayList<String> getAr() {
-		return ar;
+	public String getNaturezachamado_descricao() {
+		return naturezachamado_descricao;
+	}
+
+	public void setNaturezachamado_descricao(String naturezachamado_descricao) {
+		this.naturezachamado_descricao = naturezachamado_descricao;
 	}
 	
-	public void setAr(ArrayList<String> ar) {
-		this.ar = ar;
-	}
+	
 	
 
 }

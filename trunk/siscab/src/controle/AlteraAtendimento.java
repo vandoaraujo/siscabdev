@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Atendimentos;
 import modelo.Municipio;
 import modelo.OBM;
+import modelo.TiposOcorrencia;
 import dao.AtendimentosDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
+import dao.TiposOcorrenciaDao;
 
 /**
  * Servlet implementation class AlteraAtendimento
@@ -135,6 +137,8 @@ public class AlteraAtendimento extends HttpServlet {
 		 			
 		OBM obm = OBMDao.getInstance().listarOBMNome(obmPresente);
 		
+		TiposOcorrencia tipoO = TiposOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
+		
 		atendimento.setObm_id(obm);
 		atendimento.setMunicipio_id(municipioDao);
 		atendimento.setBairro(bairro);
@@ -143,7 +147,7 @@ public class AlteraAtendimento extends HttpServlet {
 		atendimento.setCoordx(coordX);
 		atendimento.setCoordy(coordY);
 		atendimento.setStatus_atendimento(status);
-		atendimento.setTipoocorrencia(tipoOcorrencia);
+		atendimento.setTipoocorrencia(tipoO);
 						
 		AtendimentosDao.getInstance().atualizar(atendimento);
 		request.setAttribute("atendimento", atendimento);

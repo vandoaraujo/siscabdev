@@ -48,7 +48,7 @@ public class TiposOcorrenciaDao {
 		
 	}
 	
-	public TiposOcorrencia listarTipoViatura(String nome){
+	public TiposOcorrencia listarTiposOcorrenciaNome(String nome){
 		
 		TiposOcorrencia tipoV = (TiposOcorrencia) session.createQuery("from modelo.TiposOcorrencia o where o.tipoocorrencia_descricao=:nome").setString("nome", nome).uniqueResult();  
 		return tipoV;		

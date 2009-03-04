@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Chamado" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Chamado,modelo.NaturezaChamados,dao.NaturezaChamadosDao" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date, java.text.*" %>
@@ -34,25 +34,25 @@
 		 <option><%= municipio %></option>
 		</select>
 		<tr><td> <input name="bairro" type="hidden" readonly="readonly" value=${bairro}></td></tr>
-		</table>
-				
+	
 		
-		<tr>NaturezaChamado: <select name="naturezaChamado">
-			
-			<!-- Popula a combo de natureza de Chamados que aparecerá na tela Verificar após o clique do botao-->
-			<%
-				 
-		 	ArrayList<String> nChamados = (ArrayList)request.getAttribute("naturezaChamados");
-			for(int i=0;i<nChamados.size();i++){
-			 out.print("<option>"+nChamados.get(i));
-		 	}
-			out.println("</select>");
-			%></tr><br>
-			
-			
+		
+			<tr><td>Natureza Chamado:</td>
+									<td>
+										<select name="naturezaChamado">
+		 								<% 
+											List<NaturezaChamados> tipos = NaturezaChamadosDao.getInstance().listarTodasNaturezasChamado();
+											for(int i=0;i<tipos.size();i++){
+												out.print("<option>"+tipos.get(i).getNaturezachamado_descricao());
+						 				}
+												out.println("</select>");
+									%></td></tr>			
+		
+	
 			<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
 			<input type="hidden" name="operacaoARealizar" value ="">
 			<input type="hidden" name="registroOcorrencia" value ="1"> 
+			
 			</form>
 
 </body>

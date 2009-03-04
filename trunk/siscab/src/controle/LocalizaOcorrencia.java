@@ -90,10 +90,7 @@ public class LocalizaOcorrencia extends HttpServlet {
 		//Ver este campo --- JSP passa o valor 1
 		int registroOcorrencia = Integer.parseInt(request.getParameter("registroOcorrencia"));
 		
-		//Cria objeto NaturezaChamados que será utilizada na próxima página
-		NaturezaChamados n = new NaturezaChamados();
-		ArrayList<String> nChamados =  n.getAr();
-		
+	
 		ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance().listarTodasOBMs();
 						
 	
@@ -104,7 +101,6 @@ public class LocalizaOcorrencia extends HttpServlet {
 		request.setAttribute("nomeSolicitante", nomeSolicitante);
 		request.setAttribute("telefone", telefone);
 		request.setAttribute("aproxVitimas", numAproximadoVitimas);
-		request.setAttribute("naturezaChamados", nChamados);
 		request.setAttribute("infoComplementares", infoComplementares);
 		request.setAttribute("nomeObmUsuario", nomeObmUsuario);
 			

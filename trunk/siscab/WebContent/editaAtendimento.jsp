@@ -1,7 +1,8 @@
 <%@ page import="java.util.*,modelo.TiposOcorrencia,modelo.OBM,modelo.Atendimentos,modelo.Usuario,modelo.NaturezaChamados,modelo.Municipio,dao.OBMDao,modelo.StatusAtendimento,dao.MunicipioDao" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<html>
+
+<%@page import="dao.TiposOcorrenciaDao"%><html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>SISCAB - SISTEMA DE CONTROLE DE ATENDIMENTOS DE BOMBEIROS</title>
@@ -61,17 +62,22 @@ Num. Complemento: <input name="numComplemento" type="text" size=10 value=<%= ate
 
 Tipo da Ocorrência:
 
-atendimento
-	<select name="tipoOcorrencia">
-	<option selected> <%=atendimento.getTipoocorrencia() %></option>
-	<% 
-	TiposOcorrencia tipo = new TiposOcorrencia();
-	ArrayList<String> nTiposOcorrencia = tipo.getAr();
-	for(int i=0;i<nTiposOcorrencia.size();i++){
-	out.print("<option>"+nTiposOcorrencia.get(i));
-	 	}
-	out.println("</select>");
-	%><br>	
+								
+										<select name="tipoOcorrencia">
+										<option selected> <%= atendimento.getTipoocorrencia().getTipoocorrencia_descricao() %>
+										
+		 								<% 
+											List<TiposOcorrencia> tipos = TiposOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
+											for(int i=0;i<tipos.size();i++){
+												if(!atendimento.getTipoocorrencia().getTipoocorrencia_descricao().equals(tipos.get(i).getTipoocorrencia_descricao().toString())){
+												out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
+												}
+						 				}
+												out.println("</select>");
+									%>	
+
+
+<br>	
 	
 	Status do Atendimento:	
 	<select name="status">
