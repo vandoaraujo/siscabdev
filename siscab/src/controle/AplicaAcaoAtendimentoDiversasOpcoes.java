@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Atendimentos;
+import modelo.ServicoRealizado;
 import modelo.VitimaAtendida;
+import dao.ServicoRealizadoDao;
 import dao.VitimaAtendidaDao;
 
 /**
@@ -84,10 +86,13 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private void servicosExecutados(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
-		
-		
+
+		List <ServicoRealizado> servicos = ServicoRealizadoDao.getInstance().buscaServicosReferenteAtendimento(registroAtendimento);
+				
 		RequestDispatcher view;
 		HttpSession sessao = request.getSession();
+		sessao.setAttribute("servicos", servicos);
+		sessao.setAttribute("registroAtendimento", registroAtendimento);
 		sessao.setAttribute("atendimentoAtual", at);
 		view = request.getRequestDispatcher("/iniciarServico.jsp");
 		

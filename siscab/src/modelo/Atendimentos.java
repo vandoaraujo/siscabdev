@@ -27,7 +27,7 @@ public class Atendimentos {
 	
 	@OneToOne
 	@JoinColumn(name="tipoocorrencia_id")
-	private TipoViatura tipoocorrencia;
+	private TiposOcorrencia tipoocorrencia;
 	
 	@OneToOne
 	@JoinColumn(name="chamado_id")
@@ -78,11 +78,11 @@ public class Atendimentos {
 		this.atendimento_numero = atendimento_numero;
 	}
 
-	public String getTipoocorrencia() {
+	public TiposOcorrencia getTipoocorrencia() {
 		return tipoocorrencia;
 	}
 
-	public void setTipoocorrencia(String tipoocorrencia) {
+	public void setTipoocorrencia(TiposOcorrencia tipoocorrencia) {
 		this.tipoocorrencia = tipoocorrencia;
 	}
 

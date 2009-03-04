@@ -27,6 +27,11 @@
   	    <mapping class="modelo.VitimaAtendida"/>	
   	    <mapping class="modelo.TipoViatura"/>
   	    <mapping class="modelo.TiposOcorrencia"/>
+  	    <mapping class="modelo.NaturezaChamados"/>
+  	    <mapping class="modelo.TiposServicos"/>
+  	    <mapping class="modelo.ServicoRealizado"/>
+  	    
+  	    
   	    
 	</session-factory>
 

@@ -25,7 +25,9 @@ public class Chamado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String naturezachamado;
+	@OneToOne
+	@JoinColumn(name="naturezachamado_id")
+	private NaturezaChamados naturezachamado;
 	
 	private String origem;
 	
@@ -47,10 +49,10 @@ public class Chamado {
 	
 	private Date horainicio;
 	
-	public String getNaturezaChamado() {
+	public NaturezaChamados getNaturezaChamado() {
 		return naturezachamado;
 	}
-	public void setNaturezaChamado(String naturezaChamado) {
+	public void setNaturezaChamado(NaturezaChamados naturezaChamado) {
 		this.naturezachamado = naturezaChamado;
 	}
 	public String getOrigem() {

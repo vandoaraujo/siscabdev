@@ -16,10 +16,12 @@ import modelo.Atendimentos;
 import modelo.Chamado;
 import modelo.Municipio;
 import modelo.OBM;
+import modelo.TiposOcorrencia;
 import dao.AtendimentosDao;
 import dao.ChamadoDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
+import dao.TiposOcorrenciaDao;
 
 /**
  * Servlet implementation class EfetivaAtendimento
@@ -101,6 +103,9 @@ public class EfetivaAtendimento extends HttpServlet {
 		//Busca ultimo chamado na transacao corrente 
 		Chamado chamado = ChamadoDao.getInstance().BuscaChamadoId(idAtendimento);
 		
+		TiposOcorrencia tipoO = TiposOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
+
+		
 		atendimento.setAtendimento_numero(oid);
 		atendimento.setChamado_id(chamado);
 		atendimento.setBairro(bairro);
@@ -111,7 +116,7 @@ public class EfetivaAtendimento extends HttpServlet {
 		atendimento.setCoordy(coordY);
 		atendimento.setLogradouro(logradouro);
 		atendimento.setNumcompl(numComplemento);
-		atendimento.setTipoocorrencia(tipoOcorrencia);
+		atendimento.setTipoocorrencia(tipoO);
 		atendimento.setStatus_atendimento(status);
 		
 		AtendimentosDao.getInstance().salvar(atendimento);

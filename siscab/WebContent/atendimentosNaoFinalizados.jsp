@@ -41,7 +41,7 @@
 					    <div>      
 					    
 					    <%= i+1 %> :: NúmeroAtendimento: <%=atendimentos.getAtendimento_numero()%> <a href="EditaAtendimento?registro=<%=atendimentos.getAtendimento_numero()%>"> Municipio:<%= atendimentos.getMunicipio_id().getMunicipio_nome()%>, Bairro: <%=atendimentos.getBairro()%>,
-					    Logradouro: <%=atendimentos.getLogradouro()%>, TipoOcorrencia: <%=atendimentos.getTipoocorrencia()%>, QtdVitimas: <%=atendimentos.getChamado_id().getNumaproxvitimas()%>, OBMAtendimento: <%=atendimentos.getObm_id().getNome()%>
+					    Logradouro: <%=atendimentos.getLogradouro()%>, TipoOcorrencia: <%=atendimentos.getTipoocorrencia().getTipoocorrencia_descricao() %>, QtdVitimas: <%=atendimentos.getChamado_id().getNumaproxvitimas()%>, OBMAtendimento: <%=atendimentos.getObm_id().getNome()%>
 					    
 					  	</a><br>
 					    </div>
