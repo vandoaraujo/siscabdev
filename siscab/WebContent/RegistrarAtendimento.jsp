@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.TiposOcorrencia,modelo.OBM,modelo.Usuario,modelo.NaturezaChamados,modelo.Municipio,dao.OBMDao,modelo.StatusAtendimento" %>
+<%@ page import="java.util.*,modelo.TiposOcorrencia,dao.TiposOcorrenciaDao,modelo.OBM,modelo.Usuario,modelo.NaturezaChamados,modelo.Municipio,dao.OBMDao,modelo.StatusAtendimento,modelo.TiposOcorrencia" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,6 +24,25 @@ function habilitaCombo(priID, prstHabilita){
 <head> 
 </head>
 <body>
+<script language="JavaScript1.2">mmLoadMenus();</script>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
+		<td style="background-image:url(img/cabecalho.jpg); background-repeat:no-repeat;">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr style="height:139px;">
+					<td align="right" style="padding-right:20px;">  	
+					 		<img src="img/logo.png">	 	
+					 </td>
+				</tr>
+				<tr>
+					<td style="padding-left:20px;">						
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
+					</td>				
+				</tr>
+				</table>
 
 Obs: O presente Chamado possui uma Natureza de Solicitação de Socorro.<br>
 
@@ -63,16 +82,21 @@ Tela de Tranferência de Atendimento de Obms<br>
 	<tr>Logradouro: <input name="logradouro" type="text" size=30><p><br>
 	<tr>Num. Complemento: <input name="numComplemento" type="text" size=10></tr><br>
 		
-	<br>Tipo da Ocorrência:
-	<select name="tipoOcorrencia">
-		 <% 
-	TiposOcorrencia tipo = new TiposOcorrencia();
-	ArrayList<String> nTiposOcorrencia = tipo.getAr();
-	for(int i=0;i<nTiposOcorrencia.size();i++){
-	out.print("<option>"+nTiposOcorrencia.get(i));
-	 	}
-	out.println("</select>");
-		%></tr><br>	
+	<br>
+					<td><label>Tipo Viatura:</label></td>
+									<td>
+										<select name="tipoOcorrencia">
+		 								<% 
+											List<TiposOcorrencia> tipos = TiposOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
+											//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
+											for(int i=0;i<tipos.size();i++){
+												out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
+						 				}
+												out.println("</select>");
+									%></td></tr>	
+		
+		
+		
 	
 	Status do Atendimento:<br>	
 	<select name="status">

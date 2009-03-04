@@ -43,13 +43,26 @@ public class BuscarUsuario extends HttpServlet {
 		int registro=0;
 		String registro1 = request.getParameter("registro");
 		String nomeGuerra = request.getParameter("nomeGuerra");
-				
-		registro = Integer.parseInt(registro1);
+		
 		if(registro1.equals("")){
 			registro=0;
 		}
+		else{
+			registro = Integer.parseInt(registro1);
+		}
+		
+		//Verifica consulta conforme parametros
+		if(registro == 0){
 			
-		 usu= UsuarioDao.getInstance().procurarUsuariosParametro2(registro, nomeGuerra);
+			usu= UsuarioDao.getInstance().procurarUsuariosParametro1(nomeGuerra);
+
+		}
+		else {
+			
+			usu= UsuarioDao.getInstance().procurarUsuariosParametro2(registro);
+
+		}
+			
 		UsuarioDao.getInstance().fechaSession();
 		
 		System.out.println("RESULTADO DA QUERY" + usu.size());

@@ -65,17 +65,24 @@ public class ServletLogin extends HttpServlet {
 			
 		}
 		
-		else{
+		else if(!usu.getStatus().equals("Ativo")){
+			  
+			  HttpSession session = req.getSession();	
+			  session.setAttribute("usuario", usu);
+			  RequestDispatcher view = req.getRequestDispatcher("/statusUsuarioInativo.jsp");
+			  view.forward(req, response);
+		  
+		  }
 			
-			if(usu.getPerfil().equals("ADMIN")){
+		else if(usu.getPerfil().equals("ADMIN")){
+			
 				HttpSession session = req.getSession();
 				req.setAttribute("session", session);
 				session.setAttribute("usuario", usu);
 				RequestDispatcher view = req.getRequestDispatcher("/paginaPrincipal.jsp");
 				view.forward(req, response);
-			}
-			
-			else if(!usu.getPerfil().equals("ADMIN")){
+		}
+		else if(!usu.getPerfil().equals("ADMIN")){
 				
 				HttpSession session = req.getSession();
 				req.setAttribute("session", session);
@@ -91,5 +98,3 @@ public class ServletLogin extends HttpServlet {
 		}
 			
 	}
-
-}

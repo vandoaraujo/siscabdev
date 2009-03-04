@@ -60,6 +60,8 @@ Logradouro: <INPUT TYPE=TEXT NAME="logradouro" SIZE=30 MAXLENGHT=40 value= "<%= 
 Num. Complemento: <input name="numComplemento" type="text" size=10 value=<%= atendimento.getNumcompl() %>><br>
 
 Tipo da Ocorrência:
+
+atendimento
 	<select name="tipoOcorrencia">
 	<option selected> <%=atendimento.getTipoocorrencia() %></option>
 	<% 

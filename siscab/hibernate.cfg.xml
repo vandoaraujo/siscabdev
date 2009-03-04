@@ -24,7 +24,10 @@
 	    <mapping class="modelo.Chamado"/>
 	    <mapping class="modelo.Atendimentos"/>
 	    <mapping class="modelo.Viatura"/>	
-  	   	<mapping class="modelo.VitimaAtendida"/>	
+  	   	<mapping class="modelo.VitimaAtendida"/>
+  	   	<mapping class="modelo.TipoViatura"/>
+  	   	<mapping class="modelo.TiposOcorrencia"/>
+  	   	
   	    
   	    
 	</session-factory>

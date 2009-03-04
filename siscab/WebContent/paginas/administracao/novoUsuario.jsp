@@ -13,6 +13,9 @@
 
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
+<%!String id;  %>
+
+<% id = request.getAttribute("numRegistroMilitar").toString(); %>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
@@ -38,8 +41,8 @@
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Nº de Registro:</label></td>
-									<td><input name="registro" type="text" /></td>								
+									<td><label>Próximo número de Registro:</label></td>
+									<td><input name="registro" type="text" value=<%= id %> readonly="readonly"/></td>								
 								</tr>
 								<tr>
 									<td><label>Nome de Guerra:</label></td>
@@ -70,7 +73,14 @@
 										<option>CONTROLADOR
 										<option>COMANDANTE
 										</select>									
-									</td>								
+									</td>
+									<td><label>Status:</label></td>
+									<td>
+										<select name="status">
+										<option selected>Ativo 
+										<option>Inativo
+										</select>									
+									</td>									
 								</tr>
 								<tr>
 									<td><label>Email:</label></td>

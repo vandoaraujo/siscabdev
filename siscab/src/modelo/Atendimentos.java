@@ -25,7 +25,9 @@ public class Atendimentos {
 	
 	private int atendimento_numero;
 	
-	private String tipoocorrencia;
+	@OneToOne
+	@JoinColumn(name="tipoocorrencia_id")
+	private TipoViatura tipoocorrencia;
 	
 	@OneToOne
 	@JoinColumn(name="chamado_id")

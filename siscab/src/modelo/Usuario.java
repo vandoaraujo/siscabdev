@@ -39,7 +39,7 @@ public class Usuario {
 	private String perfil;
 	@Column
 	private String senha;
-	@Transient
+	
 	private String statusUsu;
 	@Transient
 	private String statusConexao;
