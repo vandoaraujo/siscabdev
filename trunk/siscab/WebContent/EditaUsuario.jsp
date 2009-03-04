@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,dao.OBMDao" %>
+<%@ page import="java.util.*,modelo.OBM,dao.OBMDao,modelo.Usuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +13,8 @@
 
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
+<%! Usuario usuario; %>
+<% usuario = (Usuario)request.getAttribute("usuario");%>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
@@ -37,7 +39,7 @@
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nº de Registro:</label></td>
-									<td><input name="registro" type="text" value=${usuario.numRegistro} /></td>								
+									<td><input name="registro" type="text" value=${usuario.numRegistro} readonly="readonly" /></td>								
 								</tr>
 								<tr>
 									<td><label>Nome de Guerra:</label></td>
@@ -57,16 +59,37 @@
 										out.println("</select>");
 										%>
 										
-										 </label><br>
-										<label>perfil: <select name="perfil" >
+								</tr>
+									<tr><td><label>perfil:</label><td><td> <select name="perfil" >
 										<option>ADMIN 
 										<option selected >${usuario.perfil} 
 										<option>OPERADOR
 										<option>CONTROLADOR
 										<option>COMANDANTE
 										</select>									
-									</td>								
+																	
 								</tr>
+								<tr>
+								</tr>
+								<tr>
+									<td><label>Status:</label></td>
+									<td><%  
+									     if(usuario.getStatus().equals("Ativo")){
+									    %>
+									      	   O perfil atual deste Usuário é Ativo. No momento seu perfil será trocado para Inativo
+									    	 	Ativo  <input name="status" type="radio" value="Ativo" />
+									    	 	Inativo <input name="status" type="radio" value="Inativo" checked/>
+									    	 	 
+									     <%} else if (usuario.getStatus().equals("Inativo")){
+									    	 %>
+									    	 O perfil atual deste Usuário é Inativo. No momento seu perfil será trocado para Ativo
+									    	  	Ativo <input name="status" type="radio" value="Ativo" checked/>
+									    	 	Inativo <input name="status" type="radio" value="Inativo" /> 
+									    	 
+									     <% }%></td>
+								</tr>
+								
+								
 								<tr>
 									<td><label>Email:</label></td>
 									<td><input name="email" type="text" size="30" value=${usuario.email} /></td>								

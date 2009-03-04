@@ -96,6 +96,13 @@ public class UsuarioDao {
 		return p;		
 		
 	}
+	
+	public int listarUltimoId(){
+		
+		Integer idMax =  (Integer) session.createQuery("select max(numRegistro) from Usuario").uniqueResult();
+		return idMax;
+		
+	}
 
 	@Deprecated
 	public List<Usuario> procurarUsuariosParametro(Integer registro, String nomeGuerra) {
@@ -115,11 +122,19 @@ public class UsuarioDao {
 		
 	}
 	
-	public List<Usuario> procurarUsuariosParametro2(Integer registro, String nomeGuerra) {
+	public List<Usuario> procurarUsuariosParametro1(String nomeGuerra) {
+		
+		List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("nomeGuerra like '" +nomeGuerra+ "%'")).list();
+		return usuario;
+	}
+	
+	public List<Usuario> procurarUsuariosParametro2(Integer registro) {
 					
 		List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("numRegistro like '" +registro+ "%'")).list();
 		return usuario;
 	}
+	
+
 
 	public Usuario BuscaUsuarioId(Integer id) {
 		

@@ -40,8 +40,7 @@ public class EditaUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 			Integer id = Integer.parseInt(request.getParameter("registro"));
-			
-			
+						
 			System.out.println("IMPRIME!!!!!!!!!!! ####################### "+ id);
 			
 			Usuario usuario = UsuarioDao.getInstance().BuscaUsuarioId(id); 

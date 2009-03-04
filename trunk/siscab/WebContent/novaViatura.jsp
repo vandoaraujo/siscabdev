@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Viatura,modelo.TipoViatura,dao.OBMDao" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Viatura,modelo.TipoViatura,dao.OBMDao,modelo.TipoViatura,dao.TipoViaturaDao" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -72,10 +72,10 @@
 									<td>
 										<select name="tipoViatura">
 		 								<% 
-											TipoViatura tipo = new TipoViatura();
-											ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
-											for(int i=0;i<tiposViaturas.size();i++){
-												out.print("<option>"+tiposViaturas.get(i));
+											List<TipoViatura> tipos = TipoViaturaDao.getInstance().listarTodosTiposViaturas();
+											//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
+											for(int i=0;i<tipos.size();i++){
+												out.print("<option>"+tipos.get(i).getTipoviatura_descricao());
 						 				}
 												out.println("</select>");
 									%></td></tr>	

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.OBM;
-import modelo.Usuario;
+import modelo.TipoViatura;
 import modelo.Viatura;
 import dao.OBMDao;
-import dao.UsuarioDao;
+import dao.TipoViaturaDao;
 import dao.ViaturaDao;
 
 /**
@@ -86,11 +86,13 @@ public class CRUDViatura extends HttpServlet {
 				
 					
 				OBM cobm = OBMDao.getInstance().listarOBMNome(obm);
+				
+				TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(tipoViatura);
 					
 				Viatura via = new Viatura();
 				via.setNumero(numeroViatura);
 				via.setObm(cobm);
-				via.setTipo_viatura(tipoViatura);
+				via.setTipo_viatura(tipoV);
 				via.setViatura_obs(obsViatura);
 				via.setViatura_status(statusViatura);
 				
@@ -156,9 +158,11 @@ public class CRUDViatura extends HttpServlet {
 			
 			Viatura via = ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
 			OBM obmAtual = OBMDao.getInstance().listarOBMNome(obm);
+			TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(tipoViatura);
+
 			via.setNumero(numeroViatura);
 			via.setObm(obmAtual);
-			via.setTipo_viatura(tipoViatura);
+			via.setTipo_viatura(tipoV);
 			via.setViatura_obs(obsViatura);
 			via.setViatura_status(statusViatura);
 			ViaturaDao.getInstance().atualizar(via);

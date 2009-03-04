@@ -2,30 +2,49 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tiposviaturas")
 public class TipoViatura {
-		
-private ArrayList<String> tipoViatura;
 	
-	public TipoViatura(){
-		
-		tipoViatura = new ArrayList<String>();
-		tipoViatura.add("Auto Bomba Tanque");
-		tipoViatura.add("Auto Busca e Salvamento");
-		tipoViatura.add("Auto Busca e Salvamento Leve");
-		tipoViatura.add("Auto Socorro de Emergência (ambulância)");
-		tipoViatura.add("Auto Plataforma Mecânica");
-		tipoViatura.add("Auto Produtos Perigosos");
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
+	private String tipoviatura_abreviacao;
+	
+	private String tipoviatura_descricao;
+
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	public ArrayList<String> getTiposViaturas() {
-		return tipoViatura;
+	public String getTipoviatura_abreviacao() {
+		return tipoviatura_abreviacao;
+	}
+
+	public void setTipoviatura_abreviacao(String tipoviatura_abreviacao) {
+		this.tipoviatura_abreviacao = tipoviatura_abreviacao;
+	}
+
+	public String getTipoviatura_descricao() {
+		return tipoviatura_descricao;
+	}
+
+	public void setTipoviatura_descricao(String tipoviatura_descricao) {
+		this.tipoviatura_descricao = tipoviatura_descricao;
 	}
 	
-	public void setAr(ArrayList<String> viatura) {
-		this.tipoViatura = viatura;
-	}
+	
 	
 	
 }

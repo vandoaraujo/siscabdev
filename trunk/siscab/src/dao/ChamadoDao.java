@@ -70,17 +70,13 @@ public class ChamadoDao {
 	}
 	
 	
-	//Otimizar este método
 	public Integer listaUltimoId(){
 		
-		int maior = 0;
-		List<Chamado> lista = (List<Chamado>)session.createQuery("from modelo.Chamado").list();
-		for(int i = 0;i<lista.size();i++){
-			Chamado ch = lista.get(i);
-			maior = ch.getId();
-		}
-		return maior;
+		Integer idMax = (Integer) session.createQuery("select max(id) from Chamado").uniqueResult();
+		return idMax;
+		
 	}
+	
 		
 	public Chamado listarChamadoNomeSolicitante(String nomeSolicitante){
 		

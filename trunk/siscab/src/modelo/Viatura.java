@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,8 +24,10 @@ public class Viatura {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
-		@Column
-		private String tipo_viatura;
+		
+		@OneToOne
+		@JoinColumn(name="tipoviatura_id")
+		private TipoViatura tipo_viatura;
 		@Column
 		private String numero;
 		
@@ -48,11 +51,11 @@ public class Viatura {
 			this.id = id;
 		}
 
-		public String getTipo_viatura() {
+		public TipoViatura getTipo_viatura() {
 			return tipo_viatura;
 		}
 
-		public void setTipo_viatura(String tipo_viatura) {
+		public void setTipo_viatura(TipoViatura tipo_viatura) {
 			this.tipo_viatura = tipo_viatura;
 		}
 

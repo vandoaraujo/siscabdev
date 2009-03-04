@@ -2,30 +2,38 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tiposocorrencias")
 public class TiposOcorrencia {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	private String tipoocorrencia_descricao;
 
-	private ArrayList<String> tipoOcorrencia;
-	
-	public TiposOcorrencia(){
-		
-		tipoOcorrencia = new ArrayList<String>();
-		tipoOcorrencia.add("Colisão de veículo");
-		tipoOcorrencia.add("Atropelamento");
-		tipoOcorrencia.add("Mal súbito");
-		tipoOcorrencia.add("Incêndio florestal");
-		tipoOcorrencia.add("Orientação");
-		tipoOcorrencia.add("Animal em situação de risco");
-	
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	public ArrayList<String> getAr() {
-		return tipoOcorrencia;
+	public String getTipoocorrencia_descricao() {
+		return tipoocorrencia_descricao;
 	}
-	
-	public void setAr(ArrayList<String> ar) {
-		this.tipoOcorrencia = ar;
+
+	public void setTipoocorrencia_descricao(String tipoocorrencia_descricao) {
+		this.tipoocorrencia_descricao = tipoocorrencia_descricao;
 	}
+
 	
 	
 }

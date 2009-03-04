@@ -40,18 +40,7 @@ public class ViaturasControle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List viatura = (List<Viatura>) ViaturaDao.getInstance().listar();
-		
-		if (viatura.size() == 0){
-			System.out.println("FUNCIONA!");
-		}
-		if (viatura.isEmpty()){
-			System.out.println("FUNCIONA IF 2!");
-		}
-		
-		if(viatura.contains(null)){
 			
-			System.out.println("Lista vazia");
-		}
 		request.setAttribute("viaturas", viatura);
 		RequestDispatcher view = request.getRequestDispatcher("/listarViaturas.jsp");
 		view.forward(request, response);

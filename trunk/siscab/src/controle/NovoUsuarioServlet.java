@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.OBM;
+import modelo.SiscabException;
 import modelo.Usuario;
 import dao.OBMDao;
 import dao.UsuarioDao;
@@ -55,11 +57,15 @@ public class NovoUsuarioServlet extends HttpServlet {
     	registroUsuario = Integer.parseInt(request.getParameter("registroUsuario"));
 	  
 	    
-	    //COntrole de qual operacao será realizada
+	    //Controle de qual operacao será realizada
 	    
 	    if(operacao == 1){
 		
-	    	salvar(request,response);	
+	    	try {
+				salvar(request,response);
+			} catch (SiscabException e) {
+				e.printStackTrace();
+			}	
 		
 	    }			
 		else if(operacao == 2){
@@ -78,17 +84,30 @@ public class NovoUsuarioServlet extends HttpServlet {
 	
 	
 
-	protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SiscabException 
 	{
 			
+					
 			numRegistro = Integer.parseInt(request.getParameter("registro"));
 			nomeGuerra = request.getParameter("nomeGuerra");
 			obm = request.getParameter("obm");
 			perfil = request.getParameter("perfil");
 			email = request.getParameter("email");
 			senha = request.getParameter("senha");
-			status = "ativo";
+			status = request.getParameter("status");
 			
+			//Verifica Duplicidade de Pessoas já cadastradas no BD
+			List<Usuario> usuarios = UsuarioDao.getInstance().listar();
+			
+			for(int it = 0;it<usuarios.size();it++){
+				Usuario usu = usuarios.get(it);
+				if(usu.getNomeGuerra().equals(nomeGuerra)){
+					
+					SiscabException siscab = new SiscabException("Usuário já cadastrado com este NomeGuerra!");
+					response.sendRedirect("/siscabException.jsp");
+				}
+			}
+					
 			OBM cobm = OBMDao.getInstance().listarOBMNome(obm);
 			
 			OBMDao.getInstance().fechaSession();
@@ -172,7 +191,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 		perfil = request.getParameter("perfil");
 		email = request.getParameter("email");
 		senha = request.getParameter("senha");
-		status = "ativo";
+		status = request.getParameter("status");
 		
 		Usuario usu = UsuarioDao.getInstance().BuscaUsuarioId(registro);
 		usu.setNumRegistro(numRegistro);

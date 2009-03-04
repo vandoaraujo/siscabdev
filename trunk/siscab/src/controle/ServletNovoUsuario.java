@@ -13,13 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.OBM;
 
 import dao.OBMDao;
+import dao.UsuarioDao;
 
 /**
  * Servlet implementation class ServletNovoUsuario
  */
 public class ServletNovoUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private int id;   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,6 +44,13 @@ public class ServletNovoUsuario extends HttpServlet {
 		List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
 		OBMDao.getInstance().fechaSession();
 		
+		Integer idObj = UsuarioDao.getInstance().listarUltimoId();
+		id = idObj.intValue();
+		//Incrementa o ID
+		id++;
+		
+						
+		request.setAttribute("numRegistroMilitar", id);
 		request.setAttribute("obms", obms);
 		
 		RequestDispatcher view = request.getRequestDispatcher("paginas/administracao/novoUsuario.jsp");
