@@ -76,13 +76,13 @@
 									<td><%  
 									     if(usuario.getStatus().equals("Ativo")){
 									    %>
-									      	   O perfil atual deste Usuário é Ativo. No momento seu perfil será trocado para Inativo
+									      	   O perfil atual deste Usuário é Ativo. No momento seu status será trocado para Inativo
 									    	 	Ativo  <input name="status" type="radio" value="Ativo" />
 									    	 	Inativo <input name="status" type="radio" value="Inativo" checked/>
 									    	 	 
 									     <%} else if (usuario.getStatus().equals("Inativo")){
 									    	 %>
-									    	 O perfil atual deste Usuário é Inativo. No momento seu perfil será trocado para Ativo
+									    	 O perfil atual deste Usuário é Inativo. No momento seu status será trocado para Ativo
 									    	  	Ativo <input name="status" type="radio" value="Ativo" checked/>
 									    	 	Inativo <input name="status" type="radio" value="Inativo" /> 
 									    	 

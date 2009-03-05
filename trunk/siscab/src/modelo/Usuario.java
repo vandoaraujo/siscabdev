@@ -23,48 +23,20 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column
 	private int numRegistro;
-	@Column
 	private String nomeGuerra;
-	@Column
 	private String email;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "obm_id", insertable=true, updatable =true)
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private OBM obm;
-	
 	private String perfil;
-	@Column
 	private String senha;
-	
 	private String statusUsu;
 	@Transient
 	private String statusConexao;
-	
-	
-	
-	public enum PerfilUsuario{
 		
-		ADMIN(1,"Administrador do Sistema"), ATENDENTE(2,"Atendente do COCB")
-		,OPERADOR(3,"Operador da OBM"),CONTROLADOR(4,"Controlador da OBM"),
-		COMANDANTE(5,"Comandante");
-		
-		private int id;
-		private String nome;
-		
-		public String getNome(){return this.nome;}
-		
-		PerfilUsuario(int id, String nome)
-		{
-			this.id =id;
-			this.nome=nome;
-		}
-		
-	}
-	
 	public String getPerfil() {
 		return perfil;
 	}

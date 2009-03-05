@@ -2,8 +2,9 @@ package dao;
 
 import java.util.List;
 
+import modelo.Atendimentos;
 import modelo.ServicoRealizado;
-import modelo.Usuario;
+import modelo.VitimaAtendida;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -70,11 +71,9 @@ public class ServicoRealizadoDao {
 		return u;
 	}
 	
-
-	
-	public List<ServicoRealizado> buscaServicosReferenteAtendimento(int idAtendimento){
+	public List<ServicoRealizado> listaServicosReferenteUmAtendimento(int atendimentoId){
 		
-		List <ServicoRealizado> servicos = session.createQuery("from modelo.ServicoRealizado s where s.tiposervico_id=:tiposervico").setInteger("tiposervico", idAtendimento).list();
+		List<ServicoRealizado> servicos = session.createQuery("from modelo.ServicoRealizado s where s.atendimento_id=:servicosAtendimento").setInteger("servicosAtendimento", atendimentoId).list();
 		return servicos;
 	}
 

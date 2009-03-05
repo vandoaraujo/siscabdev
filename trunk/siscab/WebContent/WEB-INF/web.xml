@@ -195,6 +195,15 @@
 		<servlet-class>
 		controle.EditaVitima</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		ControlaServico</display-name>
+		<servlet-name>ControlaServico</servlet-name>
+		<servlet-class>
+		controle.ControlaServico</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -275,6 +284,10 @@
 	<servlet-mapping>
 		<servlet-name>EditaVitima</servlet-name>
 		<url-pattern>/EditaVitima</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ControlaServico</servlet-name>
+		<url-pattern>/ControlaServico</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

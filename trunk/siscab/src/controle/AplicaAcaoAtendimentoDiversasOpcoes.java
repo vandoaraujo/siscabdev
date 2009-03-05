@@ -87,12 +87,12 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 			HttpServletResponse response, int registroAtendimento) {
 		
 
-		List <ServicoRealizado> servicos = ServicoRealizadoDao.getInstance().buscaServicosReferenteAtendimento(registroAtendimento);
+		List <ServicoRealizado> servicos = ServicoRealizadoDao.getInstance().listaServicosReferenteUmAtendimento(at.getId());
 				
 		RequestDispatcher view;
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("servicos", servicos);
-		sessao.setAttribute("registroAtendimento", registroAtendimento);
+		sessao.setAttribute("registroAtendimento",at.getId());
 		sessao.setAttribute("atendimentoAtual", at);
 		view = request.getRequestDispatcher("/iniciarServico.jsp");
 		
