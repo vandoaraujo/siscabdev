@@ -70,12 +70,15 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		calendar.add(GregorianCalendar.MINUTE, 0);
 		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		String grava = formata.format(calendar.getTime());
-		Date data = new Date(formata.format(calendar.getTime()));
+		Date dataFim = new Date(formata.format(calendar.getTime()));
 
-			
+		//Artificio para setar a hora Inicial do Chamado no guardada no Servlet RegistrarChamado
+		Date dataInicio = Chamado.getHoraInicioChamado();
+		
 		//Criacao do Objeto Chamado com os campos da tela
 		Chamado chamado = new Chamado();
-		chamado.setHorainicio(data);
+		chamado.setHorainicio(dataInicio);
+		chamado.setHoratermino(dataFim);
 		//chamado.setHoratermino(horatermino);
 		chamado.setId(identificadorChamado);
 		chamado.setInfocomplementares(infoComplementares);

@@ -1,6 +1,9 @@
 package modelo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,6 +51,8 @@ public class Chamado {
 	private Date horatermino;
 	
 	private Date horainicio;
+		
+	static Date data;
 	
 	public NaturezaChamados getNaturezaChamado() {
 		return naturezachamado;
@@ -110,6 +115,22 @@ public class Chamado {
 	}
 	public void setHoratermino(Date horatermino) {
 		this.horatermino = horatermino;
+	}
+	
+	public static void pegaDataInicialChamado(){
+		
+		GregorianCalendar calendar =  new GregorianCalendar();
+		calendar.add(GregorianCalendar.MONTH, 0);
+		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
+		calendar.add(GregorianCalendar.MINUTE, 0);
+		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		data = new Date(formata.format(calendar.getTime()));
+		
+	}
+	
+	public static Date getHoraInicioChamado(){
+		return data;
+		
 	}
 	
 	

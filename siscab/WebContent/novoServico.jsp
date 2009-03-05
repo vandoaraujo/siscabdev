@@ -35,7 +35,7 @@
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;Incluir Servico&nbsp;</legend>
 							
-							<form action="CrudServico" method="post">
+							<form action="ControlaServico" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
@@ -51,13 +51,13 @@
 									%></td></tr>	
 								<tr>	
 									<td><label>Numero Atendimento:</label></td>
-									<td><input name="tipoAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
+									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
 								</tr>
 								<tr>
 									<td colspan="2">
 										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
-								 		<input type="hidden" name="registroAtendimento" value ="1">
+								 		<input type="hidden" name="registroServico" value ="1">
 								 	</form>
 								 		 										
 									</td>								

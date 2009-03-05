@@ -75,10 +75,22 @@
 									<td><label>Coord. Y:</label></td>
 									<td><input name="coordY" type="text" value=${obmAtual.coordY} /></td>
 								</tr>
-								<tr>	
+								<tr>
 									<td><label>Status:</label></td>
-									<td>Ativa <input name="statusObm" type="radio" value="ativa" <%=  (obmVO.getStatus()==0)? " checked" : "" %> > &nbsp;&nbsp;&nbsp;
-							  			Inativa: <input name="statusObm" type="radio" value="inativa" <%= (obmVO.getStatus()==1)? " checked" : "" %></td>
+									<td><%  
+									     if((obmVO.getStatus() == 1)){
+									    %>
+									      	   O perfil atual desta OBM é Ativa. No momento seu Status está sendo trocada para Inativa
+									    	 	Ativa  <input name="statusObm" type="radio" value="ativa" />
+									    	 	Inativa <input name="statusObm" type="radio" value="inativa" checked/>
+									    	 	 
+									     <%} else if (obmVO.getStatus() == 0){
+									    	 %>
+									    	 O perfil atual deste OBM é Inativa. No momento seu status será trocada para Ativa
+									    	  	Ativo <input name="statusObm" type="radio" value="ativa" checked/>
+									    	 	Inativo <input name="statusObm" type="radio" value="inativa" /> 
+									    	 
+									     <% }%></td>
 								</tr>
 								<tr>
 									<td colspan="2">

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Chamado;
 import modelo.Municipio;
 import modelo.Usuario;
 import dao.ChamadoDao;
@@ -71,6 +72,9 @@ public class RegistrarChamado extends HttpServlet {
 		  List<Municipio> municipios = (List<Municipio>)MunicipioDao.getInstance().listarTodosMunicipios();
 				  		  
 		  //Parametros utilizados na próxima página
+		  
+		  //Artificio para guardar a hora inicial
+		  Chamado.pegaDataInicialChamado();		  
 		  
 		  request.setAttribute("municipios", municipios);
 		  request.setAttribute("usuario", u);

@@ -1,0 +1,21 @@
+###############
+Manter OBMS
+
+Obm já cadastrada: o sistema notifica o usuário, e retorna à tela Inicial do caso de Uso
+Obm já realizou atendimento: o sistema informa que a OBM não pode ser excluida.
+OBM a ser desativada está associada a um atendimento não finalizado: o sistema informa que a OBM não pode ser
+desativada.
+
+########################
+
+Consertar campo Status OBM. OK!!!!!!!!!!
+
+###########################
+
+DUVIDA: CAMPO ORIGEM TABELA CHAMADOS ---  VER COM LUCIANA
+
+#########################
+
+CONSERTO DE HORA CORRETA INICIAL E FINAL -- CASO DE USO REGISTRAR CHAMADO.   OK!!!!!!
+
+##########################
