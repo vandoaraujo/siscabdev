@@ -39,7 +39,6 @@ public class EditaOBM extends HttpServlet {
 		request.setAttribute("municipios", municipios);
 		request.setAttribute("obmAtual",obm );
 		
-		
 		RequestDispatcher view = request.getRequestDispatcher("/editaOBM.jsp");
 		
 	

@@ -46,5 +46,19 @@ public class HibernateUtil {
 	}
 	
 	
+	public static void closeFactory(SessionFactory factory) {
+	if (factory != null) {
+		factory.close();
+	}
+	}
+	
+	
+	
+	public static void closeFactory() {
+	   
+		closeFactory(factory);
+	}
+	
+	
 
 }
