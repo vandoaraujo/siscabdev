@@ -56,7 +56,9 @@ Hora do Chamado: <%= grava %>
 	<%
     
  	ArrayList<Municipio> municipio = (ArrayList)request.getAttribute("municipios");
- 	 for(Municipio m: municipio){
+	%><option selected> 
+	<% 
+	for(Municipio m: municipio){
 	 out.println("<option>"+m.getMunicipio_nome());
  	}
 	out.println("</select>");

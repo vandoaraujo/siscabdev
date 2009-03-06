@@ -41,8 +41,8 @@
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Próximo número de Registro:</label></td>
-									<td><input name="registro" type="text" value=<%= id %> readonly="readonly"/></td>								
+									<td><label>Número de Registro:</label></td>
+									<td><input name="registro" type="text" /></td>								
 								</tr>
 								<tr>
 									<td><label>Nome de Guerra:</label></td>
