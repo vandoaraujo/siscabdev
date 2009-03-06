@@ -101,9 +101,9 @@ public class NovoUsuarioServlet extends HttpServlet {
 			
 			for(int it = 0;it<usuarios.size();it++){
 				Usuario usu = usuarios.get(it);
-				if(usu.getNomeGuerra().equals(nomeGuerra)){
+				if(usu.getNumRegistro() == numRegistro){
 					
-					SiscabException siscab = new SiscabException("Usuário já cadastrado com este NomeGuerra!");
+					SiscabException siscab = new SiscabException("Usuário já cadastrado com este Numero de Registro!");
 					response.sendRedirect("/siscabException.jsp");
 				}
 			}

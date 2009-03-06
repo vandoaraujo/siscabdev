@@ -44,13 +44,6 @@ public class ServletNovoUsuario extends HttpServlet {
 		List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
 		OBMDao.getInstance().fechaSession();
 		
-		Integer idObj = UsuarioDao.getInstance().listarUltimoId();
-		id = idObj.intValue();
-		//Incrementa o ID
-		id++;
-		
-						
-		request.setAttribute("numRegistroMilitar", id);
 		request.setAttribute("obms", obms);
 		
 		RequestDispatcher view = request.getRequestDispatcher("paginas/administracao/novoUsuario.jsp");
