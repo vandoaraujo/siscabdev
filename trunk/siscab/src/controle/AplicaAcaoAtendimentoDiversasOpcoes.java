@@ -12,8 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import modelo.Atendimentos;
 import modelo.ServicoRealizado;
+import modelo.Usuario;
+import modelo.Viatura;
 import modelo.VitimaAtendida;
 import dao.ServicoRealizadoDao;
+import dao.ViaturaDao;
 import dao.VitimaAtendidaDao;
 
 /**
@@ -134,9 +137,15 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private void viaturasEmpenhadas(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 
+		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+
+		System.out.println("Teste de Usuário no contexto da Aplicaçao" + usuario.getNomeGuerra());
+				
+		List<Viatura> viaturas =  ViaturaDao.getInstance().listaOBMAtual(usuario.getObm().getId());
 		
-		RequestDispatcher view;
 		HttpSession sessao = request.getSession();
+		sessao.setAttribute("viaturas", viaturas);
+		RequestDispatcher view;
 		sessao.setAttribute("atendimentoAtual", at);
 		view = request.getRequestDispatcher("/iniciarViaturasEmpenhadas.jsp");
 		

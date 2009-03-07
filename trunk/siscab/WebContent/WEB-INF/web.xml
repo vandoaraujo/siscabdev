@@ -204,6 +204,33 @@
 		<servlet-class>
 		controle.ControlaServico</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		NovaMovimentacaoViatura</display-name>
+		<servlet-name>NovaMovimentacaoViatura</servlet-name>
+		<servlet-class>
+		controle.NovaMovimentacaoViatura</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EditaEvento</display-name>
+		<servlet-name>EditaEvento</servlet-name>
+		<servlet-class>
+		controle.EditaEvento</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		CrudTipoEvento</display-name>
+		<servlet-name>CrudTipoEvento</servlet-name>
+		<servlet-class>
+		controle.CrudTipoEvento</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -288,6 +315,18 @@
 	<servlet-mapping>
 		<servlet-name>ControlaServico</servlet-name>
 		<url-pattern>/ControlaServico</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NovaMovimentacaoViatura</servlet-name>
+		<url-pattern>/NovaMovimentacaoViatura</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditaEvento</servlet-name>
+		<url-pattern>/EditaEvento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CrudTipoEvento</servlet-name>
+		<url-pattern>/CrudTipoEvento</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

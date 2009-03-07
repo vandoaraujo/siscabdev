@@ -2,13 +2,11 @@ package dao;
 
 import java.util.List;
 
-import modelo.Usuario;
+import modelo.OBM;
 import modelo.Viatura;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 public class ViaturaDao {
 
@@ -81,6 +79,12 @@ public class ViaturaDao {
 		
 		Viatura viatura = (Viatura) session.load(Viatura.class, id);
 		return viatura;
+	}
+	
+	public List<Viatura> listaOBMAtual(int obmAtual){
+		
+		List<Viatura> viaturasOBM = session.createQuery("from modelo.Viatura v where v.obm_id=:obm and viatura_status = 'Em prontidão'").setInteger("obm", obmAtual).list();
+		return viaturasOBM;
 	}
 
 		

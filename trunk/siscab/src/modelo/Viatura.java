@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -36,6 +40,13 @@ public class Viatura {
 		@Fetch(FetchMode.JOIN)
 		@Cascade(CascadeType.SAVE_UPDATE)
 		private OBM obm;
+		
+		@ManyToMany(fetch=FetchType.LAZY)
+		@JoinTable(name="movimentaviatura", schema="siscab",
+		joinColumns=@JoinColumn(name="viatura_id"),
+		inverseJoinColumns=@JoinColumn(name="atendimento_id"))
+		private Collection<Atendimentos> atendimentos;
+
 		
 		private String viatura_obs;
 		
@@ -89,6 +100,14 @@ public class Viatura {
 
 		public void setViatura_status(String viatura_status) {
 			this.viatura_status = viatura_status;
+		}
+
+		public Collection<Atendimentos> getAtendimentos() {
+			return atendimentos;
+		}
+
+		public void setAtendimentos(Collection<Atendimentos> atendimentos) {
+			this.atendimentos = atendimentos;
 		}
 		
 		
