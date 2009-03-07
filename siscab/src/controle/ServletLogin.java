@@ -51,6 +51,7 @@ public class ServletLogin extends HttpServlet {
 		int numRegistro = Integer.parseInt(request.getParameter("numRegistro"));
 		String senha = request.getParameter("senha"); 
 		Usuario usu = UsuarioDao.getInstance().buscarUsuario(numRegistro, senha);
+		getServletContext().setAttribute("usuarioCorrente", usu);
 		validaUsuario(request,usu,response);
 	}
 	

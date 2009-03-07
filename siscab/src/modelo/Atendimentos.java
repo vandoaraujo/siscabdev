@@ -1,11 +1,15 @@
 package modelo;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -38,6 +42,15 @@ public class Atendimentos {
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Municipio municipio_id;
+		
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="movimentaviatura", schema="siscab",
+	joinColumns=@JoinColumn(name="atendimento_id"),
+	inverseJoinColumns=@JoinColumn(name="viatura_id"))
+	private Collection<Viatura> viaturas;
+	
+	
 	
 	private String bairro;
 	
@@ -156,6 +169,14 @@ public class Atendimentos {
 
 	public void setStatus_atendimento(String status_atendimento) {
 		this.status_atendimento = status_atendimento;
+	}
+
+	public Collection<Viatura> getViaturas() {
+		return viaturas;
+	}
+
+	public void setViaturas(Collection<Viatura> viaturas) {
+		this.viaturas = viaturas;
 	}
 	
 	

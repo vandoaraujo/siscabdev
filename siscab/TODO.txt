@@ -19,3 +19,7 @@ DUVIDA: CAMPO ORIGEM TABELA CHAMADOS ---  VER COM LUCIANA
 CONSERTO DE HORA CORRETA INICIAL E FINAL -- CASO DE USO REGISTRAR CHAMADO.   OK!!!!!!
 
 ##########################
+
+Tabela MOvimentaViatura apresenta campo movimentaviaturatipoevento como inteiro não tendo nenhuma tabela com este mapeamento...
+
+########################## 

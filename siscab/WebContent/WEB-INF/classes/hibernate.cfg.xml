@@ -30,6 +30,8 @@
   	    <mapping class="modelo.NaturezaChamados"/>
   	    <mapping class="modelo.TiposServicos"/>
   	    <mapping class="modelo.ServicoRealizado"/>
+  	    <mapping class="modelo.MovimentaViatura"/>
+  	    
   	    
   	    
   	    

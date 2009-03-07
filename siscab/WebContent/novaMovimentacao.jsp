@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Viatura,modelo.Atendimentos" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Municipio,dao.MunicipioDao,modelo.TipoEventoViatura" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,10 +11,8 @@
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
 </head>
-<body>
-<% Atendimentos at = (Atendimentos)	request.getSession().getAttribute("atendimentoAtual");
-%>
 
+<body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -35,44 +33,40 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Lista de Viaturas Em prontidão&nbsp;</legend>						
+						<fieldset style="width:450px"><legend>&nbsp;Incluir Tipo Evento&nbsp;</legend>
+							
+							<form action="CrudTipoEvento" method="post">
+								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td>
-									<% ArrayList viatura=(ArrayList<Viatura>) request.getAttribute("viaturas");
-									%>
-									
-									<% if(viatura.size()== 0){ %>
-									     <div style="color:red"> Nenhuma Viatura em prontidão no momento</div>
-									   
-									<%} else{
-										
-										
-										for(int i=0;i<viatura.size();i++){
-												Viatura via =(Viatura)viatura.get(i);
-												 %> 
-									    
-									    <tr>
-									    <td>
-									    <div>     
-									    
-									    <%= i+1 %> :: NumeroViatura = <a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento<%= at.getId() %>">Status Viatura: <%= via.getViatura_status()%>TipoViatura: <%= via.getTipo_viatura().getTipoviatura_descricao().toString()%></a><br>
-									    </div>
-									    </td>
-									    </tr>
-									   <%} 
-										
-										
-									}%>
-									</td>								
+									<td><label>IdViatura:</label></td>
+									<td><input name="registroEventoViatura" type="text" size=10 readonly="readonly"/></td>
+								</tr>
+								<tr>	
+									<td><label>IdAtendimento:</label></td>
+									<td><input name="registroEventoAtendimento" type="text" size=10  readonly="readonly"/></td>
+								</tr>
+								<tr>	
+									<td><label>tipo Evento Descricao:</label></td>
+									<td><select name="tipoEventoDescricao">
+										<!-- Popula a combo que aparecerá na tela -->
+										<%
+										 TipoEventoViatura t = new TipoEventoViatura();
+									 	 for(String s: t.getTiposEventos()){
+										 out.println("<option>"+s.toString());
+									 	}
+										out.println("</select>");
+										%>
+									</td>
 								</tr>
 								<tr>
-									<td>																		
-										<form action="paginaPrincipal.jsp" method="post">
-							 				<input type="submit" value="Voltar Página Principal"/>
-							 			</form>	
-									</td>								
+									<td colspan="2">
+										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
+										<input type="hidden" name="operacaoARealizar" value ="">
+										</form>
+								 	</td>								
 								</tr>
+								<tr>																																							
 						</fieldset>	
 					</td>
 				</tr>				
@@ -81,5 +75,7 @@
 	</tr>
 </table>
 
+
 </body>
 </html>
+
