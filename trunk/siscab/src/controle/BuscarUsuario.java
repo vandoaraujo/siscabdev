@@ -10,15 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.OBM;
 import modelo.Usuario;
+import dao.OBMDao;
 import dao.UsuarioDao;
 
 /**
  * Servlet implementation class BuscarUsuario
  */
 public class BuscarUsuario extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	List<Usuario> usu;
+        private static final long serialVersionUID = 1L;
+        List<Usuario> usu;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,60 +30,68 @@ public class BuscarUsuario extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
+        /**
+         * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+         */
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                doPost(request, response);
+        }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		int registro=0;
-		String registro1 = request.getParameter("registro");
-		String nomeGuerra = request.getParameter("nomeGuerra");
-		
-		if(registro1.equals("")){
-			registro=0;
-		}
-		else{
-			registro = Integer.parseInt(registro1);
-		}
-		
-		//Verifica consulta conforme parametros
-		if(registro == 0){
-			
-			usu= UsuarioDao.getInstance().procurarUsuariosParametro1(nomeGuerra);
+        /**
+         * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+         */
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+               
+                int registro=0;
+                String registro1 = request.getParameter("registro");
+                String nomeGuerra = request.getParameter("nomeGuerra");
+                String nomeObm = request.getParameter("obm");
+                String tipoPerfil = request.getParameter("perfil");
+               
+               
+                //Verifica consulta conforme parametros
+                if(registro1.equals("") & tipoPerfil.equals("") & nomeObm.equals("")){
+                       
+                        usu= UsuarioDao.getInstance().procurarUsuariosParametro1(nomeGuerra);
 
-		}
-		else {
-			
-			usu= UsuarioDao.getInstance().procurarUsuariosParametro2(registro);
+                }
+                else if (nomeGuerra.equals("") & tipoPerfil.equals("") & registro1.equals("")){
+                       
+                        OBM obm = OBMDao.getInstance().listarOBMNome(nomeObm);
+                        usu = (List<Usuario>) obm.getUsuarios();
+                       
+                }
+               
+                else if (nomeGuerra.equals("") & nomeObm.equals("") & registro1.equals("")){
+                       
+                        usu= UsuarioDao.getInstance().procurarUsuariosParametro4(tipoPerfil);
 
-		}
-			
-		UsuarioDao.getInstance().fechaSession();
-		
-		System.out.println("RESULTADO DA QUERY" + usu.size());
-				
-		request.setAttribute("usuarios",usu);
-				
-		RequestDispatcher view = request.getRequestDispatcher("listaUsuarios.jsp");
-		try {
-			view.forward(request, response);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-	}
-	
+                }
+                else
+                {                      
+                        usu= UsuarioDao.getInstance().procurarUsuariosParametro2(registro);
+                }
+                       
+                UsuarioDao.getInstance().fechaSession();
+               
+                System.out.println("RESULTADO DA QUERY" + usu.size());
+                               
+                request.setAttribute("usuarios",usu);
+                               
+                RequestDispatcher view = request.getRequestDispatcher("listaUsuarios.jsp");
+                try {
+                        view.forward(request, response);
+                } catch (ServletException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
+               
+                       
+        }
+       
    public List<Usuario> getUsuarios() {  
-	     return this.usu;  
-} 
+             return this.usu;  
+}
 
 }
+
