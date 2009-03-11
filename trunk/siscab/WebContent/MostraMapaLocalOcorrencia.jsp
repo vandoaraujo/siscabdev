@@ -1,52 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Chamado,modelo.NaturezaChamados,dao.NaturezaChamadosDao" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date, java.text.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>SISCAB - SISTEMA DE CONTROLE DE ATENDIMENTOS DE BOMBEIROS</title>
-	<link href="css/current.css" rel="stylesheet" type="text/css">
-	<script language="JavaScript" src="js/mm_menu.js"></script>
-	<script language="JavaScript" src="js/script.js"></script>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAA1rJRd_d6NTBRsxYq3I7erBSVPiKh14QUveM1LzMKfwwniz5cMBRktlNQQD2Mh4zRyiEDe7djlt6huA" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    var map = null;
+    var geocoder = null;
+
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+        geocoder = new GClientGeocoder();
+      }
+    }
+
+    function showAddress(address) {
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              map.setCenter(point, 13);
+              var marker = new GMarker(point);
+              map.addOverlay(marker);
+              marker.openInfoWindowHtml(address);
+            }
+          }
+        );
+      }
+    }
+    </script>
 </head>
-<body>
-<script language="JavaScript1.2">mmLoadMenus();</script>
-
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
-		<td style="background-image:url(img/cabecalho.jpg); background-repeat:no-repeat;">
-			<table border="0" cellpadding="0" cellspacing="0" width="100%">
-				<tr style="height:139px;">
-					<td align="right" style="padding-right:20px;">  	
-					 		<img src="img/logo.png">	 	
-					 </td>
-				</tr>
-				<tr>
-					<td style="padding-left:20px;">						
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
-						<a href="#" onclick="window.close();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
-					</td>				
-				</tr>
-				<tr>
-					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Finalizar Chamado&nbsp;</legend>
-						<table>
-							<tr>
-								<td> 
-									GOOGLE MAPS
-								</td>
-							</tr>
-						</table>
-						
-				
-
-
-<h4> </h4><br>
+<body onload="initialize()" onunload="GUnload()">
+<h4> Configurar esta tela pra visualizar um mapa do Google Maps</h4><br>
 
 <div id="map_canvas" style="width: 500px; height: 300px"></div>
 

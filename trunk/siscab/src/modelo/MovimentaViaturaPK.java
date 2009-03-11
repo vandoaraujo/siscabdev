@@ -13,31 +13,31 @@ public class MovimentaViaturaPK implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="atendimento_id")
-	private Atendimentos atendimentos;
+	private Atendimentos atendimento_id;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "viatura_id")
-	private Viatura viatura;
+	private Viatura viatura_id;
 
 
 	public Atendimentos getAtendimentos() {
-		return atendimentos;
+		return atendimento_id;
 	}
 
 
 	public void setAtendimentos(Atendimentos atendimentos) {
-		this.atendimentos = atendimentos;
+		this.atendimento_id = atendimentos;
 	}
 
 
 	public Viatura getViatura() {
-		return viatura;
+		return viatura_id;
 	}
 
 
 	public void setViatura(Viatura viatura) {
-		this.viatura = viatura;
+		this.viatura_id = viatura;
 	}
 	
 	

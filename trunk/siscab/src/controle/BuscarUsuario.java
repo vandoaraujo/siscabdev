@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.OBM;
 import modelo.Usuario;
-import dao.OBMDao;
 import dao.UsuarioDao;
 
 /**
@@ -45,31 +43,24 @@ public class BuscarUsuario extends HttpServlet {
 		int registro=0;
 		String registro1 = request.getParameter("registro");
 		String nomeGuerra = request.getParameter("nomeGuerra");
-		String nomeObm = request.getParameter("obm");
-		String tipoPerfil = request.getParameter("perfil");
 		
+		if(registro1.equals("")){
+			registro=0;
+		}
+		else{
+			registro = Integer.parseInt(registro1);
+		}
 		
 		//Verifica consulta conforme parametros
-		if(registro1.equals("") & tipoPerfil.equals("") & nomeObm.equals("")){
+		if(registro == 0){
 			
 			usu= UsuarioDao.getInstance().procurarUsuariosParametro1(nomeGuerra);
 
 		}
-		else if (nomeGuerra.equals("") & tipoPerfil.equals("") & registro1.equals("")){
+		else {
 			
-			OBM obm = OBMDao.getInstance().listarOBMNome(nomeObm);
-			usu = (List<Usuario>) obm.getUsuarios();
-			
-		}
-		
-		else if (nomeGuerra.equals("") & nomeObm.equals("") & registro1.equals("")){
-			
-			usu= UsuarioDao.getInstance().procurarUsuariosParametro4(tipoPerfil);
-
-		}
-		else
-		{			
 			usu= UsuarioDao.getInstance().procurarUsuariosParametro2(registro);
+
 		}
 			
 		UsuarioDao.getInstance().fechaSession();

@@ -89,7 +89,7 @@
 										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroViatura" value ="1"> 
 										</form>	
-										<form action="ViaturasControle" method="post" style="display:inline;">
+										<form action="listarViaturas.jsp" method="post" style="display:inline;">
 							 				<input type="submit" value="Voltar"/>
 							 			</form>	
 									</td>								

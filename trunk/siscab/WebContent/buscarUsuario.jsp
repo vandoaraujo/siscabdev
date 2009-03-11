@@ -43,14 +43,6 @@
 									<td><input name="nomeGuerra" type="text" /></td>								
 								</tr>
 								<tr>
-									<td><label>OBM:</label></td>
-									<td><input name="obm" type="text" /></td>								
-								</tr>
-								<tr>
-									<td><label>Perfil:</label></td>
-									<td><input name="perfil" type="text" /></td>								
-								</tr>
-								<tr>
 									<td colspan="2">																		
 										<input type="submit" name="evento" value="Buscar">
 										</form>	

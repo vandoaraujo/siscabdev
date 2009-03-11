@@ -33,17 +33,24 @@
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 					</td>				
 				</tr>
+					<tr>
+					<td style="padding-left:20px; padding-top:20px;">
+						<fieldset style="width:200px"><legend>&nbsp;Vitima&nbsp;</legend>
+							<a href="despacharViatura.jsp">Despachar Viatura</a>
+						</fieldset>										
+					</td>
+				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Lista de Viaturas Em prontidão&nbsp;</legend>						
+						<fieldset style="width:450px"><legend>&nbsp;Lista de Viaturas Associadas a este atendimento&nbsp;</legend>						
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td>
-									<% ArrayList viatura=(ArrayList<Viatura>) request.getAttribute("viaturas");
+									<% ArrayList viatura=(ArrayList<Viatura>) request.getSession().getAttribute("viaturas");
 									%>
 									
 									<% if(viatura.size()== 0){ %>
-									     <div style="color:red"> Nenhuma Viatura em prontidão no momento</div>
+									     <div style="color:red"> Nenhuma Viatura no momento</div>
 									   
 									<%} else{
 										

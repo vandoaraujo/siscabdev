@@ -50,8 +50,6 @@ public class Atendimentos {
 	inverseJoinColumns=@JoinColumn(name="viatura_id"))
 	private Collection<Viatura> viaturas;
 	
-	
-	
 	private String bairro;
 	
 	private String logradouro;

@@ -1,5 +1,5 @@
 ###############
-Manter OBMS
+Manter OBMS, Cadastro de Usuários e cadastro de viaturas - Luciana
 
 Obm já cadastrada: o sistema notifica o usuário, e retorna à tela Inicial do caso de Uso
 Obm já realizou atendimento: o sistema informa que a OBM não pode ser excluida.
@@ -23,3 +23,62 @@ CONSERTO DE HORA CORRETA INICIAL E FINAL -- CASO DE USO REGISTRAR CHAMADO.   OK!
 Tabela MOvimentaViatura apresenta campo movimentaviaturatipoevento como inteiro não tendo nenhuma tabela com este mapeamento...
 
 ########################## 
+
+Perfil
+
+Menu
+
+Atendimentos
+Registrar Chamado (Atendente do COCB/Operador da OBM)
+Transferir Atendimento (Atendente do COCB/Operador da OBM/Controlador COCB)
+Acompanhar Atendimento (Operador da OBM)
+Cadastro de Viaturas (Controlador COCB)
+
+Consultas e Relatórios
+
+Painel de situação dos atendimentos (Todos)
+Total de chamados por natuureza (Todos)
+Total de atendimentos por modo de fechamento (Todos)
+
+Administração
+
+Cadastro de Usuários (Administrador)
+Cadastro de OBMs (Administrador)
+
+Sair do sistema (Todos)
+
+
+
+############################
+
+Revisão do capítulo 2
+
+
+############################
+
+Fechar Google Maps RealizaChamado, terminar os htmls e os css das telas já realizadas e javascripts. 
+
+############################
+
+Fazer uma nova versão do diagrama de classes e uma nova versão do Diagrama Lógico do Banco - LUCIANA
+
+###########################
+
+Tabela Atendimentos
+ 
+atendimento_numero refactoring numero --- depois
+
+###########################
+
+Modificar nomes de tabela e nomes de campos e verificar tipos no documento de projeto físico do banco de dados.
+Após isso, analisar e consertar possíveis erros de modelagem do banco.
+
+
+############################
+
+Minha porta do Tomcat - 1983
+
+############################
+
+############################
+
