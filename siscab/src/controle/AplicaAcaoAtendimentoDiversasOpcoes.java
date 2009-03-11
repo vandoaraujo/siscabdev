@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Atendimentos;
+import modelo.MovimentaViatura;
 import modelo.ServicoRealizado;
 import modelo.Usuario;
 import modelo.Viatura;
 import modelo.VitimaAtendida;
+import dao.MovimentaViaturaDao;
 import dao.ServicoRealizadoDao;
 import dao.ViaturaDao;
 import dao.VitimaAtendidaDao;
@@ -137,12 +140,20 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private void viaturasEmpenhadas(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 
-		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+		//Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 
-		System.out.println("Teste de Usuário no contexto da Aplicaçao" + usuario.getNomeGuerra());
-				
-		List<Viatura> viaturas =  ViaturaDao.getInstance().listaOBMAtual(usuario.getObm().getId());
+		List <Viatura> viaturas = new ArrayList();
 		
+		List <MovimentaViatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(at.getId());
+		
+		for(int i=0;i<tiposEventosViatura.size();i++){
+			
+			MovimentaViatura viatura = tiposEventosViatura.get(i);
+			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(viatura.getChaveComposta().getViatura().getId());
+			viaturas.add(v);
+			
+		}
+				
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("viaturas", viaturas);
 		RequestDispatcher view;

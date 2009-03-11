@@ -31,57 +31,47 @@
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 					</td>				
 				</tr>
-				<tr>
-					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Procurar Ocorr&ecirc;ncias Pr&oacute;ximas&nbsp;</legend>							
-							
-							<% ArrayList atendimento=(ArrayList<Atendimentos>) request.getAttribute("listaAtendimentosProximos");
-							
-							if(atendimento.size()== 0){ %>
-							<h3>Nenhuma ocorr&ecirc;ncia cadastrada para:</h3>
-							
-							<table width="90%">
-								<tr>
-									<td><strong>Munic&iacute;pio:</strong> ${municipio}</td>
-									<td align="right"><strong>Bairro:</strong> ${bairro}</td>
-								</tr>
-							</table>								
-							
-							
-							
-							<%} else{ %>
-							
-							<h3>Lista de Ocorr&ecirc;ncias para:</h3>
-							
-							<table width="90%">
-								<tr>
-									<td><strong>Munic&iacute;pio:</strong> ${municipio}</td>
-									<td align="right"><strong>Bairro:</strong> ${bairro}</td>
-								</tr>
-							</table>	
-							
-							<%
-							
-							for(int i=0;i<atendimento.size();i++){
-									Atendimentos atend =(Atendimentos)atendimento.get(i);
-							   %>																																																
-														
-							<fieldset>	
-							<font color="darkgreen"> 
-								<strong>Número do Atendimento:</strong> <%= atend.getAtendimento_numero()%> <br>
-								<strong>Bairro da Ocorrencia:</strong> <%= atend.getBairro()%> <br>
-								<strong>Rua:</strong> <%= atend.getLogradouro()%> <br>
-								<strong>Status do atendimento:</strong> <%= atend.getStatus_atendimento()%>
-							</font>
-							</fieldset>
-							<%} 
-							}%>
-							
-							</fieldset>
-							
-							<form action="RegistrarChamado" method="post" style="display:inline;">
-								<input type="submit" value="Voltar"/>
-							</form>
+				</table>
+
+
+Lista de Ocorrencias com este munícipio : <font color="Firebrick">${municipio}</font> e com este bairro: <font color="Firebrick">${bairro}</font> <br>
+
+
+<% ArrayList atendimento=(ArrayList<Atendimentos>) request.getAttribute("listaAtendimentosProximos");
+%>
+
+<%if(atendimento.size()== 0){ %>
+     <h2> Nenhuma ocorrencia cadastrada com tais parâmetros! <p>
+     
+     Retorne ao menu: <h4><a href="paginaPrincipal.jsp" title="Menu">Menu</a></h4>
+     </h2>
+   
+<%} else{
+	
+	
+	for(int i=0;i<atendimento.size();i++){
+			Atendimentos atend =(Atendimentos)atendimento.get(i);
+    %> 
+    <br>	
+    <td>
+    <div>     
+    <font color="darkgreen"> Número do Atendimento: <%= atend.getAtendimento_numero()%>, Bairro da Ocorrencia: <%= atend.getBairro()%>, Rua: <%= atend.getLogradouro()%>, Status do atendimento: <%= atend.getStatus_atendimento()%><br>
+    </font>
+    <br>
+    </div>
+    </td>
+    </tr>
+
+   	
+   <%} 
+	   
+	
+	
+}%>
+	 
+   <form action="paginaPrincipal.jsp" method="post" style="display:inline;">
+			<input type="submit" value="VoltarMenu"/>
+	   </form>
 
 
 

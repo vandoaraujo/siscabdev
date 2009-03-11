@@ -93,6 +93,12 @@ public class MovimentaViaturaDao {
 		List<MovimentaViatura> tiposEventosViaturaAtendimento = session.createQuery("from modelo.MovimentaViatura v where v.atendimento_id=:atendimento_id and v.viatura_id=:viatura_id").setInteger("atendimento_id", atendimentoAtual).setInteger("viatura_id", viaturaAtual).list();
 		return tiposEventosViaturaAtendimento;
 	}
+	
+	public List<MovimentaViatura> listaViaturasDeUmAtendimento(int atendimentoAtual){
+		
+		List<MovimentaViatura> tiposEventosViaturaAtendimento = session.createQuery("from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id").setInteger("atendimento_id", atendimentoAtual).list();
+		return tiposEventosViaturaAtendimento;
+	}
 
 
 		

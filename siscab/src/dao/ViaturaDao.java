@@ -86,6 +86,12 @@ public class ViaturaDao {
 		List<Viatura> viaturasOBM = session.createQuery("from modelo.Viatura v where v.obm_id=:obm and viatura_status = 'Em prontidão'").setInteger("obm", obmAtual).list();
 		return viaturasOBM;
 	}
+	
+	public List<Viatura> listaViaturasObm(int obmAtual){
+		
+		List<Viatura> viaturasOBM = session.createQuery("from modelo.Viatura v where v.obm_id=:obm").setInteger("obm", obmAtual).list();
+		return viaturasOBM;
+	}
 
 		
 }

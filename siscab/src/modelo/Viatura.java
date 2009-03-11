@@ -39,7 +39,7 @@ public class Viatura {
 		@JoinColumn(name = "obm_id", insertable=true, updatable =true)
 		@Fetch(FetchMode.JOIN)
 		@Cascade(CascadeType.SAVE_UPDATE)
-		private OBM obm;
+		private OBM obm_id;
 		
 		@ManyToMany(fetch=FetchType.LAZY)
 		@JoinTable(name="movimentaviatura", schema="siscab",
@@ -79,11 +79,11 @@ public class Viatura {
 		}
 
 		public OBM getObm() {
-			return obm;
+			return obm_id;
 		}
 
 		public void setObm(OBM obm) {
-			this.obm = obm;
+			this.obm_id = obm;
 		}
 
 		public String getViatura_obs() {

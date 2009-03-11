@@ -49,7 +49,7 @@ public class LocalizaOcorrencia extends HttpServlet {
 		int operacaoARealizar = Integer.parseInt(request.getParameter("operacaoARealizar"));
 		String municipio = request.getParameter("municipio");
 		String bairro = request.getParameter("bairro");
-		bairro.toUpperCase();
+		bairro.toLowerCase();
 		
 		System.out.println("################# Atributo vindo de Regitsrar Chamado  ---- Municipio");
 		System.out.println(municipio);

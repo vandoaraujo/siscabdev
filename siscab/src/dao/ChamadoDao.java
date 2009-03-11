@@ -63,7 +63,8 @@ public class ChamadoDao {
 	}
 
 
-	public List<Chamado> listarTodasOBMs(){
+	public List<Chamado> listarTodosChamados(){
+		
 		List<Chamado> chama = session.createQuery("from modelo.Chamado").list();
 		return chama;
 		
@@ -84,7 +85,7 @@ public class ChamadoDao {
 		Chamado chamado = (Chamado) session.createQuery("from modelo.Chamado o where o.nomesolicitante=:nome").setString("nome", nomeSolicitante).uniqueResult();  
 		tx.commit();
 		return chamado;		
-		
+
 	}
 	
 	public Chamado BuscaChamadoId(Integer id) {
@@ -93,7 +94,4 @@ public class ChamadoDao {
 		return chamado;
 	}
 	
-	
 }
-
-

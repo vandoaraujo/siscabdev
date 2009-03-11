@@ -231,6 +231,15 @@
 		<servlet-class>
 		controle.CrudTipoEvento</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		TotalChamados</display-name>
+		<servlet-name>TotalChamados</servlet-name>
+		<servlet-class>
+		controle.TotalChamados</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -327,6 +336,10 @@
 	<servlet-mapping>
 		<servlet-name>CrudTipoEvento</servlet-name>
 		<url-pattern>/CrudTipoEvento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TotalChamados</servlet-name>
+		<url-pattern>/TotalChamados</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
