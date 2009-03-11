@@ -240,6 +240,15 @@
 		<servlet-class>
 		controle.TotalChamados</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		DespacharViatura</display-name>
+		<servlet-name>DespacharViatura</servlet-name>
+		<servlet-class>
+		controle.DespacharViatura</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -340,6 +349,10 @@
 	<servlet-mapping>
 		<servlet-name>TotalChamados</servlet-name>
 		<url-pattern>/TotalChamados</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DespacharViatura</servlet-name>
+		<url-pattern>/DespacharViatura</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

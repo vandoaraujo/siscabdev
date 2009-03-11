@@ -36,7 +36,7 @@
 					<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:200px"><legend>&nbsp;Vitima&nbsp;</legend>
-							<a href="despacharViatura.jsp">Despachar Viatura</a>
+							<a href="DespacharViatura">Despachar Viatura</a>
 						</fieldset>										
 					</td>
 				</tr>
