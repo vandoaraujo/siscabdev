@@ -29,59 +29,115 @@
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
+						<a href="#" onclick="window.close();"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>
 					</td>				
 				</tr>
-				</table>
-
-<form action="LocalizaOcorrencia" method="post">
-<table>
-<%! String grava = null;%>
-
-	<% SimpleDateFormat data = new SimpleDateFormat("HH:mm");
-			Calendar cal = Calendar.getInstance(); 
-			grava = data.format(cal.getTimeInMillis());  %>
-			
-	<h2 font color="blue">Cadastro de Chamados</font></h2><br>		
-
-
-Hora do Chamado: <%= grava %>
-
-<tr>Numero gerado: <input name="idChamado" type="text" readonly="readonly" value=${idChamado}></tr>
-<tr>Usuário: <input name="usuario" type="text" readonly="readonly" value=${usuario.nomeGuerra}></tr>
-<tr>Obm do Usuário: <input name="obmUsuario" type="text" readonly="readonly" value=${usuario.obm.nome}></tr>
-  	  	  	
-<tr>Município: <select name="municipio">
-	
-	<!-- Popula a combo de municipios que aparecerá na tela -->
-	<%
-    
- 	ArrayList<Municipio> municipio = (ArrayList)request.getAttribute("municipios");
-	%><option selected> 
-	<% 
-	for(Municipio m: municipio){
-	 out.println("<option>"+m.getMunicipio_nome());
- 	}
-	out.println("</select>");
-	%>
-	
-	<tr>Bairro: <input name="bairro" type="text" size=20>&nbsp;&nbsp;&nbsp; <input type="submit" value="Procurar Ocorrencias Proximas" onclick="this.form.operacaoARealizar.value=2" ></tr>  	  	
-  	
-	<tr>Origem: <select name="origem">
-	<option>Telefone 
-	<option>Pessoalmente
-	</select></tr>		
-
-	<tr>Nome Solicitante: <input name="nomeSolicitante" type="text" ></tr>
-	<tr>Telefone Solicitante: <input name="telefoneSolicitante" type="text"></tr>
-	<tr>Num aproximado vítimas: <input name="numAproximadoVitimas" type="text" size=8><p>
-	<tr>Info Complementares: <textArea NAME="infoComplementares" COLS=30 ROWS=4></textArea></tr>
-	
-			
-	<input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=1" >
-	<input type="hidden" name="operacaoARealizar" value ="">
-	<input type="hidden" name="registroOcorrencia" value ="1"> 
+				<tr>
+					<td style="padding-left:20px; padding-top:20px;">
+						<fieldset style="width:450px"><legend>&nbsp;Cadastro de Chamados&nbsp;</legend>
+		
+						<form action="LocalizaOcorrencia" method="post">						
+						<table>
+							<tr>
+								<td valign="top">
+									<fieldset style="width:450px"><legend>&nbsp;Parte 1&nbsp;</legend>
+									<table>						
+										<%! String grava = null;%>
+										
+											<% SimpleDateFormat data = new SimpleDateFormat("HH:mm");
+													Calendar cal = Calendar.getInstance(); 
+													grava = data.format(cal.getTimeInMillis());  %>						
+										
+										
+										<tr>
+											<td width="100px" nowrap="nowrap">Hora do Chamado:</td>
+											<td><%= grava %></td>
+										</tr>						
+										<tr>
+											<td>Numero gerado:</td>
+											<td><input name="idChamado" type="text" readonly="readonly" value=${idChamado}></td>
+										</tr>
+										<tr>
+											<td>Usuário:</td>
+											<td><input name="usuario" type="text" readonly="readonly" value=${usuario.nomeGuerra}></td>
+										</tr>
+										<tr>
+											<td>Obm do Usuário:</td>
+											<td><input name="obmUsuario" type="text" readonly="readonly" value=${usuario.obm.nome}></td>
+										</tr>
+										<tr>
+										  	<td>Município:</td>
+										  	<td><select name="municipio">													
+											<!-- Popula a combo de municipios que aparecerá na tela -->
+											<%
+										    
+										 	ArrayList<Municipio> municipio = (ArrayList)request.getAttribute("municipios");
+											%><option selected> 
+											<% 
+											for(Municipio m: municipio){
+											 out.println("<option>"+m.getMunicipio_nome());
+										 	}
+											out.println("</select>");
+											%>
+											</td>				
+										</tr>
+										<tr>
+											<td>Bairro:</td>
+											<td><input name="bairro" type="text" size=20></td>							
+										</tr>
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Procurar Ocorrencias Proximas" onclick="this.form.operacaoARealizar.value=2" ></td>
+										</tr>	
+									</table>
+									</fieldset>
+								</td>
+								<td>
+									<fieldset style="width:450px"><legend>&nbsp;Parte 2&nbsp;</legend>
+									<table>							
+										<tr>
+											<td>Origem:</td>
+											<td>
+												<select name="origem">
+												<option>Telefone 
+												<option>Pessoalmente
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>Nome Solicitante:</td>
+											<td><input name="nomeSolicitante" type="text" ></td>
+										</tr>
+										<tr>
+											<td>Telefone Solicitante:</td>
+											<td><input name="telefoneSolicitante" type="text"></td>
+										</tr>
+										<tr>
+											<td>Num aproximado vítimas:</td>
+											<td><input name="numAproximadoVitimas" type="text" size=8></td>
+										</tr>
+										<tr>	
+											<td>Info Complementares:</td>
+											<td><textArea NAME="infoComplementares" COLS=30 ROWS=4></textArea></td>				
+										</tr>
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=1" ></td>
+											<input type="hidden" name="operacaoARealizar" value ="">
+											<input type="hidden" name="registroOcorrencia" value ="1">
+										</tr>
+									</table>
+									</fieldset>
+								</td>
+							</tr>
+						</table>
+						</form>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 	</table>
-</form>
-
 </body>
 </html>
