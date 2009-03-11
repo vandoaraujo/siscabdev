@@ -36,7 +36,7 @@
 					<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:200px"><legend>&nbsp;Vitima&nbsp;</legend>
-							<a href="DespacharViatura">Despachar Viatura</a>
+							<a href="DespacharViatura?numeroAtendimento<%= at.getId() %>">Despachar Viatura</a>
 						</fieldset>										
 					</td>
 				</tr>
@@ -63,7 +63,7 @@
 									    <td>
 									    <div>     
 									    
-									    <%= i+1 %> :: NumeroViatura = <a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento<%= at.getId() %>">Status Viatura: <%= via.getViatura_status()%>TipoViatura: <%= via.getTipo_viatura().getTipoviatura_descricao().toString()%></a><br>
+									    <%= i+1 %> :: NumeroViatura = <a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>">Status Viatura: <%= via.getViatura_status()%>TipoViatura: <%= via.getTipo_viatura().getTipoviatura_descricao().toString()%></a><br>
 									    </div>
 									    </td>
 									    </tr>
