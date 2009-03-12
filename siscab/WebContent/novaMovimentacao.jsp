@@ -40,11 +40,16 @@
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>IdViatura:</label></td>
-									<td><input name="registroEventoViatura" type="text" size=10 readonly="readonly"/></td>
+									<td><input name="registroEventoViatura" type="text" size=10 readonly="readonly" value="${viaturaAtual.id}"/></td>
+								</tr>
+								<% String numero = (String) request.getSession().getAttribute("numeroViatura");%>
+								<tr>
+									<td><label>NumeroViatura:</label></td>
+									<td><input name="numeroViatura" type="text" size=10 readonly="readonly" value="<%= numero %>"/></td>
 								</tr>
 								<tr>	
 									<td><label>IdAtendimento:</label></td>
-									<td><input name="registroEventoAtendimento" type="text" size=10  readonly="readonly"/></td>
+									<td><input name="registroEventoAtendimento" type="text" size=10  readonly="readonly" value="${atendimento.id}"/></td>
 								</tr>
 								<tr>	
 									<td><label>tipo Evento Descricao:</label></td>

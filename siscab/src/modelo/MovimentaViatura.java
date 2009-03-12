@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +13,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="movimentaviatura", schema="siscab")
 public class MovimentaViatura {
-	
 
-	@EmbeddedId
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Embedded
 	private MovimentaViaturaPK chaveComposta;
 		
 	private String movimentaviatura_tipoevento;
@@ -43,6 +47,14 @@ public class MovimentaViatura {
 
 	public void setChaveComposta(MovimentaViaturaPK chaveComposta) {
 		this.chaveComposta = chaveComposta;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

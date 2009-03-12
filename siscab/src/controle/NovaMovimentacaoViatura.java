@@ -52,9 +52,13 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 		
 		List<MovimentaViatura> tiposEventosViaturaAtendimento = MovimentaViaturaDao.getInstance().listaTiposEventosViaturaAtendimento(atendimento.getId(), via.getId());
 		
+		//Artificio para telaNova Movimentacao.jsp
+		String numeroViatura = via.getNumero();
+		
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("tiposeventosViaturaAtendimento", tiposEventosViaturaAtendimento);
 		sessao.setAttribute("viaturaAtual",via);
+		sessao.setAttribute("numeroViatura",numeroViatura);
 		sessao.setAttribute("atendimento", atendimento);
 		RequestDispatcher view = request.getRequestDispatcher("/listaEventosViaturaAtendimento.jsp");
 		

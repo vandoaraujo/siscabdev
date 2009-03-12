@@ -40,6 +40,9 @@ public class DespacharViatura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		//Reimplementar!!!!!!!!!! Após o usuário clicar, o sistema exibe tela com opcao novamovimentacao, e lista todos os
+		//eventos regitsrados no historico de movimentacoes da viatura com a opção editar e excluir.
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
 		int obm_Id = usuario.getObm().getId();

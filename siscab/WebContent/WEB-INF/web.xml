@@ -249,6 +249,15 @@
 		<servlet-class>
 		controle.DespacharViatura</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AssociaViaturaAtendimento</display-name>
+		<servlet-name>AssociaViaturaAtendimento</servlet-name>
+		<servlet-class>
+		controle.AssociaViaturaAtendimento</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -353,6 +362,10 @@
 	<servlet-mapping>
 		<servlet-name>DespacharViatura</servlet-name>
 		<url-pattern>/DespacharViatura</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AssociaViaturaAtendimento</servlet-name>
+		<url-pattern>/AssociaViaturaAtendimento</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
