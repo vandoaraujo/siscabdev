@@ -90,14 +90,20 @@ public class MovimentaViaturaDao {
 	
 	public List<MovimentaViatura> listaTiposEventosViaturaAtendimento(int atendimentoAtual, int viaturaAtual){
 		
-		List<MovimentaViatura> tiposEventosViaturaAtendimento = session.createQuery("from modelo.MovimentaViatura v where v.atendimento_id=:atendimento_id and v.viatura_id=:viatura_id").setInteger("atendimento_id", atendimentoAtual).setInteger("viatura_id", viaturaAtual).list();
+		List<MovimentaViatura> tiposEventosViaturaAtendimento = session.createQuery("from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id and v.chaveComposta.viatura_id=:viatura_id").setInteger("atendimento_id", atendimentoAtual).setInteger("viatura_id", viaturaAtual).list();
 		return tiposEventosViaturaAtendimento;
 	}
 	
 	public List<MovimentaViatura> listaViaturasDeUmAtendimento(int atendimentoAtual){
 		
-		List<MovimentaViatura> tiposEventosViaturaAtendimento = session.createQuery("from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id").setInteger("atendimento_id", atendimentoAtual).list();
+		List<MovimentaViatura> tiposEventosViaturaAtendimento = session.createQuery("distinct v from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id").setInteger("atendimento_id", atendimentoAtual).list();
 		return tiposEventosViaturaAtendimento;
+	}
+	
+	public MovimentaViatura listaUmTipoEventoDaViatura(int atendimentoAtual, int viaturaAtual){
+		
+		MovimentaViatura tipoEventoViaturaAtendimento = (MovimentaViatura) session.createQuery("from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id and v.chaveComposta.viatura_id=:viatura_id").setInteger("atendimento_id", atendimentoAtual).setInteger("viatura_id", viaturaAtual).uniqueResult();
+		return tipoEventoViaturaAtendimento;
 	}
 
 

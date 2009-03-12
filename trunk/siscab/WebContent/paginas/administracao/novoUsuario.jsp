@@ -13,9 +13,6 @@
 
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
-<%!String id;  %>
-
-<% id = request.getAttribute("numRegistroMilitar").toString(); %>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">

@@ -30,6 +30,7 @@ public class CrudTipoEvento extends HttpServlet {
 	private int registroEventoAtendimento;
 	private int registroEventoViatura;
 	private String tipoEventoDescricao;
+	private String registroNumeroViatura;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,11 +52,13 @@ public class CrudTipoEvento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		registroNumeroViatura = request.getParameter("numeroViatura");
 		registroEventoAtendimento =Integer.parseInt(request.getParameter("registroEventoAtendimento"));
 		registroEventoViatura = Integer.parseInt(request.getParameter("registroEventoViatura"));
 		int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
 		tipoEventoDescricao = request.getParameter("tipoEventoDescricao");
 		
+				
 		if(operacao == 1){
 				
 		 	salvar(request,response);	
@@ -63,12 +66,14 @@ public class CrudTipoEvento extends HttpServlet {
 		}			
 		else if(operacao == 2){
 				
-			//alterar(request, response);
+			alterar(request, response);
 		}
 		    
 		else{
 				
-			//deletar(request, response,registroVitima);
+			deletar(request, response,registroEventoViatura, registroEventoAtendimento);
+			
+			// Analisar se a viatura mudará seu status após a ultima deleção de tipo EVENTO
 		}
 		    
 		    
@@ -77,22 +82,48 @@ public class CrudTipoEvento extends HttpServlet {
 		
 		
 
+		private void deletar(HttpServletRequest request,
+			HttpServletResponse response, int registroEventoViatura2,
+			int registroEventoAtendimento2) {
+		
+			Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			
+			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
+						
+			//Define relacionamento
+			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(at.getId(), v.getId());
+			String evento = tipoEvento.getMovimentaviatura_tipoevento();
+					
+			MovimentaViaturaDao.getInstance().deletar(tipoEvento);
+			request.setAttribute("movimentaViatura", tipoEvento);
+			despacha(request, response,"deletar", evento);
+		
+	}
+
+		private void alterar(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+					
+			Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			
+			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
+						
+			//Define relacionamento
+			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(at.getId(), v.getId());
+			tipoEvento.setMovimentaviatura_tipoevento(tipoEventoDescricao);
+			
+					
+			MovimentaViaturaDao.getInstance().atualizar(tipoEvento);
+			request.setAttribute("movimentaViatura", tipoEvento);
+			despacha(request, response,"alterar", tipoEvento.getMovimentaviatura_tipoevento());
+			
+			
+	}
+
 		protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 				
-			/*Departamento d = (Departamento)session.get(Departamento.class, 1);
-			
-			Curso c = (Curso)session.get(Curso.class, 1);
-			//Cria Chave Composta
-			DepartamentoCursoPK dcID = new DepartamentoCursoPK();
-			dcID.setDepartamento(d);
-			dcID.setCurso(c);
-			//Define relacionamento com atributo
-			DepartamentoCurso dc = new DepartamentoCurso();
-			dc.setChaveComposta(dcID);
-			dc.setData(new Date());
-			session.save(dc);*/
-			
+					
 			Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
 			
 			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
@@ -131,17 +162,18 @@ public class CrudTipoEvento extends HttpServlet {
 		 * Recebe como parametro HttpRequest, response, a acao a ser executada e o nome do objeto
 		 */
 		private void despacha(HttpServletRequest request,
-				HttpServletResponse response, String string, String nomeVitima) {
+				HttpServletResponse response, String string, String nomeEvento) {
 			
 				RequestDispatcher view;
-				request.setAttribute("nomeVitima", nomeVitima);
+				request.setAttribute("nomeEvento", nomeEvento);
 				if(string.equals("salvar")){
 					
-					request.setAttribute("mensagem", "salva com sucesso!!");
+					request.setAttribute("mensagem", "salvo com sucesso!!");
 					
 				}
 				
 				else if(string.equals("alterar")){
+					
 					request.setAttribute("mensagem", "alterado com sucesso!!");
 
 				}
@@ -149,7 +181,7 @@ public class CrudTipoEvento extends HttpServlet {
 					request.setAttribute("mensagem", "deletado com sucesso!!");
 				}
 				
-				view = request.getRequestDispatcher("/mensagemVitima.jsp");
+				view = request.getRequestDispatcher("/mensagemTipoEvento.jsp");
 				
 			
 				
@@ -166,27 +198,5 @@ public class CrudTipoEvento extends HttpServlet {
 			
 		}
 
-		/*private void deletar(HttpServletRequest request,
-				HttpServletResponse response, int registroVitima) {
-			
-			VitimaAtendida vitima = VitimaAtendidaDao.getInstance().BuscaVitimaId(registroVitima);
-			String nomeVitima = vitima.getNome();
-			VitimaAtendidaDao.getInstance().deletar(vitima);
-			despacha(request, response, "deletar", nomeVitima);
-		}
-
-		private void alterar(HttpServletRequest request,
-				HttpServletResponse response, int registroVitima) {
-			
-			Atendimentos atendimento = AtendimentosDao.getInstance().BuscaAtendimentoId(atendimentoAtualId);
-			
-		
-			VitimaAtendidaDao.getInstance().atualizar(vitima);
-			despacha(request, response, "alterar", vitima.getNome());		
-		}*/
-	
-		
-		
-	
 
 }

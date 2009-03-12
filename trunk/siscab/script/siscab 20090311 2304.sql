@@ -213,19 +213,24 @@ CREATE TABLE `movimentaviatura` (
   `viatura_id` int(10) NOT NULL,
   `movimentaviatura_tipoevento` varchar(40) NOT NULL,
   `movimentaviatura_horaevento` datetime NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   KEY `FK93D18DB04DC4F935` (`atendimento_id`),
   KEY `FK93D18DB063B96552` (`viatura_id`),
   CONSTRAINT `FK93D18DB04DC4F935` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK93D18DB063B96552` FOREIGN KEY (`viatura_id`) REFERENCES `viaturas` (`id`),
   CONSTRAINT `FK_movimentaviatura_ATENDIMENTO` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK_movimentaviatura_viatura` FOREIGN KEY (`viatura_id`) REFERENCES `viaturas` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Armazenar horarios associados as movimentacoes das viaturas';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Armazenar horarios associados as movimentacoes das viaturas';
 
 --
 -- Dumping data for table `movimentaviatura`
 --
 
 /*!40000 ALTER TABLE `movimentaviatura` DISABLE KEYS */;
+INSERT INTO `movimentaviatura` (`atendimento_id`,`viatura_id`,`movimentaviatura_tipoevento`,`movimentaviatura_horaevento`,`id`) VALUES 
+ (10,4,'Saída da OBM','2009-03-11 17:48:00',1),
+ (10,4,'Chegada à Cena','2009-03-11 20:45:00',2);
 /*!40000 ALTER TABLE `movimentaviatura` ENABLE KEYS */;
 
 
@@ -601,8 +606,8 @@ CREATE TABLE `viaturas` (
 
 /*!40000 ALTER TABLE `viaturas` DISABLE KEYS */;
 INSERT INTO `viaturas` (`id`,`tipoviatura_id`,`numero`,`obm_id`,`viatura_obs`,`viatura_status`) VALUES 
- (3,2,'v01',1,'teste','Em atendimento'),
- (4,1,'c03',1,'bla','Em prontidão');
+ (3,2,'v01',1,'teste','Em prontidão'),
+ (4,1,'c03',1,'bla','Em atendimento');
 /*!40000 ALTER TABLE `viaturas` ENABLE KEYS */;
 
 
