@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.OBM;
+import modelo.Usuario;
 
 import dao.OBMDao;
 
@@ -19,6 +20,7 @@ import dao.OBMDao;
  */
 public class ObmControle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	RequestDispatcher view;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,10 +44,34 @@ public class ObmControle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List obms = (List<OBM>) OBMDao.getInstance().listarTodasOBMs();
-		request.setAttribute("obms", obms);
-		RequestDispatcher view = request.getRequestDispatcher("/listarOBMs.jsp");
-		view.forward(request, response);
+		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+		
+		if(!(usuario.getPerfil().getId() == 1)){
+			
+			request.setAttribute("descricaoServico", "Cadastro de Obm");
+			request.setAttribute("perfil", "Administrador");
+			view = request.getRequestDispatcher("/acessoNegado.jsp");
+			
+		}
+		
+		else{
+			
+			List obms = (List<OBM>) OBMDao.getInstance().listarTodasOBMs();
+			request.setAttribute("obms", obms);
+			view = request.getRequestDispatcher("/listarOBMs.jsp");
+						
+			
+		}
+		
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 		
 		

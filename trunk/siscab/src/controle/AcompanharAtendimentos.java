@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Atendimentos;
+import modelo.Usuario;
 import dao.AtendimentosDao;
 
 /**
@@ -17,6 +18,7 @@ import dao.AtendimentosDao;
  */
 public class AcompanharAtendimentos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	RequestDispatcher view;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,20 +41,35 @@ public class AcompanharAtendimentos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			//Inicia Caso de Uso Acompanhar Atendimentos não finalizados
 		
+		
+		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+		
+		if(!(usuario.getPerfil().getId() == 3)){
+			
+			request.setAttribute("descricaoServico", "Registrar Chamado");
+			request.setAttribute("perfil", "Operador da OBM");
+			view = request.getRequestDispatcher("/acessoNegado.jsp");
+			
+		}
+		
+		else{
+		
 		List<Atendimentos> atendimentos = AtendimentosDao.getInstance().listarAtendimentosNaoFinalizados();
 		request.setAttribute("atendimentos", atendimentos);
-		RequestDispatcher view = request.getRequestDispatcher("/atendimentosNaoFinalizados.jsp");
+		view = request.getRequestDispatcher("/atendimentosNaoFinalizados.jsp");
+		
+		}
 		
 	
 		
-	try {
-		view.forward(request, response);
-	} catch (ServletException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 	}
 		
 	

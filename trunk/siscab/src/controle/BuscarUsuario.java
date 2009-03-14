@@ -50,27 +50,29 @@ public class BuscarUsuario extends HttpServlet {
                
                
                 //Verifica consulta conforme parametros
-                if(registro1.equals("") & tipoPerfil.equals("") & nomeObm.equals("")){
+                if(registro1.equals("") && tipoPerfil.equals("") && nomeObm.equals("")){
                        
                         usu= UsuarioDao.getInstance().procurarUsuariosParametro1(nomeGuerra);
 
                 }
-                else if (nomeGuerra.equals("") & tipoPerfil.equals("") & registro1.equals("")){
+                if (nomeGuerra.equals("") && tipoPerfil.equals("") && registro1.equals("")){
                        
                         OBM obm = OBMDao.getInstance().listarOBMNome(nomeObm);
-                        usu = (List<Usuario>) obm.getUsuarios();
+                        usu= (List<Usuario>) obm.getUsuarios();
                        
                 }
                
-                else if (nomeGuerra.equals("") & nomeObm.equals("") & registro1.equals("")){
+                if (nomeGuerra.equals("") && nomeObm.equals("") && registro1.equals("")){
                        
                         usu= UsuarioDao.getInstance().procurarUsuariosParametro4(tipoPerfil);
 
                 }
-                else
-                {                      
-                        usu= UsuarioDao.getInstance().procurarUsuariosParametro2(registro);
+                if (nomeGuerra.equals("") && nomeObm.equals("") && tipoPerfil.equals("")){
+                {       
+                    int numero = Integer.parseInt(registro1);
+                	usu= UsuarioDao.getInstance().procurarUsuariosParametro2(numero);
                 }
+                             
                        
                 UsuarioDao.getInstance().fechaSession();
                
@@ -78,7 +80,7 @@ public class BuscarUsuario extends HttpServlet {
                                
                 request.setAttribute("usuarios",usu);
                                
-                RequestDispatcher view = request.getRequestDispatcher("listaUsuarios.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("/listaUsuarios.jsp");
                 try {
                         view.forward(request, response);
                 } catch (ServletException e) {
@@ -89,8 +91,7 @@ public class BuscarUsuario extends HttpServlet {
                        
         }
        
-   public List<Usuario> getUsuarios() {  
-             return this.usu;  
+ 
 }
 
 }

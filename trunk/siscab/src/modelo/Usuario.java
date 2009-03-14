@@ -1,6 +1,5 @@
 package modelo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,13 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="usuario")
@@ -31,17 +31,20 @@ public class Usuario {
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private OBM obm;
-	private String perfil;
+	
+	@OneToOne
+	@JoinColumn(name="perfil_id")
+	private PerfilUsuario perfil;
 	private String senha;
 	private String statusUsu;
 	@Transient
 	private String statusConexao;
 		
-	public String getPerfil() {
+	public PerfilUsuario getPerfil() {
 		return perfil;
 	}
 	
-	public void setPerfil(String perfil){
+	public void setPerfil(PerfilUsuario perfil){
 		this.perfil=perfil;
 	}
 	

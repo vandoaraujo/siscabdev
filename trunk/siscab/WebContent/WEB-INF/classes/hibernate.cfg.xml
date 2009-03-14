@@ -32,6 +32,8 @@
   	    <mapping class="modelo.ServicoRealizado"/>
   	    <mapping class="modelo.MovimentaViatura"/>
   	    <mapping class="modelo.CronoAtendimento"/>
+  	    <mapping class="modelo.PerfilUsuario"/>
+  	    
   	    
   	    
   	    

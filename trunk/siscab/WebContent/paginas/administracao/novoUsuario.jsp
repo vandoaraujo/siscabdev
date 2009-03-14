@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.PerfilUsuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,22 +60,27 @@
 										%>									
 									</td>								
 								</tr>
-								<tr>
+							<tr>
 									<td><label>Perfil:</label></td>
 									<td>
 										<select name="perfil">
-										<option>ADMIN 
-										<option>ATENDENTE
-										<option>OPERADOR
-										<option>CONTROLADOR
-										<option>COMANDANTE
-										</select>									
-									</td>
+																			
+										<!-- Popula a combo que aparecerá na tela -->
+										<%
+									 	ArrayList<PerfilUsuario> perfis = (ArrayList)request.getAttribute("perfil");
+									 	 for(PerfilUsuario p: perfis){
+										 out.println("<option>"+p.getPerfil_descricao().toUpperCase()+"</option>");
+									 	}
+										out.println("</select>");
+										%>									
+									</td>								
+								</tr>
+									<tr>
 									<td><label>Status:</label></td>
 									<td>
 										<select name="status">
-										<option selected>Ativo 
-										<option>Inativo
+										<option selected>ATIVO
+										<option>INATIVO
 										</select>									
 									</td>									
 								</tr>

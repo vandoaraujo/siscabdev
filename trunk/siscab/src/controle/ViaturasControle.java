@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Usuario;
 import modelo.Viatura;
 import dao.ViaturaDao;
 
@@ -17,6 +18,7 @@ import dao.ViaturaDao;
  */
 public class ViaturasControle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	RequestDispatcher view;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,11 +41,34 @@ public class ViaturasControle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+		
+		if(!(usuario.getPerfil().getId() == 4)){
+			
+			request.setAttribute("descricaoServico", "Cadastro de Viatura");
+			request.setAttribute("perfil", "Controlador do COCB");
+			view = request.getRequestDispatcher("/acessoNegado.jsp");
+			
+		}
+		
+		else{
+		
 		List viatura = (List<Viatura>) ViaturaDao.getInstance().listar();
 			
 		request.setAttribute("viaturas", viatura);
 		RequestDispatcher view = request.getRequestDispatcher("/listarViaturas.jsp");
 		view.forward(request, response);
+		
+		}
+		
+		
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
