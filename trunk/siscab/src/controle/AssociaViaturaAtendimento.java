@@ -19,6 +19,7 @@ import modelo.Atendimentos;
 import modelo.MovimentaViatura;
 import modelo.MovimentaViaturaPK;
 import modelo.Viatura;
+import dao.AtendimentosDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
 
@@ -86,7 +87,13 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		MovimentaViaturaDao.getInstance().salvar(mov);
 		
 		System.out.println("SALVOU O TIPO EVENTO NA TABELA MOVIMENTAVIATURA");
-
+		
+		at.setStatus_atendimento("Em andamento");
+		
+		AtendimentosDao.getInstance().atualizar(at);
+		
+		System.out.println("Atualizou o Atendimento para situacao Status Em andamento");
+		
 		//fazer uma busca de viaturas empenhadas...
 		//Lógica de na próxima página popular uma lista de viaturas já associadas e com tipo evento ao atendimento
 		List <Viatura> viaturas = new ArrayList();

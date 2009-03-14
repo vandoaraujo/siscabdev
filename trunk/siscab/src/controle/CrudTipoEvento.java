@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Atendimentos;
 import modelo.MovimentaViatura;
 import modelo.MovimentaViaturaPK;
+import modelo.SiscabException;
 import modelo.Viatura;
 import modelo.VitimaAtendida;
 import dao.AtendimentosDao;
@@ -31,6 +32,9 @@ public class CrudTipoEvento extends HttpServlet {
 	private int registroEventoViatura;
 	private String tipoEventoDescricao;
 	private String registroNumeroViatura;
+	
+	Atendimentos atendimentos;
+	Viatura viatura;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,7 +60,7 @@ public class CrudTipoEvento extends HttpServlet {
 		registroEventoAtendimento =Integer.parseInt(request.getParameter("registroEventoAtendimento"));
 		registroEventoViatura = Integer.parseInt(request.getParameter("registroEventoViatura"));
 		int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
-		tipoEventoDescricao = request.getParameter("tipoEventoDescricao");
+		tipoEventoDescricao = request.getParameter("registroEventoDescricao");
 		
 				
 		if(operacao == 1){
@@ -66,9 +70,19 @@ public class CrudTipoEvento extends HttpServlet {
 		}			
 		else if(operacao == 2){
 				
-			alterar(request, response);
+			try {
+				alterar(request, response);
+			} catch (SiscabException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		    
+		
+		else if(operacao == 4){
+			
+			passarPaginaEdicao(request,response);
+		}
+		   
 		else{
 				
 			deletar(request, response,registroEventoViatura, registroEventoAtendimento);
@@ -82,16 +96,47 @@ public class CrudTipoEvento extends HttpServlet {
 		
 		
 
+		private void passarPaginaEdicao(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+			atendimentos = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			viatura = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
+			//Define relacionamento
+			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(atendimentos.getId(), viatura.getId(),tipoEventoDescricao);
+			
+			int viatura_id = viatura.getId();
+			int atendimento_id =atendimentos.getId();
+			String tipoEventoJSP = tipoEvento.getMovimentaviatura_tipoevento(); 
+			
+			RequestDispatcher view;
+			request.setAttribute("viatura_id", viatura_id);
+			request.setAttribute("atendimento_id", atendimento_id);
+			request.setAttribute("nomeEvento", tipoEventoJSP);
+			view = request.getRequestDispatcher("/edicaoEventoViatura.jsp");
+						
+			
+			try {
+				view.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+
 		private void deletar(HttpServletRequest request,
 			HttpServletResponse response, int registroEventoViatura2,
 			int registroEventoAtendimento2) {
 		
-			Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			//Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
 			
-			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
+			//Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
 						
 			//Define relacionamento
-			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(at.getId(), v.getId());
+			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(atendimentos.getId(), viatura.getId(),tipoEventoDescricao);
 			String evento = tipoEvento.getMovimentaviatura_tipoevento();
 					
 			MovimentaViaturaDao.getInstance().deletar(tipoEvento);
@@ -101,15 +146,23 @@ public class CrudTipoEvento extends HttpServlet {
 	}
 
 		private void alterar(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws SiscabException {
 		
 					
-			Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			//Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			//System.out.println("ID ATENDIMENTO" + at.getId());
+
+			//Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
+			//System.out.println("ID ATENDIMENTO" + v.getId());
 			
-			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
-						
+			System.out.println("TipoEvento Descricao passado pelo JSP" + tipoEventoDescricao);
+			
 			//Define relacionamento
-			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(at.getId(), v.getId());
+			
+			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(atendimentos.getId(), viatura.getId(),tipoEventoDescricao);
+			if(tipoEvento == null){
+				throw new SiscabException("ERRO");
+			}   
 			tipoEvento.setMovimentaviatura_tipoevento(tipoEventoDescricao);
 			
 					

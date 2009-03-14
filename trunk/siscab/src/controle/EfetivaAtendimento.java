@@ -81,7 +81,7 @@ public class EfetivaAtendimento extends HttpServlet {
 		}
 		proxIdAtendimento++;
 		
-		String concatena = idAno + Integer.toString(proxIdAtendimento);
+		String concatena = idAno +  Integer.toString(proxIdAtendimento);
 		
 		int oid = Integer.parseInt(concatena);
 		

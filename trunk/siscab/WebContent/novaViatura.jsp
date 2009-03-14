@@ -59,11 +59,7 @@ out.println("</select>");
 <td><label>Status Viatura:</label></td>
 <td>
 <select name="status">
-<option>Em atendimento
-<option>Em prontidão
 <option>Inoperante - Sem tripulação
-<option>Inoperante - Em manutenção
-<option>Inoperante - Desativada
 </select>
 </td>
 </tr>
