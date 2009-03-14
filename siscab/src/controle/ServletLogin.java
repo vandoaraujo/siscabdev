@@ -19,13 +19,13 @@ import dao.UsuarioDao;
  */
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Usuario usu = null;
 	     
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ServletLogin() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
     public void init(ServletConfig config) throws ServletException {
@@ -48,16 +48,55 @@ public class ServletLogin extends HttpServlet {
 	{
 		//Faz chamada ao Banco de Dados instanciando uma SessionFactory
 		
-		int numRegistro = Integer.parseInt(request.getParameter("numRegistro"));
-		String senha = request.getParameter("senha"); 
-		Usuario usu = UsuarioDao.getInstance().buscarUsuario(numRegistro, senha);
-		getServletContext().setAttribute("usuarioCorrente", usu);
-		validaUsuario(request,usu,response);
+		String registro = request.getParameter("numRegistro");
+		String senha = request.getParameter("senha");
+		
+		boolean b = validaCampos(registro,senha,response,request);
+		if(b == true){
+			
+			try{		
+				int numRegistro = Integer.parseInt(registro);
+				usu = UsuarioDao.getInstance().buscarUsuario(numRegistro, senha);
+			}
+			catch(Exception n){
+				validaCampos(registro,senha,response,request);
+			}
+					
+
+			getServletContext().setAttribute("usuarioCorrente", usu);
+			validaUsuario(request,usu,response);
+			
+		}
+		
+	
 	}
 	
+	private boolean validaCampos(String registro, String senha, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		
+		if(registro.equals("") || senha.equals("")){
+			
+			request.setAttribute("mensagem", "É necessário preencher usuário e senha");
+			response.sendRedirect("/dadosIncompletos.jsp");
+			return false;
+		}
+		
+		return true;
+				
+					
+	}
+
 	public void validaUsuario(HttpServletRequest req, Usuario usu, HttpServletResponse response) throws ServletException, IOException{
 		
-		UsuarioDao.getInstance().fechaSession();
+
+		/*	1, 'Administrador do Sistema'
+			2, 'Atendente do COCB'
+			3, 'Operador da OBM'
+			4, 'Controlador do COCB'
+			5, 'Comandante' */
+		
+		
+		UsuarioDao.getInstance().fechaSession();		
+		
 		
 		if(usu == null)
 		{	
@@ -66,7 +105,7 @@ public class ServletLogin extends HttpServlet {
 			
 		}
 		
-		else if(!usu.getStatus().equals("Ativo")){
+		else if(!usu.getStatus().equals("ATIVO")){
 			  
 			  HttpSession session = req.getSession();	
 			  session.setAttribute("usuario", usu);
@@ -75,7 +114,7 @@ public class ServletLogin extends HttpServlet {
 		  
 		  }
 			
-		else if(usu.getPerfil().equals("ADMIN")){
+		else {
 			
 				HttpSession session = req.getSession();
 				req.setAttribute("session", session);
@@ -83,7 +122,7 @@ public class ServletLogin extends HttpServlet {
 				RequestDispatcher view = req.getRequestDispatcher("/paginaPrincipal.jsp");
 				view.forward(req, response);
 		}
-		else if(!usu.getPerfil().equals("ADMIN")){
+		/*else if(!usu.getPerfil().equals("ADMIN")){
 				
 				HttpSession session = req.getSession();
 				req.setAttribute("session", session);
@@ -92,10 +131,8 @@ public class ServletLogin extends HttpServlet {
 				RequestDispatcher view = req.getRequestDispatcher("/perfilNotAdmin.jsp");
 				view.forward(req, response);
 
-			}
-			
-			
-			
+			}*/
+						
 		}
 			
 	}

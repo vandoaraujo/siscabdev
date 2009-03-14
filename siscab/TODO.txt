@@ -29,23 +29,23 @@ Perfil
 Menu
 
 Atendimentos
-Registrar Chamado (Atendente do COCB/Operador da OBM)
-Transferir Atendimento (Atendente do COCB/Operador da OBM/Controlador COCB)
-Acompanhar Atendimento (Operador da OBM)
+Registrar Chamado (Atendente do COCB/Operador da OBM) --- OK!!!
+Transferir Atendimento (Atendente do COCB/Operador da OBM/Controlador COCB) --- OK!!
+Acompanhar Atendimento (Operador da OBM) -- OK!!
 Cadastro de Viaturas (Controlador COCB)
 
 Consultas e Relatórios
 
-Painel de situação dos atendimentos (Todos)
-Total de chamados por natuureza (Todos)
-Total de atendimentos por modo de fechamento (Todos)
+Painel de situação dos atendimentos (Todos) ---- OK!
+Total de chamados por natuureza (Todos) ---- OK!
+Total de atendimentos por modo de fechamento (Todos) ---- OK!
 
 Administração
 
-Cadastro de Usuários (Administrador)
-Cadastro de OBMs (Administrador)
+Cadastro de Usuários (Administrador) --- OK!
+Cadastro de OBMs (Administrador) --- OK!
 
-Sair do sistema (Todos)
+Sair do sistema (Todos) --- OK!
 
 
 

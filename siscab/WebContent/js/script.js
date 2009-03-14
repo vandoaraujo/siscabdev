@@ -2,7 +2,7 @@ function mmLoadMenus() {
   if (window.mm_menu_0217221104_0) return;
   window.mm_menu_0217221104_0 = new Menu("root",185,19,"Trebuchet MS",13,"#FFFFFF","#000000","#5557A7","#BABBDC","left","middle",5,1,1000,-5,7,true,false,true,0,true,true);
   mm_menu_0217221104_0.addMenuItem("Registrar&nbsp;Chamado","location='RegistrarChamado'");
-  mm_menu_0217221104_0.addMenuItem("Transferir&nbsp;Atendimento");
+  mm_menu_0217221104_0.addMenuItem("Transferir&nbsp;Atendimento","location='TransferirAtendimento'");
   mm_menu_0217221104_0.addMenuItem("Acompanhar&nbsp;Atendimento","location='AcompanharAtendimentos'");
   mm_menu_0217221104_0.addMenuItem("Cadastro&nbsp;de&nbsp;Viaturas","location='ViaturasControle'");
   mm_menu_0217221104_0.hideOnMouseOut=true;
@@ -21,7 +21,7 @@ function mmLoadMenus() {
   mm_menu_0217221434_0.menuBorderBgColor='#777777';
 
   window.mm_menu_0217221648_0 = new Menu("root",165,19,"Trebuchet MS",13,"#FFFFFF","#000000","#5557A7","#BABBDC","left","middle",5,1,1000,-5,7,true,false,true,0,true,true);
-  mm_menu_0217221648_0.addMenuItem("Situação&nbsp;Atendimentos","location='javascript:window.close()'");
+  mm_menu_0217221648_0.addMenuItem("Situação&nbsp;Atendimentos");
   mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Chamados");
   mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Atendimentos");
   mm_menu_0217221648_0.hideOnMouseOut=true;

@@ -258,6 +258,24 @@
 		<servlet-class>
 		controle.AssociaViaturaAtendimento</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		TransferirAtendimento</display-name>
+		<servlet-name>TransferirAtendimento</servlet-name>
+		<servlet-class>
+		controle.TransferirAtendimento</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AdministracaoUsuario</display-name>
+		<servlet-name>AdministracaoUsuario</servlet-name>
+		<servlet-class>
+		controle.AdministracaoUsuario</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -366,6 +384,14 @@
 	<servlet-mapping>
 		<servlet-name>AssociaViaturaAtendimento</servlet-name>
 		<url-pattern>/AssociaViaturaAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TransferirAtendimento</servlet-name>
+		<url-pattern>/TransferirAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdministracaoUsuario</servlet-name>
+		<url-pattern>/AdministracaoUsuario</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

@@ -61,11 +61,12 @@
 										
 								</tr>
 									<tr><td><label>perfil:</label><td><td> <select name="perfil" >
-										<option>ADMIN 
-										<option selected >${usuario.perfil} 
-										<option>OPERADOR
-										<option>CONTROLADOR
+										<option>ADMINISTRADOR DO SISTEMA 
+										<option selected ><%= usuario.getPerfil().getPerfil_descricao() %> 
+										<option>OPERADOR DA OBM
+										<option>CONTROLADOR DA OBM
 										<option>COMANDANTE
+										<option>ATENDENTE DO COCB
 										</select>									
 																	
 								</tr>
@@ -74,13 +75,13 @@
 								<tr>
 									<td><label>Status:</label></td>
 									<td><%  
-									     if(usuario.getStatus().equals("Ativo")){
+									     if(usuario.getStatus().equals("ATIVO")){
 									    %>
 									      	   O perfil atual deste Usuário é Ativo. No momento seu status será trocado para Inativo
 									    	 	Ativo  <input name="status" type="radio" value="Ativo" />
 									    	 	Inativo <input name="status" type="radio" value="Inativo" checked/>
 									    	 	 
-									     <%} else if (usuario.getStatus().equals("Inativo")){
+									     <%} else if (usuario.getStatus().equals("INATIVO")){
 									    	 %>
 									    	 O perfil atual deste Usuário é Inativo. No momento seu status será trocado para Ativo
 									    	  	Ativo <input name="status" type="radio" value="Ativo" checked/>

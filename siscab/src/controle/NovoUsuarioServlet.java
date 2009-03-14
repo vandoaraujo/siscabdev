@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.OBM;
+import modelo.PerfilUsuario;
 import modelo.SiscabException;
 import modelo.Usuario;
 import dao.OBMDao;
+import dao.PerfilUsuarioDao;
 import dao.UsuarioDao;
 
 /**
@@ -55,7 +57,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 	    int registroUsuario = 0;
 	    int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
     	registroUsuario = Integer.parseInt(request.getParameter("registroUsuario"));
-	  
+ 
 	    
 	    //Controle de qual operacao será realizada
 	    
@@ -95,6 +97,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 			email = request.getParameter("email");
 			senha = request.getParameter("senha");
 			status = request.getParameter("status");
+	    	status.toUpperCase();
 			
 			//Verifica Duplicidade de Pessoas já cadastradas no BD
 			List<Usuario> usuarios = UsuarioDao.getInstance().listar();
@@ -116,7 +119,10 @@ public class NovoUsuarioServlet extends HttpServlet {
 			usu.setNomeGuerra(nomeGuerra);
 			usu.setNumRegistro(numRegistro);
 			usu.setObm(cobm);
-			usu.setPerfil(perfil);
+			
+			PerfilUsuario p = PerfilUsuarioDao.getInstance().listarPerfilNome(perfil);
+			
+			usu.setPerfil(p);
 			usu.setEmail(email);
 			usu.setStatus(status);
 			usu.setSenha(senha);
@@ -192,13 +198,17 @@ public class NovoUsuarioServlet extends HttpServlet {
 		email = request.getParameter("email");
 		senha = request.getParameter("senha");
 		status = request.getParameter("status");
+		status.toUpperCase();
 		
 		Usuario usu = UsuarioDao.getInstance().BuscaUsuarioId(registro);
 		usu.setNumRegistro(numRegistro);
 		usu.setNomeGuerra(nomeGuerra);
 		OBM obmAtual = OBMDao.getInstance().listarOBMNome(obm);
 		usu.setObm(obmAtual);
-		usu.setPerfil(perfil);
+		
+		PerfilUsuario p = PerfilUsuarioDao.getInstance().listarPerfilNome(perfil);
+		
+		usu.setPerfil(p);
 		usu.setEmail(email);
 		usu.setSenha(senha);
 		usu.setStatus(status);

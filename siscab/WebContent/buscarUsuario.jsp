@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*,modelo.OBM,modelo.PerfilUsuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+<%@page import="dao.OBMDao"%>
+<%@page import="dao.PerfilUsuarioDao"%><html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>SISCAB - SISTEMA DE CONTROLE DE ATENDIMENTOS DE BOMBEIROS</title>
@@ -42,13 +45,37 @@
 									<td><label>Nome de Guerra:</label></td>
 									<td><input name="nomeGuerra" type="text" /></td>								
 								</tr>
-								<tr>
-									<td><label>OBM:</label></td>
-									<td><input name="obm" type="text" /></td>								
+									<tr>
+									<td><label>Obm:</label></td>
+									<td>
+										<select name="obm">
+										<option selected>
+										
+										<!-- Popula a combo que aparecerá na tela -->
+										<%
+									 		List<OBM> obms = (List<OBM>)OBMDao.getInstance().listarTodasOBMs();
+									 	 for(OBM s: obms){
+										 out.println("<option>"+s.getNome()+"</option>");
+									 	}
+										out.println("</select>");
+										%>									
+									</td>								
 								</tr>
 								<tr>
 									<td><label>Perfil:</label></td>
-									<td><input name="perfil" type="text" /></td>								
+									<td>
+										<select name="perfil">
+										<option selected>
+										
+										<!-- Popula a combo que aparecerá na tela -->
+										<%
+									 	 List<PerfilUsuario> perfis = PerfilUsuarioDao.getInstance().listarTodosPerfis();
+									 	 for(PerfilUsuario p: perfis){
+										 out.println("<option>"+p.getPerfil_descricao().toUpperCase()+"</option>");
+									 	}
+										out.println("</select>");
+										%>									
+									</td>								
 								</tr>
 								<tr>
 									<td colspan="2">																		
