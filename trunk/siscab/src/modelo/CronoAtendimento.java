@@ -41,15 +41,6 @@ public class CronoAtendimento {
 		public void setId(int id) {
 			this.id = id;
 		}
-
-		public Atendimentos getAtendimento() {
-			return atendimento_id;
-		}
-
-		public void setAtendimento(Atendimentos atendimento) {
-			this.atendimento_id = atendimento;
-		}
-
 		public String getCronoatendimento_tipoevento() {
 			return cronoatendimento_tipoevento;
 		}

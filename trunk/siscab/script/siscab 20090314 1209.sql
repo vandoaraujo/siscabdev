@@ -51,7 +51,7 @@ CREATE TABLE `atendimentos` (
   CONSTRAINT `FK_atendimentos_1` FOREIGN KEY (`obm_id`) REFERENCES `chamados` (`id`),
   CONSTRAINT `FK_atendimentos_6` FOREIGN KEY (`tipoocorrencia_id`) REFERENCES `tiposocorrencias` (`id`),
   CONSTRAINT `FK_atendimentos_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
 
 --
 -- Dumping data for table `atendimentos`
@@ -61,7 +61,7 @@ CREATE TABLE `atendimentos` (
 INSERT INTO `atendimentos` (`id`,`atendimento_numero`,`chamado_id`,`municipio_id`,`bairro`,`logradouro`,`numcompl`,`coordx`,`coordy`,`obm_id`,`status_atendimento`,`tipoocorrencia_id`) VALUES 
  (8,'20091',36,1,'centro','rua Banana','11',66,554,1,'Pendente',1),
  (9,'20099',37,25,'centro','rua B','10',665,777,1,'Pendente',1),
- (10,'200910',39,1,'centro','rua b','10',7878,7878,1,'Pendente',2);
+ (10,'200910',39,1,'centro','rua b','10',7878,7878,1,'Em andamento',2);
 /*!40000 ALTER TABLE `atendimentos` ENABLE KEYS */;
 
 
@@ -107,7 +107,7 @@ CREATE TABLE `chamados` (
   CONSTRAINT `FK55502018413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK5550201849BB2B9B` FOREIGN KEY (`naturezachamado_id`) REFERENCES `naturezaschamados` (`id`),
   CONSTRAINT `FK_tbchamados_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
 
 --
 -- Dumping data for table `chamados`
@@ -153,7 +153,9 @@ INSERT INTO `chamados` (`id`,`naturezachamado_id`,`origem`,`nomesolicitante`,`te
  (36,1,'Telefone','teste','787',0,'bla',1,'2009-03-03 23:41:00',NULL),
  (37,1,'Telefone','maria','908989',0,'bla',1,'2009-03-04 00:35:00',NULL),
  (38,5,'Telefone','paula','90897866',0,'perto',1,'2009-03-04 18:21:00','2009-03-04 18:22:00'),
- (39,1,'Telefone','joao','67687',0,'bla',1,'2009-03-04 18:47:00','2009-03-04 18:48:00');
+ (39,1,'Telefone','joao','67687',0,'bla',1,'2009-03-04 18:47:00','2009-03-04 18:48:00'),
+ (40,1,'Telefone','Luciana','33678909',0,'',1,'2009-03-14 12:01:00','2009-03-14 12:02:00'),
+ (41,1,'Telefone','Luciana','33678909',0,'',1,'2009-03-14 12:01:00','2009-03-14 12:02:00');
 /*!40000 ALTER TABLE `chamados` ENABLE KEYS */;
 
 
@@ -165,11 +167,12 @@ DROP TABLE IF EXISTS `cronoatendimento`;
 CREATE TABLE `cronoatendimento` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `atendimento_id` int(10) NOT NULL,
-  `cronoatendimento_tipoevento` int(2) NOT NULL,
+  `cronoatendimento_tipoevento` varchar(40) NOT NULL,
   `cronoatendimento_horaevento` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_atendimento` (`atendimento_id`),
-  CONSTRAINT `cronoatendimento_ibfk_1` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`)
+  KEY `FKA197AF8F4DC4F935` (`atendimento_id`),
+  CONSTRAINT `cronoatendimento_ibfk_1` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
+  CONSTRAINT `FKA197AF8F4DC4F935` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Armazena horarios associados aos atendimentos';
 
 --
@@ -221,7 +224,7 @@ CREATE TABLE `movimentaviatura` (
   CONSTRAINT `FK93D18DB063B96552` FOREIGN KEY (`viatura_id`) REFERENCES `viaturas` (`id`),
   CONSTRAINT `FK_movimentaviatura_ATENDIMENTO` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK_movimentaviatura_viatura` FOREIGN KEY (`viatura_id`) REFERENCES `viaturas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Armazenar horarios associados as movimentacoes das viaturas';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Armazenar horarios associados as movimentacoes das viaturas';
 
 --
 -- Dumping data for table `movimentaviatura`
@@ -229,8 +232,7 @@ CREATE TABLE `movimentaviatura` (
 
 /*!40000 ALTER TABLE `movimentaviatura` DISABLE KEYS */;
 INSERT INTO `movimentaviatura` (`atendimento_id`,`viatura_id`,`movimentaviatura_tipoevento`,`movimentaviatura_horaevento`,`id`) VALUES 
- (10,4,'Saída da OBM','2009-03-11 17:48:00',1),
- (10,4,'Chegada à Cena','2009-03-11 20:45:00',2);
+ (10,3,'Saída da OBM','2009-03-14 00:15:00',5);
 /*!40000 ALTER TABLE `movimentaviatura` ENABLE KEYS */;
 
 
@@ -606,7 +608,7 @@ CREATE TABLE `viaturas` (
 
 /*!40000 ALTER TABLE `viaturas` DISABLE KEYS */;
 INSERT INTO `viaturas` (`id`,`tipoviatura_id`,`numero`,`obm_id`,`viatura_obs`,`viatura_status`) VALUES 
- (3,2,'v01',1,'teste','Em prontidão'),
+ (3,2,'v01',1,'teste','Em atendimento'),
  (4,1,'c03',1,'bla','Em atendimento');
 /*!40000 ALTER TABLE `viaturas` ENABLE KEYS */;
 

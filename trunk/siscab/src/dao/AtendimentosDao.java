@@ -67,13 +67,16 @@ public class AtendimentosDao {
 			
 		}
 		
-		public int listaUltimoId(){
+		
+
+		public Integer listaUltimoId(){
 			
-			Atendimentos chama = (Atendimentos) session.createQuery("from modelo.Atendimentos order by id desc limit 1").uniqueResult();	
-			int id = chama.getId();
-			return id;
+			Integer idMax = (Integer) session.createQuery("select max(id) from Atendimentos").uniqueResult();
+			return idMax;
+			
 		}
 		
+	
 		public List<Atendimentos> listarOcorrenciasProximas(int municipio, String bairro){
 			
 			List<Atendimentos> atendimentos = (List<Atendimentos>) session.createQuery("from modelo.Atendimentos a where a.municipio_id=:municipio and a.bairro=:bairroParametro and status_atendimento <> 'Finalizado'").setInteger("municipio", municipio).setString("bairroParametro", bairro).list();  
