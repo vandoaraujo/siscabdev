@@ -3,8 +3,8 @@ package controle;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Atendimentos;
 import modelo.Chamado;
+import modelo.CronoAtendimento;
 import modelo.Municipio;
 import modelo.OBM;
 import modelo.TiposOcorrencia;
 import dao.AtendimentosDao;
 import dao.ChamadoDao;
+import dao.CronoAtendimentoDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
 import dao.TiposOcorrenciaDao;
@@ -73,12 +75,8 @@ public class EfetivaAtendimento extends HttpServlet {
 		DateFormat formata = new SimpleDateFormat("yyyy");
 		String idAno = formata.format(calendar.getTime());
 					
-		List <Atendimentos> atendimentosBD = AtendimentosDao.getInstance().listarTodosAtendimentos();
+		Integer proxIdAtendimento = AtendimentosDao.getInstance().listaUltimoId();
 		
-		for(int i =0;i<atendimentosBD.size();i++){
-			proxIdAtendimento = atendimentosBD.get(i).getId();
-			
-		}
 		proxIdAtendimento++;
 		
 		String concatena = idAno +  Integer.toString(proxIdAtendimento);
@@ -120,7 +118,17 @@ public class EfetivaAtendimento extends HttpServlet {
 		atendimento.setStatus_atendimento(status);
 		
 		AtendimentosDao.getInstance().salvar(atendimento);
-		System.out.println("########### SALVO COM SUCESSO ##############");
+		System.out.println("########### ATENDIMENTO SALVO COM SUCESSO ##############");
+		
+		//Iniciar cronologia do atendimento
+		CronoAtendimento crono =  new CronoAtendimento();
+		crono.setAtendimento_id(atendimento);
+		crono.setCronoatendimento_tipoevento("acionamento");
+		crono.setCronoatendimento_horaevento(new Date());
+		
+		CronoAtendimentoDao.getInstance().salvar(crono);
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/atendimentoSalvo.jsp");
 		
 		request.setAttribute("numeroAtendimento",oid);
