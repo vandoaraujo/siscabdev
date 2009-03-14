@@ -39,7 +39,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Lista de Eventos da Viatura presente para o atendimento em referencia&nbsp;</legend>						
+						<fieldset style="width:900px"><legend>&nbsp;Lista de Eventos da Viatura presente para o atendimento em referencia&nbsp;</legend>						
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td>
@@ -65,28 +65,41 @@
 									    
 									  	
 									    
-									    <%= i+1 %> :: Descricao TipoEvento: <%= evento.getMovimentaviatura_tipoevento() %>  Hora TipoEvento: <%= evento.getMovimentaviatura_horaEvento() %>
+									    <%= i+1 %> :: Descricao: <font color="red"><%= evento.getMovimentaviatura_tipoevento() %></font>  Data/Hora : <font color="red"><%= evento.getMovimentaviatura_horaEvento() %></font>
 									    
-										<input type="submit" value="Editar" onclick="this.form.operacaoARealizar.value=2"/>
-										<input type="submit" value="Excluir" onclick="this.form.operacaoARealizar.value=3"/>
-										<input type="hidden" name="operacaoARealizar" value ="">
-								 		<input type="hidden" name="registroEventoAtendimento" value =<%=evento.getChaveComposta().getAtendimentos().getId() %>/> 
-								 		<input type="hidden" name="registroEventoViatura" value =<%=evento.getChaveComposta().getViatura().getId() %>/> 
+										<input type="submit" value="Deletar"/>
+										<input type="hidden" name="operacaoARealizar" value ="3"/>
+								 		<input type="hidden" name="registroEventoAtendimento" value ="<%=evento.getChaveComposta().getAtendimentos().getId() %>"/> 
+								 		<input type="hidden" name="registroEventoViatura" value ="<%=evento.getChaveComposta().getViatura().getId() %>"/> 
+								 		<input type="hidden" name="registroEventoDescricao" value ="<%=evento.getMovimentaviatura_tipoevento() %>"/> 
+								 		
+								 		  </form>
+								 		  
+								 		<form action="CrudTipoEvento" method="post">
+								 		
+								 		<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=4"/>
+								 		<input type="hidden" name="operacaoARealizar" value ="4"/>
+								 	   <input type="hidden" name="registroEventoAtendimento" value ="<%=evento.getChaveComposta().getAtendimentos().getId() %>"/> 
+								 		<input type="hidden" name="registroEventoViatura" value ="<%=evento.getChaveComposta().getViatura().getId() %>"/> 
+								 		<input type="hidden" name="registroEventoDescricao" value ="<%=evento.getMovimentaviatura_tipoevento() %>"/> 
+								 		
+								 		
+								 		</form>
+								 		<%} %>
 								 		
 									    <br>
 									    </div>
 									    </td>
 									    </tr>
-									   <%} 
+									 								   
 										
 										
-									}%>
-									</form>
+									<% } %>
+								
 									</td>								
 								</tr>
 								<tr>
-							</fieldset>	
-					</td>
+						</td>
 				</tr>				
 			</table>
 		</td>

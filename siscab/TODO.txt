@@ -80,5 +80,11 @@ Minha porta do Tomcat - 1983
 
 ############################
 
+CONSERTAR BUG CLASSE APLICACAOATENDIMENTODIVERSASOPCOES.JAVA
+a query traz uma lista repetidas de viaturas devido a tabela possuir itens repetidos, com eventos distintos. - RESOLVIDO!!!
+
 ############################
+
+ListaEventosViaturaAtendimento.jsp - Só funciona o primeiro botão excluir...tem dois forms dentro de um for...
+Falta edição de data tb...
 

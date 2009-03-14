@@ -144,13 +144,12 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 
 		List <Viatura> viaturas = new ArrayList();
 		
-		List <MovimentaViatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(at.getId());
-		
-		//consertar bug de viaturas repetidas.
-				
+		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidas2(at.getId());
+	
+							
 		for(int i=0;i<tiposEventosViatura.size();i++){
 			
-			int viatura_id = tiposEventosViatura.get(i).getChaveComposta().getViatura().getId();
+			Integer viatura_id = tiposEventosViatura.get(i).getId();
 			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(viatura_id);
 			viaturas.add(v);
 			
