@@ -74,6 +74,12 @@ public class OBMDao {
 		return l;
 		
 	}
+	
+	public List<OBM> listarTodasOBMsExcetoCOCB(){
+		List<OBM> l = session.createQuery("from modelo.OBM where nome <> 'COCB'").list();
+		return l;
+		
+	}
 		
 	public OBM listarOBMNome(String nome){
 		

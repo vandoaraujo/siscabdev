@@ -47,11 +47,22 @@ public class RegistrarChamado extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				
+		
+		
+		
+		/*Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+		
+		if(!(usuario.getPerfil().getId() == 3)){
+			
+			request.setAttribute("descricaoServico", "Registrar Chamado");
+			request.setAttribute("perfil", "Operador da OBM");
+			view = request.getRequestDispatcher("/acessoNegado.jsp");
+			
+		}*/
 		
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
-		if(!(usuario.getPerfil().getId() == 2) || !(usuario.getPerfil().getId() == 3)){
+		if((!(usuario.getPerfil().getId() == 2)) && (!(usuario.getPerfil().getId() == 3))){
 			
 			request.setAttribute("descricaoServico", "Registrar Chamado");
 			request.setAttribute("perfil", "Atendente do COCB ou Operador da OBM");

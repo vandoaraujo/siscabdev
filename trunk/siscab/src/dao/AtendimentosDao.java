@@ -96,6 +96,12 @@ public class AtendimentosDao {
 			return atendimento;
 		}
 		
+		public List<Atendimentos> BuscaAtendimentosRedirecionadosAoCOCB(Integer id) {
+			
+			List<Atendimentos> atendimentos = (List<Atendimentos>) session.createQuery("from modelo.Atendimentos a where a.obm_id=:idOBM and a.status_atendimento <> 'Finalizado'").setInteger("idOBM", id).list();  
+			return atendimentos;
+		}
+		
 		
 		public List<Atendimentos> listarAtendimentosNaoFinalizados(){
 			

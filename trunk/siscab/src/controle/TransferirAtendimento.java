@@ -1,9 +1,6 @@
 package controle;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,13 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ChamadoDao;
-import dao.MunicipioDao;
-import dao.UsuarioDao;
-
-import modelo.Chamado;
-import modelo.Municipio;
+import modelo.Atendimentos;
 import modelo.Usuario;
+import dao.AtendimentosDao;
 
 /**
  * Servlet implementation class TransferirAtendimento
@@ -49,24 +42,35 @@ public class TransferirAtendimento extends HttpServlet {
 		
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
-		if(!(usuario.getPerfil().getId() == 2) || !(usuario.getPerfil().getId() == 3) || !(usuario.getPerfil().getId() == 4)){
+		if(!(usuario.getPerfil().getId() == 2) && !(usuario.getPerfil().getId() == 3) && !(usuario.getPerfil().getId() == 4)){
 			
 			request.setAttribute("descricaoServico", "Transferir Atendimento");
 			request.setAttribute("perfil", "Atendente do COCB, Operador da OBM ou Controlador do COCB");
 			view = request.getRequestDispatcher("/acessoNegado.jsp");
 			
 		}
-		
+		//Usuario é o controlador do COCB
 		else if((usuario.getPerfil().getId() == 4)){
 			
+			
+			//Passo a OBM do usuário. Se o usuário tem o perfil de controlador do COCB ou atendente do
+			//COCB ele está cadastrado no COCB.
+			List<Atendimentos> at = AtendimentosDao.getInstance().BuscaAtendimentosRedirecionadosAoCOCB(usuario.getObm().getId());
+			
+			request.setAttribute("atendimentos", at );
+			request.setAttribute("obm", "COCB");
 			request.setAttribute("perfil","controlador do COCB");				 			
-			view = request.getRequestDispatcher("/pagina1transferirAtendimento.jsp");
+			view = request.getRequestDispatcher("/transferirAtendimentoPagina1.jsp");
 		}
 		
 		else if((usuario.getPerfil().getId() == 3)){
 			
+			List<Atendimentos> at = AtendimentosDao.getInstance().BuscaAtendimentosRedirecionadosAoCOCB(usuario.getObm().getId());
+			
+			request.setAttribute("atendimentos", at );
+			request.setAttribute("obm", usuario.getObm().getNome());
 			request.setAttribute("perfil","Operador da OBM");				 			
-			view = request.getRequestDispatcher("/pagina1transferirAtendimento.jsp");
+			view = request.getRequestDispatcher("/transferirAtendimentoPagina1.jsp");
 		}
 				
 		try {
