@@ -51,7 +51,7 @@ CREATE TABLE `atendimentos` (
   CONSTRAINT `FK_atendimentos_1` FOREIGN KEY (`obm_id`) REFERENCES `chamados` (`id`),
   CONSTRAINT `FK_atendimentos_6` FOREIGN KEY (`tipoocorrencia_id`) REFERENCES `tiposocorrencias` (`id`),
   CONSTRAINT `FK_atendimentos_municipio` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
 
 --
 -- Dumping data for table `atendimentos`
@@ -62,7 +62,8 @@ INSERT INTO `atendimentos` (`id`,`atendimento_numero`,`chamado_id`,`municipio_id
  (8,'20091',36,1,'centro','rua Banana','11',66,554,1,'Pendente',1),
  (9,'20099',37,25,'centro','rua B','10',665,777,1,'Pendente',1),
  (10,'200910',39,1,'centro','rua b','10',7878,7878,1,'Em andamento',2),
- (12,'200911',42,61,'centro','rua uruguaiana','0',0,0,1,'Em andamento',4);
+ (12,'200911',42,61,'centro','rua uruguaiana','0',0,0,1,'Em andamento',4),
+ (13,'200913',44,26,'centro','rua C','10',0,0,1,'Pendente',1);
 /*!40000 ALTER TABLE `atendimentos` ENABLE KEYS */;
 
 
@@ -108,7 +109,7 @@ CREATE TABLE `chamados` (
   CONSTRAINT `FK55502018413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK5550201849BB2B9B` FOREIGN KEY (`naturezachamado_id`) REFERENCES `naturezaschamados` (`id`),
   CONSTRAINT `FK_tbchamados_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
 
 --
 -- Dumping data for table `chamados`
@@ -157,7 +158,9 @@ INSERT INTO `chamados` (`id`,`naturezachamado_id`,`origem`,`nomesolicitante`,`te
  (39,1,'Telefone','joao','67687',0,'bla',1,'2009-03-04 18:47:00','2009-03-04 18:48:00'),
  (40,1,'Telefone','Luciana','33678909',0,'',1,'2009-03-14 12:01:00','2009-03-14 12:02:00'),
  (41,1,'Telefone','Luciana','33678909',0,'',1,'2009-03-14 12:01:00','2009-03-14 12:02:00'),
- (42,1,'Telefone','Luciana','678698786',0,'',1,'2009-03-14 12:22:00','2009-03-14 12:22:00');
+ (42,1,'Telefone','Luciana','678698786',0,'',1,'2009-03-14 12:22:00','2009-03-14 12:22:00'),
+ (43,1,'Telefone','Marcelo','67896',0,'teste',1,'2009-03-15 21:58:00','2009-03-15 21:58:00'),
+ (44,1,'Telefone','Magnelson','9089',12,'',1,'2009-03-15 22:08:00','2009-03-15 22:09:00');
 /*!40000 ALTER TABLE `chamados` ENABLE KEYS */;
 
 
@@ -175,7 +178,7 @@ CREATE TABLE `cronoatendimento` (
   KEY `FKA197AF8F4DC4F935` (`atendimento_id`),
   CONSTRAINT `cronoatendimento_ibfk_1` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FKA197AF8F4DC4F935` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Armazena horarios associados aos atendimentos';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Armazena horarios associados aos atendimentos';
 
 --
 -- Dumping data for table `cronoatendimento`
@@ -183,7 +186,8 @@ CREATE TABLE `cronoatendimento` (
 
 /*!40000 ALTER TABLE `cronoatendimento` DISABLE KEYS */;
 INSERT INTO `cronoatendimento` (`id`,`atendimento_id`,`cronoatendimento_tipoevento`,`cronoatendimento_horaevento`) VALUES 
- (1,12,'acionamento','2009-03-14 12:22:49');
+ (1,12,'acionamento','2009-03-14 12:22:49'),
+ (2,13,'acionamento','2009-03-15 22:11:09');
 /*!40000 ALTER TABLE `cronoatendimento` ENABLE KEYS */;
 
 
@@ -570,7 +574,7 @@ CREATE TABLE `usuario` (
   CONSTRAINT `FKF814F32E413BCBD2` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK_usuario_3` FOREIGN KEY (`perfil_id`) REFERENCES `perfis` (`id`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
@@ -588,7 +592,8 @@ INSERT INTO `usuario` (`id`,`numRegistro`,`nomeGuerra`,`email`,`obm_id`,`perfil_
  (15,890,'Carol','carol@gmail.com',1,2,'000','ATIVO'),
  (16,891,'abobrinha','kjsjhskjd5',1,4,'8787','ATIVO'),
  (17,892,'Luciana','lu',1,5,'123','ATIVO'),
- (18,876,'Ronaldo','ronaldo@gmail.com',1,3,'123','Ativo');
+ (18,876,'Ronaldo','ronaldo@gmail.com',1,3,'123','Ativo'),
+ (19,990,'Flavia','flavia@gmail.com',1,2,'123','ATIVO');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 

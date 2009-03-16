@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Chamado;
 import modelo.NaturezaChamados;
 import modelo.OBM;
+import modelo.Usuario;
 import dao.ChamadoDao;
 import dao.NaturezaChamadosDao;
 import dao.OBMDao;
@@ -97,9 +98,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		chamado.setNaturezaChamado(natureza);
 					
 		ChamadoDao.getInstance().salvar(chamado);
-		
-	
-			
+					
 		System.out.println("############### SALVO COM SUCESSO!!!!!!!!! ####################");
 		
 		if(naturezaChamado.equals("Solicitação de socorro")){

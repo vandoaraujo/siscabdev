@@ -122,17 +122,7 @@ public class ServletLogin extends HttpServlet {
 				RequestDispatcher view = req.getRequestDispatcher("/paginaPrincipal.jsp");
 				view.forward(req, response);
 		}
-		/*else if(!usu.getPerfil().equals("ADMIN")){
-				
-				HttpSession session = req.getSession();
-				req.setAttribute("session", session);
-				session.setAttribute("usuario", usu);
-				req.setAttribute("mensagem", "Seu perfil não é de administrador!");
-				RequestDispatcher view = req.getRequestDispatcher("/perfilNotAdmin.jsp");
-				view.forward(req, response);
-
-			}*/
-						
+							
 		}
 			
 	}

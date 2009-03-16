@@ -2,6 +2,7 @@ package controle;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -97,8 +98,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 			email = request.getParameter("email");
 			senha = request.getParameter("senha");
 			status = request.getParameter("status");
-	    	status.toUpperCase();
-			
+	    				
 			//Verifica Duplicidade de Pessoas já cadastradas no BD
 			List<Usuario> usuarios = UsuarioDao.getInstance().listar();
 			
@@ -198,8 +198,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 		email = request.getParameter("email");
 		senha = request.getParameter("senha");
 		status = request.getParameter("status");
-		status.toUpperCase();
-		
+				
 		Usuario usu = UsuarioDao.getInstance().BuscaUsuarioId(registro);
 		usu.setNumRegistro(numRegistro);
 		usu.setNomeGuerra(nomeGuerra);

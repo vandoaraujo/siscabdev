@@ -72,15 +72,13 @@ public class BuscarUsuario extends HttpServlet {
                     int numero = Integer.parseInt(registro1);
                 	usu= UsuarioDao.getInstance().procurarUsuariosParametro2(numero);
                 }
-                             
-                       
-                UsuarioDao.getInstance().fechaSession();
-               
+                               
                 System.out.println("RESULTADO DA QUERY" + usu.size());
                                
                 request.setAttribute("usuarios",usu);
                                
                 RequestDispatcher view = request.getRequestDispatcher("/listaUsuarios.jsp");
+                
                 try {
                         view.forward(request, response);
                 } catch (ServletException e) {

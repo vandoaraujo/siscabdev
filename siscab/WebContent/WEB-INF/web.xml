@@ -276,6 +276,24 @@
 		<servlet-class>
 		controle.AdministracaoUsuario</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		RepasseAtendimento</display-name>
+		<servlet-name>RepasseAtendimento</servlet-name>
+		<servlet-class>
+		controle.RepasseAtendimento</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EfetivaRepasseAtendimento</display-name>
+		<servlet-name>EfetivaRepasseAtendimento</servlet-name>
+		<servlet-class>
+		controle.EfetivaRepasseAtendimento</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -392,6 +410,14 @@
 	<servlet-mapping>
 		<servlet-name>AdministracaoUsuario</servlet-name>
 		<url-pattern>/AdministracaoUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RepasseAtendimento</servlet-name>
+		<url-pattern>/RepasseAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EfetivaRepasseAtendimento</servlet-name>
+		<url-pattern>/EfetivaRepasseAtendimento</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

@@ -46,26 +46,29 @@ Tela de Tranferência de Atendimento de Obms<br>
 <option><%= municipio %></option>
 </select>
 	
-	<font color="blue">Você deseja repassar o atendimento da OBM Atual? </font>	Sim: <input name="radiobutton" type="radio" value="sim" onClick="habilitaCombo('seleciona','s');">
+	<font color="blue">Você deseja repassar o atendimento para o COCB? </font>	Sim: <input name="radiobutton" type="radio" value="sim" onClick="habilitaCombo('seleciona','s');">
 	Não: <input name="radiobutton" type="radio" value="nao" checked onClick="habilitaCombo('seleciona','n');">
-		
+	
+	<% Usuario usu = (Usuario)getServletContext().getAttribute("usuarioCorrente");
+		if(usu.getPerfil().getId() == 3){
+			%> 
+			
 	<select name="obmRepassaAtendimento" id="seleciona" disabled="disabled">
-	<!-- Popula a combo que aparecerá na tela -->
-	<%
-	  List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
-	  for(OBM s: obms){
-		 out.println("<option>"+s.getNome());
-	  }
-	out.println("</select>");
-	%><br>
-
+	<option selected>COCB
+				
+		<% } %>
+		
+	</option>
+	</select>
+	</tr>
+	<br>
 	<tr>Coord X: <input name="coordX" type="text" ></tr><br>
 	<tr>Coord Y: <input name="coordY" type="text"></tr><br>
 	<tr>Logradouro: <input name="logradouro" type="text" size=30><p><br>
 	<tr>Num. Complemento: <input name="numComplemento" type="text" size=10></tr><br>
 		
 	<br>
-					<td><label>Tipo Ocorrencia:</label></td>
+					<tr><label>Tipo Ocorrencia:</label>
 									<td>
 										<select name="tipoOcorrencia">
 		 								<% 
@@ -79,11 +82,11 @@ Tela de Tranferência de Atendimento de Obms<br>
 		
 		
 		
-	
+	<tr>
 	Status do Atendimento:<br>	
 	<select name="status">
 	<option> Pendente
-    </select><br>
+    </select></tr><br>
 			
 	<input type="submit" value="Registrar Atendimento">
 	

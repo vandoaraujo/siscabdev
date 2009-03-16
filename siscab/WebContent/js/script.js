@@ -12,7 +12,7 @@ function mmLoadMenus() {
   mm_menu_0217221104_0.menuBorderBgColor='#777777';
 
   window.mm_menu_0217221434_0 = new Menu("root",155,23,"Trebuchet MS",13,"#FFFFFF","#000000","#5557A7","#BABBDC","left","middle",5,1,1000,-5,7,true,false,true,0,true,true);
-  mm_menu_0217221434_0.addMenuItem("Cadastro&nbsp;de&nbsp;Usuários","location='administracao_usuario.jsp'");
+  mm_menu_0217221434_0.addMenuItem("Cadastro&nbsp;de&nbsp;Usuários","location='AdministracaoUsuario'");
   mm_menu_0217221434_0.addMenuItem("Cadastro&nbsp;de&nbsp;OBMs","location='ObmControle'");
   mm_menu_0217221434_0.hideOnMouseOut=true;
   mm_menu_0217221434_0.bgColor='#555555';

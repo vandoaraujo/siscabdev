@@ -76,7 +76,7 @@ public class LocalizaOcorrencia extends HttpServlet {
 		//Este parametro não é usado para este caso de Uso...Seria apenas para log.
 		String nomeUsuario = request.getParameter("usuario");
 		
-		//Esta OBm do objeto chamado irá entrar no Caso de Uso transferir Atendimento como OBM default...
+		//Esta Obm do objeto chamado irá entrar no Caso de Uso transferir Atendimento como OBM default...
 		String nomeObmUsuario = request.getParameter("obmUsuario");
 		
 		String origemChamado = request.getParameter("origem");
@@ -90,11 +90,8 @@ public class LocalizaOcorrencia extends HttpServlet {
 		//Ver este campo --- JSP passa o valor 1
 		int registroOcorrencia = Integer.parseInt(request.getParameter("registroOcorrencia"));
 		
-	
 		ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance().listarTodasOBMs();
-						
-	
-	
+		
 		request.setAttribute("numeroChamado", numeroGeradoChamado);
 		request.setAttribute("obms", obms);
 		request.setAttribute("origemChamado", origemChamado);
