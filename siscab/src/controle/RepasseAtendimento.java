@@ -45,18 +45,22 @@ public class RepasseAtendimento extends HttpServlet {
 		int perfilUsuario = Integer.parseInt(request.getParameter("perfilUsuario"));
 		
 		Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registro);
+		
+		System.out.println("IMPRIME PERFIL ATUAL USUARIO" + perfilUsuario);
 				
-		//1 caso - Operador da OBM transfere atendimento para o COCB
+		//1 caso - Controlador do COCB transfere atendimento para uma daterminada OBM
 		if(perfilUsuario == 4){
 			
-						
-		}
-		//2 caso - Controlador do COCB transfere atendimento para uma determinada OBM
-		else{
 			List<OBM> obm = OBMDao.getInstance().listarTodasOBMsExcetoCOCB();
 			request.setAttribute("obm", obm);
-			
+						
 		}
+		//2 caso - Operador da OBM transfere atendimento para o COCB
+		/*else{
+			
+			request.setAttribute("obm", "COCB");
+			
+		}*/
 		
 		request.setAttribute("atendimentos", at );
 		request.setAttribute("perfil","Operador da OBM");				 			

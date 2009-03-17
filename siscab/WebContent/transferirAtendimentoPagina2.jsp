@@ -48,10 +48,9 @@
 											out.println("</select>");
 											%>
 											</td>
-											<%} %>
+																
 											
-											
-										<% else if(usuario.getPerfil().getId() == 3){%>
+										<% } else if(usuario.getPerfil().getId() == 3){%>
 										  	<td>Obm de Transferencia:</td>
 										  	<td><select name="obm">													
 											<!-- Popula a combo de obm que aparecerá na tela - OPERADOR DA OBM-->
@@ -65,35 +64,6 @@
 											<td><input type="submit" value="Efetivar Repasse"></td>
 										</tr>	
 									</table>
-									</fieldset>
-
-
-
-		if(perfilUsuario == 4){
-			
-						
-		}
-		//2 caso - Controlador do COCB transfere atendimento para uma determinada OBM
-		else{
-			List<OBM> obm = OBMDao.getInstance().listarTodasOBMsExcetoCOCB();
-			request.setAttribute("obm", obm);
-			
-		}
-		
-		request.setAttribute("atendimentos", at );
-		request.setAttribute("perfil","Operador da OBM");				 			
-		view = request.getRequestDispatcher("/transferirAtendimentoPagina2.jsp");
-		
-		try {
-			view.forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
-
-
+</fieldset>
 </body>
 </html>

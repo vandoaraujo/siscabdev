@@ -16,10 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Atendimentos;
+import modelo.CronoAtendimento;
 import modelo.MovimentaViatura;
 import modelo.MovimentaViaturaPK;
 import modelo.Viatura;
 import dao.AtendimentosDao;
+import dao.CronoAtendimentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
 
@@ -66,21 +68,10 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		MovimentaViatura mov = new MovimentaViatura();
 		mov.setChaveComposta(m);
 		mov.setMovimentaviatura_tipoevento("Saída da OBM");
-		
-		
-		//Pega data e hora
-		GregorianCalendar calendar =  new GregorianCalendar();
-		calendar.add(GregorianCalendar.MONTH, 0);
-		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
-		calendar.add(GregorianCalendar.MINUTE, 0);
-		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-		Date data = new Date(formata.format(calendar.getTime()));
-				
-		mov.setMovimentaviatura_horaEvento(data);
+		mov.setMovimentaviatura_horaEvento(new Date());
 		
 		//Atualiza o status da viatura de em prontidão para em atendimento
 		ViaturaDao.getInstance().atualizar(v);
-		
 		System.out.println("ATUALIZOU O STATUS DA VIATURA!!!!");
 		
 		//Salva na tabela associativa a movimentação da Viatura
@@ -88,8 +79,16 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		
 		System.out.println("SALVOU O TIPO EVENTO NA TABELA MOVIMENTAVIATURA");
 		
-		at.setStatus_atendimento("Em andamento");
+		//Cria um registro na tabela CronoAtendimento
+		CronoAtendimento crono =  new CronoAtendimento();
+		crono.setAtendimento_id(at);
+		crono.setCronoatendimento_tipoevento("início");
+		crono.setCronoatendimento_horaevento(new Date());
+		CronoAtendimentoDao.getInstance().salvar(crono);
+		System.out.println("SALVO a CronologiaAtendimento como início");
 		
+		//Modifica o Status do Atendimento
+		at.setStatus_atendimento("Em andamento");
 		AtendimentosDao.getInstance().atualizar(at);
 		
 		System.out.println("Atualizou o Atendimento para situacao Status Em andamento");

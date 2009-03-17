@@ -198,6 +198,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 		email = request.getParameter("email");
 		senha = request.getParameter("senha");
 		status = request.getParameter("status");
+		status.toUpperCase();
 				
 		Usuario usu = UsuarioDao.getInstance().BuscaUsuarioId(registro);
 		usu.setNumRegistro(numRegistro);

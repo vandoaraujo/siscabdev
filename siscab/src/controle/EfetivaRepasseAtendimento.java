@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Atendimentos;
+import modelo.CronoAtendimento;
 import modelo.OBM;
 import dao.AtendimentosDao;
+import dao.CronoAtendimentoDao;
 import dao.OBMDao;
 
 /**
@@ -48,6 +51,15 @@ public class EfetivaRepasseAtendimento extends HttpServlet {
 		at.setObm_id(obm);
 		
 		AtendimentosDao.getInstance().atualizar(at);
+		
+		//Iniciar cronologia do atendimento
+		CronoAtendimento crono =  new CronoAtendimento();
+		crono.setAtendimento_id(at);
+		crono.setCronoatendimento_tipoevento("repasse");
+		crono.setCronoatendimento_horaevento(new Date());
+		
+		CronoAtendimentoDao.getInstance().salvar(crono);
+		
 		System.out.println(" ATUALIZADO COM SUCESSO!!");
 		request.setAttribute("atendimentoNumero", at.getAtendimento_numero());
 		despacha(request, response,"salvar", obm.getNome());
