@@ -13,12 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Atendimentos;
+import modelo.CronoAtendimento;
 import modelo.MovimentaViatura;
 import modelo.MovimentaViaturaPK;
 import modelo.SiscabException;
 import modelo.Viatura;
 import modelo.VitimaAtendida;
 import dao.AtendimentosDao;
+import dao.CronoAtendimentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
 import dao.VitimaAtendidaDao;
@@ -62,10 +64,11 @@ public class CrudTipoEvento extends HttpServlet {
 		int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
 		tipoEventoDescricao = request.getParameter("registroEventoDescricao");
 		
+		System.out.println("Tipo Evento 1" + tipoEventoDescricao);
 				
 		if(operacao == 1){
 				
-		 	salvar(request,response);	
+		 	salvar(request,response,tipoEventoDescricao);	
 			
 		}			
 		else if(operacao == 2){
@@ -173,9 +176,10 @@ public class CrudTipoEvento extends HttpServlet {
 			
 	}
 
-		protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+		protected void salvar (HttpServletRequest request, HttpServletResponse response,String tipoEventoV) throws ServletException, IOException 
 		{
 				
+			System.out.println("TIPO EVENTO" +  tipoEventoV);
 					
 			Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
 			
@@ -188,21 +192,24 @@ public class CrudTipoEvento extends HttpServlet {
 			//Define relacionamento
 			MovimentaViatura tipoEvento = new MovimentaViatura();
 			tipoEvento.setChaveComposta(mov);
-			tipoEvento.setMovimentaviatura_tipoevento(tipoEventoDescricao);
-			
-			//ver
-			
-			GregorianCalendar calendar =  new GregorianCalendar();
-			calendar.add(GregorianCalendar.MONTH, 0);
-			calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
-			calendar.add(GregorianCalendar.MINUTE, 0);
-			DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-			Date data = new Date(formata.format(calendar.getTime()));
-						
-			tipoEvento.setMovimentaviatura_horaEvento(data);
-			
-			
+			tipoEvento.setMovimentaviatura_tipoevento(tipoEventoV);
+			tipoEvento.setMovimentaviatura_horaEvento(new Date());
 			MovimentaViaturaDao.getInstance().salvar(tipoEvento);
+								
+			
+			//Verifica inclusão de Cronologia do Atendimento
+			if(tipoEventoV.equals("Chegada à Cena")){
+				
+				CronoAtendimento crono = new CronoAtendimento();
+				crono.setAtendimento_id(at);
+				crono.setCronoatendimento_tipoevento("chegada à cena");
+				crono.setCronoatendimento_horaevento(new Date());
+				
+				CronoAtendimentoDao.getInstance().salvar(crono);
+				System.out.println("SALVO UM CRONOATENDIMENTO - chegada à cena!");
+			}
+					
+			
 			request.setAttribute("movimentaViatura", tipoEvento);
 			despacha(request, response,"salvar", tipoEvento.getMovimentaviatura_tipoevento());
 			

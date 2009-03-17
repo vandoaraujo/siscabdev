@@ -45,7 +45,7 @@ Perfil: ${perfil}<br>
 					    <td>
 					    <div>      
 					    
-					    <%= i+1 %> :: NúmeroAtendimento: <%=atendimentos.getAtendimento_numero()%> <a href="RepasseAtendimento?registro=<%=atendimentos.getAtendimento_numero()%>&perfilUsuario=<%=usuario.getPerfil().getId()%>"> Municipio:<%= atendimentos.getMunicipio_id().getMunicipio_nome()%>, Bairro: <%=atendimentos.getBairro()%>,
+					    <%= i+1 %> :: NúmeroAtendimento: <%=atendimentos.getAtendimento_numero()%> <a href="RepasseAtendimento?registro=<%=atendimentos.getId()%>&perfilUsuario=<%=usuario.getPerfil().getId()%>"> Municipio:<%= atendimentos.getMunicipio_id().getMunicipio_nome()%>, Bairro: <%=atendimentos.getBairro()%>,
 					    Logradouro: <%=atendimentos.getLogradouro()%>, TipoOcorrencia: <%=atendimentos.getTipoocorrencia().getTipoocorrencia_descricao() %>, QtdVitimas: <%=atendimentos.getChamado_id().getNumaproxvitimas()%>, OBMAtendimento: <%=atendimentos.getObm_id().getNome()%>
 					    
 					  	</a><br>

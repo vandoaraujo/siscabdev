@@ -31,9 +31,9 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Serviço&nbsp;</legend>
-							Mensagem: ${mensagem}
-							Repasse executado com o atendimento: ${atendimentoNumero}, para a OBM:<div style="color:red; display:inline">${obm}</div>
+						<fieldset style="width:800px"><legend>&nbsp;Serviço&nbsp;</legend>
+							Mensagem: ${mensagem}<br>
+							Repasse executado com o atendimento número: ${atendimentoNumero}, para a OBM: <div style="color:red; display:inline">${obm}</div>
 							<p><br></p>
 																													
 						</fieldset>	

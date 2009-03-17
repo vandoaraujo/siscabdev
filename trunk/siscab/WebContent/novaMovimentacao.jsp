@@ -53,7 +53,7 @@
 								</tr>
 								<tr>	
 									<td><label>tipo Evento Descricao:</label></td>
-									<td><select name="tipoEventoDescricao">
+									<td><select name="registroEventoDescricao">
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
 										 TipoEventoViatura t = new TipoEventoViatura();
