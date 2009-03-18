@@ -294,6 +294,24 @@
 		<servlet-class>
 		controle.EfetivaRepasseAtendimento</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		IniciaTotalChamadosPorNatureza</display-name>
+		<servlet-name>IniciaTotalChamadosPorNatureza</servlet-name>
+		<servlet-class>
+		controle.IniciaTotalChamadosPorNatureza</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		TotalChamadosPorNatureza</display-name>
+		<servlet-name>TotalChamadosPorNatureza</servlet-name>
+		<servlet-class>
+		controle.TotalChamadosPorNatureza</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -418,6 +436,14 @@
 	<servlet-mapping>
 		<servlet-name>EfetivaRepasseAtendimento</servlet-name>
 		<url-pattern>/EfetivaRepasseAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>IniciaTotalChamadosPorNatureza</servlet-name>
+		<url-pattern>/IniciaTotalChamadosPorNatureza</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TotalChamadosPorNatureza</servlet-name>
+		<url-pattern>/TotalChamadosPorNatureza</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
