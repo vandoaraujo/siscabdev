@@ -56,7 +56,9 @@ Revisão do capítulo 2
 
 ############################
 
-Fechar Google Maps RealizaChamado, terminar os htmls e os css das telas já realizadas e javascripts. 
+Fechar Google Maps RealizaChamado --- OK!
+Terminar os htmls e os css das telas já realizadas --- FALTA AS NOVAS TELAS
+Javascripts --- POR ULTIMO
 
 ############################
 
@@ -86,5 +88,5 @@ a query traz uma lista repetidas de viaturas devido a tabela possuir itens repet
 ############################
 
 ListaEventosViaturaAtendimento.jsp - Só funciona o primeiro botão excluir...tem dois forms dentro de um for...
-Falta edição de data tb...
+Falta edição de data tb... OK (incluido por Bruno)
 
