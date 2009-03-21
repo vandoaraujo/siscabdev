@@ -11,8 +11,10 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
+	<script id="api" type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA1rJRd_d6NTBRsxYq3I7erBSVPiKh14QUveM1LzMKfwwniz5cMBRktlNQQD2Mh4zRyiEDe7djlt6huA"></script>
+																									  
 </head>
-<body>
+<body onload="init();" onunload="GUnload()">
 <script language="JavaScript1.2">mmLoadMenus();</script>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -38,55 +40,83 @@
 						<table>
 							<tr>
 								<td> 
-									GOOGLE MAPS
+									<div id="map_canvas">
+										Map loading..
+										<noscript>
+											Habilite o uso de JavaScript em seu browser para exibir o Mapa da Google
+										</noscript>
+									</div>
 								</td>
 							</tr>
 						</table>
-						
-				
-
-
-<h4> </h4><br>
-
-<div id="map_canvas" style="width: 500px; height: 300px"></div>
-
-<%! String municipio=null; %>
-
-<% municipio = (String)request.getAttribute("municipio"); %>
-
-	<form action="FinalizarChamadoIniciarAtendimento" onsubmit="showAddress(this.address.value); return false" method="post">
-		<table>
-		<tr><td>Origem do Chamado: <input name="origemChamado" type="text" readonly="readonly" value=${origemChamado}></td></tr>
-		<tr><td>Nome do Solicitante: <input name="nomeSolicitante" type="text" readonly="readonly" value=${nomeSolicitante}></td></tr>
-		<tr><td>Telefone: <input name="telefone" type="text" readonly="readonly" value=${telefone}></td></tr>
-		<tr><td>Número Aproximado de Vitimas: <input name="numAproxVitimas" type="text" readonly="readonly" value=${aproxVitimas}></td></tr>
-		<tr><td>Obm Solicitada: <input name="obmSolicitada" type="text" readonly="readonly" value=${nomeObmUsuario}></td></tr>
-		<tr><td> <input name="infoComplementares" type="hidden" readonly="readonly" value=${infoComplementares}></td></tr>
-		<tr><td> <input name="numeroChamado" type="hidden" readonly="readonly" value=${numeroChamado}></td></tr>
-		<tr><td>Município: <select name="municipio">
-		 <option><%= municipio %></option>
-		</select>
-		<tr><td> <input name="bairro" type="hidden" readonly="readonly" value=${bairro}></td></tr>
 	
-		
-		
-			<tr><td>Natureza Chamado:</td>
-									<td>
-										<select name="naturezaChamado">
-		 								<% 
-											List<NaturezaChamados> tipos = NaturezaChamadosDao.getInstance().listarTodasNaturezasChamado();
-											for(int i=0;i<tipos.size();i++){
-												out.print("<option>"+tipos.get(i).getNaturezachamado_descricao());
-						 				}
-												out.println("</select>");
-									%></td></tr>			
-		
-	<br>
-			<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
-			<input type="hidden" name="operacaoARealizar" value ="">
-			<input type="hidden" name="registroOcorrencia" value ="1"> 
-			
-			</form>
+						<%! String municipio=null; %>
+						
+						<% municipio = (String)request.getAttribute("municipio"); %>
+						
+							<form action="FinalizarChamadoIniciarAtendimento" onsubmit="showAddress(this.address.value); return false" method="post">
+								<table>
+									<tr>
+										<td>Origem do Chamado:</td>
+										<td><input name="origemChamado" type="text" readonly="readonly" value=${origemChamado}></td>
+									</tr>
+									<tr>
+										<td>Nome do Solicitante:</td>
+										<td><input name="nomeSolicitante" type="text" readonly="readonly" value=${nomeSolicitante}></td>
+									</tr>
+									<tr>
+										<td>Telefone:</td>
+										<td><input name="telefone" type="text" readonly="readonly" value=${telefone}></td>
+									</tr>
+									<tr>
+										<td>Número Aproximado de Vitimas:</td>
+										<td><input name="numAproxVitimas" type="text" readonly="readonly" value=${aproxVitimas}></td>
+									</tr>
+									<tr>
+										<td>Obm Solicitada:</td>
+										<td><input name="obmSolicitada" type="text" readonly="readonly" value=${nomeObmUsuario}></td>
+									</tr>
+									<tr>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Município:</td>
+										<td><select name="municipio">
+									 					<option><%= municipio %></option>
+														</select>
+										</td>
+								    <tr>
+										<td>Natureza Chamado:</td>
+										<td><select name="naturezaChamado">
+			 								<% 
+												List<NaturezaChamados> tipos = NaturezaChamadosDao.getInstance().listarTodasNaturezasChamado();
+												for(int i=0;i<tipos.size();i++){
+													out.print("<option>"+tipos.get(i).getNaturezachamado_descricao());
+							 				}
+													out.println("</select>");%></td>
+									</tr>
+									<tr>
+										<td>												
+										<input name="bairro" type="hidden" readonly="readonly" value=${bairro}>
+										<input name="infoComplementares" type="hidden" readonly="readonly" value=${infoComplementares}>
+										<input name="numeroChamado" type="hidden" readonly="readonly" value=${numeroChamado}>
+										<input type="hidden" name="q" id="q" value=">${endereco} ${numero} ${bairro} ${municipio} RJ Brasil ">
+										<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
+										<input type="hidden" name="operacaoARealizar" value ="">
+										<input type="hidden" name="registroOcorrencia" value ="1">
+										</td>
+									</tr> 
+									</table>
+									</form>
+
+					</fieldset>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script language="JavaScript" src="js/google.js"></script>
 
 </body>
 </html>
