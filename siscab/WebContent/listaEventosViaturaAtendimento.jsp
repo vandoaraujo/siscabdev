@@ -52,12 +52,9 @@
 									     <div style="color:red"> Nenhum Tipo de Evento cadastrado para esta viatura neste atendimento </div>
 									   
 									<%} else{
-										
-										%> <form action="CrudTipoEvento" method="post">
-										
-										<% 
+									
 										for(int i=0;i<tiposEventosViaturaAtendimento.size();i++){
-												MovimentaViatura evento =(MovimentaViatura)tiposEventosViaturaAtendimento.get(i);
+											MovimentaViatura evento =(MovimentaViatura)tiposEventosViaturaAtendimento.get(i);
 												 %> 
 									    
 									    <tr>
@@ -67,33 +64,13 @@
 									  	
 									    
 									    <%= i+1 %> :: Descricao: <font color="red"><%= evento.getMovimentaviatura_tipoevento() %></font>  Data/Hora : <font color="red"><%= evento.getMovimentaviatura_horaEvento() %></font>
-									    
-										<input type="submit" value="Deletar"/>
-										<input type="hidden" name="operacaoARealizar" value ="3"/>
-								 		<input type="hidden" name="registroEventoAtendimento" value ="<%=evento.getChaveComposta().getAtendimentos().getId() %>"/> 
-								 		<input type="hidden" name="registroEventoViatura" value ="<%=evento.getChaveComposta().getViatura().getId() %>"/> 
-								 		<input type="hidden" name="registroEventoDescricao" value ="<%=evento.getMovimentaviatura_tipoevento() %>"/> 
-								 		
-								 		  </form>
-								 		  
-								 		<form action="CrudTipoEvento" method="post">
-								 		
-								 		<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=4"/>
-								 		<input type="hidden" name="operacaoARealizar" value ="4"/>
-								 	   <input type="hidden" name="registroEventoAtendimento" value ="<%=evento.getChaveComposta().getAtendimentos().getId() %>"/> 
-								 		<input type="hidden" name="registroEventoViatura" value ="<%=evento.getChaveComposta().getViatura().getId() %>"/> 
-								 		<input type="hidden" name="registroEventoDescricao" value ="<%=evento.getMovimentaviatura_tipoevento() %>"/> 
-								 		
-								 		
-								 		</form>
+									    								 	
 								 		<%} %>
-								 		
-									    <br>
+								 		<br>
 									    </div>
 									    </td>
 									    </tr>
-									 								   
-										
+									 										
 										
 									<% } %>
 								
