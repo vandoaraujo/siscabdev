@@ -97,12 +97,11 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		//Lógica de na próxima página popular uma lista de viaturas já associadas e com tipo evento ao atendimento
 		List <Viatura> viaturas = new ArrayList();
 		
-		List <MovimentaViatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(at.getId());
+		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(at.getId());
 		
 		for(int i=0;i<tiposEventosViatura.size();i++){
-			
-			MovimentaViatura viatura = tiposEventosViatura.get(i);
-			Viatura via = ViaturaDao.getInstance().BuscaViaturaId(viatura.getChaveComposta().getViatura().getId());
+					
+			Viatura via = ViaturaDao.getInstance().BuscaViaturaId(tiposEventosViatura.get(i).getId());
 			viaturas.add(via);
 			
 		}

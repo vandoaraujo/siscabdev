@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -46,7 +47,69 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 		
 	    int registroViatura = (Integer.parseInt(request.getParameter("registro")));
 	    int numeroAtendimento = (Integer.parseInt(request.getParameter("numeroAtendimento")));
+	    int operacaoARealizar = Integer.parseInt(request.getParameter("operacaoARealizar"));
 	    
+	    if(operacaoARealizar == 1){
+	    	
+	    	listaEventosViatura(registroViatura,numeroAtendimento,request,response);
+	    }
+	    //Libera status da viatura de em atendimento, para em prontidão
+	    else{
+	    	
+	    	mudaStatusViaturaAtendimento(registroViatura,request,response,numeroAtendimento);
+	    	
+	    }
+	  	
+	}
+
+	private void mudaStatusViaturaAtendimento(int registroViatura,
+			HttpServletRequest request, HttpServletResponse response,int atendimento) {
+		
+		Viatura via = (Viatura)ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
+		via.setViatura_status("Em prontidão");
+		
+		ViaturaDao.getInstance().atualizar(via);
+		
+		System.out.println("######### Atualizou o STATUS DA VIATURA!!!   ##############");
+		
+		//Atualiza lista de viaturas
+		
+		List <Viatura> viaturas = new ArrayList();
+		
+		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(atendimento);
+		
+							
+		for(int i=0;i<tiposEventosViatura.size();i++){
+			
+			Integer viatura_id = tiposEventosViatura.get(i).getId();
+			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(viatura_id);
+			viaturas.add(v);
+			
+		}
+		
+		Atendimentos atendimentoAtual = AtendimentosDao.getInstance().BuscaAtendimentoId(atendimento);
+				
+		HttpSession sessao = request.getSession();
+		sessao.setAttribute("viaturas", viaturas);
+		RequestDispatcher view;
+		sessao.setAttribute("atendimentoAtual", atendimentoAtual);
+		view = request.getRequestDispatcher("/iniciarViaturasEmpenhadas.jsp");
+				
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	private void listaEventosViatura(int registroViatura, int numeroAtendimento,HttpServletRequest request, HttpServletResponse response) {
+		
 		Viatura via = (Viatura)ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
 		Atendimentos atendimento = (Atendimentos)AtendimentosDao.getInstance().BuscaAtendimentoId(numeroAtendimento);
 		
@@ -62,17 +125,16 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 		sessao.setAttribute("atendimento", atendimento);
 		RequestDispatcher view = request.getRequestDispatcher("/listaEventosViaturaAtendimento.jsp");
 		
-	
 		
-	try {
-		view.forward(request, response);
-	} catch (ServletException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

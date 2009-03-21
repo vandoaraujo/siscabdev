@@ -28,6 +28,8 @@ import dao.VitimaAtendidaDao;
 /**
  * Servlet implementation class CrudTipoEvento
  */
+
+@Deprecated
 public class CrudTipoEvento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int registroEventoAtendimento;
@@ -71,7 +73,7 @@ public class CrudTipoEvento extends HttpServlet {
 		 	salvar(request,response,tipoEventoDescricao);	
 			
 		}			
-		else if(operacao == 2){
+		/*else if(operacao == 2){
 				
 			try {
 				alterar(request, response);
@@ -91,7 +93,7 @@ public class CrudTipoEvento extends HttpServlet {
 			deletar(request, response,registroEventoViatura, registroEventoAtendimento);
 			
 			// Analisar se a viatura mudará seu status após a ultima deleção de tipo EVENTO
-		}
+		}*/
 		    
 		    
 						
