@@ -48,7 +48,7 @@ function validate()
 							</tr>
 							<tr>
 								<td>
-									<center><img src="img/logo_nova.gif"></center>									
+									<center><img src="img/logo.gif"></center>									
 								</td>
 								<td>							
 									<table width="210" border="0" cellpadding="5" cellspacing="0">
