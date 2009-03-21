@@ -65,7 +65,8 @@
 					<input type="submit" value="Sugestão de Rota" onclick="this.form.operacaoARealizar.value=3"/>
 					<input type="submit" value="Viaturas Empenhadas" onclick="this.form.operacaoARealizar.value=4"/>
 					<input type="submit" value="Vitimas" onclick="this.form.operacaoARealizar.value=5"/>
-					<input type="submit" value="Servicos Executados" onclick="this.form.operacaoARealizar.value=6"/>							
+					<input type="submit" value="Servicos Executados" onclick="this.form.operacaoARealizar.value=6"/>
+					<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=7"/>							
 					<input type="hidden" name="operacaoARealizar" value ="">
 					<input type="hidden" name="registroAtendimento" value = <%= atendimento.getAtendimento_numero() %>>
 
