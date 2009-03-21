@@ -108,10 +108,8 @@
 							
 							Status do Atendimento:	
 							<select name="status">
-							<option> <%= atendimento.getStatus_atendimento() %></option>
-							<option>Em andamento</option>
-							<option>Finalizado</option>
-						    </select><br>
+							<option selected> <%= atendimento.getStatus_atendimento() %></option>
+							</select><br>
 								
 							
 							<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>
