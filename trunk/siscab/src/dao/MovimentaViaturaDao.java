@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import modelo.MovimentaViatura;
+import modelo.Usuario;
 import modelo.Viatura;
 
 import org.hibernate.Criteria;
@@ -80,26 +81,31 @@ public class MovimentaViaturaDao {
 		return historicoMovimentacoes;		
 		
 	}
-	
-	public int listarUltimoId(){
-		
-		Integer idMax =  (Integer) session.createQuery("select max(numRegistro) from MovimentaViatura").uniqueResult();
-		return idMax;
-		
-	}
-	
+
 	public List<MovimentaViatura> listaTiposEventosViaturaAtendimento(int atendimentoAtual, int viaturaAtual){
 		
 		List<MovimentaViatura> tiposEventosViaturaAtendimento = session.createQuery("from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id and v.chaveComposta.viatura_id=:viatura_id").setInteger("atendimento_id", atendimentoAtual).setInteger("viatura_id", viaturaAtual).list();
 		return tiposEventosViaturaAtendimento;
 	}
 	
+	public int listaUltimoEvento(int atendimentoAtual, int viaturaAtual){
+		
+		Integer idMax =  (Integer) session.createQuery("select max(id) from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id and v.chaveComposta.viatura_id=:viatura_id").setInteger("atendimento_id", atendimentoAtual).setInteger("viatura_id", viaturaAtual).uniqueResult();
+		return idMax;
+	}
+
 	
 	public List<Viatura> listaViaturasDeUmAtendimento(int atendimentoAtual){
 		
 		List<Viatura> tiposEventosViaturaAtendimento = session.createQuery("select distinct via from modelo.MovimentaViatura v,Viatura via where v.chaveComposta.atendimento_id=:atendimento_id and via.id=v.chaveComposta.viatura_id and via.viatura_status = 'Em atendimento'").setInteger("atendimento_id", atendimentoAtual).list();
 		return tiposEventosViaturaAtendimento;
 	}
+	
+	public MovimentaViatura BuscaMovimentacaoViaturaId(Integer id) {
+           
+           MovimentaViatura m = (MovimentaViatura) session.load(MovimentaViatura.class, id);
+           return m;
+   }
 	
 	@Deprecated
 	public List<MovimentaViatura> ListarViaturaNaoRepetidas(int atendimentoAtual){

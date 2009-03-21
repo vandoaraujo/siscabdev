@@ -312,6 +312,15 @@
 		<servlet-class>
 		controle.TotalChamadosPorNatureza</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		PreparaNovaMovimentacaoViatura</display-name>
+		<servlet-name>PreparaNovaMovimentacaoViatura</servlet-name>
+		<servlet-class>
+		controle.PreparaNovaMovimentacaoViatura</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -444,6 +453,10 @@
 	<servlet-mapping>
 		<servlet-name>TotalChamadosPorNatureza</servlet-name>
 		<url-pattern>/TotalChamadosPorNatureza</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PreparaNovaMovimentacaoViatura</servlet-name>
+		<url-pattern>/PreparaNovaMovimentacaoViatura</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
