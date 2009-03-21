@@ -49,6 +49,8 @@ public class LocalizaOcorrencia extends HttpServlet {
 		int operacaoARealizar = Integer.parseInt(request.getParameter("operacaoARealizar"));
 		String municipio = request.getParameter("municipio");
 		String bairro = request.getParameter("bairro");
+		String endereco = request.getParameter("endereco");
+		String numero = request.getParameter("numero");		
 		bairro.toLowerCase();
 		
 		System.out.println("################# Atributo vindo de Regitsrar Chamado  ---- Municipio");
@@ -100,6 +102,9 @@ public class LocalizaOcorrencia extends HttpServlet {
 		request.setAttribute("aproxVitimas", numAproximadoVitimas);
 		request.setAttribute("infoComplementares", infoComplementares);
 		request.setAttribute("nomeObmUsuario", nomeObmUsuario);
+		
+		request.setAttribute("endereco", endereco);
+		request.setAttribute("numero", numero);
 			
 		if(operacaoARealizar == 1){
 			RequestDispatcher view = request.getRequestDispatcher("/MostraMapaLocalOcorrencia.jsp");

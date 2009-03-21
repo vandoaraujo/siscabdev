@@ -14,6 +14,8 @@
 	<SCRIPT LANGUAGE="JavaScript">
 	var cal = new CalendarPopup();
 	</SCRIPT>
+	<link type="text/css" rel="stylesheet" href="css/dhtmlgoodies_calendar.css" media="screen"></LINK>
+	<SCRIPT type="text/javascript" src="js/dhtmlgoodies_calendar.js"></script>
 	
 	
 </head>
@@ -31,12 +33,13 @@
 					 </td>
 				</tr>
 				<tr>
-					<td style="padding-left:20px;">						
+										<td style="padding-left:20px;" colspan="2">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
-					</td>				
-				</tr>
+						<a href="#" onclick="window.close();"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>											
+					</td>
+</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:650px"><legend>&nbsp;Tela de Busca Total de Chamados Por Natureza&nbsp;</legend>
@@ -45,19 +48,20 @@
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Data Inicial:</label></td>
-									<td><input type="text" name="date1"  VALUE="" SIZE=25 />
-									<A HREF="#"
-   									onClick="cal.select(document.forms['example'].date1,'anchor1','MM/dd/yyyy'); return false;"
-   									NAME="anchor1" ID="anchor1">selecione Data Inicial aqui</A>
+									<td style="width:100px">Data Inicial:</td>
+									<td><input type="text" name="date1" readonly="readonly" size=11 VALUE="" klojy,,/>
+									<input type="button" value="..." onclick="displayCalendar(document.forms[0].date1,'dd/mm/yyyy',this)">
 									</td>								
 								</tr>
 								<tr>
-									<td><label>Data Final:</label></td>
-									<td><input name="dataFinal" type="text" /></td>								
+									<td>Data Final:</td>
+									<td><input name="dataFinal"  readonly="readonly" type="text" size=11 value="" />
+									<input type="button" value="..." onclick="displayCalendar(document.forms[0].dataFinal,'dd/mm/yyyy',this)">
+									</td>								
 								</tr>
 								<tr>
-									<td colspan="2">
+									<td></td>
+									<td>
 										<input type="submit" value="Ver Relatório" />
 										</form>	
 										<form action="administracao_usuario.jsp" method="post" style="display:inline;">

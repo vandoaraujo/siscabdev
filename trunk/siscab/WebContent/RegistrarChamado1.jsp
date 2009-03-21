@@ -116,6 +116,10 @@
 											<td>Num aproximado vítimas:</td>
 											<td><input name="numAproximadoVitimas" type="text" size=8></td>
 										</tr>
+										<tr>
+											<td>Endereço / Número:</td>
+											<td><input name="endereco" type="text" size=30><input name="numero" type="text" size=6></td>							
+										</tr>
 										<tr>	
 											<td>Info Complementares:</td>
 											<td><textArea NAME="infoComplementares" COLS=30 ROWS=4></textArea></td>				
