@@ -41,7 +41,7 @@
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>IdViatura:</label></td>
-									<td><input name="registroEventoViatura" type="text" size=10 readonly="readonly" value="${viaturaAtual.id}"/></td>
+									<td><input name="registroEventoViatura" type="text" size=10 readonly="readonly" value="${viaturaAtual}"/></td>
 								</tr>
 								<% String numero = (String) request.getSession().getAttribute("numeroViatura");%>
 								<tr>
@@ -50,16 +50,18 @@
 								</tr>
 								<tr>	
 									<td><label>IdAtendimento:</label></td>
-									<td><input name="registroEventoAtendimento" type="text" size=10  readonly="readonly" value="${atendimento.id}"/></td>
+									<td><input name="registroEventoAtendimento" type="text" size=10  readonly="readonly" value="${atendimentoAtual}"/></td>
 								</tr>
 								<tr>	
 									<td><label>tipo Evento Descricao:</label></td>
 									<td><select name="registroEventoDescricao">
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
-										 TipoEventoViatura t = new TipoEventoViatura();
-									 	 for(String s: t.getTiposEventos()){
-										 out.println("<option>"+s.toString());
+										 List<String> t = (ArrayList)request.getSession().getAttribute("tipoEvento");	
+										 //TipoEventoViatura t = new TipoEventoViatura();
+									 	 for(int i=0;i<t.size();i++){
+										 String tipo = t.get(i).toString();										 	 		 
+										 out.println("<option>"+tipo);
 									 	}
 										out.println("</select>");
 										%>

@@ -34,7 +34,7 @@
 					<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:200px"><legend>&nbsp;Nova Movimentação&nbsp;</legend>
-							<a href="novaMovimentacao.jsp?viaturaAtual=${viaturaAtual.id}&atendimentoAtual=${atendimento.id}">Incluir</a>
+							<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=${viaturaAtual.id}&atendimentoAtual=${atendimento.id}">Incluir</a>
 						</fieldset>										
 					</td>
 				</tr>
