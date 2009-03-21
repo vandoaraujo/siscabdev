@@ -84,11 +84,23 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 			
 			servicosExecutados(request, response,registroAtendimento);
 		}
+		else if(operacao == 7){
+			
+			finalizarChamado(request, response,registroAtendimento);
+		}
+		
 	    
 	    
 					
 	}
 		
+	//Implementar
+	private void finalizarChamado(HttpServletRequest request,
+			HttpServletResponse response, int registroAtendimento) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void servicosExecutados(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
@@ -144,7 +156,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 
 		List <Viatura> viaturas = new ArrayList();
 		
-		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidas2(at.getId());
+		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(at.getId());
 	
 							
 		for(int i=0;i<tiposEventosViatura.size();i++){
