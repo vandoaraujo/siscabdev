@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -20,9 +21,9 @@ public class MovimentaViatura {
 	
 	@Embedded
 	private MovimentaViaturaPK chaveComposta;
-		
+	@Column(name="tipoevento")	
 	private String movimentaviatura_tipoevento;
-	
+	@Column(name="horaevento")
 	private Date movimentaviatura_horaEvento;
 
 	public String getMovimentaviatura_tipoevento() {

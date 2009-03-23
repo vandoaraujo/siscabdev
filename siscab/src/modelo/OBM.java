@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,11 +44,11 @@ public class OBM {
 		private String logradouro;
 		
 		private String numCompl;
-		
-		private float coordX;
-		
-		private float coordY;
-		
+		@Column(name="coordx")
+		private double coordX;
+		@Column(name="coordy")
+		private double coordY;
+		@Column(name="status_obm")
 		private int statusObm;
 		
 		public int getId() {
@@ -106,19 +107,19 @@ public class OBM {
 			this.numCompl = numCompl;
 		}
 
-		public float getCoordX() {
+		public double getCoordX() {
 			return coordX;
 		}
 
-		public void setCoordX(float coordX) {
+		public void setCoordX(double coordX) {
 			this.coordX = coordX;
 		}
 
-		public float getCoordY() {
+		public double getCoordY() {
 			return coordY;
 		}
 
-		public void setCoordY(float coordY) {
+		public void setCoordY(double coordY) {
 			this.coordY = coordY;
 		}
 

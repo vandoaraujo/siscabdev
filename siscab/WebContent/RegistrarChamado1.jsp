@@ -55,15 +55,15 @@
 										</tr>						
 										<tr>
 											<td>Numero gerado:</td>
-											<td><input name="idChamado" type="text" readonly="readonly" value=${idChamado}></td>
+											<td><input name="idChamado" type="text" readonly="readonly" value="${idChamado}"></td>
 										</tr>
 										<tr>
 											<td>Usuário:</td>
-											<td><input name="usuario" type="text" readonly="readonly" value=${usuario.nomeGuerra}></td>
+											<td><input name="usuario" type="text" readonly="readonly" value="${usuario.nomeGuerra}"></td>
 										</tr>
 										<tr>
 											<td>Obm do Usuário:</td>
-											<td><input name="obmUsuario" type="text" readonly="readonly" value=${usuario.obm.nome}></td>
+											<td><input name="obmUsuario" type="text" readonly="readonly" value="${usuario.obm.nome}"></td>
 										</tr>
 										<tr>
 										  	<td>Município:</td>

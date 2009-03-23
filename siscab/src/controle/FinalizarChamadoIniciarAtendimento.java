@@ -63,6 +63,8 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		int identificadorChamado = Integer.parseInt(id);
 		String municipio = request.getParameter("municipio");
 		String bairro = request.getParameter("bairro");
+		String endereco = request.getParameter("endereco");
+		String numero = request.getParameter("numero");
 		
 			
 		GregorianCalendar calendar =  new GregorianCalendar();
@@ -108,6 +110,8 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 			request.setAttribute("bairro", bairro);
 			request.setAttribute("idNumeroAtendimento", identificadorChamado);
 			request.setAttribute("obmAtendimento", obmSolicitada);
+			request.setAttribute("endereco", endereco);
+			request.setAttribute("numero", numero);
 			RequestDispatcher view = request.getRequestDispatcher("/RegistrarAtendimento.jsp");
 			view.forward(request, response);
 		}

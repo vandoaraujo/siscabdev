@@ -81,8 +81,14 @@ public class RegistrarChamado extends HttpServlet {
 			String horaData = grava;
 			
 		
-			Integer id= ChamadoDao.getInstance().listaUltimoId();	
-			id++;
+			Integer id= ChamadoDao.getInstance().listaUltimoId();
+			if(!(id == null)){
+				id++;
+			}
+			else{
+				id=1;
+			}
+			
 				  
 			Usuario u =UsuarioDao.getUsuarioLogado();
 			  		  

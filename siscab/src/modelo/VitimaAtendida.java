@@ -37,7 +37,7 @@ public class VitimaAtendida {
 		private Atendimentos atendimento_id;
 		
 		private int cor;
-		
+		@Column(name="situacaofinal")
 		private int vitima_situacao;
 		
 		private String hospitaldestino;

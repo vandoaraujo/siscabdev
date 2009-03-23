@@ -1,5 +1,6 @@
 package modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,9 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name="numregistro")
 	private int numRegistro;
+	@Column(name="nomeguerra")
 	private String nomeGuerra;
 	private String email;
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -36,6 +39,7 @@ public class Usuario {
 	@JoinColumn(name="perfil_id")
 	private PerfilUsuario perfil;
 	private String senha;
+	@Column(name="status_usuario")
 	private String statusUsu;
 	@Transient
 	private String statusConexao;

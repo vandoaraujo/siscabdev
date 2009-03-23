@@ -46,12 +46,9 @@ public class Viatura {
 		joinColumns=@JoinColumn(name="viatura_id"),
 		inverseJoinColumns=@JoinColumn(name="atendimento_id"))
 		private Collection<Atendimentos> atendimentos;
-
-		
+		@Column(name="obs")
 		private String viatura_obs;
-		
-		
-		// 
+		@Column(name="status_viatura")
 		private String viatura_status;
 
 		public int getId() {
