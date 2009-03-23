@@ -27,8 +27,8 @@ public class CrudOBM extends HttpServlet {
 	private String bairro;
 	private String logradouro;
 	private String numComplemento;
-	private float coordX;
-	private float coordY;
+	private double coordX;
+	private double coordY;
 	private String status;
 	private int statusObm;
 	
@@ -63,8 +63,8 @@ public class CrudOBM extends HttpServlet {
 			 bairro = request.getParameter("bairro");
 			 logradouro = request.getParameter("logradouro");
 			 numComplemento = request.getParameter("numComplemento");
-			 coordX = Float.parseFloat(request.getParameter("coordX"));
-			 coordY = Float.parseFloat(request.getParameter("coordY"));
+			 coordX = Double.parseDouble(request.getParameter("coordX"));
+			 coordY = Double.parseDouble(request.getParameter("coordY"));
 			 status= request.getParameter("statusObm");
 			 		 
 			 if(status.equals("ativa"))

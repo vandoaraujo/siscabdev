@@ -103,6 +103,8 @@
 										<input type="hidden" name="q" id="q" value=">${endereco} ${numero} ${bairro} ${municipio} RJ Brasil ">
 										<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
 										<input type="hidden" name="operacaoARealizar" value ="">
+										<input type="hidden" name="endereco" value ="${endereco}">
+										<input type="hidden" name="numero" value ="${numero}">
 										<input type="hidden" name="registroOcorrencia" value ="1">
 										</td>
 									</tr> 

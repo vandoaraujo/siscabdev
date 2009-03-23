@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,9 +24,9 @@ public class CronoAtendimento {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
-		
+		@Column(name="tipoevento")
 		private String cronoatendimento_tipoevento;
-		
+		@Column(name="horaevento")
 		private Date cronoatendimento_horaevento;
 		
 		@ManyToOne(fetch = FetchType.EAGER)

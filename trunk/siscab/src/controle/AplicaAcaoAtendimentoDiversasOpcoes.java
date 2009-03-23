@@ -97,10 +97,25 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	//Implementar
 	private void finalizarChamado(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
-		// TODO Auto-generated method stub
+		
+		RequestDispatcher view;
+		HttpSession sessao = request.getSession();
+		sessao.setAttribute("registroAtendimento",at.getId());
+		view = request.getRequestDispatcher("/informaModoFechamento.jsp");
+		
+	try {
+		view.forward(request, response);
+	} catch (ServletException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 		
 	}
-
+		
+		
 	private void servicosExecutados(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		

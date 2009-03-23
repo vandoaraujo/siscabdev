@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name="atendimentos")
@@ -27,6 +29,7 @@ public class Atendimentos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name="numero")
 	private int atendimento_numero;
 	
 	@OneToOne
@@ -42,7 +45,8 @@ public class Atendimentos {
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Municipio municipio_id;
-		
+	
+	private int modofechamento_id;	
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="movimentaviatura", schema="siscab",

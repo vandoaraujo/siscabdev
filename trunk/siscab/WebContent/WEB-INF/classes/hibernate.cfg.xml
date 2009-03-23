@@ -33,6 +33,7 @@
   	    <mapping class="modelo.MovimentaViatura"/>
   	    <mapping class="modelo.CronoAtendimento"/>
   	    <mapping class="modelo.PerfilUsuario"/>
+  	    <mapping class="modelo.ModoFechamento"/>
   	    
   	    
   	    

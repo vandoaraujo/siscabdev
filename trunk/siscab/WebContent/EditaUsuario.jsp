@@ -55,7 +55,7 @@
 										<%
 											  List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
 											 for(OBM s: obms){
-										 out.println("<option>"+s.getNome()+"<option>");
+										 		out.println("<option>"+s.getNome());
 											}
 										out.println("</select>");
 										%>
