@@ -40,7 +40,7 @@ public class MunicipioDao {
 
 
 	public List<Municipio> listarTodosMunicipios(){
-		List<Municipio> l = session.createQuery("from modelo.Municipio").list();
+		List<Municipio> l = session.createQuery("from modelo.Municipio order by municipio_nome").list();
 		return l;
 		
 	}

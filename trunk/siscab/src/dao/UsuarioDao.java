@@ -75,6 +75,12 @@ public class UsuarioDao {
                 
         }
         
+        public List<Usuario> buscarNumRegistroRepetido(int numRegistro){
+            
+            List usu = (List<Usuario>) session.createQuery("from modelo.Usuario u where u.numRegistro=:login").setInteger("login", numRegistro).list();
+            return usu;
+        }
+        
         public Usuario buscarUsuario(int numRegistro, String senha){
                 
                 Usuario usu = (Usuario) session.createQuery("from modelo.Usuario u where u.numRegistro=:login and u.senha=:senha").setInteger("login", numRegistro).setString("senha", senha).uniqueResult();

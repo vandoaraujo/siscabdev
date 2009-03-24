@@ -58,23 +58,23 @@
 								<table>
 									<tr>
 										<td>Origem do Chamado:</td>
-										<td><input name="origemChamado" type="text" readonly="readonly" value=${origemChamado}></td>
+										<td><input name="origemChamado" type="text" readonly="readonly" value="${origemChamado}"></td>
 									</tr>
 									<tr>
 										<td>Nome do Solicitante:</td>
-										<td><input name="nomeSolicitante" type="text" readonly="readonly" value=${nomeSolicitante}></td>
+										<td><input name="nomeSolicitante" type="text" readonly="readonly" value="${nomeSolicitante}"></td>
 									</tr>
 									<tr>
 										<td>Telefone:</td>
-										<td><input name="telefone" type="text" readonly="readonly" value=${telefone}></td>
+										<td><input name="telefone" type="text" readonly="readonly" value="${telefone}"></td>
 									</tr>
 									<tr>
 										<td>Número Aproximado de Vitimas:</td>
-										<td><input name="numAproxVitimas" type="text" readonly="readonly" value=${aproxVitimas}></td>
+										<td><input name="numAproxVitimas" type="text" readonly="readonly" value="${aproxVitimas}"></td>
 									</tr>
 									<tr>
 										<td>Obm Solicitada:</td>
-										<td><input name="obmSolicitada" type="text" readonly="readonly" value=${nomeObmUsuario}></td>
+										<td><input name="obmSolicitada" type="text" readonly="readonly" value="${nomeObmUsuario}"></td>
 									</tr>
 									<tr>
 										<td></td>
@@ -97,9 +97,9 @@
 									</tr>
 									<tr>
 										<td>												
-										<input name="bairro" type="hidden" readonly="readonly" value=${bairro}>
-										<input name="infoComplementares" type="hidden" readonly="readonly" value=${infoComplementares}>
-										<input name="numeroChamado" type="hidden" readonly="readonly" value=${numeroChamado}>
+										<input name="bairro" type="hidden" readonly="readonly" value="${bairro}">
+										<input name="infoComplementares" type="hidden" readonly="readonly" value="${infoComplementares}">
+										<input name="numeroChamado" type="hidden" readonly="readonly" value="${numeroChamado}">
 										<input type="hidden" name="q" id="q" value=">${endereco} ${numero} ${bairro} ${municipio} RJ Brasil ">
 										<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
 										<input type="hidden" name="operacaoARealizar" value ="">

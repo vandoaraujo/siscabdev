@@ -73,7 +73,7 @@ public class BuscarUsuario extends HttpServlet {
                 	usu= UsuarioDao.getInstance().procurarUsuariosParametro2(numero);
                 }
                                
-                System.out.println("RESULTADO DA QUERY" + usu.size());
+                System.out.println("RESULTADO DA BUSCA QTD USUÁRIOS " + usu.size());
                                
                 request.setAttribute("usuarios",usu);
                                
