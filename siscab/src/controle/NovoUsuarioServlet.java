@@ -98,18 +98,31 @@ public class NovoUsuarioServlet extends HttpServlet {
 			email = request.getParameter("email");
 			senha = request.getParameter("senha");
 			status = request.getParameter("status");
-	    				
-			//Verifica Duplicidade de Pessoas já cadastradas no BD
-			List<Usuario> usuarios = UsuarioDao.getInstance().listar();
+		
 			
-			for(int it = 0;it<usuarios.size();it++){
-				Usuario usu = usuarios.get(it);
-				if(usu.getNumRegistro() == numRegistro){
+			//Verifica Duplicidade de Pessoas já cadastradas no BD
+			List<Usuario> usuarios = UsuarioDao.getInstance().buscarNumRegistroRepetido(numRegistro);
+			
+			if(!usuarios.isEmpty()){
 					
 					SiscabException siscab = new SiscabException("Usuário já cadastrado com este Numero de Registro!");
-					response.sendRedirect("/siscabException.jsp");
-				}
+					//response.sendRedirect("siscabException.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("/siscabException.jsp");
+					
+										
+					try {
+						view.forward(request, response);
+					} catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						
 			}
+			else{
+			
 					
 			OBM cobm = OBMDao.getInstance().listarOBMNome(obm);
 			
@@ -122,6 +135,8 @@ public class NovoUsuarioServlet extends HttpServlet {
 			
 			PerfilUsuario p = PerfilUsuarioDao.getInstance().listarPerfilNome(perfil);
 			
+			
+			
 			usu.setPerfil(p);
 			usu.setEmail(email);
 			usu.setStatus(status);
@@ -131,7 +146,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 			request.setAttribute("usuario", usu);
 			despacha(request, response,"salvar", usu.getNomeGuerra());
 			
-	
+			}
 			
 		
 	}
@@ -199,6 +214,8 @@ public class NovoUsuarioServlet extends HttpServlet {
 		senha = request.getParameter("senha");
 		status = request.getParameter("status");
 		status.toUpperCase();
+		
+		System.out.println("TEM QUE MODIFICAR O STATUS PARA MAIUSCULO " + status);
 				
 		Usuario usu = UsuarioDao.getInstance().BuscaUsuarioId(registro);
 		usu.setNumRegistro(numRegistro);

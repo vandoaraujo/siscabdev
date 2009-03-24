@@ -47,6 +47,8 @@ public class EditaUsuario extends HttpServlet {
 			
 			request.setAttribute("usuario", usuario);
 			
+			System.out.println(" ########## Status usuario #############" + usuario.getStatus());
+			
 			RequestDispatcher view = request.getRequestDispatcher("EditaUsuario.jsp");
 			try {
 				view.forward(request, response);

@@ -61,7 +61,8 @@
 										%>
 										
 								</tr>
-									<tr><td><label>perfil:</label><td><td> <select name="perfil" >
+									<tr><td><label>perfil:</label></td>
+									<td> <select name="perfil" >
 										<option>ADMINISTRADOR DO SISTEMA 
 										<option selected ><%= usuario.getPerfil().getPerfil_descricao() %> 
 										<option>OPERADOR DA OBM
@@ -72,26 +73,23 @@
 																	
 								</tr>
 								<tr>
-								</tr>
 								<tr>
 									<td><label>Status:</label></td>
 									<td><%  
 									     if(usuario.getStatus().equals("ATIVO")){
 									    %>
 									      	   O perfil atual deste Usuário é Ativo. No momento seu status será trocado para Inativo
-									    	 	Ativo  <input name="status" type="radio" value="Ativo" />
-									    	 	Inativo <input name="status" type="radio" value="Inativo" checked/>
+									    	 	Ativo  <input name="status" type="radio" value="ATIVO" />
+									    	 	Inativo <input name="status" type="radio" value="INATIVO" checked/>
 									    	 	 
 									     <%} else if (usuario.getStatus().equals("INATIVO")){
 									    	 %>
 									    	 O perfil atual deste Usuário é Inativo. No momento seu status será trocado para Ativo
-									    	  	Ativo <input name="status" type="radio" value="Ativo" checked/>
-									    	 	Inativo <input name="status" type="radio" value="Inativo" /> 
+									    	  	Ativo <input name="status" type="radio" value="ATIVO" checked/>
+									    	 	Inativo <input name="status" type="radio" value="INATIVO" /> 
 									    	 
 									     <% }%></td>
 								</tr>
-								
-								
 								<tr>
 									<td><label>Email:</label></td>
 									<td><input name="email" type="text" size="30" value=${usuario.email} /></td>								

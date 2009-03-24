@@ -77,7 +77,12 @@ public class EfetivaAtendimento extends HttpServlet {
 					
 		Integer proxIdAtendimento = AtendimentosDao.getInstance().listaUltimoId();
 		
-		proxIdAtendimento++;
+		if(proxIdAtendimento == null){
+			proxIdAtendimento=1;
+		}
+		else{
+			proxIdAtendimento++;
+		}
 		
 		String concatena = idAno +  Integer.toString(proxIdAtendimento);
 		
@@ -100,6 +105,8 @@ public class EfetivaAtendimento extends HttpServlet {
 		
 		//Busca ultimo chamado na transacao corrente 
 		Chamado chamado = ChamadoDao.getInstance().BuscaChamadoId(idAtendimento);
+		
+		System.out.println("ID CHamado" + chamado.getId());
 		
 		TiposOcorrencia tipoO = TiposOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
 

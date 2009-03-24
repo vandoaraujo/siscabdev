@@ -41,7 +41,7 @@
 						<a href="#" onclick="window.close();"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>
 					</td>				
 				</tr>
-				</table>
+				
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;Registrar Atendimentonbsp;</legend>
@@ -58,9 +58,9 @@
 						
 						
 						
-						<tr>Numero gerado: <input name="idAtendimento" type="text" readonly="readonly" value=${idNumeroAtendimento}></tr><br>
-						<tr>OBM a Prestar Atendimento: <input name="obmAtendimento" type="text" readonly="readonly" value=${obmAtendimento}></tr><br>
-						<tr>Bairro: <input name="bairro" type="text" readonly="readonly" value=<%= request.getAttribute("bairro") %>> </tr><br>
+						<tr>Numero gerado: <input name="idAtendimento" type="text" readonly="readonly" value="${idNumeroAtendimento}"></tr><br>
+						<tr>OBM a Prestar Atendimento: <input name="obmAtendimento" type="text" readonly="readonly" value="${obmAtendimento}"></tr><br>
+						<tr>Bairro: <input name="bairro" type="text" readonly="readonly" value="<%= request.getAttribute("bairro") %>"> </tr><br>
 						<tr>Municipio <select name="municipio">
 						<option><%= municipio %></option>
 						</select>
@@ -84,7 +84,7 @@
 							<tr>Coord X: <input name="coordX" type="text" ></tr><br>
 							<tr>Coord Y: <input name="coordY" type="text"></tr><br>
 							<tr>Logradouro: <input name="logradouro" type="text" size=30 value="${endereco}"><p><br>
-							<tr>Num. Complemento: <input name="numComplemento" type="text" size=10 value"${numero}"></tr><br>
+							<tr>Num. Complemento: <input name="numComplemento" type="text" size=10 value="${numero}"></tr><br>
 								
 							<br>
 					<tr><label>Tipo Ocorrencia:</label>
@@ -108,7 +108,7 @@
     </select></tr><br>
 			
 	<input type="submit" value="Registrar Atendimento">
-	
+	</table>
 </form>
 
 </body>
