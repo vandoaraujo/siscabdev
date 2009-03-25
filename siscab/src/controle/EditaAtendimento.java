@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Atendimentos;
-import dao.AtendimentosDao;
+import modelo.Atendimento;
+import dao.AtendimentoDao;
 
 /**
  * Servlet implementation class EditaAtendimento
@@ -39,7 +39,7 @@ public class EditaAtendimento extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int registro = (Integer.parseInt(request.getParameter("registro")));
-		Atendimentos atendimento = (Atendimentos)AtendimentosDao.getInstance().BuscaAtendimentoAtendimentoNumero(registro);
+		Atendimento atendimento = (Atendimento)AtendimentoDao.getInstance().BuscaAtendimentoAtendimentoNumero(registro);
 		
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("atendimentoAtual", atendimento);

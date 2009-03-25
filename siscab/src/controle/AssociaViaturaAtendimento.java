@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.MovimentaViatura;
 import modelo.MovimentaViaturaPK;
 import modelo.Viatura;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.CronoAtendimentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
@@ -57,7 +57,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		System.out.println("Id da viatura" + idViatura);
 		
 		Viatura v = ViaturaDao.getInstance().BuscaViaturaId(idViatura);		
-		Atendimentos at = (Atendimentos) request.getSession().getAttribute("atendimentoAtual"); 
+		Atendimento at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		
 		v.setViatura_status("Em atendimento");
 		
@@ -89,7 +89,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		
 		//Modifica o Status do Atendimento
 		at.setStatus_atendimento("Em andamento");
-		AtendimentosDao.getInstance().atualizar(at);
+		AtendimentoDao.getInstance().atualizar(at);
 		
 		System.out.println("Atualizou o Atendimento para situacao Status Em andamento");
 		

@@ -1,7 +1,7 @@
-<%@ page import="java.util.*,modelo.TiposOcorrencia,modelo.OBM,modelo.Atendimentos,modelo.Usuario,modelo.NaturezaChamados,modelo.Municipio,dao.OBMDao,modelo.StatusAtendimento,dao.MunicipioDao" %>
+<%@ page import="java.util.*,modelo.TipoOcorrencia,modelo.OBM,modelo.Atendimento,modelo.Usuario,modelo.NaturezaChamado,modelo.Municipio,dao.OBMDao,modelo.StatusAtendimento,dao.MunicipioDao" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="dao.TiposOcorrenciaDao"%><html>
+<%@ page import="dao.TipoOcorrenciaDao"%><html>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,9 +44,9 @@
 						Tela de Tranferência de Atendimento de Obms<br>
 						
 						
-						<%! Atendimentos atendimento=null; String logradouro=null; %>
+						<%! Atendimento atendimento=null; String logradouro=null; %>
 						
-						<% atendimento = (Atendimentos)request.getSession().getAttribute("atendimentoAtual"); %>
+						<% atendimento = (Atendimento)request.getSession().getAttribute("atendimentoAtual"); %>
 						
 						<% logradouro =  atendimento.getLogradouro(); %>
 						
@@ -94,7 +94,7 @@
 						<option selected> <%= atendimento.getTipoocorrencia().getTipoocorrencia_descricao() %>
 						
 							<% 
-							List<TiposOcorrencia> tipos = TiposOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
+							List<TipoOcorrencia> tipos = TipoOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
 							for(int i=0;i<tipos.size();i++){
 								if(!atendimento.getTipoocorrencia().getTipoocorrencia_descricao().equals(tipos.get(i).getTipoocorrencia_descricao().toString())){
 								out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.OBM;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.OBMDao;
 
 /**
@@ -44,7 +44,7 @@ public class RepasseAtendimento extends HttpServlet {
 		int registro = Integer.parseInt(request.getParameter("registro"));
 		int perfilUsuario = Integer.parseInt(request.getParameter("perfilUsuario"));
 		
-		Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registro);
+		Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoId(registro);
 		
 		System.out.println("IMPRIME PERFIL ATUAL USUARIO" + perfilUsuario);
 				

@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.OBM;
 import modelo.Usuario;
 import modelo.VitimaAtendida;
@@ -80,7 +80,7 @@ public class VitimaAtendidaDao {
 	}
 	
 	@Deprecated
-	public VitimaAtendida buscarVitima(Atendimentos at){
+	public VitimaAtendida buscarVitima(Atendimento at){
 		
 		VitimaAtendida vitima = (VitimaAtendida) session.createQuery("atend from modelo.Vitima v, modelo.Atendimentos atend where atend.id = v.atendimento").uniqueResult();
 		return vitima;

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.Usuario,modelo.Atendimentos" %>
+<%@ page import="java.util.*,modelo.Usuario,modelo.Atendimento" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,9 +35,9 @@
 					<td style="padding-left:20px; padding-top:20px;">
 					<fieldset style="width:780px"><legend>&nbsp;Atendimento&nbsp;</legend>
 
-					<%! Atendimentos atendimento=null; %>
+					<%! Atendimento atendimento=null; %>
 					
-					<% atendimento = (Atendimentos) request.getSession().getAttribute("atendimentoAtual"); 
+					<% atendimento = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 					request.getSession().setAttribute("atendimentoAtual", atendimento);
 					%>
 					

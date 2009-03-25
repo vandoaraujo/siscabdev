@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.Usuario;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 
 /**
  * Servlet implementation class AcompanharAtendimentos
@@ -54,7 +54,7 @@ public class AcompanharAtendimentos extends HttpServlet {
 		
 		else{
 		
-		List<Atendimentos> atendimentos = AtendimentosDao.getInstance().listarAtendimentosNaoFinalizados();
+		List<Atendimento> atendimentos = AtendimentoDao.getInstance().listarAtendimentosNaoFinalizados();
 		System.out.println("Busco objetos" + atendimentos);
 		
 		request.setAttribute("atendimentos", atendimentos);

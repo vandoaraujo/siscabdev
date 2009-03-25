@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.MovimentaViatura;
 import modelo.Viatura;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
 
@@ -87,7 +87,7 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 			
 		}
 		
-		Atendimentos atendimentoAtual = AtendimentosDao.getInstance().BuscaAtendimentoId(atendimento);
+		Atendimento atendimentoAtual = AtendimentoDao.getInstance().BuscaAtendimentoId(atendimento);
 				
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("viaturas", viaturas);
@@ -111,7 +111,7 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 	private void listaEventosViatura(int registroViatura, int numeroAtendimento,HttpServletRequest request, HttpServletResponse response) {
 		
 		Viatura via = (Viatura)ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
-		Atendimentos atendimento = (Atendimentos)AtendimentosDao.getInstance().BuscaAtendimentoId(numeroAtendimento);
+		Atendimento atendimento = (Atendimento)AtendimentoDao.getInstance().BuscaAtendimentoId(numeroAtendimento);
 		
 		List<MovimentaViatura> tiposEventosViaturaAtendimento = MovimentaViaturaDao.getInstance().listaTiposEventosViaturaAtendimento(atendimento.getId(), via.getId());
 		

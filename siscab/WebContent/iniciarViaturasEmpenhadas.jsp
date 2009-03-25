@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Viatura,modelo.Atendimentos" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Viatura,modelo.Atendimento" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,7 +12,7 @@
 	<script language="JavaScript" src="js/script.js"></script>
 </head>
 <body>
-<% Atendimentos at = (Atendimentos)	request.getSession().getAttribute("atendimentoAtual");
+<% Atendimento at = (Atendimento)	request.getSession().getAttribute("atendimentoAtual");
 %>
 
 <script language="JavaScript1.2">mmLoadMenus();</script>

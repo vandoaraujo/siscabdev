@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.Usuario;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 
 /**
  * Servlet implementation class TransferirAtendimento
@@ -55,7 +55,7 @@ public class TransferirAtendimento extends HttpServlet {
 			
 			//Passo a OBM do usuário. Se o usuário tem o perfil de controlador do COCB ou atendente do
 			//COCB ele está cadastrado no COCB.
-			List<Atendimentos> at = AtendimentosDao.getInstance().BuscaAtendimentosRedirecionadosAoCOCB(usuario.getObm().getId());
+			List<Atendimento> at = AtendimentoDao.getInstance().BuscaAtendimentosRedirecionadosAoCOCB(usuario.getObm().getId());
 			
 			request.setAttribute("atendimentos", at );
 			request.setAttribute("obm", "COCB");
@@ -65,7 +65,7 @@ public class TransferirAtendimento extends HttpServlet {
 		
 		else if((usuario.getPerfil().getId() == 3)){
 			
-			List<Atendimentos> at = AtendimentosDao.getInstance().BuscaAtendimentosRedirecionadosAoCOCB(usuario.getObm().getId());
+			List<Atendimento> at = AtendimentoDao.getInstance().BuscaAtendimentosRedirecionadosAoCOCB(usuario.getObm().getId());
 			
 			request.setAttribute("atendimentos", at );
 			request.setAttribute("obm", usuario.getObm().getNome());

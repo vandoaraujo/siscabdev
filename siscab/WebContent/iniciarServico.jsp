@@ -34,7 +34,7 @@
 					<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:200px"><legend>&nbsp;Serviços&nbsp;</legend>
-							<a href="novoServico.jsp?registroAtendimento=<%= request.getSession().getAttribute("registroAtendimento")%>">Adicionar Serviço</a>
+							<a href="novoServico.jsp?registroAtendimento=<%= request.getSession().getAttribute("registroAtendimento")%>&numeroAtendimento=<%= request.getSession().getAttribute("numeroAtendimento")%>">Adicionar Serviço</a>
 						</fieldset>										
 					</td>
 				</tr>

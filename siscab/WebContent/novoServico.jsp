@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,dao.TiposServicosDao,dao.VitimaAtendidaDao,modelo.ServicoRealizado, modelo.TiposServicos" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,dao.TipoServicoDao,dao.VitimaAtendidaDao,modelo.ServicoRealizado,modelo.TipoServico" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,22 +43,27 @@
 									<td><label>Tipo Serviço:</label></td>
 									<td>
 										<select name="tipoServico">
-		 								<% 
-											List<TiposServicos> tipos = TiposServicosDao.getInstance().listarTodosTiposServicos();
-											for(int i=0;i<tipos.size();i++){
-												out.print("<option>"+tipos.get(i).getTiposervico_descricao());
-						 				}
-												out.println("</select>");
-									%></td></tr>	
+		 								<%
+		 									List<TipoServico> tipos = TipoServicoDao.getInstance().listarTodosTiposServicos();
+		 																	for(int i=0;i<tipos.size();i++){
+		 																		out.print("<option>"+tipos.get(i).getTiposervico_descricao());
+		 												 				}
+		 																		out.println("</select>");
+		 								%></td></tr>	
+								<tr>	
+									<td><label>Id Atendimento:</label></td>
+									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
+								</tr>
 								<tr>	
 									<td><label>Numero Atendimento:</label></td>
-									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
+									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}"/></td>
 								</tr>
 								<tr>
 									<td colspan="2">
 										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroServico" value ="1">
+								 		
 								 	</form>
 								 		 										
 									</td>								

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Municipio;
-import modelo.NaturezaChamados;
+import modelo.NaturezaChamado;
 import modelo.OBM;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
 
@@ -65,7 +65,7 @@ public class LocalizaOcorrencia extends HttpServlet {
 			
 			
 			Municipio mun = MunicipioDao.getInstance().listarMunicipioNome(municipio);
-			List at = AtendimentosDao.getInstance().listarOcorrenciasProximas(mun.getId(), bairro);
+			List at = AtendimentoDao.getInstance().listarOcorrenciasProximas(mun.getId(), bairro);
 			request.setAttribute("municipio", municipio);
 			request.setAttribute("listaAtendimentosProximos", at);
 		    RequestDispatcher view = request.getRequestDispatcher("/ProcurarOcorrenciasProximas.jsp");

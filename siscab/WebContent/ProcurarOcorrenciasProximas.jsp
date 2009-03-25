@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Atendimentos" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Atendimento" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,7 +36,7 @@
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;Procurar Ocorr&ecirc;ncias Pr&oacute;ximas&nbsp;</legend>							
 							
-							<% ArrayList atendimento=(ArrayList<Atendimentos>) request.getAttribute("listaAtendimentosProximos");
+							<% ArrayList atendimento=(ArrayList<Atendimento>) request.getAttribute("listaAtendimentosProximos");
 							
 							if(atendimento.size()== 0){ %>
 							<h3>Nenhuma ocorr&ecirc;ncia cadastrada para:</h3>
@@ -64,7 +64,7 @@
 							<%
 							
 							for(int i=0;i<atendimento.size();i++){
-									Atendimentos atend =(Atendimentos)atendimento.get(i);
+									Atendimento atend =(Atendimento)atendimento.get(i);
 							   %>																																																
 														
 							<fieldset>	

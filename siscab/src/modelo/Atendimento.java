@@ -19,11 +19,10 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name="atendimentos")
-public class Atendimentos {
+public class Atendimento {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +33,7 @@ public class Atendimentos {
 	
 	@OneToOne
 	@JoinColumn(name="tipoocorrencia_id")
-	private TiposOcorrencia tipoocorrencia;
+	private TipoOcorrencia tipoocorrencia;
 	
 	@OneToOne
 	@JoinColumn(name="chamado_id")
@@ -60,9 +59,9 @@ public class Atendimentos {
 	
 	private int numcompl;
 	
-	private float coordx;
+	private double coordx;
 	
-	private float coordy;
+	private double coordy;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "obm_id", insertable=true, updatable =true)
@@ -93,11 +92,11 @@ public class Atendimentos {
 		this.atendimento_numero = atendimento_numero;
 	}
 
-	public TiposOcorrencia getTipoocorrencia() {
+	public TipoOcorrencia getTipoocorrencia() {
 		return tipoocorrencia;
 	}
 
-	public void setTipoocorrencia(TiposOcorrencia tipoocorrencia) {
+	public void setTipoocorrencia(TipoOcorrencia tipoocorrencia) {
 		this.tipoocorrencia = tipoocorrencia;
 	}
 
@@ -141,19 +140,19 @@ public class Atendimentos {
 		this.numcompl = numcompl;
 	}
 
-	public float getCoordx() {
+	public double getCoordx() {
 		return coordx;
 	}
 
-	public void setCoordx(float coordx) {
+	public void setCoordx(double coordx) {
 		this.coordx = coordx;
 	}
 
-	public float getCoordy() {
+	public double getCoordy() {
 		return coordy;
 	}
 
-	public void setCoordy(float coordy) {
+	public void setCoordy(double coordy) {
 		this.coordy = coordy;
 	}
 

@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.OBM;
 import modelo.PerfilUsuario;
 

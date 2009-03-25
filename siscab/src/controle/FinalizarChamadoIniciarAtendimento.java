@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Chamado;
-import modelo.NaturezaChamados;
+import modelo.NaturezaChamado;
 import modelo.OBM;
 import modelo.Usuario;
 import dao.ChamadoDao;
-import dao.NaturezaChamadosDao;
+import dao.NaturezaChamadoDao;
 import dao.OBMDao;
 
 /**
@@ -93,7 +93,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		//OBM que recebeu aquele chamado, não o atendimento
 		
 		//Busca no banco a Natureza do chamado
-		NaturezaChamados natureza = NaturezaChamadosDao.getInstance().listarTipoNaturezaNome(naturezaChamado);
+		NaturezaChamado natureza = NaturezaChamadoDao.getInstance().listarTipoNaturezaNome(naturezaChamado);
 		chamado.setObm(obmUsuario);
 		chamado.setOrigem(origemChamado);
 		chamado.setTelefoneSolicitante(telefone);

@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.Chamado;
 import modelo.CronoAtendimento;
 import modelo.Municipio;
 import modelo.OBM;
-import modelo.TiposOcorrencia;
-import dao.AtendimentosDao;
+import modelo.TipoOcorrencia;
+import dao.AtendimentoDao;
 import dao.ChamadoDao;
 import dao.CronoAtendimentoDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
-import dao.TiposOcorrenciaDao;
+import dao.TipoOcorrenciaDao;
 
 /**
  * Servlet implementation class EfetivaAtendimento
@@ -68,14 +68,14 @@ public class EfetivaAtendimento extends HttpServlet {
 		String status = request.getParameter("status");
 		
 		//Instancia objeto a ser salvo no BD 
-		Atendimentos atendimento = new Atendimentos();
+		Atendimento atendimento = new Atendimento();
 				
 		GregorianCalendar calendar =  new GregorianCalendar();
 		calendar.add(GregorianCalendar.YEAR, 0);
 		DateFormat formata = new SimpleDateFormat("yyyy");
 		String idAno = formata.format(calendar.getTime());
 					
-		Integer proxIdAtendimento = AtendimentosDao.getInstance().listaUltimoId();
+		Integer proxIdAtendimento = AtendimentoDao.getInstance().listaUltimoId();
 		
 		if(proxIdAtendimento == null){
 			proxIdAtendimento=1;
@@ -108,7 +108,7 @@ public class EfetivaAtendimento extends HttpServlet {
 		
 		System.out.println("ID CHamado" + chamado.getId());
 		
-		TiposOcorrencia tipoO = TiposOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
+		TipoOcorrencia tipoO = TipoOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
 
 		
 		atendimento.setAtendimento_numero(oid);
@@ -124,7 +124,7 @@ public class EfetivaAtendimento extends HttpServlet {
 		atendimento.setTipoocorrencia(tipoO);
 		atendimento.setStatus_atendimento(status);
 		
-		AtendimentosDao.getInstance().salvar(atendimento);
+		AtendimentoDao.getInstance().salvar(atendimento);
 		System.out.println("########### ATENDIMENTO SALVO COM SUCESSO ##############");
 		
 		//Iniciar cronologia do atendimento

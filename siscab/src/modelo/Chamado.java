@@ -30,7 +30,7 @@ public class Chamado {
 	
 	@OneToOne
 	@JoinColumn(name="naturezachamado_id")
-	private NaturezaChamados naturezachamado;
+	private NaturezaChamado naturezachamado;
 	
 	private String origem;
 	
@@ -54,10 +54,10 @@ public class Chamado {
 		
 	static Date data;
 	
-	public NaturezaChamados getNaturezaChamado() {
+	public NaturezaChamado getNaturezaChamado() {
 		return naturezachamado;
 	}
-	public void setNaturezaChamado(NaturezaChamados naturezaChamado) {
+	public void setNaturezaChamado(NaturezaChamado naturezaChamado) {
 		this.naturezachamado = naturezaChamado;
 	}
 	public String getOrigem() {

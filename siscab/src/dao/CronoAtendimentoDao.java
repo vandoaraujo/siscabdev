@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.Usuario;
 import modelo.VitimaAtendida;

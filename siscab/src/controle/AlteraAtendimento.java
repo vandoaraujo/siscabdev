@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.Municipio;
 import modelo.OBM;
-import modelo.TiposOcorrencia;
-import dao.AtendimentosDao;
+import modelo.TipoOcorrencia;
+import dao.AtendimentoDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
-import dao.TiposOcorrenciaDao;
+import dao.TipoOcorrenciaDao;
 
 /**
  * Servlet implementation class AlteraAtendimento
@@ -28,13 +28,13 @@ public class AlteraAtendimento extends HttpServlet {
 	private String bairro;
 	private String logradouro;
 	private int numComplemento;
-	private float coordX;
-	private float coordY;
+	private double coordX;
+	private double coordY;
 	private String status;
 	private String tipoOcorrencia;
 	private int registroId = 0;
 	
-	private Atendimentos atendimento = null;
+	private Atendimento atendimento = null;
 	
        
     /**
@@ -64,12 +64,12 @@ public class AlteraAtendimento extends HttpServlet {
 		 bairro = request.getParameter("bairro");
 		 logradouro = request.getParameter("logradouro");
 		 numComplemento = Integer.parseInt(request.getParameter("numComplemento"));
-		 coordX = Float.parseFloat(request.getParameter("coordX"));
-		 coordY = Float.parseFloat(request.getParameter("coordY"));
+		 coordX = Double.parseDouble(request.getParameter("coordX"));
+		 coordY = Double.parseDouble(request.getParameter("coordY"));
 		 status= request.getParameter("status");
 		 tipoOcorrencia = request.getParameter("tipoOcorrencia");
 		 
-		 atendimento = AtendimentosDao.getInstance().BuscaAtendimentoId(registroId);
+		 atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(registroId);
 		 
 		 int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
   	    //Controle de qual operacao será realizada
@@ -122,7 +122,7 @@ public class AlteraAtendimento extends HttpServlet {
 			HttpServletResponse response, int registro) {
 		
 		int atendimentoNumero = atendimento.getAtendimento_numero();
-		AtendimentosDao.getInstance().deletar(atendimento);
+		AtendimentoDao.getInstance().deletar(atendimento);
 		despacha(request, response, "deletar", atendimentoNumero);
 	}
 
@@ -137,7 +137,7 @@ public class AlteraAtendimento extends HttpServlet {
 		 			
 		OBM obm = OBMDao.getInstance().listarOBMNome(obmPresente);
 		
-		TiposOcorrencia tipoO = TiposOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
+		TipoOcorrencia tipoO = TipoOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
 		
 		atendimento.setObm_id(obm);
 		atendimento.setMunicipio_id(municipioDao);
@@ -149,7 +149,7 @@ public class AlteraAtendimento extends HttpServlet {
 		atendimento.setStatus_atendimento(status);
 		atendimento.setTipoocorrencia(tipoO);
 						
-		AtendimentosDao.getInstance().atualizar(atendimento);
+		AtendimentoDao.getInstance().atualizar(atendimento);
 		request.setAttribute("atendimento", atendimento);
 		despacha(request, response,"alterar", atendimento.getAtendimento_numero());
 		
