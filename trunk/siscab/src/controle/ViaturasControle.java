@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Usuario;
 import modelo.Viatura;
@@ -41,7 +43,7 @@ public class ViaturasControle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
 		if(!(usuario.getPerfil().getId() == 4)){
 			
@@ -53,16 +55,12 @@ public class ViaturasControle extends HttpServlet {
 		
 		else{
 		
-		List viatura = (List<Viatura>) ViaturaDao.getInstance().listar();
-		if(viatura.isEmpty()){
-			System.out.println("Nao há viaturas");
+			List<Viatura> viatura = (List<Viatura>) ViaturaDao.getInstance().listar();
+			
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("viaturas", viatura);
+			view = request.getRequestDispatcher("/listarViaturas.jsp");
 		}
-		request.setAttribute("viaturas", viatura);
-		RequestDispatcher view = request.getRequestDispatcher("/listarViaturas.jsp");
-		view.forward(request, response);
-		
-		}
-		
 		
 		try {
 			view.forward(request, response);

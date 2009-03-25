@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.OBM;
@@ -64,7 +65,8 @@ public class ViaturaDao {
 
 	public List<Viatura> listar(){
 		
-		List<Viatura> l = session.createQuery("from modelo.Viatura").list();
+		List<Viatura> l = new ArrayList();
+		l = session.createQuery("from modelo.Viatura").list();
 		return l;
 		
 	}
