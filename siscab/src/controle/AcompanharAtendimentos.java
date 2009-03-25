@@ -46,7 +46,7 @@ public class AcompanharAtendimentos extends HttpServlet {
 		
 		if(!(usuario.getPerfil().getId() == 3)){
 			
-			request.setAttribute("descricaoServico", "Registrar Chamado");
+			request.setAttribute("descricaoServico", "Acompanhar Atendimento");
 			request.setAttribute("perfil", "Operador da OBM");
 			view = request.getRequestDispatcher("/acessoNegado.jsp");
 			

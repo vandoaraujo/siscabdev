@@ -14,6 +14,8 @@
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
 
+<%!ArrayList<Viatura> viatura=null; %>
+
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
 		<td style="background-image:url(img/cabecalho.jpg); background-repeat:no-repeat;">
@@ -44,10 +46,12 @@
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td>
-									<% ArrayList viatura=(ArrayList<Viatura>) request.getAttribute("viaturas");
+									<% 	
+										viatura=(ArrayList<Viatura>) request.getSession().getAttribute("viaturas");
+															
 									%>
 									
-									<% if(viatura.isEmpty()){ %>
+									<% if(viatura.isEmpty() ){ %>
 									     <div style="color:red"> Nenhuma Viatura cadastrada </div>
 									   
 									<%} else{
