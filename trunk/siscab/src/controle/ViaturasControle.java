@@ -54,7 +54,9 @@ public class ViaturasControle extends HttpServlet {
 		else{
 		
 		List viatura = (List<Viatura>) ViaturaDao.getInstance().listar();
-			
+		if(viatura.isEmpty()){
+			System.out.println("Nao há viaturas");
+		}
 		request.setAttribute("viaturas", viatura);
 		RequestDispatcher view = request.getRequestDispatcher("/listarViaturas.jsp");
 		view.forward(request, response);

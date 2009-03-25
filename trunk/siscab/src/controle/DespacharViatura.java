@@ -48,8 +48,10 @@ public class DespacharViatura extends HttpServlet {
 		List<Viatura> v = (List<Viatura>) ViaturaDao.getInstance().listaViaturasOBMStatusPrecisao(obm_Id);	
 	    //Pegar atendimento atual através do HttpSession
 	    //atendimentoAtual
-	    
+	    String obm = usuario.getObm().getNome();
+		
 		HttpSession sessao = request.getSession();
+		sessao.setAttribute("obm", obm);
 		sessao.setAttribute("viaturasEmProntidao", v);
 		RequestDispatcher view = request.getRequestDispatcher("/listarViaturasProntidao.jsp");
 		

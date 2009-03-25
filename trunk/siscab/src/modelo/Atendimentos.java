@@ -180,6 +180,14 @@ public class Atendimentos {
 	public void setViaturas(Collection<Viatura> viaturas) {
 		this.viaturas = viaturas;
 	}
+
+	public int getModofechamento_id() {
+		return modofechamento_id;
+	}
+
+	public void setModofechamento_id(int modofechamento_id) {
+		this.modofechamento_id = modofechamento_id;
+	}
 	
 	
 }
