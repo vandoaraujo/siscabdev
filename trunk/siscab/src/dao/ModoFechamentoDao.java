@@ -4,7 +4,7 @@ import java.util.List;
 
 import modelo.Chamado;
 import modelo.ModoFechamento;
-import modelo.NaturezaChamados;
+import modelo.NaturezaChamado;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

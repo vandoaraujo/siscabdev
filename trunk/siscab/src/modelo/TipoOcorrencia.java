@@ -9,14 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="naturezaschamados")
-public class NaturezaChamados {
+@Table(name="tiposocorrencias")
+public class TipoOcorrencia {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String naturezachamado_descricao;
+	private String tipoocorrencia_descricao;
 
 	public int getId() {
 		return id;
@@ -26,15 +26,14 @@ public class NaturezaChamados {
 		this.id = id;
 	}
 
-	public String getNaturezachamado_descricao() {
-		return naturezachamado_descricao;
+	public String getTipoocorrencia_descricao() {
+		return tipoocorrencia_descricao;
 	}
 
-	public void setNaturezachamado_descricao(String naturezachamado_descricao) {
-		this.naturezachamado_descricao = naturezachamado_descricao;
+	public void setTipoocorrencia_descricao(String tipoocorrencia_descricao) {
+		this.tipoocorrencia_descricao = tipoocorrencia_descricao;
 	}
-	
-	
-	
 
+	
+	
 }

@@ -28,13 +28,13 @@ public class ServicoRealizado {
 	@JoinColumn(name = "tiposervico_id", insertable=true, updatable =true)
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
-	private TiposServicos tiposervico_id;
+	private TipoServico tiposervico_id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "atendimento_id", insertable=true, updatable =true)
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
-	private Atendimentos atendimento_id;
+	private Atendimento atendimento_id;
 
 	public int getId() {
 		return id;
@@ -44,19 +44,19 @@ public class ServicoRealizado {
 		this.id = id;
 	}
 
-	public TiposServicos getTiposervico() {
+	public TipoServico getTiposervico() {
 		return tiposervico_id;
 	}
 
-	public void setTiposervico(TiposServicos tiposervico) {
+	public void setTiposervico(TipoServico tiposervico) {
 		this.tiposervico_id = tiposervico;
 	}
 
-	public Atendimentos getAtendimentos() {
+	public Atendimento getAtendimentos() {
 		return atendimento_id;
 	}
 
-	public void setAtendimentos(Atendimentos atendimentos) {
+	public void setAtendimentos(Atendimento atendimentos) {
 		this.atendimento_id = atendimentos;
 	}
 	

@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.MovimentaViatura;
 import modelo.MovimentaViaturaPK;
 import modelo.SiscabException;
 import modelo.Viatura;
 import modelo.VitimaAtendida;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.CronoAtendimentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
@@ -37,7 +37,7 @@ public class CrudTipoEvento extends HttpServlet {
 	private String tipoEventoDescricao;
 	private String registroNumeroViatura;
 	
-	Atendimentos atendimentos;
+	Atendimento atendimentos;
 	Viatura viatura;
        
     /**
@@ -104,7 +104,7 @@ public class CrudTipoEvento extends HttpServlet {
 		private void passarPaginaEdicao(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-			atendimentos = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			atendimentos = AtendimentoDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
 			viatura = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
 			//Define relacionamento
 			MovimentaViatura tipoEvento = MovimentaViaturaDao.getInstance().listaUmTipoEventoDaViatura(atendimentos.getId(), viatura.getId(),tipoEventoDescricao);
@@ -183,7 +183,7 @@ public class CrudTipoEvento extends HttpServlet {
 				
 			System.out.println("TIPO EVENTO" +  tipoEventoV);
 					
-			Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
+			Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoId(registroEventoAtendimento);
 			
 			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroEventoViatura);
 			

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.OBM;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.CronoAtendimentoDao;
 import dao.OBMDao;
 
@@ -46,11 +46,11 @@ public class EfetivaRepasseAtendimento extends HttpServlet {
 		String nomeOBM = request.getParameter("obm"); 
 		
 		OBM obm = OBMDao.getInstance().listarOBMNome(nomeOBM);
-		Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoAtendimentoNumero(numeroAtendimento);
+		Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoAtendimentoNumero(numeroAtendimento);
 		
 		at.setObm_id(obm);
 		
-		AtendimentosDao.getInstance().atualizar(at);
+		AtendimentoDao.getInstance().atualizar(at);
 		
 		//Iniciar cronologia do atendimento
 		CronoAtendimento crono =  new CronoAtendimento();

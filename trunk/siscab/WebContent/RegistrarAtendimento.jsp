@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.TiposOcorrencia,dao.TiposOcorrenciaDao,modelo.OBM,modelo.Usuario,modelo.NaturezaChamados,modelo.Municipio,dao.OBMDao,modelo.StatusAtendimento,modelo.TiposOcorrencia" %>
+<%@ page import="java.util.*,modelo.TipoOcorrencia,dao.TipoOcorrenciaDao,modelo.OBM,modelo.Usuario,modelo.NaturezaChamado,modelo.Municipio,dao.OBMDao,modelo.StatusAtendimento,modelo.TipoOcorrencia" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,9 +50,11 @@
 						Tela de Tranferência de Atendimento de Obms<br>
 						
 						
-						<%! String municipio=null; %>
+						<%!String municipio=null;%>
 						
-						<% municipio = (String)request.getAttribute("municipio"); %>
+						<%
+													municipio = (String)request.getAttribute("municipio");
+												%>
 						
 						<form action="EfetivaAtendimento" method="post">
 						
@@ -60,22 +62,25 @@
 						
 						<tr>Numero gerado: <input name="idAtendimento" type="text" readonly="readonly" value="${idNumeroAtendimento}"></tr><br>
 						<tr>OBM a Prestar Atendimento: <input name="obmAtendimento" type="text" readonly="readonly" value="${obmAtendimento}"></tr><br>
-						<tr>Bairro: <input name="bairro" type="text" readonly="readonly" value="<%= request.getAttribute("bairro") %>"> </tr><br>
+						<tr>Bairro: <input name="bairro" type="text" readonly="readonly" value="<%=request.getAttribute("bairro")%>"> </tr><br>
 						<tr>Municipio <select name="municipio">
-						<option><%= municipio %></option>
+						<option><%=municipio%></option>
 						</select>
 							
 							<font color="blue">Você deseja repassar o atendimento para o COCB? </font>	Sim: <input name="radiobutton" type="radio" value="sim" onClick="habilitaCombo('seleciona','s');">
 							Não: <input name="radiobutton" type="radio" value="nao" checked onClick="habilitaCombo('seleciona','n');">
 							
-							<% Usuario usu = (Usuario)getServletContext().getAttribute("usuarioCorrente");
-								if(usu.getPerfil().getId() == 3){
-									%> 
+							<%
+															Usuario usu = (Usuario)getServletContext().getAttribute("usuarioCorrente");
+																																if(usu.getPerfil().getId() == 3){
+														%> 
 									
 							<select name="obmRepassaAtendimento" id="seleciona" disabled="disabled">
 							<option selected>COCB
 										
-								<% } %>
+								<%
+								}
+							%>
 								
 							</option>
 							</select>
@@ -90,14 +95,14 @@
 					<tr><label>Tipo Ocorrencia:</label>
 									<td>
 										<select name="tipoOcorrencia">
-		 								<% 
-											List<TiposOcorrencia> tipos = TiposOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
-											//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
-											for(int i=0;i<tipos.size();i++){
-												out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
-						 				}
-												out.println("</select>");
-									%></td></tr>	
+		 								<%
+		 									List<TipoOcorrencia> tipos = TipoOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
+		 										 																	//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
+		 										 																	for(int i=0;i<tipos.size();i++){
+		 										 																		out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
+		 										 												 				}
+		 										 																		out.println("</select>");
+		 								%></td></tr>	
 		
 		
 		

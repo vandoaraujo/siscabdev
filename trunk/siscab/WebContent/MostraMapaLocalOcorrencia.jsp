@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Chamado,modelo.NaturezaChamados,dao.NaturezaChamadosDao" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Chamado,modelo.NaturezaChamado,dao.NaturezaChamadoDao" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date, java.text.*" %>
+<%@ page import="java.util.Date,java.text.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,9 +50,11 @@
 							</tr>
 						</table>
 	
-						<%! String municipio=null; %>
+						<%!String municipio=null;%>
 						
-						<% municipio = (String)request.getAttribute("municipio"); %>
+						<%
+													municipio = (String)request.getAttribute("municipio");
+												%>
 						
 							<form action="FinalizarChamadoIniciarAtendimento" onsubmit="showAddress(this.address.value); return false" method="post">
 								<table>
@@ -82,18 +84,19 @@
 									<tr>
 										<td>Município:</td>
 										<td><select name="municipio">
-									 					<option><%= municipio %></option>
+									 					<option><%=municipio%></option>
 														</select>
 										</td>
 								    <tr>
 										<td>Natureza Chamado:</td>
 										<td><select name="naturezaChamado">
-			 								<% 
-												List<NaturezaChamados> tipos = NaturezaChamadosDao.getInstance().listarTodasNaturezasChamado();
-												for(int i=0;i<tipos.size();i++){
-													out.print("<option>"+tipos.get(i).getNaturezachamado_descricao());
-							 				}
-													out.println("</select>");%></td>
+			 								<%
+			 									List<NaturezaChamado> tipos = NaturezaChamadoDao.getInstance().listarTodasNaturezasChamado();
+			 									 																		for(int i=0;i<tipos.size();i++){
+			 									 																			out.print("<option>"+tipos.get(i).getNaturezachamado_descricao());
+			 									 													 				}
+			 									 																			out.println("</select>");
+			 								%></td>
 									</tr>
 									<tr>
 										<td>												

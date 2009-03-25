@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.ModoFechamento;
 import modelo.ServicoRealizado;
 import modelo.Viatura;
@@ -28,7 +28,7 @@ import dao.VitimaAtendidaDao;
 public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private Atendimentos at = null;
+	private Atendimento at = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,7 +50,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		at = (Atendimentos) request.getSession().getAttribute("atendimentoAtual"); 
+		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 			
 		System.out.println("FUNCIONA" + at.getId());
 		
@@ -128,6 +128,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		RequestDispatcher view;
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("servicos", servicos);
+		sessao.setAttribute("numeroAtendimento",at.getAtendimento_numero());
 		sessao.setAttribute("registroAtendimento",at.getId());
 		sessao.setAttribute("atendimentoAtual", at);
 		view = request.getRequestDispatcher("/iniciarServico.jsp");

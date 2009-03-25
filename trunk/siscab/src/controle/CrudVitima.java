@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.VitimaAtendida;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.VitimaAtendidaDao;
 
 /**
@@ -88,7 +88,7 @@ public class CrudVitima extends HttpServlet {
 		{
 				
 					
-				Atendimentos atendimento = AtendimentosDao.getInstance().BuscaAtendimentoId(atendimentoAtualId);
+				Atendimento atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(atendimentoAtualId);
 					
 				VitimaAtendida vitima = new VitimaAtendida();
 				vitima.setAtendimento(atendimento);
@@ -197,7 +197,7 @@ public class CrudVitima extends HttpServlet {
 		private void alterar(HttpServletRequest request,
 				HttpServletResponse response, int registroVitima) {
 			
-			Atendimentos atendimento = AtendimentosDao.getInstance().BuscaAtendimentoId(atendimentoAtualId);
+			Atendimento atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(atendimentoAtualId);
 			
 			VitimaAtendida vitima = VitimaAtendidaDao.getInstance().BuscaVitimaId(registroVitima);
 			vitima.setAtendimento(atendimento);

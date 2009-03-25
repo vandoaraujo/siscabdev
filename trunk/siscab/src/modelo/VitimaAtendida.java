@@ -34,7 +34,7 @@ public class VitimaAtendida {
 		@JoinColumn(name = "atendimento_id", insertable=true, updatable =true)
 		@Fetch(FetchMode.JOIN)
 		@Cascade(CascadeType.SAVE_UPDATE)
-		private Atendimentos atendimento_id;
+		private Atendimento atendimento_id;
 		
 		private int cor;
 		@Column(name="situacaofinal")
@@ -74,11 +74,11 @@ public class VitimaAtendida {
 			this.sexo = sexo;
 		}
 
-		public Atendimentos getAtendimento() {
+		public Atendimento getAtendimento() {
 			return atendimento_id;
 		}
 
-		public void setAtendimento(Atendimentos atendimento) {
+		public void setAtendimento(Atendimento atendimento) {
 			this.atendimento_id = atendimento;
 		}
 

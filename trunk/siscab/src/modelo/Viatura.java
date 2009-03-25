@@ -45,7 +45,7 @@ public class Viatura {
 		@JoinTable(name="movimentaviatura", schema="siscab",
 		joinColumns=@JoinColumn(name="viatura_id"),
 		inverseJoinColumns=@JoinColumn(name="atendimento_id"))
-		private Collection<Atendimentos> atendimentos;
+		private Collection<Atendimento> atendimentos;
 		@Column(name="obs")
 		private String viatura_obs;
 		@Column(name="status_viatura")
@@ -99,11 +99,11 @@ public class Viatura {
 			this.viatura_status = viatura_status;
 		}
 
-		public Collection<Atendimentos> getAtendimentos() {
+		public Collection<Atendimento> getAtendimentos() {
 			return atendimentos;
 		}
 
-		public void setAtendimentos(Collection<Atendimentos> atendimentos) {
+		public void setAtendimentos(Collection<Atendimento> atendimentos) {
 			this.atendimentos = atendimentos;
 		}
 		

@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.ModoFechamento;
 import modelo.Viatura;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.ModoFechamentoDao;
 import dao.MovimentaViaturaDao;
 
@@ -87,13 +87,13 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 			HttpServletResponse response, String modoFechamento,
 			int numeroAtendimento) {
 
-		Atendimentos atendimento = AtendimentosDao.getInstance().BuscaAtendimentoId(numeroAtendimento);
+		Atendimento atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(numeroAtendimento);
 		ModoFechamento m = ModoFechamentoDao.getInstance().listarModoFechamentoNome(modoFechamento);
 		atendimento.setModofechamento_id(m.getId());
 		atendimento.setStatus_atendimento("Finalizado");
 		System.out.println(" ############### Setou o modoFechamento");
 		
-		AtendimentosDao.getInstance().atualizar(atendimento);
+		AtendimentoDao.getInstance().atualizar(atendimento);
 		
 		System.out.println(" ############# Atendimento atualizado com sucesso");
 		

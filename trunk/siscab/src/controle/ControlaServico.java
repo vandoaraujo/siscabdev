@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Atendimentos;
+import modelo.Atendimento;
 import modelo.OBM;
 import modelo.ServicoRealizado;
 import modelo.TipoViatura;
-import modelo.TiposServicos;
+import modelo.TipoServico;
 import modelo.Viatura;
-import dao.AtendimentosDao;
+import dao.AtendimentoDao;
 import dao.OBMDao;
 import dao.ServicoRealizadoDao;
 import dao.TipoViaturaDao;
-import dao.TiposServicosDao;
+import dao.TipoServicoDao;
 import dao.ViaturaDao;
 
 /**
@@ -29,6 +29,7 @@ public class ControlaServico extends HttpServlet {
 	private int registroAtendimento;
 	private String tipoServico;
 	private int registroServico;
+	private int numeroAtendimento;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,7 +54,8 @@ public class ControlaServico extends HttpServlet {
 		
 
 		tipoServico = request.getParameter("tipoServico");
-		registroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
+		registroAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
+		numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento")); //nao utilizado
 		registroServico = Integer.parseInt(request.getParameter("registroServico"));
 		int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
 		
@@ -77,10 +79,10 @@ public class ControlaServico extends HttpServlet {
 		protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 				
-				Atendimentos at = AtendimentosDao.getInstance().BuscaAtendimentoId(registroAtendimento);
+				Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoId(registroAtendimento);
 				
 								
-				TiposServicos tipoS = TiposServicosDao.getInstance().listarTipoServicoNome(tipoServico);
+				TipoServico tipoS = TipoServicoDao.getInstance().listarTipoServicoNome(tipoServico);
 					
 				ServicoRealizado servico = new ServicoRealizado();
 				servico.setAtendimentos(at);

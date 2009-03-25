@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.Usuario,modelo.Atendimentos,modelo.OBM" %>
+<%@ page import="java.util.*,modelo.Usuario,modelo.Atendimento,modelo.OBM" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,7 +35,7 @@
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;Repassar Atendimento&nbsp;</legend>
 						<% Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
-						 	Atendimentos at = (Atendimentos) request.getAttribute("atendimentos");	%>	
+						 	Atendimento at = (Atendimento) request.getAttribute("atendimentos");	%>	
 						
 						<form action="EfetivaRepasseAtendimento" method="post">						
 						<table>						
