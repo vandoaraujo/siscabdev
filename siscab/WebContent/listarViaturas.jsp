@@ -47,7 +47,7 @@
 									<% ArrayList viatura=(ArrayList<Viatura>) request.getAttribute("viaturas");
 									%>
 									
-									<% if(viatura.size()== 0){ %>
+									<% if(viatura.isEmpty()){ %>
 									     <div style="color:red"> Nenhuma Viatura cadastrada </div>
 									   
 									<%} else{

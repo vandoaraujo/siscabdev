@@ -55,6 +55,8 @@ public class AcompanharAtendimentos extends HttpServlet {
 		else{
 		
 		List<Atendimentos> atendimentos = AtendimentosDao.getInstance().listarAtendimentosNaoFinalizados();
+		System.out.println("Busco objetos" + atendimentos);
+		
 		request.setAttribute("atendimentos", atendimentos);
 		view = request.getRequestDispatcher("/atendimentosNaoFinalizados.jsp");
 		

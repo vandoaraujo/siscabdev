@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Atendimentos;
-import modelo.MovimentaViatura;
+import modelo.ModoFechamento;
 import modelo.ServicoRealizado;
-import modelo.Usuario;
 import modelo.Viatura;
 import modelo.VitimaAtendida;
+import dao.ModoFechamentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ServicoRealizadoDao;
 import dao.ViaturaDao;
@@ -98,8 +98,11 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private void finalizarChamado(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
+		List<ModoFechamento> modo = ModoFechamentoDao.getInstance().listarTodosModosFechamento();
+		
 		RequestDispatcher view;
 		HttpSession sessao = request.getSession();
+		sessao.setAttribute("modos", modo);
 		sessao.setAttribute("registroAtendimento",at.getId());
 		view = request.getRequestDispatcher("/informaModoFechamento.jsp");
 		

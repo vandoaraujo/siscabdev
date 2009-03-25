@@ -316,10 +316,19 @@
 		<description>
 		</description>
 		<display-name>
+		FinalizaAtendimentoPorModoFechamento</display-name>
+		<servlet-name>FinalizaAtendimentoPorModoFechamento</servlet-name>
+		<servlet-class>
+		controle.FinalizaAtendimentoPorModoFechamento</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
 		PreparaNovaMovimentacaoViatura</display-name>
 		<servlet-name>PreparaNovaMovimentacaoViatura</servlet-name>
 		<servlet-class>
-		controle.PreparaNovaMovimentacaoViatura</servlet-class>
+		PreparaNovaMovimentacaoViatura</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -453,6 +462,10 @@
 	<servlet-mapping>
 		<servlet-name>TotalChamadosPorNatureza</servlet-name>
 		<url-pattern>/TotalChamadosPorNatureza</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FinalizaAtendimentoPorModoFechamento</servlet-name>
+		<url-pattern>/FinalizaAtendimentoPorModoFechamento</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>PreparaNovaMovimentacaoViatura</servlet-name>

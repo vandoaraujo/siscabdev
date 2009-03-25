@@ -43,7 +43,7 @@
 									<td><label>IdViatura:</label></td>
 									<td><input name="registroEventoViatura" type="text" size=10 readonly="readonly" value="${viaturaAtual}"/></td>
 								</tr>
-								<% String numero = (String) request.getSession().getAttribute("numeroViatura");%>
+								<% String numero = (String) request.getAttribute("numeroViatura");%>
 								<tr>
 									<td><label>NumeroViatura:</label></td>
 									<td><input name="numeroViatura" type="text" size=10 readonly="readonly" value="<%= numero %>"/></td>
@@ -57,7 +57,7 @@
 									<td><select name="registroEventoDescricao">
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
-										 List<String> t = (ArrayList)request.getSession().getAttribute("tipoEvento");	
+										 List<String> t = (ArrayList)request.getAttribute("tipoEvento");	
 										 //TipoEventoViatura t = new TipoEventoViatura();
 									 	 for(int i=0;i<t.size();i++){
 										 String tipo = t.get(i).toString();										 	 		 

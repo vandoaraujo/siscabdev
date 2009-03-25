@@ -47,10 +47,13 @@
 									%>
 									
 									<% if(viatura.size()== 0){ %>
-									     <div style="color:red"> Nenhuma Viatura em prontidão </div>
+									     <div style="color:red"> Nenhuma Viatura em prontidão neste momento para a ${obm}! </div>
 									   
 									<%} else{
 										
+										%>
+										<div style="color:red"> Obm:&nbsp;${obm}! </div>
+										<%
 										
 										for(int i=0;i<viatura.size();i++){
 												Viatura via =(Viatura)viatura.get(i);

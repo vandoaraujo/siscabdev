@@ -108,7 +108,7 @@
     </select></tr><br>
 			
 	<input type="submit" value="Registrar Atendimento">
-	</table>
+	
 </form>
 
 </body>
