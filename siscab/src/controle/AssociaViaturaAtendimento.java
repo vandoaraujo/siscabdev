@@ -22,6 +22,7 @@ import modelo.MovimentaViaturaPK;
 import modelo.Viatura;
 import dao.AtendimentoDao;
 import dao.CronoAtendimentoDao;
+import dao.HibernateUtil;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
 
@@ -99,8 +100,11 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		
 		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(at.getId());
 		
+		//Abre uma nova Session em AssociaViaturaAtendimento
+		ViaturaDao.getInstance().abreUmaSessionFluxosExcecao();
+		
 		for(int i=0;i<tiposEventosViatura.size();i++){
-					
+			
 			Viatura via = ViaturaDao.getInstance().BuscaViaturaId(tiposEventosViatura.get(i).getId());
 			viaturas.add(via);
 			

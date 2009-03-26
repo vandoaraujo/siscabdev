@@ -15,16 +15,26 @@ public class ViaturaDao {
 	// Singleton
 	private static ViaturaDao singleton = null;
 	
+	private Transaction t; 
+	
 
 	public static ViaturaDao getInstance(){
-		//if(singleton == null)
-		singleton = new ViaturaDao();
+		if(singleton == null){
+			singleton = new ViaturaDao();
+		}
+		
 		return singleton;
 		
 	}
 	
 	private ViaturaDao(){
 		session = HibernateUtil.getInstance().AbreUmaSession();
+	}
+	
+	public void abreUmaSessionFluxosExcecao(){
+		
+		session = HibernateUtil.getInstance().AbreUmaSession();
+
 	}
 	
 	public void fechaSession(){
@@ -61,6 +71,24 @@ public class ViaturaDao {
 		session.close();
 		System.out.println("ATUALIZADO");
 		
+	}
+	
+	public void iniciaTransacao(){
+		t = session.beginTransaction();
+
+	}
+	
+	public void finalizaTransacao(){
+		
+		t.commit();
+		session.flush();
+		session.close();
+		System.out.println("ATUALIZADO");
+	}
+	
+	public void atualizarDiversasViaturas(Viatura viatura) {
+		
+		session.update(viatura);
 	}
 
 	public List<Viatura> listar(){

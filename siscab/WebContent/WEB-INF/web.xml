@@ -330,6 +330,15 @@
 		<servlet-class>
 		PreparaNovaMovimentacaoViatura</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		LiberarViaturasFecharAtendimento</display-name>
+		<servlet-name>LiberarViaturasFecharAtendimento</servlet-name>
+		<servlet-class>
+		controle.LiberarViaturasFecharAtendimento</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -470,6 +479,10 @@
 	<servlet-mapping>
 		<servlet-name>PreparaNovaMovimentacaoViatura</servlet-name>
 		<url-pattern>/PreparaNovaMovimentacaoViatura</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LiberarViaturasFecharAtendimento</servlet-name>
+		<url-pattern>/LiberarViaturasFecharAtendimento</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Atendimento,modelo.ModoFechamento,dao.TipoServicoDao,dao.VitimaAtendidaDao,modelo.ServicoRealizado" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="modelo.Viatura" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +14,7 @@
 <body>
 
 <script language="JavaScript1.2">mmLoadMenus();</script>
+
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
@@ -34,29 +35,39 @@
 </tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
+						<fieldset style="width:810px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
 							
-							<form action="FinalizaAtendimentoPorModoFechamento" method="post">
+							<form action="LiberarViaturasFecharAtendimento" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Modo de Fechamento:</label></td>
+									<td><label>Este Atendimento Possui as seguintes viaturas alocadas a ele no momento e serão liberadas após o fechamento deste atendimento</label></td>
+								</tr>
+								<tr>	
 									<td>
-										<select name="modoFechamento">
-		 								<% 
-											List<ModoFechamento> tipos =(List<ModoFechamento>) request.getSession().getAttribute("modos");
-											for(int i=0;i<tipos.size();i++){
-												out.print("<option>"+tipos.get(i).getDescricao());
+									<br>
+									<% 
+											List<Viatura> viatura =(List<Viatura>) request.getSession().getAttribute("viaturas"); 
+
+											for(int i=0;i<viatura.size();i++){
+												out.print("Número da Viatura: " + viatura.get(i).getNumero());
+												%><br>
+												<%
+												out.println("Status: " + viatura.get(i).getViatura_status());
 						 				}
-												out.println("</select>");
+												
 									%></td></tr>	
 								<tr>	
-									<td><label>Id Atendimento:</label></td>
-									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
+									<td><label>Modo do Fechamento</label></td>
+									<td><input name="modoFechamento" type="text" size=5 readonly="readonly" value="${modoFechamento}"/></td>
 								</tr>
 								<tr>	
 									<td><label>Numero Atendimento:</label></td>
 									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}"/></td>
+								</tr>
+								<tr>	
+									<td><label>Id Atendimento:</label></td>
+									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${idAtendimento}"/></td>
 								</tr>
 								
 								<tr>

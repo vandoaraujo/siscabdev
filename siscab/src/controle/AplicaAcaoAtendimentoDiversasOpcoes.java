@@ -104,6 +104,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("modos", modo);
 		sessao.setAttribute("registroAtendimento",at.getId());
+		sessao.setAttribute("numeroAtendimento", at.getAtendimento_numero());
 		view = request.getRequestDispatcher("/informaModoFechamento.jsp");
 		
 	try {
