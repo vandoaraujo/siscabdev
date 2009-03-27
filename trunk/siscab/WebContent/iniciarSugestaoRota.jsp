@@ -10,7 +10,7 @@
 	<script language="JavaScript" src="js/script.js"></script>
 </head>
 <body>
-EM CONSTRUCAO!
+EM CONSTRUCAO! AGUARDANDO IMPLEMENTACAO DO BRUNO! GOOGLE MAPS!
 
 </body>
 </html>
