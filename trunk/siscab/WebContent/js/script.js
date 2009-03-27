@@ -32,3 +32,8 @@ function mmLoadMenus() {
 
   mm_menu_0217221648_0.writeMenus();
 } // mmLoadMenus()
+
+
+function fechar(){
+	window.close();
+}
