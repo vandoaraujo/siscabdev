@@ -204,7 +204,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	}
 		
 	}
-	
+
 	private void sugestaoRota(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		

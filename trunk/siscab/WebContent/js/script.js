@@ -21,9 +21,9 @@ function mmLoadMenus() {
   mm_menu_0217221434_0.menuBorderBgColor='#777777';
 
   window.mm_menu_0217221648_0 = new Menu("root",200,19,"Trebuchet MS",13,"#FFFFFF","#000000","#5557A7","#BABBDC","left","middle",5,1,1000,-5,7,true,false,true,0,true,true);
-  mm_menu_0217221648_0.addMenuItem("Situação&nbsp;Atendimentos","location='IniciaSituacaoAtendimentosOBM'");
+  mm_menu_0217221648_0.addMenuItem("Situação&nbsp;Atendimentos");
   mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Chamados&nbsp;por&nbsp;Natureza","location='IniciaTotalChamadosPorNatureza'");
-  mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Atendimentos","location='iniciaTotalAtendimentosPorModoFechamento.jsp'");
+  mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Atendimentos");
   mm_menu_0217221648_0.hideOnMouseOut=true;
   mm_menu_0217221648_0.bgColor='#555555';
   mm_menu_0217221648_0.menuBorder=1;
