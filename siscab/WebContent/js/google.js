@@ -24,6 +24,7 @@ var message  = null;
 var q        = document.getElementById("q");
 
 function init() {
+	var CoordX, CoordY;
 	if (GBrowserIsCompatible()) {
 		map = new GMap2(document.getElementById("map_canvas"));
 		map.setCenter(new GLatLng(-22.9049164, -43.1098755), 16);
@@ -90,5 +91,11 @@ function addAddressesToMap(addresses) {
 	                        + accuracies[accuracy].desc + ")"  + "<br/>"
 	         + "LatLng: " + point.lat() + ", " + point.lng();
 
+	CoordX  = point.lat();
+	CoordY  = point.lng();
+
+	document.getElementById("CoordX").innerHTML = CoordX;
+	document.getElementById("CoordY").innerHTML = CoordY;
+	
 	document.getElementById("details").innerHTML = details;
 }

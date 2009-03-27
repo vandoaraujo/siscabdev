@@ -339,24 +339,6 @@
 		<servlet-class>
 		controle.LiberarViaturasFecharAtendimento</servlet-class>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>
-		TotalAtendimentosPorModoFechamento</display-name>
-		<servlet-name>TotalAtendimentosPorModoFechamento</servlet-name>
-		<servlet-class>
-		controle.TotalAtendimentosPorModoFechamento</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>
-		IniciaSituacaoAtendimentosOBM</display-name>
-		<servlet-name>IniciaSituacaoAtendimentosOBM</servlet-name>
-		<servlet-class>
-		controle.IniciaSituacaoAtendimentosOBM</servlet-class>
-	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -501,14 +483,6 @@
 	<servlet-mapping>
 		<servlet-name>LiberarViaturasFecharAtendimento</servlet-name>
 		<url-pattern>/LiberarViaturasFecharAtendimento</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>TotalAtendimentosPorModoFechamento</servlet-name>
-		<url-pattern>/TotalAtendimentosPorModoFechamento</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>IniciaSituacaoAtendimentosOBM</servlet-name>
-		<url-pattern>/IniciaSituacaoAtendimentosOBM</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
