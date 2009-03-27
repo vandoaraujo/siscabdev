@@ -35,39 +35,41 @@
 </tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:810px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
+						<fieldset style="width:750px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
 							
 							<form action="LiberarViaturasFecharAtendimento" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Este Atendimento Possui as seguintes viaturas alocadas a ele no momento e serão liberadas após o fechamento deste atendimento</label></td>
+									<td><label>Este Atendimento possui as seguintes viaturas abaixo alocadas e serão liberadas após o fechamento deste atendimento</label></td>
 								</tr>
 								<tr>	
 									<td>
-									<br>
 									<% 
 											List<Viatura> viatura =(List<Viatura>) request.getSession().getAttribute("viaturas"); 
 
 											for(int i=0;i<viatura.size();i++){
-												out.print("Número da Viatura: " + viatura.get(i).getNumero());
-												%><br>
+												%><font color="green"> 
+												<%out.print("* Número da Viatura: " + viatura.get(i).getNumero());
+												%> - </font><font color="red">
 												<%
 												out.println("Status: " + viatura.get(i).getViatura_status());
+												%><br></font> <%
 						 				}
 												
 									%></td></tr>	
 								<tr>	
-									<td><label>Modo do Fechamento</label></td>
-									<td><input name="modoFechamento" type="text" size=5 readonly="readonly" value="${modoFechamento}"/></td>
+									<td><label style="COLOR: #0000a0;">Modo do Fechamento</label></td>
+									<td><input name="modoFechamento" type="text" size=5 readonly="readonly" value="${modoFechamento}" style=" width : 138px;"/></td>
 								</tr>
 								<tr>	
-									<td><label>Numero Atendimento:</label></td>
-									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}"/></td>
+									<td><label style="COLOR: #0000a0;">Numero Atendimento:</label></td>
+									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}" style=" width : 138px;"/></td>
 								</tr>
-								<tr>	
-									<td><label>Id Atendimento:</label></td>
-									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${idAtendimento}"/></td>
+								<tr>
+										
+									<td><label style="COLOR: #0000a0;">Id Atendimento:</label></td>
+									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${idAtendimento}" style=" width : 138px;"/></td>
 								</tr>
 								
 								<tr>

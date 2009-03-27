@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Atendimento;
+import modelo.CronoAtendimento;
 import modelo.ModoFechamento;
 import modelo.Viatura;
 import dao.AtendimentoDao;
+import dao.CronoAtendimentoDao;
 import dao.ModoFechamentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
@@ -46,7 +49,10 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 		String modoFechamento = request.getParameter("modoFechamento");
 		int numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
 		int idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
-		List<Viatura> viaturas = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(numeroAtendimento);
+		List<Viatura> viaturas = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(idAtendimento);
+		
+		System.out.println("Numero de viaturas Classe LIberarViaturaFechamento: " + viaturas.size());
+
 		
 		//Inicia transacao
 		ViaturaDao.getInstance().iniciaTransacao();
@@ -56,7 +62,7 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 			Viatura v = viaturas.get(i);
 			v.setViatura_status("Em prontidão");
 			ViaturaDao.getInstance().atualizarDiversasViaturas(v);
-			System.out.println("Atualizou" + i+1 + "viatura");
+			System.out.println(" ############ Atualizou " + " viatura   ################");
 		}
 		
 		//Finaliza Transacao
@@ -79,7 +85,17 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 		
 		AtendimentoDao.getInstance().atualizar(atendimento);
 		
-		System.out.println(" ############# Atendimento atualizado com sucesso");
+		System.out.println(" ############# Atendimento atualizado e finalizado com sucesso");
+		
+		//Iniciar cronologia do atendimento
+		CronoAtendimento crono =  new CronoAtendimento();
+		crono.setAtendimento_id(atendimento);
+		crono.setCronoatendimento_tipoevento("finalização");
+		crono.setCronoatendimento_horaevento(new Date());
+		
+		CronoAtendimentoDao.getInstance().salvar(crono);
+		
+		System.out.println(" ############# Seta Cronologia do Atendimento - Finalizacao");
 		
 			
 		RequestDispatcher view;

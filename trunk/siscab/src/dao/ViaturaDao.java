@@ -69,7 +69,7 @@ public class ViaturaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		System.out.println("Viatura Atualizada");
 		
 	}
 	
@@ -81,14 +81,16 @@ public class ViaturaDao {
 	public void finalizaTransacao(){
 		
 		t.commit();
-		session.flush();
+		session.flush();	
 		session.close();
-		System.out.println("ATUALIZADO");
+		System.out.println("Viaturas Atualizadas");
 	}
 	
 	public void atualizarDiversasViaturas(Viatura viatura) {
 		
 		session.update(viatura);
+		
+		
 	}
 
 	public List<Viatura> listar(){

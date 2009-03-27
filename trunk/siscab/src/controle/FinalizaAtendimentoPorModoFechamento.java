@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Atendimento;
+import modelo.CronoAtendimento;
 import modelo.ModoFechamento;
 import modelo.Viatura;
 import dao.AtendimentoDao;
+import dao.CronoAtendimentoDao;
 import dao.ModoFechamentoDao;
 import dao.MovimentaViaturaDao;
 
@@ -50,6 +53,8 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 		List<Viatura> viatura = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(idAtendimento);
 		
 		if(viatura.isEmpty()){
+			
+			System.out.println("Numero de viaturas Classe Finaliza Atendimento: " + viatura.size());
 			
 			efetivaFinalizacaoAtendimento(request,response,modoFechamento,idAtendimento);
 			
@@ -100,7 +105,17 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 		
 		AtendimentoDao.getInstance().atualizar(atendimento);
 		
-		System.out.println(" ############# Atendimento atualizado com sucesso");
+		System.out.println(" ############# Atendimento atualizado  e finalizado com sucesso");
+		
+		//Iniciar cronologia do atendimento
+		CronoAtendimento crono =  new CronoAtendimento();
+		crono.setAtendimento_id(atendimento);
+		crono.setCronoatendimento_tipoevento("finalização");
+		crono.setCronoatendimento_horaevento(new Date());
+		
+		CronoAtendimentoDao.getInstance().salvar(crono);
+		
+		System.out.println(" ############# Seta Cronologia do Atendimento - Finalizacao");
 		
 			
 		RequestDispatcher view;
