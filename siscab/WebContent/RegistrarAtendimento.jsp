@@ -38,114 +38,83 @@
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
-						<a href="#" onclick="fechar()"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>
+						<a href="#" onclick="window.close();"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>
 					</td>				
 				</tr>
 				
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Registrar Atendimento&nbsp;</legend>
+						<fieldset style="width:450px"><legend>&nbsp;Registrar Atendimentonbsp;</legend>
 						Obs: O presente Chamado possui uma Natureza de Solicitação de Socorro.<br>
 						
 						Tela de Tranferência de Atendimento de Obms<br>
 						
 						
-						<%!String municipio=null;
+						<%!String municipio=null;%>
 						
-						%>
-						
-						<% municipio = (String)request.getAttribute("municipio"); %>
+						<%
+													municipio = (String)request.getAttribute("municipio");
+												%>
 						
 						<form action="EfetivaAtendimento" method="post">
-						<table>
-							<tr>							
-								<td>Numero gerado:</td>
-								<td><input name="idAtendimento" type="text" readonly="readonly" value="${idNumeroAtendimento}"></td>
-							</tr>
-							<tr>
-								<td>OBM a Prestar Atendimento:</td>
-								<td><input name="obmAtendimento" type="text" readonly="readonly" value="${obmAtendimento}"></td>
-							</tr>
-							<tr>
-								<td>Bairro:</td>
-								<td><input name="bairro" type="text" readonly="readonly" value="<%=request.getAttribute("bairro")%>"></td>
-							</tr>
-							<tr>
-								<td>Municipio:</td>
-								<td><select name="municipio">
-									<option><%=municipio%></option>
-									</select>
-								</td>
-							<tr>
-								<td colspan="2">
-								<font color="blue">Você deseja repassar o atendimento para o COCB? </font>	
-								Sim: <input name="radiobutton" type="radio" value="sim" onClick="habilitaCombo('seleciona','s');">
-								Não: <input name="radiobutton" type="radio" value="nao" checked onClick="habilitaCombo('seleciona','n');">
-								</td>
-							<tr>
-								<td><% Usuario usu = (Usuario)getServletContext().getAttribute("usuarioCorrente");
-										if(usu.getPerfil().getId() == 3){
-									%> 
-								</td>
-								<td>									
-									<select name="obmRepassaAtendimento" id="seleciona" disabled="disabled">
-									<option selected>COCB
-												
-										<%
-										}
-									%>
+						
+						
+						
+						<tr>Numero gerado: <input name="idAtendimento" type="text" readonly="readonly" value="${idNumeroAtendimento}"></tr><br>
+						<tr>OBM a Prestar Atendimento: <input name="obmAtendimento" type="text" readonly="readonly" value="${obmAtendimento}"></tr><br>
+						<tr>Bairro: <input name="bairro" type="text" readonly="readonly" value="<%=request.getAttribute("bairro")%>"> </tr><br>
+						<tr>Municipio <select name="municipio">
+						<option><%=municipio%></option>
+						</select>
+							
+							<font color="blue">Você deseja repassar o atendimento para o COCB? </font>	Sim: <input name="radiobutton" type="radio" value="sim" onClick="habilitaCombo('seleciona','s');">
+							Não: <input name="radiobutton" type="radio" value="nao" checked onClick="habilitaCombo('seleciona','n');">
+							
+							<%
+															Usuario usu = (Usuario)getServletContext().getAttribute("usuarioCorrente");
+																																if(usu.getPerfil().getId() == 3){
+														%> 
+									
+							<select name="obmRepassaAtendimento" id="seleciona" disabled="disabled">
+							<option selected>COCB
 										
-									</option>
-									</select>
-								</td>
+								<%
+								}
+							%>
+								
+							</option>
+							</select>
 							</tr>
-							<tr>
-								<td>Coord X:</td>
-								<td><input name="coordX" type="text" readonly="readonly" value="<%=request.getParameter("hiddenCoordX")%>"></td>
-							</tr>
-							<tr>
-								<td>Coord Y:</td>
-								<td><input name="coordY" type="text" readonly="readonly" value="<%=request.getParameter("hiddenCoordY")%>"></td>
-							</tr>
-							<tr>
-								<td>Logradouro:</td>
-								<td><input name="logradouro" type="text" size=30 value="${endereco}"></td>
-							<tr>
-								<td>Num. Complemento:</td>
-								<td><input name="numComplemento" type="text" size=10 value="${numero}"></td>
-							</tr>
-							<tr>
-								<td>Tipo Ocorrencia:</td>
-								<td><select name="tipoOcorrencia">
-			 						<%
-			 						List<TipoOcorrencia> tipos = TipoOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
-									//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
-									for(int i=0;i<tipos.size();i++){
-										out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
-				 					}
-									out.println("</select>");
-			 						%>
-			 					</td>
-			 				</tr>	
-							<tr>
-								<td>Status do Atendimento:</td>	
-								<td><select name="status">
-									<option> Pendente
-							    	</select>
-							    </td>
-							</tr>
-							<tr>
-								<td colspan="2"><input type="submit" value="Registrar Atendimento"></td>
-							</tr>
-							</table>
-							</form>
-						</fieldset>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>							
+							<br>
+							<tr>Coord X: <input name="coordX" type="text" ></tr><br>
+							<tr>Coord Y: <input name="coordY" type="text"></tr><br>
+							<tr>Logradouro: <input name="logradouro" type="text" size=30 value="${endereco}"><p><br>
+							<tr>Num. Complemento: <input name="numComplemento" type="text" size=10 value="${numero}"></tr><br>
+								
+							<br>
+					<tr><label>Tipo Ocorrencia:</label>
+									<td>
+										<select name="tipoOcorrencia">
+		 								<%
+		 									List<TipoOcorrencia> tipos = TipoOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
+		 										 																	//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
+		 										 																	for(int i=0;i<tipos.size();i++){
+		 										 																		out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
+		 										 												 				}
+		 										 																		out.println("</select>");
+		 								%></td></tr>	
+		
+		
+		
+	<tr>
+	Status do Atendimento:<br>	
+	<select name="status">
+	<option> Pendente
+    </select></tr><br>
+			
+	<input type="submit" value="Registrar Atendimento">
 	
+</form>
+
 </body>
 </html>

@@ -8,16 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ChamadoDao;
+
 /**
- * Servlet implementation class IniciaTotalChamadosPorNatureza
+ * Servlet implementation class TotalAtendimentosPorModoFechamento
  */
-public class IniciaTotalChamadosPorNatureza extends HttpServlet {
+public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciaTotalChamadosPorNatureza() {
+    public TotalAtendimentosPorModoFechamento() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,10 +36,18 @@ public class IniciaTotalChamadosPorNatureza extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+		String dataInicial = request.getParameter("dataInicial");
+		String dataFinal = request.getParameter("dataFinal");
 		
-		RequestDispatcher view;
-		view = request.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
+		ChamadoDao.getInstance().listarTodosChamados();
+		
 				
+		RequestDispatcher view;
+		
+		view = request.getRequestDispatcher("/relatorioTotalAtendimentosPorModoFechamento.jsp");
+		
+		
 		try {
 			view.forward(request, response);
 		} catch (ServletException e) {
@@ -45,8 +55,11 @@ public class IniciaTotalChamadosPorNatureza extends HttpServlet {
 			e.printStackTrace();
 		} catch (IOException e) {
 		// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		e.printStackTrace();
+	}
+		
+	
+		
 	}
 
 }

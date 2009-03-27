@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class IniciaTotalChamadosPorNatureza
+ * Servlet implementation class IniciaSituacaoAtendimentosOBM
  */
-public class IniciaTotalChamadosPorNatureza extends HttpServlet {
+public class IniciaSituacaoAtendimentosOBM extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciaTotalChamadosPorNatureza() {
+    public IniciaSituacaoAtendimentosOBM() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,9 +34,8 @@ public class IniciaTotalChamadosPorNatureza extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		RequestDispatcher view;
-		view = request.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
+		view = request.getRequestDispatcher("/painelSituacaoAtendimentos.jsp");
 				
 		try {
 			view.forward(request, response);
@@ -48,5 +47,6 @@ public class IniciaTotalChamadosPorNatureza extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
 
 }
