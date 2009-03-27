@@ -30,7 +30,7 @@ public class ServletLogin extends HttpServlet {
     
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-		HibernateUtil h = HibernateUtil.getInstance();
+		
 		    
     }
 
@@ -47,6 +47,8 @@ public class ServletLogin extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		//Faz chamada ao Banco de Dados instanciando uma SessionFactory
+		
+		HibernateUtil h = HibernateUtil.getInstance();
 		
 		String registro = request.getParameter("numRegistro");
 		String senha = request.getParameter("senha");
