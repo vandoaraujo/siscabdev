@@ -25,13 +25,13 @@
 					 </td>
 				</tr>
 				<tr>
-										<td style="padding-left:20px;" colspan="2">						
+					<td style="padding-left:20px;" colspan="2">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<a href="#" onclick="fechar()"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>											
 					</td>
-</tr>
+				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;Incluir Servico&nbsp;</legend>
@@ -45,11 +45,13 @@
 										<select name="tipoServico">
 		 								<%
 		 									List<TipoServico> tipos = TipoServicoDao.getInstance().listarTodosTiposServicos();
-		 																	for(int i=0;i<tipos.size();i++){
-		 																		out.print("<option>"+tipos.get(i).getTiposervico_descricao());
-		 												 				}
-		 																		out.println("</select>");
-		 								%></td></tr>	
+											for(int i=0;i<tipos.size();i++){
+												out.print("<option>"+tipos.get(i).getTiposervico_descricao());
+						 					}
+												out.println("</select>");
+		 								%>
+		 							</td>
+		 						</tr>	
 								<tr>	
 									<td><label>Id Atendimento:</label></td>
 									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
@@ -63,12 +65,12 @@
 										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroServico" value ="1">
-								 		
-								 	</form>
-								 		 										
 									</td>								
 								</tr>
-								<tr>																																							
+								</table>
+							</form>
+						</fieldset>
+						</td>																																							
 					</tr>				
 			</table>
 		</td>

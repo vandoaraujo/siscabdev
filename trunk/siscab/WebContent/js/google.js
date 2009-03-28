@@ -24,7 +24,6 @@ var message  = null;
 var q        = document.getElementById("q");
 
 function init() {
-	var CoordX, CoordY;
 	if (GBrowserIsCompatible()) {
 		map = new GMap2(document.getElementById("map_canvas"));
 		map.setCenter(new GLatLng(-22.9049164, -43.1098755), 16);

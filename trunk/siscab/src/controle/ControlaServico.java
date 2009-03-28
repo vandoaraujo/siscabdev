@@ -57,8 +57,7 @@ public class ControlaServico extends HttpServlet {
 		registroAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
 		numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento")); //nao utilizado
 		registroServico = Integer.parseInt(request.getParameter("registroServico"));
-		int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
-		
+		int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));	
 		
 		if(operacao == 1){
 				

@@ -24,13 +24,13 @@
 					 </td>
 				</tr>
 				<tr>
-										<td style="padding-left:20px;" colspan="2">						
+					<td style="padding-left:20px;" colspan="2">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<a href="#" onclick="fechar()"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>											
 					</td>
-</tr>
+				</tr>
 					<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:200px"><legend>&nbsp;Vitima&nbsp;</legend>
@@ -56,28 +56,22 @@
 										for(int i=0;i<vitimas.size();i++){
 												VitimaAtendida vitima =(VitimaAtendida)vitimas.get(i);
 												 %> 
-									    
-									    <tr>
-									    <td>
-									    <div>     
-									    
-									    <%= i+1 %> :: <a href="EditaVitima?registro=<%=vitima.getId()%>&atendimentoAtual=<%=vitima.getAtendimento().getId()%>">Nome: <%= vitima.getNome()%> SituacaoVitima: <%= vitima.getVitima_situacao()%></a><br>
-									    </div>
-									    </td>
-									    </tr>
-									   <%} 
-										
-										
-									}%>
-									</td>								
-								</tr>
+									</td>    
+							    <tr>
+								    <td>									    
+								    	<%= i+1 %> :: <a href="EditaVitima?registro=<%=vitima.getId()%>&atendimentoAtual=<%=vitima.getAtendimento().getId()%>">Nome: <%= vitima.getNome()%> SituacaoVitima: <%= vitima.getVitima_situacao()%></a><br>
+								    </td>
+							    </tr>
+									   <%} 	
+										}%>								
 								<tr>
 									<td>																		
-										<form action="paginaPrincipal.jsp" method="post">
+										<form action="AcompanharAtendimentos" method="post">
 							 				<input type="submit" value="Voltar"/>
 							 			</form>	
 									</td>								
 								</tr>
+								</table>
 						</fieldset>	
 					</td>
 				</tr>				
