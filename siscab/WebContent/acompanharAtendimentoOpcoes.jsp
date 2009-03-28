@@ -57,9 +57,10 @@
 						<tr>
 							<td><div style="color:red">Logradouro:</div></td>
 							<td><div style="color:blue"><%= atendimento.getLogradouro() %></div></td>
-						</tr>
+						</tr>											
 						<tr>
 							<td colspan="2">
+							    <input type="hidden" name="q" id="q" value="><%= atendimento.getLogradouro() %> <%= atendimento.getNumcompl() %> <%= atendimento.getBairro() %> <%= atendimento.getMunicipio_id().getMunicipio_nome() %> RJ Brasil ">
 								<input type="submit" value="Editar" onclick="this.form.operacaoARealizar.value=2"/>
 								<input type="submit" value="Sugestão de Rota" onclick="this.form.operacaoARealizar.value=3"/>
 								<input type="submit" value="Viaturas Empenhadas" onclick="this.form.operacaoARealizar.value=4"/>
@@ -67,7 +68,10 @@
 								<input type="submit" value="Servicos Executados" onclick="this.form.operacaoARealizar.value=6"/>
 								<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=7"/>							
 								<input type="hidden" name="operacaoARealizar" value ="">
-								<input type="hidden" name="registroAtendimento" value = <%= atendimento.getAtendimento_numero() %>>
+								<input type="hidden" name="registroAtendimento" value = "<%= atendimento.getAtendimento_numero() %>"/>
+								<form action="AcompanharAtendimentos" method="post" style="display:inline;">
+					 				<input type="submit" value="Voltar"/>
+					 			</form>	
 							</td>
 						</tr>
 					</table>

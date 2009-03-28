@@ -22,67 +22,64 @@
 				<tr style="height:139px;">
 					<td align="right" style="padding-right:20px;">  	
 					 		<img src="img/logo.png">	 	
-					 </td>
+					</td>
 				</tr>
 				<tr>
-										<td style="padding-left:20px;" colspan="2">						
+					<td style="padding-left:20px;" colspan="2">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<a href="#" onclick="fechar()"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>											
 					</td>
-</tr>
+				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 	
-	<div style="width:450px"><legend>&nbsp;${mensagem}&nbsp;</legend></div>						
-					
+						<div style="width:450px"><legend>&nbsp;${mensagem}&nbsp;</legend></div>											
 					
 						<fieldset style="width:450px"><legend>&nbsp;Lista de Viaturas Em prontidão&nbsp;</legend>						
-								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<form action="AssociaViaturaAtendimento" method="post">
-								<tr>
-									<td>
-									<% ArrayList viatura=(ArrayList<Viatura>) request.getSession().getAttribute("viaturasEmProntidao");
-									%>
-									
-									<% if(viatura.size()== 0){ %>
-									     <div style="color:red"> Nenhuma Viatura em prontidão neste momento para a ${obm}! </div>
-									   
-									<%} else{
-										
-										%>
-										<div style="color:red"> Obm:&nbsp;${obm}! </div>
-										<%
-										
-										for(int i=0;i<viatura.size();i++){
-												Viatura via =(Viatura)viatura.get(i);
-												 %> 
-									    
-									    <tr>
-									    <% idViatura = via.getId(); %>
-									    <td>
-									    <div>
-									    <input type="radio" name="viatura" value="<%= idViatura %>" /> Descrição <%=via.getTipo_viatura().getTipoviatura_descricao() %> Número Viatura: <%= via.getNumero() %> <P>
-									    </div>
-									    </td>
-									    </tr>
-									    <tr>
-									  <%} 
-										
-										
-									}%>
-									<% if(viatura.size()!= 0){ %>
-									     
+								<table border="0" cellpadding="0" cellspacing="3" width="100%">								
 									<tr>
-									<td colspan="2">
-										<input type="submit" value="Despachar Viatura" />
-									</td>								
+										<td>
+										<% ArrayList viatura=(ArrayList<Viatura>) request.getSession().getAttribute("viaturasEmProntidao");
+										%>
+										
+										<% if(viatura.size()== 0){ %>
+										     <div style="color:red"> Nenhuma Viatura em prontidão neste momento para a ${obm}</div>
+										   
+										<%} else{
+											
+											%>
+											<div style="color:red"> Obm:&nbsp;${obm}! </div>
+											<%
+											
+											for(int i=0;i<viatura.size();i++){
+													Viatura via =(Viatura)viatura.get(i);
+													 %> 
+										</td>
 									</tr>
-									   
+									<% idViatura = via.getId(); %>
+									<tr>										
+										<td>
+											<input type="radio" name="viatura" value="<%= idViatura %>" /> Descrição <%=via.getTipo_viatura().getTipoviatura_descricao() %> Número Viatura: <%= via.getNumero() %>
+										</td>
+									</tr>
+									<tr>
+										  <%} 
+											
+											
+										}%>
+										<% if(viatura.size()!= 0){ %>
+										     
+									<tr>
+										<td colspan="2">
+											<input type="submit" value="Despachar Viatura" />
+										</td>								
+									</tr>
+										   
 									<%}%>
-									</td>								
-								</tr>
+								</table>
 								</form>	
 						</fieldset>	
 					</td>

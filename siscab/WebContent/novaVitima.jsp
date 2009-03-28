@@ -25,13 +25,13 @@
 					 </td>
 				</tr>
 				<tr>
-										<td style="padding-left:20px;" colspan="2">						
+					<td style="padding-left:20px;" colspan="2">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<a href="#" onclick="fechar()"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>											
 					</td>
-</tr>
+				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;Incluir Vitima&nbsp;</legend>
@@ -41,23 +41,37 @@
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
-									<td><input name="nome" type="text" size=40/></td>
+									<td colspan="8"><input name="nome" type="text" size=40/></td>
 								</tr>
 								<tr>	
 									<td><label>Idade:</label></td>
-									<td><input name="idade" type="text" size=3 maxlength="3"/></td>
+									<td colspan="8"><input name="idade" type="text" size=3 maxlength="3"/></td>
 								</tr>
 								<tr>	
 									<td><label>Sexo:</label></td>
-									<td>F<input name="sexo" type="radio" value="F" checked/> M<input name="sexo" type="radio" value="M"/></td>
+									<td width="10px"><input name="sexo" type="radio" value="F" checked/></td>
+									<td>F</td>
+									<td width="10px"><input name="sexo" type="radio" value="M"/></td>
+									<td colspan="5">M</td>
+									
 								</tr>
 								<tr>	
 									<td><label>Cor:</label></td>
-									<td>1- Branca <input name="cor" type="radio" value="branca" checked/> 2 - Parda<input name="cor" type="radio" value="parda"/> 3 - Amarela<input name="cor" type="radio" value="amarela"/>4 - Negra<input name="cor" type="radio" value="negra"/></td>
+									<td width="10px"><input name="cor" type="radio" value="branca" checked/></td>
+									<td>Branca</td>
+									
+									<td width="10px"><input name="cor" type="radio" value="parda"/></td>
+									<td>Parda</td>
+									
+									<td width="10px"><input name="cor" type="radio" value="amarela"/></td>
+									<td>Amarela</td>
+									
+									<td width="10px"><input name="cor" type="radio" value="negra"/></td>
+									<td>Negra</td>									
 								</tr>
 								<tr>	
 									<td><label>Situacao Vitima:</label></td>
-									<td><select name="situacaoVitima">
+									<td colspan="8"><select name="situacaoVitima">
 									<option>1 - Recusou Atendimento</option>
 									<option>2 - Entregue ao hospital</option>
 									<option>3 - Permaneceu no local após ser atendida</option>
@@ -68,10 +82,10 @@
 								</tr>
 								<tr>	
 									<td><label>Hospital Destino:</label></td>
-									<td><input name="hospital" type="text" size=40/></td>
+									<td colspan="8"><input name="hospital" type="text" size=40/></td>
 								</tr>
 								<tr>
-									<td colspan="2">
+									<td colspan="9">
 										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroVitima" value ="1">

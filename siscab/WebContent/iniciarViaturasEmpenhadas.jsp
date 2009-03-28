@@ -87,8 +87,8 @@
 								</tr>
 								<tr>
 									<td>																		
-										<form action="paginaPrincipal.jsp" method="post">
-							 				<input type="submit" value="Voltar Página Principal"/>
+										<form action="AcompanharAtendimentos" method="post">
+							 				<input type="submit" value="Voltar"/>
 							 			</form>	
 									</td>								
 								</tr>
