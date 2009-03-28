@@ -54,13 +54,17 @@ Sair do sistema (Todos) --- OK!
 Revisão do capítulo 2
 
 
-############################
+######### BY BRUNO ###################
 
 Fechar Google Maps RealizaChamado --- OK!
 Terminar os htmls e os css das telas já realizadas --- FALTA AS NOVAS TELAS
 Javascripts --- POR ULTIMO
 
 Registrar Chamado = OK (inclusão de gravação de coordenadas no banco de dados)
+
+UC-26 FINALIZADO.
+
+Seguindo para UC-16
 
 ############################
 
