@@ -49,8 +49,8 @@
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td style="width:100px">Data Inicial:</td>
-									<td><input type="text" name="date1" readonly="readonly" size=11 VALUE="" klojy,,/>
-									<input type="button" value="..." onclick="displayCalendar(document.forms[0].date1,'dd/mm/yyyy',this)">
+									<td><input type="text" name="dataInicial" readonly="readonly" size=11 VALUE="" klojy,,/>
+									<input type="button" value="..." onclick="displayCalendar(document.forms[0].dataInicial,'dd/mm/yyyy',this)">
 									</td>								
 								</tr>
 								<tr>
