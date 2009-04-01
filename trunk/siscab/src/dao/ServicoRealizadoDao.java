@@ -13,15 +13,11 @@ public class ServicoRealizadoDao {
 	
 	
 	private static Session session;
-	// Singleton
-	private static ServicoRealizadoDao singleton = null;
+	private static ServicoRealizadoDao instance = null;
 	
 	public static ServicoRealizadoDao getInstance(){
-		//Verificar sessoes...
-		//if(singleton == null)
-		
-		singleton = new ServicoRealizadoDao();
-		return singleton;
+		instance = new ServicoRealizadoDao();
+		return instance;
 		
 	}
 	

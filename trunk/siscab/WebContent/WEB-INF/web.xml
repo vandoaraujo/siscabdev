@@ -328,7 +328,7 @@
 		PreparaNovaMovimentacaoViatura</display-name>
 		<servlet-name>PreparaNovaMovimentacaoViatura</servlet-name>
 		<servlet-class>
-		PreparaNovaMovimentacaoViatura</servlet-class>
+		controle.PreparaNovaMovimentacaoViatura</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
@@ -338,6 +338,15 @@
 		<servlet-name>LiberarViaturasFecharAtendimento</servlet-name>
 		<servlet-class>
 		controle.LiberarViaturasFecharAtendimento</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		Logoff</display-name>
+		<servlet-name>Logoff</servlet-name>
+		<servlet-class>
+		controle.Logoff</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -483,6 +492,10 @@
 	<servlet-mapping>
 		<servlet-name>LiberarViaturasFecharAtendimento</servlet-name>
 		<url-pattern>/LiberarViaturasFecharAtendimento</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Logoff</servlet-name>
+		<url-pattern>/Logoff</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

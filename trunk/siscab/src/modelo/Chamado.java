@@ -117,7 +117,7 @@ public class Chamado {
 		this.horatermino = horatermino;
 	}
 	
-	public static void pegaDataInicialChamado(){
+	public static void retornaDataInicialChamado(){
 		
 		GregorianCalendar calendar =  new GregorianCalendar();
 		calendar.add(GregorianCalendar.MONTH, 0);

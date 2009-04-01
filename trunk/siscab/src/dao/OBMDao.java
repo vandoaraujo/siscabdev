@@ -12,13 +12,11 @@ import org.hibernate.Transaction;
 public class OBMDao {
 
 	private static Session session;
-	// Singleton
-	private static OBMDao singleton = null;
-	
+	private static OBMDao instance = null;
 	
 	public static OBMDao getInstance(){
-		singleton = new OBMDao();
-		return singleton;
+		instance = new OBMDao();
+		return instance;
 		
 	}
 	
