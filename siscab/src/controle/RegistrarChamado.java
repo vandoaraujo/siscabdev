@@ -49,17 +49,6 @@ public class RegistrarChamado extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
-		/*Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
-		
-		if(!(usuario.getPerfil().getId() == 3)){
-			
-			request.setAttribute("descricaoServico", "Registrar Chamado");
-			request.setAttribute("perfil", "Operador da OBM");
-			view = request.getRequestDispatcher("/acessoNegado.jsp");
-			
-		}*/
-		
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
 		if((!(usuario.getPerfil().getId() == 2)) && (!(usuario.getPerfil().getId() == 3))){
@@ -71,31 +60,18 @@ public class RegistrarChamado extends HttpServlet {
 		}
 		
 		else{
-		
-			GregorianCalendar calendar =  new GregorianCalendar();
-			calendar.add(GregorianCalendar.MONTH, 0);
-			calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
-			calendar.add(GregorianCalendar.MINUTE, 0);
-			DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-			String grava = formata.format(calendar.getTime());
-			String horaData = grava;
 			
-		
-			Integer id= ChamadoDao.getInstance().listaUltimoId();
-			if(!(id == null)){
-				id++;
-			}
-			else{
-				id=1;
-			}
 			
-				  
+			String horaData = informaHoraChamado();
+		
+			Integer id = listaProximoId();
+										  
 			Usuario u =UsuarioDao.getUsuarioLogado();
 			  		  
 			List<Municipio> municipios = (List<Municipio>)MunicipioDao.getInstance().listarTodosMunicipios();
 					  		  
 			  //Artificio para guardar a hora inicial
-			Chamado.pegaDataInicialChamado();		  
+			Chamado.retornaDataInicialChamado();		  
 			  
 			request.setAttribute("municipios", municipios);
 			request.setAttribute("usuario", u);
@@ -116,5 +92,31 @@ public class RegistrarChamado extends HttpServlet {
 			}
 			
 		}
+
+	private Integer listaProximoId() {
+		
+		Integer id= ChamadoDao.getInstance().listaUltimoId();
+		if(!(id == null)){
+			id++;
+		}
+		else{
+			id=1;
+		}
+		
+		return id;
+		
+	}
+
+	private String informaHoraChamado() {
+
+		GregorianCalendar calendar =  new GregorianCalendar();
+		calendar.add(GregorianCalendar.MONTH, 0);
+		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
+		calendar.add(GregorianCalendar.MINUTE, 0);
+		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		String grava = formata.format(calendar.getTime());
+		String horaData = grava;
+		return horaData;
+	}
 			
 }

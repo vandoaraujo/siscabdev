@@ -41,8 +41,7 @@ public class ServletNovoUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
-		
-		
+				
 		List<PerfilUsuario> perfil = PerfilUsuarioDao.getInstance().listarTodosPerfis();
 		
 		request.setAttribute("perfil", perfil);

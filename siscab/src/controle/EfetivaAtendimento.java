@@ -69,12 +69,12 @@ public class EfetivaAtendimento extends HttpServlet {
 		
 		//Instancia objeto a ser salvo no BD 
 		Atendimento atendimento = new Atendimento();
-				
-		GregorianCalendar calendar =  new GregorianCalendar();
-		calendar.add(GregorianCalendar.YEAR, 0);
+		
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.add(GregorianCalendar.YEAR,0);
 		DateFormat formata = new SimpleDateFormat("yyyy");
 		String idAno = formata.format(calendar.getTime());
-					
+				
 		Integer proxIdAtendimento = AtendimentoDao.getInstance().listaUltimoId();
 		
 		if(proxIdAtendimento == null){
@@ -84,7 +84,7 @@ public class EfetivaAtendimento extends HttpServlet {
 			proxIdAtendimento++;
 		}
 		
-		String concatena = idAno +  Integer.toString(proxIdAtendimento);
+		String concatena = idAno + Integer.toString(proxIdAtendimento);
 		
 		int oid = Integer.parseInt(concatena);
 		

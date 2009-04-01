@@ -41,13 +41,9 @@ public class EditaUsuario extends HttpServlet {
 		
 			Integer id = Integer.parseInt(request.getParameter("registro"));
 						
-			System.out.println("IMPRIME!!!!!!!!!!! ####################### "+ id);
-			
 			Usuario usuario = UsuarioDao.getInstance().BuscaUsuarioId(id); 
 			
 			request.setAttribute("usuario", usuario);
-			
-			System.out.println(" ########## Status usuario #############" + usuario.getStatus());
 			
 			RequestDispatcher view = request.getRequestDispatcher("EditaUsuario.jsp");
 			try {
