@@ -12,12 +12,12 @@ public class TipoOcorrenciaDao {
 
 	private static Session session;
 	// Singleton
-	private static TipoOcorrenciaDao singleton = null;
+	private static TipoOcorrenciaDao instance = null;
 	
 	
 	public static TipoOcorrenciaDao getInstance(){
-		singleton = new TipoOcorrenciaDao();
-		return singleton;
+		instance = new TipoOcorrenciaDao();
+		return instance;
 		
 	}
 	

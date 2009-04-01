@@ -15,15 +15,11 @@ import org.hibernate.criterion.Restrictions;
 public class VitimaAtendidaDao {
 
 	private static Session session;
-	// Singleton
-	private static VitimaAtendidaDao singleton = null;
+	private static VitimaAtendidaDao instance = null;
 	
 	public static VitimaAtendidaDao getInstance(){
-		//Verificar sessoes...
-		//if(singleton == null)
-		
-		singleton = new VitimaAtendidaDao();
-		return singleton;
+		instance = new VitimaAtendidaDao();
+		return instance;
 		
 	}
 	

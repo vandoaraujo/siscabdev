@@ -13,13 +13,11 @@ public class ModoFechamentoDao {
 	
 	
 	private static Session session;
-	// Singleton
-	private static ModoFechamentoDao singleton = null;
-	
+	private static ModoFechamentoDao instance = null;
 	
 	public static ModoFechamentoDao getInstance(){
-		singleton = new ModoFechamentoDao();
-		return singleton;
+		instance = new ModoFechamentoDao();
+		return instance;
 		
 	}
 	

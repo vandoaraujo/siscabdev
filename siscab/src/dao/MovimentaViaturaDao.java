@@ -16,15 +16,11 @@ public class MovimentaViaturaDao {
 
 		
 	private static Session session;
-	// Singleton
-	private static MovimentaViaturaDao singleton = null;
+	private static MovimentaViaturaDao instance = null;
 	
 	public static MovimentaViaturaDao getInstance(){
-		//Verificar sessoes...
-		//if(singleton == null)
-		
-		singleton = new MovimentaViaturaDao();
-		return singleton;
+		instance = new MovimentaViaturaDao();
+		return instance;
 		
 	}
 	

@@ -12,13 +12,11 @@ import org.hibernate.Transaction;
 public class ChamadoDao {
 
 	private static Session session;
-	// Singleton
-	private static ChamadoDao singleton = null;
-	
+	private static ChamadoDao instance = null;
 	
 	public static ChamadoDao getInstance(){
-		singleton = new ChamadoDao();
-		return singleton;
+		instance = new ChamadoDao();
+		return instance;
 		
 	}
 	

@@ -13,13 +13,11 @@ public class PerfilUsuarioDao {
 	
 	
 	private static Session session;
-	// Singleton
-	private static PerfilUsuarioDao singleton = null;
-	
+	private static PerfilUsuarioDao instance = null;
 	
 	public static PerfilUsuarioDao getInstance(){
-		singleton = new PerfilUsuarioDao();
-		return singleton;
+		instance = new PerfilUsuarioDao();
+		return instance;
 		
 	}
 	

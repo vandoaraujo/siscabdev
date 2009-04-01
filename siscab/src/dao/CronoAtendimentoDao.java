@@ -2,11 +2,9 @@ package dao;
 
 import java.util.List;
 
-import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.Usuario;
 import modelo.VitimaAtendida;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,15 +13,11 @@ import org.hibernate.criterion.Restrictions;
 public class CronoAtendimentoDao {
 	
 	private static Session session;
-	// Singleton
-	private static CronoAtendimentoDao singleton = null;
+	private static CronoAtendimentoDao instance = null;
 	
 	public static CronoAtendimentoDao getInstance(){
-		//Verificar sessoes...
-		//if(singleton == null)
-		
-		singleton = new CronoAtendimentoDao();
-		return singleton;
+		instance = new CronoAtendimentoDao();
+		return instance;
 		
 	}
 	

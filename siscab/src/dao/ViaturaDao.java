@@ -12,19 +12,14 @@ import org.hibernate.Transaction;
 public class ViaturaDao {
 
 	private static Session session;
-	// Singleton
-	private static ViaturaDao singleton = null;
+	private static ViaturaDao instance = null;
 	
 	private Transaction t; 
 	
 
 	public static ViaturaDao getInstance(){
-		if(singleton == null){
-			singleton = new ViaturaDao();
-		}
-		
-		return singleton;
-		
+		instance = new ViaturaDao();
+		return instance;
 	}
 	
 	private ViaturaDao(){

@@ -65,6 +65,11 @@ function validate()
 												<input type="submit" name="evento" value="Login">
 											</td>
 										</tr>
+										<tr>
+											<td colspan="2" class="campo_centralizado">
+												<font color=red> ${mensagem}</font>
+											</td>
+										</tr>
 									</table>
 								</td>
 							</tr>

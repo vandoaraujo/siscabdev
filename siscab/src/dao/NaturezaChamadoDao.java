@@ -11,13 +11,11 @@ import org.hibernate.Transaction;
 public class NaturezaChamadoDao {
 	
 	private static Session session;
-	// Singleton
-	private static NaturezaChamadoDao singleton = null;
-	
-	
+	private static NaturezaChamadoDao instance = null;
+		
 	public static NaturezaChamadoDao getInstance(){
-		singleton = new NaturezaChamadoDao();
-		return singleton;
+		instance = new NaturezaChamadoDao();
+		return instance;
 		
 	}
 	

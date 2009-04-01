@@ -14,18 +14,12 @@ import org.hibernate.criterion.Restrictions;
 public class UsuarioDao {
         
         private static Session session;
-        // Singleton
-        private static UsuarioDao singleton = null;
-        
+        private static UsuarioDao instance = null;
         private static Usuario usuarioLogado;
-        
-        
+               
         public static UsuarioDao getInstance(){
-                //Verificar sessoes...
-                //if(singleton == null)
-                
-                singleton = new UsuarioDao();
-                return singleton;
+             instance = new UsuarioDao();
+             return instance;
                 
         }
         
@@ -94,46 +88,17 @@ public class UsuarioDao {
                 return usu;             
                 
         }
-        
-        public Usuario listarUmUsuarioNome(String nome){
-                                
-                Criteria c = session.createCriteria(Usuario.class);
-                c.add(Restrictions.like("nome", nome));
-                
-                Usuario p = (Usuario) c.setMaxResults(1);
-                return p;               
-                
-        }
-        
-        public int listarUltimoId(){
-                
-                Integer idMax =  (Integer) session.createQuery("select max(numRegistro) from Usuario").uniqueResult();
-                return idMax;
-                
-        }
 
-        @Deprecated
-        public List<Usuario> procurarUsuariosParametro(Integer registro, String nomeGuerra) {
-        
-                List<Usuario> usu = (List<Usuario>) session.createQuery("from modelo.Usuario u where u.nomeGuerra=:nome or u.numRegistro=:registro")
-                .setString("nome", '%'+nomeGuerra+'%').setInteger("registro",'%'+registro+'%').list();  
-                return usu;
-        }
-        @Deprecated
-        public List<Usuario> procurarUsuariosParametro1(Integer registro, String nomeGuerra) {
-                
-                Criteria c = session.createCriteria(Usuario.class);
-                c.add(Restrictions.or(Restrictions.like("nomeGuerra", '%'+ nomeGuerra + '%'),Restrictions.like("numRegistro", '%'+registro+'%')));
-                
-                List<Usuario> usu = (List<Usuario>)c.list();
-                return usu;
-                
-        }
-        
         public List<Usuario> procurarUsuariosParametro1(String nomeGuerra) {
                 
                 List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("nomeGuerra like '" +nomeGuerra+ "%'")).list();
                 return usuario;
+        }
+        
+        public List<Usuario> buscarUsuariosOBM(int obm){
+            
+            List usu = (List<Usuario>) session.createQuery("from modelo.Usuario u where u.obm=:obm").setInteger("obm", obm).list();
+            return usu;
         }
         
         public List<Usuario> procurarUsuariosParametro2(Integer registro) {
@@ -142,17 +107,9 @@ public class UsuarioDao {
                 return usuario;
         }
         
-                
-        public List<OBM> procurarUsuariosParametro3(String nomeObm) {
-
-                List<OBM> Pegaobm = session.createCriteria(OBM.class).add(Restrictions.sqlRestriction("nome like '" +nomeObm+ "%'")).list();
-
-                return Pegaobm;
-                }
-        
         public List<Usuario> procurarUsuariosParametro4(String perfil) {
                 
-                List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("perfil like '" +perfil+ "%'")).list();
+                List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("perfil_id like '" +perfil+ "%'")).list();
                 return usuario;
         }
         

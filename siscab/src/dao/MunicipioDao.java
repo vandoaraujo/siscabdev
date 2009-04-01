@@ -8,13 +8,11 @@ import org.hibernate.Transaction;
 public class MunicipioDao {
 	
 	private static Session session;
-	// Singleton
-	private static MunicipioDao singleton = null;
-	
+	private static MunicipioDao instance = null;
 	
 	public static MunicipioDao getInstance(){
-		singleton = new MunicipioDao();
-		return singleton;
+		instance = new MunicipioDao();
+		return instance;
 		
 	}
 	

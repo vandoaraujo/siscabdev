@@ -12,13 +12,11 @@ import org.hibernate.Transaction;
 public class AtendimentoDao {
 
 		private static Session session;
-		// Singleton
-		private static AtendimentoDao singleton = null;
-		
+		private static AtendimentoDao instance = null;
 		
 		public static AtendimentoDao getInstance(){
-			singleton = new AtendimentoDao();
-			return singleton;
+			instance = new AtendimentoDao();
+			return instance;
 			
 		}
 		

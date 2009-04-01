@@ -11,13 +11,11 @@ import org.hibernate.Transaction;
 public class TipoServicoDao {
 	
 	private static Session session;
-	// Singleton
-	private static TipoServicoDao singleton = null;
-	
-	
+	private static TipoServicoDao instance = null;
+		
 	public static TipoServicoDao getInstance(){
-		singleton = new TipoServicoDao();
-		return singleton;
+		instance = new TipoServicoDao();
+		return instance;
 		
 	}
 	
