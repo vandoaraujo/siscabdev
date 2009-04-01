@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import dao.UsuarioDao;
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Usuario usu = null;
+	HibernateUtil h = null;
 	     
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,10 +31,12 @@ public class ServletLogin extends HttpServlet {
         super();
     }
     
+	   
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-		
-		    
+        
+        h = HibernateUtil.getInstance();
+			    
     }
 
 	/**
@@ -47,8 +52,6 @@ public class ServletLogin extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		//Faz chamada ao Banco de Dados instanciando uma SessionFactory
-		
-		HibernateUtil h = HibernateUtil.getInstance();
 		
 		String registro = request.getParameter("numRegistro");
 		String senha = request.getParameter("senha");
@@ -69,6 +72,12 @@ public class ServletLogin extends HttpServlet {
 			validaUsuario(request,usu,response);
 			
 		}
+		else {
+			
+			request.setAttribute("mensagem", "É necessário preencher usuário e senha");
+			RequestDispatcher view = request.getRequestDispatcher("/dadosIncompletos.jsp");
+			view.forward(request, response);
+		}
 		
 	
 	}
@@ -77,8 +86,6 @@ public class ServletLogin extends HttpServlet {
 		
 		if(registro.equals("") || senha.equals("")){
 			
-			request.setAttribute("mensagem", "É necessário preencher usuário e senha");
-			response.sendRedirect("/dadosIncompletos.jsp");
 			return false;
 		}
 		
@@ -89,20 +96,13 @@ public class ServletLogin extends HttpServlet {
 
 	public void validaUsuario(HttpServletRequest req, Usuario usu, HttpServletResponse response) throws ServletException, IOException{
 		
-
-		/*	1, 'Administrador do Sistema'
-			2, 'Atendente do COCB'
-			3, 'Operador da OBM'
-			4, 'Controlador do COCB'
-			5, 'Comandante' */
-		
-		
 		UsuarioDao.getInstance().fechaSession();		
 		
 		
 		if(usu == null)
 		{	
-			RequestDispatcher view = req.getRequestDispatcher("/usuarioNaoEncontrado.jsp");
+			req.setAttribute("mensagem", "Login e/ou senha inválido!");
+			RequestDispatcher view = req.getRequestDispatcher("/home.jsp");
 			view.forward(req, response);
 			
 		}
@@ -126,5 +126,7 @@ public class ServletLogin extends HttpServlet {
 		}
 							
 		}
+
+
 			
 	}

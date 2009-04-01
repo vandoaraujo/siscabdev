@@ -186,13 +186,6 @@ public class CrudOBM extends HttpServlet {
 					 					
 			 Municipio municipioDao = MunicipioDao.getInstance().listarMunicipioNome(municipio);
 			 
-			 System.out.println(" RECEBE MUNICIPIO ---#########################");
-			 System.out.println(municipioDao.toString());
-			 System.out.println(municipioDao.toString());
-			 
-			 System.out.println("#########################");
-
-			 			
 			OBM obm = OBMDao.getInstance().BuscaOBMId(registro);
 
 			obm.setNome(nome);

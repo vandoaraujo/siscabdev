@@ -50,27 +50,35 @@ public class BuscarUsuario extends HttpServlet {
                
                
                 //Verifica consulta conforme parametros
-                if(registro1.equals("") && tipoPerfil.equals("") && nomeObm.equals("")){
+                if(registro1.equals("") && tipoPerfil.equals("") && nomeObm.equals("") && (!nomeGuerra.equals(""))){
                        
                         usu= UsuarioDao.getInstance().procurarUsuariosParametro1(nomeGuerra);
 
                 }
-                if (nomeGuerra.equals("") && tipoPerfil.equals("") && registro1.equals("")){
+                //Traz OBM
+                else if (nomeGuerra.equals("") && tipoPerfil.equals("") && registro1.equals("") && (!nomeObm.equals(""))){
                        
                         OBM obm = OBMDao.getInstance().listarOBMNome(nomeObm);
-                        usu= (List<Usuario>) obm.getUsuarios();
+                        usu= UsuarioDao.getInstance().buscarUsuariosOBM(obm.getId());
+                        
                        
                 }
                
-                if (nomeGuerra.equals("") && nomeObm.equals("") && registro1.equals("")){
+                else if (nomeGuerra.equals("") && nomeObm.equals("") && registro1.equals("") && (!tipoPerfil.equals(""))){
                        
+                		
                         usu= UsuarioDao.getInstance().procurarUsuariosParametro4(tipoPerfil);
 
                 }
-                if (nomeGuerra.equals("") && nomeObm.equals("") && tipoPerfil.equals("")){
+                else if (nomeGuerra.equals("") && nomeObm.equals("") && tipoPerfil.equals(""))
                 {       
                     int numero = Integer.parseInt(registro1);
                 	usu= UsuarioDao.getInstance().procurarUsuariosParametro2(numero);
+                }
+                else
+                {
+                   	usu= UsuarioDao.getInstance().listar();
+
                 }
                                
                 System.out.println("RESULTADO DA BUSCA QTD USUÁRIOS " + usu.size());
@@ -86,11 +94,8 @@ public class BuscarUsuario extends HttpServlet {
                         e.printStackTrace();
                 }
                
-                       
         }
-       
+        
+}
  
-}
-
-}
 
