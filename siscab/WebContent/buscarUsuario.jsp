@@ -35,6 +35,7 @@
 </tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
+						<font color="red">${parametrosVazios}	
 						<fieldset style="width:450px"><legend>&nbsp;Buscar Usuário&nbsp;</legend>						
 								<form action="BuscarUsuario" method="post">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
@@ -43,10 +44,6 @@
 									<td><input name="registro" type="text" /></td>								
 								</tr>
 								<tr>
-									<td><label>Nome de Guerra:</label></td>
-									<td><input name="nomeGuerra" type="text" /></td>								
-								</tr>
-									<tr>
 									<td><label>Obm:</label></td>
 									<td>
 										<select name="obm">
@@ -63,22 +60,6 @@
 									</td>								
 								</tr>
 								<tr>
-									<td><label>Perfil:</label></td>
-									<td>
-										<select name="perfil">
-										<option selected>
-										
-										<!-- Popula a combo que aparecerá na tela -->
-										<%
-									 	 List<PerfilUsuario> perfis = PerfilUsuarioDao.getInstance().listarTodosPerfis();
-									 	 for(PerfilUsuario p: perfis){
-										 out.println("<option>"+p.getPerfil_descricao().toUpperCase()+"</option>");
-									 	}
-										out.println("</select>");
-										%>									
-									</td>								
-								</tr>
-								<tr>
 									<td colspan="2">																		
 										<input type="submit" name="evento" value="Buscar">
 										</form>	
@@ -87,7 +68,6 @@
 							 			</form>	
 									</td>								
 								</tr>
-						</fieldset>	
 					</td>
 				</tr>				
 			</table>
