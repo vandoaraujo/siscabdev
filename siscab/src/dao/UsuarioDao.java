@@ -113,6 +113,12 @@ public class UsuarioDao {
                 this.usuarioLogado = usuarioLogado;
         }
 
+		public List<Usuario> buscarUsuariosNumRegistroOBM(int numero, int id) {
+			
+			List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("numRegistro like '" +numero+ "%'" + "and obm_id like '" +id+ "%'")).list();
+            return usuario;
+		}
+
         
 
 }
