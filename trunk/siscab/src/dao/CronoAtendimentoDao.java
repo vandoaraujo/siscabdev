@@ -73,6 +73,13 @@ public class CronoAtendimentoDao {
 		return cronoLista;
 	}
 	
+	public CronoAtendimento verificaCronologiaAtendimentoInicio(int atendimentoId){
+		
+		CronoAtendimento cronoInicio = (CronoAtendimento) session.createQuery("from modelo.CronoAtendimento c where c.atendimento_id=:atendimento and c.cronoatendimento_tipoevento = 'início'").setInteger("atendimento", atendimentoId).uniqueResult();
+		session.close();
+		return cronoInicio;
+	}
+	
 	
 	public Usuario listarUmaVitimaNome(String nome){
 				

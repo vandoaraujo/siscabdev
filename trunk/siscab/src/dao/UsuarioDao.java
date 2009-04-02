@@ -88,31 +88,17 @@ public class UsuarioDao {
                 return usu;             
                 
         }
-
-        public List<Usuario> procurarUsuariosParametro1(String nomeGuerra) {
-                
-                List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("nomeGuerra like '" +nomeGuerra+ "%'")).list();
-                return usuario;
-        }
-        
         public List<Usuario> buscarUsuariosOBM(int obm){
             
             List usu = (List<Usuario>) session.createQuery("from modelo.Usuario u where u.obm=:obm").setInteger("obm", obm).list();
             return usu;
         }
         
-        public List<Usuario> procurarUsuariosParametro2(Integer registro) {
+        public List<Usuario> buscarUsuariosNumRegistro(Integer registro) {
                                         
                 List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("numRegistro like '" +registro+ "%'")).list();
                 return usuario;
         }
-        
-        public List<Usuario> procurarUsuariosParametro4(String perfil) {
-                
-                List<Usuario> usuario = session.createCriteria(Usuario.class).add(Restrictions.sqlRestriction("perfil_id like '" +perfil+ "%'")).list();
-                return usuario;
-        }
-        
         public Usuario BuscaUsuarioId(Integer id) {
                 
                 Usuario u = (Usuario) session.load(Usuario.class, id);
