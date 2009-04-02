@@ -34,8 +34,9 @@
 					</td>
 </tr>
 				<tr>
+				
 					<td style="padding-left:20px; padding-top:20px;">
-						<font color="red">${parametrosVazios}	
+						<div><font color="red">${parametrosVazios}</font></div>
 						<fieldset style="width:450px"><legend>&nbsp;Buscar Usuário&nbsp;</legend>						
 								<form action="BuscarUsuario" method="post">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">

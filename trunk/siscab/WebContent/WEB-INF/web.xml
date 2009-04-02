@@ -267,15 +267,7 @@
 		<servlet-class>
 		controle.TransferirAtendimento</servlet-class>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>
-		AdministracaoUsuario</display-name>
-		<servlet-name>AdministracaoUsuario</servlet-name>
-		<servlet-class>
-		controle.AdministracaoUsuario</servlet-class>
-	</servlet>
+
 	<servlet>
 		<description>
 		</description>
@@ -347,6 +339,15 @@
 		<servlet-name>Logoff</servlet-name>
 		<servlet-class>
 		controle.Logoff</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AdministracaoUsuario</display-name>
+		<servlet-name>AdministracaoUsuario</servlet-name>
+		<servlet-class>
+		controle.AdministracaoUsuario</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -462,10 +463,6 @@
 		<url-pattern>/TransferirAtendimento</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>AdministracaoUsuario</servlet-name>
-		<url-pattern>/AdministracaoUsuario</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
 		<servlet-name>RepasseAtendimento</servlet-name>
 		<url-pattern>/RepasseAtendimento</url-pattern>
 	</servlet-mapping>
@@ -496,6 +493,10 @@
 	<servlet-mapping>
 		<servlet-name>Logoff</servlet-name>
 		<url-pattern>/Logoff</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdministracaoUsuario</servlet-name>
+		<url-pattern>/AdministracaoUsuario</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
