@@ -44,36 +44,33 @@ public class BuscarUsuario extends HttpServlet {
                
                 int registro=0;
                 String registro1 = request.getParameter("registro");
-                String nomeGuerra = request.getParameter("nomeGuerra");
                 String nomeObm = request.getParameter("obm");
-                String tipoPerfil = request.getParameter("perfil");
-               
+         
                
                 //Verifica consulta conforme parametros
-                if(registro1.equals("") && tipoPerfil.equals("") && nomeObm.equals("") && (!nomeGuerra.equals(""))){
+                if(registro1.equals("") && nomeObm.equals("")){
                        
-                        usu= UsuarioDao.getInstance().procurarUsuariosParametro1(nomeGuerra);
-
+						request.setAttribute("parametrosVazios","Necessário preencher um dos valores para a busca!");
+						RequestDispatcher view = request.getRequestDispatcher("/buscarUsuario.jsp");
+						try {
+		                        view.forward(request, response);
+		                } catch (ServletException e) {
+		                        // TODO Auto-generated catch block
+		                        e.printStackTrace();
+		                }
                 }
                 //Traz OBM
-                else if (nomeGuerra.equals("") && tipoPerfil.equals("") && registro1.equals("") && (!nomeObm.equals(""))){
+                else if (registro1.equals("") && (!nomeObm.equals(""))){
                        
                         OBM obm = OBMDao.getInstance().listarOBMNome(nomeObm);
                         usu= UsuarioDao.getInstance().buscarUsuariosOBM(obm.getId());
                         
                        
                 }
-               
-                else if (nomeGuerra.equals("") && nomeObm.equals("") && registro1.equals("") && (!tipoPerfil.equals(""))){
-                       
-                		
-                        usu= UsuarioDao.getInstance().procurarUsuariosParametro4(tipoPerfil);
-
-                }
-                else if (nomeGuerra.equals("") && nomeObm.equals("") && tipoPerfil.equals(""))
+                else if ((nomeObm.equals("")) && (!registro1.equals("")))
                 {       
                     int numero = Integer.parseInt(registro1);
-                	usu= UsuarioDao.getInstance().procurarUsuariosParametro2(numero);
+                	usu= UsuarioDao.getInstance().buscarUsuariosNumRegistro(numero);
                 }
                 else
                 {

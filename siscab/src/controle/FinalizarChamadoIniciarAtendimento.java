@@ -25,7 +25,7 @@ import dao.OBMDao;
  */
 public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private Date dataFim = null;  
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,7 +49,6 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		//Parametros --- ver...
 		String operacaoARealizar = request.getParameter("operacaoARealizar");
 		String registroOcorrencia = request.getParameter("registroOcorrencia");
-				
 		String nomeSolicitante = request.getParameter("nomeSolicitante");
 		String telefone = request.getParameter("telefone");
 		String aproxVitimas = request.getParameter("numAproxVitimas");
@@ -66,14 +65,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		String endereco = request.getParameter("endereco");
 		String numero = request.getParameter("numero");
 		
-			
-		GregorianCalendar calendar =  new GregorianCalendar();
-		calendar.add(GregorianCalendar.MONTH, 0);
-		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
-		calendar.add(GregorianCalendar.MINUTE, 0);
-		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-		String grava = formata.format(calendar.getTime());
-		Date dataFim = new Date(formata.format(calendar.getTime()));
+		instanciaDataFinalChamado();
 
 		//Artificio para setar a hora Inicial do Chamado no guardada no Servlet RegistrarChamado
 		Date dataInicio = Chamado.getHoraInicioChamado();
@@ -101,8 +93,6 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 					
 		ChamadoDao.getInstance().salvar(chamado);
 					
-		System.out.println("############### SALVO COM SUCESSO!!!!!!!!! ####################");
-		
 		if(naturezaChamado.equals("Solicitação de socorro")){
 			
 			
@@ -123,6 +113,17 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 		}
 		
 	
+	}
+
+	private void instanciaDataFinalChamado() {
+		
+		GregorianCalendar calendar =  new GregorianCalendar();
+		calendar.add(GregorianCalendar.MONTH, 0);
+		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
+		calendar.add(GregorianCalendar.MINUTE, 0);
+		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		String grava = formata.format(calendar.getTime());
+		dataFim = new Date(formata.format(calendar.getTime()));
 	}
 	
 	
