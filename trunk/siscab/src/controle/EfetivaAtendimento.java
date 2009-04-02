@@ -31,7 +31,11 @@ import dao.TipoOcorrenciaDao;
 public class EfetivaAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	OBM obmAReceberSolicitacao = null;
-	int proxIdAtendimento = 0;
+	int proxIdAtendimento, oid, idAtendimento = 0;
+	String idAno = null;
+	String radioButton,obmRepassaAtendimento,obmAtendimento = null;
+	Atendimento atendimento = null;
+	Chamado chamado = null; 
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,63 +57,36 @@ public class EfetivaAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
-		String obmAtendimento = request.getParameter("obmAtendimento");
+		idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
+		obmAtendimento = request.getParameter("obmAtendimento");
 		String bairro = request.getParameter("bairro");
 		bairro.toLowerCase();
 		String municipio = request.getParameter("municipio");
-		String radioButton = request.getParameter("radiobutton");
-		String obmRepassaAtendimento = request.getParameter("obmRepassaAtendimento");
-		float coordX = Float.parseFloat(request.getParameter("coordX"));
-		float coordY = Float.parseFloat(request.getParameter("coordY"));
+		radioButton = request.getParameter("radiobutton");
+		obmRepassaAtendimento = request.getParameter("obmRepassaAtendimento");
+		String latitude = request.getParameter("coordX");
+		if(latitude.equals("")){ latitude = "0"; }
+		String longitude = request.getParameter("coordY");
+		if(longitude.equals("")){longitude = "0"; }
+		float coordX = Float.parseFloat(latitude);
+		float coordY = Float.parseFloat(longitude);
 		String logradouro = request.getParameter("logradouro");
 		int numComplemento = Integer.parseInt(request.getParameter("numComplemento"));
 		String tipoOcorrencia = request.getParameter("tipoOcorrencia");
 		String status = request.getParameter("status");
 		
 		//Instancia objeto a ser salvo no BD 
-		Atendimento atendimento = new Atendimento();
+		atendimento = new Atendimento();
+	
+		pesquisaAnoVigente();
 		
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.add(GregorianCalendar.YEAR,0);
-		DateFormat formata = new SimpleDateFormat("yyyy");
-		String idAno = formata.format(calendar.getTime());
-				
-		Integer proxIdAtendimento = AtendimentoDao.getInstance().listaUltimoId();
+		iniciaProximoIdAtendimento();
 		
-		if(proxIdAtendimento == null){
-			proxIdAtendimento=1;
-		}
-		else{
-			proxIdAtendimento++;
-		}
+		verificaRepasseAtendimento();
 		
-		String concatena = idAno + Integer.toString(proxIdAtendimento);
-		
-		int oid = Integer.parseInt(concatena);
-		
-		System.out.println("########### oid do atendimento" +  oid + "########################");
-			
-		
-		//Verifica se o atendimento será analisado por outra OBM
-		if(radioButton.equals("sim")){
-			
-			obmAReceberSolicitacao = OBMDao.getInstance().listarOBMNome(obmRepassaAtendimento);
-			atendimento.setObm_id(obmAReceberSolicitacao);
-			
-		}
-		else{
-			obmAReceberSolicitacao = OBMDao.getInstance().listarOBMNome(obmAtendimento);
-			atendimento.setObm_id(obmAReceberSolicitacao);
-		}	
-		
-		//Busca ultimo chamado na transacao corrente 
-		Chamado chamado = ChamadoDao.getInstance().BuscaChamadoId(idAtendimento);
-		
-		System.out.println("ID CHamado" + chamado.getId());
-		
+		buscaChamadoAtual();
+					
 		TipoOcorrencia tipoO = TipoOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
-
 		
 		atendimento.setAtendimento_numero(oid);
 		atendimento.setChamado_id(chamado);
@@ -125,7 +102,18 @@ public class EfetivaAtendimento extends HttpServlet {
 		atendimento.setStatus_atendimento(status);
 		
 		AtendimentoDao.getInstance().salvar(atendimento);
-		System.out.println("########### ATENDIMENTO SALVO COM SUCESSO ##############");
+		
+		iniciaCronologiaAtendimento();
+				
+		
+		RequestDispatcher view = request.getRequestDispatcher("/atendimentoSalvo.jsp");
+		
+		request.setAttribute("numeroAtendimento",oid);
+		view.forward(request, response);
+		
+		}
+
+	private void iniciaCronologiaAtendimento() {
 		
 		//Iniciar cronologia do atendimento
 		CronoAtendimento crono =  new CronoAtendimento();
@@ -135,12 +123,50 @@ public class EfetivaAtendimento extends HttpServlet {
 		
 		CronoAtendimentoDao.getInstance().salvar(crono);
 		
+	}
+
+	private void buscaChamadoAtual() {
 		
-		RequestDispatcher view = request.getRequestDispatcher("/atendimentoSalvo.jsp");
+		//Busca ultimo chamado na transacao corrente 
+		chamado = ChamadoDao.getInstance().BuscaChamadoId(idAtendimento);
+	}
+
+	private void verificaRepasseAtendimento() {
 		
-		request.setAttribute("numeroAtendimento",oid);
-		view.forward(request, response);
-		
+		//Verifica se o atendimento será analisado por outra OBM
+		if(radioButton.equals("sim")){
+			
+			obmAReceberSolicitacao = OBMDao.getInstance().listarOBMNome(obmRepassaAtendimento);
+			atendimento.setObm_id(obmAReceberSolicitacao);
+			
 		}
+		else{
+			obmAReceberSolicitacao = OBMDao.getInstance().listarOBMNome(obmAtendimento);
+			atendimento.setObm_id(obmAReceberSolicitacao);
+		}	
+	}
+
+	private void pesquisaAnoVigente() {
+		
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.add(GregorianCalendar.YEAR,0);
+		DateFormat formata = new SimpleDateFormat("yyyy");
+		idAno = formata.format(calendar.getTime());
+	}
+
+	private void iniciaProximoIdAtendimento() {
+		
+		Integer proxIdAtendimento = AtendimentoDao.getInstance().listaUltimoId();
+		if(proxIdAtendimento == null){
+			proxIdAtendimento=1;
+		}
+		else{
+			proxIdAtendimento++;
+		}
+		
+		String concatena = idAno + Integer.toString(proxIdAtendimento);
+		oid = Integer.parseInt(concatena);
+		
+	}
 		
 }

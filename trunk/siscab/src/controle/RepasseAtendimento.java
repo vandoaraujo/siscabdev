@@ -20,6 +20,8 @@ import dao.OBMDao;
 public class RepasseAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RequestDispatcher view;
+	private HttpServletRequest request;
+	private int perfilUsuario;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -41,27 +43,14 @@ public class RepasseAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		this.request = request;
 		int registro = Integer.parseInt(request.getParameter("registro"));
-		int perfilUsuario = Integer.parseInt(request.getParameter("perfilUsuario"));
+		perfilUsuario = Integer.parseInt(request.getParameter("perfilUsuario"));
 		
 		Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoId(registro);
 		
-		System.out.println("IMPRIME PERFIL ATUAL USUARIO" + perfilUsuario);
-				
-		//1 caso - Controlador do COCB transfere atendimento para uma daterminada OBM
-		if(perfilUsuario == 4){
+		analisaPerfilUsuario();
 			
-			List<OBM> obm = OBMDao.getInstance().listarTodasOBMsExcetoCOCB();
-			request.setAttribute("obm", obm);
-						
-		}
-		//2 caso - Operador da OBM transfere atendimento para o COCB
-		/*else{
-			
-			request.setAttribute("obm", "COCB");
-			
-		}*/
-		
 		request.setAttribute("atendimentos", at );
 		request.setAttribute("perfil","Operador da OBM");				 			
 		view = request.getRequestDispatcher("/transferirAtendimentoPagina2.jsp");
@@ -74,6 +63,17 @@ public class RepasseAtendimento extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+	}
+
+	private void analisaPerfilUsuario() {
+		
+		//Se Controlador do COCB então transfere atendimento para uma daterminada OBM
+		if(perfilUsuario == 4){
+			
+			List<OBM> obm = OBMDao.getInstance().listarTodasOBMsExcetoCOCB();
+			request.setAttribute("obm", obm);
+						
+		}
 	}
 		
 

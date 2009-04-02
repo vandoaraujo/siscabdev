@@ -30,7 +30,8 @@ public class Logoff extends HttpServlet{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//System.out.println("####### FECHOU! ##########");
+		System.out.println("Aplication closed!");
+		getServletContext().removeAttribute("usuarioCorrente"); 
 		HibernateUtil.closeFactory();	
 	
 	}

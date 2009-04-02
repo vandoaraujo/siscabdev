@@ -9,10 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import modelo.Atendimento;
 import modelo.Municipio;
-import modelo.NaturezaChamado;
 import modelo.OBM;
 import dao.AtendimentoDao;
 import dao.MunicipioDao;
@@ -22,7 +21,15 @@ import dao.OBMDao;
  * Servlet implementation class LocalizaOcorrencia
  */
 public class LocalizaOcorrencia extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	HttpServletRequest request = null;
+	HttpServletResponse response = null;
+	String municipio = null;
+	String bairro = null;
+	String endereco = null;
+	String numero = null;		
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,32 +51,24 @@ public class LocalizaOcorrencia extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		this.request = request;
+		this.response = response;
 		
 		//Evento acionado com o botão de Procurar Ocorrencias próximas
 		int operacaoARealizar = Integer.parseInt(request.getParameter("operacaoARealizar"));
-		String municipio = request.getParameter("municipio");
-		String bairro = request.getParameter("bairro");
-		String endereco = request.getParameter("endereco");
-		String numero = request.getParameter("numero");		
+		municipio = request.getParameter("municipio");
+		bairro = request.getParameter("bairro");
+		endereco = request.getParameter("endereco");
+		numero = request.getParameter("numero");		
 		bairro.toLowerCase();
-		
-		System.out.println("################# Atributo vindo de Regitsrar Chamado  ---- Municipio");
-		System.out.println(municipio);
-		
 		
 		request.setAttribute("municipio", municipio);
 		//Set dois atributos importantes
 		request.setAttribute("bairro", bairro);
 		
+		//Procura Ocorrencias Proximas conforme o evento que o botao acionou
 		if(operacaoARealizar == 2){
-			
-			
-			Municipio mun = MunicipioDao.getInstance().listarMunicipioNome(municipio);
-			List at = AtendimentoDao.getInstance().listarOcorrenciasProximas(mun.getId(), bairro);
-			request.setAttribute("municipio", municipio);
-			request.setAttribute("listaAtendimentosProximos", at);
-		    RequestDispatcher view = request.getRequestDispatcher("/ProcurarOcorrenciasProximas.jsp");
-			view.forward(request, response);
+			buscaChamadosProximos();
 		}
 		
 		
@@ -102,15 +101,28 @@ public class LocalizaOcorrencia extends HttpServlet {
 		request.setAttribute("aproxVitimas", numAproximadoVitimas);
 		request.setAttribute("infoComplementares", infoComplementares);
 		request.setAttribute("nomeObmUsuario", nomeObmUsuario);
-		
 		request.setAttribute("endereco", endereco);
 		request.setAttribute("numero", numero);
 			
 		if(operacaoARealizar == 1){
 			RequestDispatcher view = request.getRequestDispatcher("/MostraMapaLocalOcorrencia.jsp");
 			view.forward(request, response);
-		}	
+		}
+		
+		
+	}
+	
+	private void buscaChamadosProximos() throws ServletException, IOException {
+		
+		Municipio mun = MunicipioDao.getInstance().listarMunicipioNome(municipio);
+		List<Atendimento> at = AtendimentoDao.getInstance().listarOcorrenciasProximas(mun.getId(), bairro);
+		request.setAttribute("municipio", municipio);
+		request.setAttribute("listaAtendimentosProximos", at);
+	    RequestDispatcher view = request.getRequestDispatcher("/ProcurarOcorrenciasProximas.jsp");
+		view.forward(request, response);
+		
 		
 	}
 
+	
 }

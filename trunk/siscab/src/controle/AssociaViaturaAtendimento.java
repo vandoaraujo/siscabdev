@@ -30,8 +30,13 @@ import dao.ViaturaDao;
  * Servlet implementation class AssociaViaturaAtendimento
  */
 public class AssociaViaturaAtendimento extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
+	Viatura viatura=null;
+	MovimentaViatura mov = null;
+	//Atendimento atendimentoAtual = null;
+	Atendimento atendimento = null;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -57,40 +62,27 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		
 		System.out.println("Id da viatura" + idViatura);
 		
-		Viatura v = ViaturaDao.getInstance().BuscaViaturaId(idViatura);		
-		Atendimento at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
+		viatura = ViaturaDao.getInstance().BuscaViaturaId(idViatura);		
+		atendimento = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		
-		v.setViatura_status("Em atendimento");
+		System.out.println("Atendimento vindo do request " + atendimento);
 		
-		MovimentaViaturaPK m = new MovimentaViaturaPK();
-		m.setAtendimentos(at);
-		m.setViatura(v);
+		viatura.setViatura_status("Em atendimento");
 		
-		MovimentaViatura mov = new MovimentaViatura();
-		mov.setChaveComposta(m);
-		mov.setMovimentaviatura_tipoevento("Saída da OBM");
-		mov.setMovimentaviatura_horaEvento(new Date());
+		//atendimentoAtual = AtendimentoDao.getInstance().BuscaAtendimentoId(atendimento.getId());
+		
+		
+		
+		movimentaViaturaAoAtendimento();
 		
 		//Atualiza o status da viatura de em prontidão para em atendimento
-		ViaturaDao.getInstance().atualizar(v);
-		System.out.println("ATUALIZOU O STATUS DA VIATURA!!!!");
+		ViaturaDao.getInstance().atualizar(viatura);
 		
-		//Salva na tabela associativa a movimentação da Viatura
-		MovimentaViaturaDao.getInstance().salvar(mov);
-		
-		System.out.println("SALVOU O TIPO EVENTO NA TABELA MOVIMENTAVIATURA");
-		
-		//Cria um registro na tabela CronoAtendimento
-		CronoAtendimento crono =  new CronoAtendimento();
-		crono.setAtendimento_id(at);
-		crono.setCronoatendimento_tipoevento("início");
-		crono.setCronoatendimento_horaevento(new Date());
-		CronoAtendimentoDao.getInstance().salvar(crono);
-		System.out.println("SALVO a CronologiaAtendimento como início");
-		
+		salvaCronologiaAtendimentoPrimeiraViatura();
+				
 		//Modifica o Status do Atendimento
-		at.setStatus_atendimento("Em andamento");
-		AtendimentoDao.getInstance().atualizar(at);
+		atendimento.setStatus_atendimento("Em andamento");
+		AtendimentoDao.getInstance().atualizar(atendimento);
 		
 		System.out.println("Atualizou o Atendimento para situacao Status Em andamento");
 		
@@ -98,7 +90,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		//Lógica de na próxima página popular uma lista de viaturas já associadas e com tipo evento ao atendimento
 		List <Viatura> viaturas = new ArrayList();
 		
-		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(at.getId());
+		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(atendimento.getId());
 		
 		//Abre uma nova Session em AssociaViaturaAtendimento
 		ViaturaDao.getInstance().abreUmaSessionFluxosExcecao();
@@ -113,7 +105,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		HttpSession sessao = request.getSession();
 		sessao.setAttribute("viaturas", viaturas);
 		RequestDispatcher view;
-		sessao.setAttribute("atendimentoAtual", at);
+		sessao.setAttribute("atendimentoAtual", atendimento);
 		request.setAttribute("mensagem", "Viatura despachada com sucesso");
 		view = request.getRequestDispatcher("/iniciarViaturasEmpenhadas.jsp");
 		
@@ -126,6 +118,41 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+		
+	}
+
+	private void salvaCronologiaAtendimentoPrimeiraViatura() {
+		
+		CronoAtendimento cr = CronoAtendimentoDao.getInstance().verificaCronologiaAtendimentoInicio(atendimento.getId());
+		//Se a query retorna null, indica que nenhuma viatura ainda foi despachada para este atendimento
+		if(cr == null){
+			//Cria um registro na tabela CronoAtendimento
+			CronoAtendimento crono =  new CronoAtendimento();
+			crono.setAtendimento_id(atendimento);
+			crono.setCronoatendimento_tipoevento("início");
+			crono.setCronoatendimento_horaevento(new Date());
+			CronoAtendimentoDao.getInstance().salvar(crono);
+			System.out.println("SALVO a CronologiaAtendimento como início");
+		}
+		else{
+			System.out.println("TESTE - CLASSE ASSOCIA VIATURA ATENDIMENTO -- NAO ASSOCIOU UMA CRONOLOGIA REPETIDA");
+		}
+		
+		
+	}
+
+	private void movimentaViaturaAoAtendimento() {
+				
+		MovimentaViaturaPK m = new MovimentaViaturaPK();
+		m.setAtendimentos(atendimento);
+		m.setViatura(viatura);
+		mov = new MovimentaViatura();
+		mov.setChaveComposta(m);
+		mov.setMovimentaviatura_tipoevento("Saída da OBM");
+		mov.setMovimentaviatura_horaEvento(new Date());
+		
+		//Salva na tabela associativa a movimentação da Viatura
+		MovimentaViaturaDao.getInstance().salvar(mov);
 		
 	}
 		

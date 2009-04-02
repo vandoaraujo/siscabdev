@@ -25,7 +25,8 @@ import dao.ViaturaDao;
  */
 public class LiberarViaturasFecharAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private List<Viatura> viaturas = null;
+    Atendimento atendimento = null;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,22 +50,12 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 		String modoFechamento = request.getParameter("modoFechamento");
 		int numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
 		int idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
-		List<Viatura> viaturas = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(idAtendimento);
-		
-		System.out.println("Numero de viaturas Classe LIberarViaturaFechamento: " + viaturas.size());
-
+		viaturas = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(idAtendimento);
 		
 		//Inicia transacao
 		ViaturaDao.getInstance().iniciaTransacao();
-		System.out.println("Abriu a transacao");
 		
-		for(int i=0;i< viaturas.size(); i++){
-			Viatura v = viaturas.get(i);
-			v.setViatura_status("Em prontidão");
-			ViaturaDao.getInstance().atualizarDiversasViaturas(v);
-			System.out.println(" ############ Atualizou " + " viatura   ################");
-		}
-		
+		trocaStatusViaturas();
 		//Finaliza Transacao
 		ViaturaDao.getInstance().finalizaTransacao();
 		System.out.println("Finalizou a transacao");
@@ -73,30 +64,33 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 
 	}
 	
+	private void trocaStatusViaturas() {
+		
+		for(int i=0;i< viaturas.size(); i++){
+			Viatura v = viaturas.get(i);
+			v.setViatura_status("Em prontidão");
+			ViaturaDao.getInstance().atualizarDiversasViaturas(v);
+			System.out.println(" ############ Atualizou " + " viatura!   ################");
+		}
+		
+	}
+
 	private void efetivaFinalizacaoAtendimento(HttpServletRequest request,
 			HttpServletResponse response, String modoFechamento,
 			int idAtendimento) {
 
-		Atendimento atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(idAtendimento);
+		atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(idAtendimento);
 		ModoFechamento m = ModoFechamentoDao.getInstance().listarModoFechamentoNome(modoFechamento);
 		atendimento.setModofechamento_id(m.getId());
 		atendimento.setStatus_atendimento("Finalizado");
-		System.out.println(" ############### Setou o modoFechamento");
-		
+				
 		AtendimentoDao.getInstance().atualizar(atendimento);
 		
-		System.out.println(" ############# Atendimento atualizado e finalizado com sucesso");
+		System.out.println(" ############# Atendimento atualizado e finalizado com sucesso ##############");
 		
-		//Iniciar cronologia do atendimento
-		CronoAtendimento crono =  new CronoAtendimento();
-		crono.setAtendimento_id(atendimento);
-		crono.setCronoatendimento_tipoevento("finalização");
-		crono.setCronoatendimento_horaevento(new Date());
-		
-		CronoAtendimentoDao.getInstance().salvar(crono);
-		
-		System.out.println(" ############# Seta Cronologia do Atendimento - Finalizacao");
-		
+		finalizaCronologiaAtendimento();
+			
+		System.out.println(" ############# Cronologia do Atendimento - Finalizacao");
 			
 		RequestDispatcher view;
 		request.setAttribute("mensagem", "Finalizado com sucesso");
@@ -112,6 +106,17 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private void finalizaCronologiaAtendimento() {
+		
+		//Finaliza cronologia do atendimento
+		CronoAtendimento crono =  new CronoAtendimento();
+		crono.setAtendimento_id(atendimento);
+		crono.setCronoatendimento_tipoevento("finalização");
+		crono.setCronoatendimento_horaevento(new Date());
+		CronoAtendimentoDao.getInstance().salvar(crono);
+		
 	}
 
 }

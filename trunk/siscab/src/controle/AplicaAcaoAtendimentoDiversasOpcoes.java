@@ -51,31 +51,23 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
-			
-		System.out.println("FUNCIONA" + at.getId());
-		
 		int registroAtendimento = 0;
 	    int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
     	registroAtendimento = Integer.parseInt(request.getParameter("registroAtendimento"));
-	  
 	    
-	    //COntrole de qual operacao será realizada
-	    
+	    //operacao que  será realizada
 	    if(operacao ==2){
 		
 	    	editar(request,response, registroAtendimento);	
-		
 	    }			
 		else if(operacao == 3){
 			
 			sugestaoRota(request, response, registroAtendimento);
 		}
-	    
 		else if(operacao == 4){
 			
 			viaturasEmpenhadas(request, response,registroAtendimento);
 		}
-	    
 		else if(operacao == 5){
 			
 			vitimas(request, response,registroAtendimento);
@@ -94,7 +86,6 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 					
 	}
 		
-	//Implementar
 	private void finalizarChamado(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
@@ -110,10 +101,8 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	try {
 		view.forward(request, response);
 	} catch (ServletException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		
@@ -137,10 +126,8 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	try {
 		view.forward(request, response);
 	} catch (ServletException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		

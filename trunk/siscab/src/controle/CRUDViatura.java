@@ -20,8 +20,6 @@ import dao.ViaturaDao;
  */
 public class CRUDViatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	
 	private String numeroViatura; 
 	private String obm;
 	private String statusViatura;
@@ -74,34 +72,21 @@ public class CRUDViatura extends HttpServlet {
 				
 			deletar(request, response,registroViatura);
 		}
-		    
-		    
-						
 		}
-		
-		
 
 		protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
-				
-					
 				OBM cobm = OBMDao.getInstance().listarOBMNome(obm);
-				
 				TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(tipoViatura);
-					
 				Viatura via = new Viatura();
 				via.setNumero(numeroViatura);
 				via.setObm(cobm);
 				via.setTipo_viatura(tipoV);
 				via.setViatura_obs(obsViatura);
 				via.setViatura_status(statusViatura);
-				
 				ViaturaDao.getInstance().salvar(via);
 				request.setAttribute("viatura", via);
 				despacha(request, response,"salvar", via.getNumero());
-				
-		
-				
 			
 		}
 		
@@ -159,7 +144,6 @@ public class CRUDViatura extends HttpServlet {
 			Viatura via = ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
 			OBM obmAtual = OBMDao.getInstance().listarOBMNome(obm);
 			TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(tipoViatura);
-
 			via.setNumero(numeroViatura);
 			via.setObm(obmAtual);
 			via.setTipo_viatura(tipoV);
