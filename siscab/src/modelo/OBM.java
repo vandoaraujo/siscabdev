@@ -29,9 +29,10 @@ public class OBM {
 
 		private String nome;
 		
-		@OneToMany(mappedBy="obm",fetch = FetchType.EAGER)
+		/*@OneToMany(mappedBy="obm",fetch = FetchType.EAGER)
 		@Cascade(CascadeType.DELETE_ORPHAN)
 		private Collection<Usuario> usuarios;
+		*/
 		
 		@ManyToOne(fetch = FetchType.EAGER)
 		@JoinColumn(name = "municipio_id", insertable=true, updatable =true)
@@ -67,13 +68,13 @@ public class OBM {
 			this.nome = nome;
 		}
 
-		public Collection<Usuario> getUsuarios() {
+		/*public Collection<Usuario> getUsuarios() {
 			return usuarios;
 		}
 
 		public void setUsuarios(Collection<Usuario> usuarios) {
 			this.usuarios = usuarios;
-		}
+		}*/
 
 		public Municipio getMunicipio() {
 			return municipio;

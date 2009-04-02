@@ -39,8 +39,7 @@ public class MovimentaViaturaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		
-		
+				
 	}
 	
 	public void deletar(MovimentaViatura viaturasEmpenhadas) {
