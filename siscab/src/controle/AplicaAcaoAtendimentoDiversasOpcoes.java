@@ -200,11 +200,6 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private void sugestaoRota(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
-		RequestDispatcher view;
-		HttpSession sessao = request.getSession();
-		sessao.setAttribute("atendimentoAtual", at);
-		view = request.getRequestDispatcher("/iniciarSugestaoRota.jsp");
-		
 		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
     	
@@ -245,6 +240,12 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		request.setAttribute("BairroDestino", at.getBairro());
 		request.setAttribute("EnderecoDestino", at.getLogradouro());
 		request.setAttribute("NumeroAtendimento", at.getAtendimento_numero());
+		
+		RequestDispatcher view;
+		HttpSession sessao = request.getSession();
+		sessao.setAttribute("atendimentoAtual", at);
+		view = request.getRequestDispatcher("/iniciarSugestaoRota.jsp");
+			
 		
 	try {
 		view.forward(request, response);
