@@ -55,28 +55,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		int registroAtendimento = 0;
 	    int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
     	registroAtendimento = Integer.parseInt(request.getParameter("registroAtendimento"));
-    	Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
-    	
-    	if (usuario.getObm().getCoordX() == null){
-    		
-    	}
-    	
-    	request.setAttribute("CoordX_Operador", usuario.getObm().getCoordX());
-    	request.setAttribute("CoordY_Operador", usuario.getObm().getCoordY());    	
-    	
-    	request.setAttribute("NomeOrigem", usuario.getObm().getNome());
-		request.setAttribute("EnderecoOrigem", usuario.getObm().getLogradouro());		
-		request.setAttribute("BairroOrigem", usuario.getObm().getBairro());
-		request.setAttribute("MunicipioOrigem", usuario.getObm().getMunicipio().getMunicipio_nome());
-		
-		request.setAttribute("CoordX_Acidente", at.getCoordx());
-		request.setAttribute("CoordY_Acidente", at.getCoordy());
-		
-		request.setAttribute("MunicipioDestino", at.getMunicipio_id().getMunicipio_nome());
-		request.setAttribute("BairroDestino", at.getBairro());
-		request.setAttribute("EnderecoDestino", at.getLogradouro());
-		request.setAttribute("NumeroAtendimento", at.getAtendimento_numero());
-		
+    	Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");    	
     	
 	    //operacao que  será realizada
 	    if(operacao ==2){
@@ -226,9 +205,9 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
     	
-    	if (usuario.getObm().getCoordX() == null){
+    	//if (usuario.getObm().getCoordX() == null){
     		
-    	}
+    	//}
     	
     	request.setAttribute("CoordX_Operador", usuario.getObm().getCoordX());
     	request.setAttribute("CoordY_Operador", usuario.getObm().getCoordY());    	
