@@ -11,22 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.TipoViatura;
-import modelo.Usuario;
-import modelo.Viatura;
 import dao.TipoViaturaDao;
-import dao.ViaturaDao;
 
 /**
- * Servlet implementation class ViaturasControle
+ * Servlet implementation class ConsultaViaturas
  */
-public class ViaturasControle extends HttpServlet {
+public class ConsultaViaturas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	RequestDispatcher view;
+	RequestDispatcher view = null;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViaturasControle() {
+    public ConsultaViaturas() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,34 +32,30 @@ public class ViaturasControle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-
+		doPost(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
-		
-		if(!(usuario.getPerfil().getId() == 4)){
 			
-			request.setAttribute("descricaoServico", "Cadastro de Viatura");
-			request.setAttribute("perfil", "Controlador do COCB");
-			view = request.getRequestDispatcher("/acessoNegado.jsp");
 			
-		}
-		
-			view = request.getRequestDispatcher("/viaturaMenu.jsp");
-					
-		try {
-			view.forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			List<TipoViatura> tipos = TipoViaturaDao.getInstance().listarTodosTiposViaturas();
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("tiposViatura", tipos);
+			view = request.getRequestDispatcher("/procurarViaturas.jsp");
+			
+			try {
+				view.forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 	}
-
+		
 }
+
+

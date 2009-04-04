@@ -32,27 +32,20 @@
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<a href="#" onclick="fechar()"><img src="img/bt_sairsistema.gif" name="close" width="109" height="17" border="0" id="close"></a>											
 					</td>
-</tr>
-					<tr>
-					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:200px"><legend>&nbsp;Incluir Viatura&nbsp;</legend>
-							<a href="novaViatura.jsp">Incluir</a>
-						</fieldset>										
-					</td>
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Lista de Viaturas Cadastrados&nbsp;</legend>						
+						<fieldset style="width:800px"><legend>&nbsp;Resultado da Busca&nbsp;</legend>						
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td>
 									<% 	
-										viatura=(ArrayList<Viatura>) request.getSession().getAttribute("viaturas");
+										viatura=(ArrayList<Viatura>) request.getAttribute("viaturas");
 															
 									%>
 									
 									<% if(viatura.isEmpty() ){ %>
-									     <div style="color:red"> Nenhuma Viatura cadastrada </div>
+									     <div style="color:red"> Nenhuma Viatura encontrada! </div>
 									   
 									<%} else{
 										
@@ -65,7 +58,7 @@
 									    <td>
 									    <div>     
 									    
-									    <%= i+1 %> :: NumeroViatura = <a href="EditaViatura?registro=<%=via.getId()%>"><%= via.getViatura_status()%></a><br>
+									    <%= i+1 %> >> <a href="EditaViatura?registro=<%=via.getId()%>"><font color="black"> Tipo: <%= via.getTipo_viatura().getTipoviatura_descricao() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Número: <%= via.getNumero() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obm: <%= via.getObm().getNome()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status: <%= via.getViatura_status() %></font> </a><br>
 									    </div>
 									    </td>
 									    </tr>
