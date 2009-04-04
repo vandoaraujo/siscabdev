@@ -15,6 +15,21 @@
 		<servlet-name>ServletLogin</servlet-name>
 		<url-pattern>/ServletLogin</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		TotalAtendimentosPorModoFechamento</display-name>
+		<servlet-name>TotalAtendimentosPorModoFechamento</servlet-name>
+		<servlet-class>
+		controle.TotalAtendimentosPorModoFechamento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletLogin</servlet-name>
+		<url-pattern>/ServletLogin</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<description>
 		</description>
