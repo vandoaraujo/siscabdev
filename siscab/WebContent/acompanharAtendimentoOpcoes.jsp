@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.Usuario,modelo.Atendimento" %>
+<%@ page import="java.util.*,modelo.Usuario,modelo.Atendimento, modelo.OBM" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,7 +34,7 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 					<fieldset style="width:780px"><legend>&nbsp;Atendimento&nbsp;</legend>
-
+					
 					<%! Atendimento atendimento=null; %>
 					
 					<% atendimento = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
@@ -60,7 +60,12 @@
 						</tr>											
 						<tr>
 							<td colspan="2">
-							    <input type="hidden" name="q" id="q" value="><%= atendimento.getLogradouro() %> <%= atendimento.getNumcompl() %> <%= atendimento.getBairro() %> <%= atendimento.getMunicipio_id().getMunicipio_nome() %> RJ Brasil ">
+							  <!--  <input type="hidden" name="CoordX_Acidente" id="CoordX_Acidente" value="<%= atendimento.getCoordx() %>">
+							    <input type="hidden" name="CoordY_Acidente" id="CoordY_Acidente" value="<%= atendimento.getCoordy() %>">
+							    <input type="hidden" name="MunicipioDestino" id="MunicipioDestino" value="<%= atendimento.getMunicipio_id().getMunicipio_nome() %>">
+							    <input type="hidden" name="BairroDestino" id="BairroDestino" value="<%= atendimento.getBairro() %>">
+							    <input type="hidden" name="EnderecoDestino" id="EnderecoDestino" value="<%= atendimento.getLogradouro() %>">
+							    <input type="hidden" name="NumeroAtendimento" id="NumeroAtendimento" value="<%= atendimento.getAtendimento_numero() %>"> -->
 								<input type="submit" value="Editar" onclick="this.form.operacaoARealizar.value=2"/>
 								<input type="submit" value="Sugestão de Rota" onclick="this.form.operacaoARealizar.value=3"/>
 								<input type="submit" value="Viaturas Empenhadas" onclick="this.form.operacaoARealizar.value=4"/>

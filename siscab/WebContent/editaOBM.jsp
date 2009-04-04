@@ -39,7 +39,7 @@
 							<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
-									<td><input name="nome" type="text" value=${obmAtual.nome} /></td>
+									<td><input name="nome" type="text" value="${obmAtual.nome}" /></td>
 								</tr>
 								<tr>								
 									<td><label>Municipio:</label></td>
@@ -58,11 +58,11 @@
 								</tr>
 								<tr>	
 									<td><label>Bairro:</label></td>
-									<td><input name="bairro" type="text" value=${obmAtual.bairro} /></td>
+									<td><input name="bairro" type="text" value="${obmAtual.bairro}" /></td>
 								</tr>
 								<tr>
 									<td><label>Logradouro:</label></td>
-									<td><input name="logradouro" type="text" value=${obmAtual.logradouro} /></td>
+									<td><input name="logradouro" type="text" value="${obmAtual.logradouro}" /></td>
 								</tr>
 								<tr>
 									<td><label>Num. Complemento:</label></td>
