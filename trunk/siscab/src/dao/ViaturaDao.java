@@ -114,6 +114,24 @@ public class ViaturaDao {
 		return viaturasOBM;
 	}
 	
+	public List<Viatura> listaViaturasPorTipoStatus(int tipoViatura, String status){
+		
+		List<Viatura> viaturasPorTipoStatus = session.createQuery("from modelo.Viatura v where v.tipo_viatura=:tipoViatura and v.viatura_status=:status order by v.viatura_status,v.tipoViatura").setInteger("tipoViatura", tipoViatura).setString("status", status).list();
+		return viaturasPorTipoStatus;
+	}
+	
+	public List<Viatura> listaViaturasPorTipo(int tipoViatura){
+		
+		List<Viatura> viaturasPorTipo = session.createQuery("from modelo.Viatura v where v.tipo_viatura=:tipoViatura order by v.tipo_viatura").setInteger("tipoViatura", tipoViatura).list();
+		return viaturasPorTipo;
+	}
+	
+	public List<Viatura> listaViaturasPorStatus(String status){
+		
+		List<Viatura> viaturasPorStatus = session.createQuery("from modelo.Viatura v where v.viatura_status=:status order by obm_id,viatura_status").setString("status", status).list();
+		return viaturasPorStatus;
+	}
+	
 	public List<Viatura> listaViaturasObm(int obmAtual){
 		
 		List<Viatura> viaturasOBM = session.createQuery("from modelo.Viatura v where v.obm_id=:obm").setInteger("obm", obmAtual).list();

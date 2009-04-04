@@ -349,6 +349,24 @@
 		<servlet-class>
 		controle.AdministracaoUsuario</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		BuscarViatura</display-name>
+		<servlet-name>BuscarViatura</servlet-name>
+		<servlet-class>
+		controle.BuscarViatura</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		ConsultaViaturas</display-name>
+		<servlet-name>ConsultaViaturas</servlet-name>
+		<servlet-class>
+		controle.ConsultaViaturas</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
@@ -497,6 +515,14 @@
 	<servlet-mapping>
 		<servlet-name>AdministracaoUsuario</servlet-name>
 		<url-pattern>/AdministracaoUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BuscarViatura</servlet-name>
+		<url-pattern>/BuscarViatura</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ConsultaViaturas</servlet-name>
+		<url-pattern>/ConsultaViaturas</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
