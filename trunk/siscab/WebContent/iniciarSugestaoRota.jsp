@@ -100,7 +100,7 @@
 														<tr>
 															<td width="80%"> 
 																<div id="NumeroAtendimento">
-																	<%=request.getAttribute("NumeroAtendimento").toString()%>
+																	Atendimento: Nº <%=request.getAttribute("NumeroAtendimento").toString()%>
 																</div>
 																<div id="EnderecoDestino">
 																	<%=request.getAttribute("EnderecoDestino").toString()%>
