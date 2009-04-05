@@ -57,8 +57,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		int registroAtendimento = 0;
 	    int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
-    	registroAtendimento = Integer.parseInt(request.getParameter("registroAtendimento"));
-    	Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");    	
+    	registroAtendimento = Integer.parseInt(request.getParameter("registroAtendimento"));    	
     	
 	    //operacao que  será realizada
 	    if(operacao ==2){
@@ -203,43 +202,47 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
     	
-		Object objCoordX_Operador = (Object)usuario.getObm().getCoordX();
-		Double CoordX_Operador = 0.0;
-		Double CoordY_Operador = 0.0;
+		//Object objCoordX_Operador = null;
+		//objCoordX_Operador = (Object)usuario.getObm().getCoordX();
+		//Double CoordX_Operador = 0.0;
+		//Double CoordY_Operador = 0.0;
 
-		Object objCoordX_Acidente = (Object)at.getCoordx();
-		Double CoordX_Acidente = 0.0;
-		Double CoordY_Acidente = 0.0;
+		//Object objCoordX_Acidente = null;
+		//objCoordX_Acidente = (Object)at.getCoordx();
+		//Double CoordX_Acidente = 0.0;
+		//Double CoordY_Acidente = 0.0;
 		
-    	if (!objCoordX_Operador.equals(null)){    	
+    	//if (!objCoordX_Operador.equals(null)){    	
 	    	request.setAttribute("CoordX_Operador", usuario.getObm().getCoordX());
 	    	request.setAttribute("CoordY_Operador", usuario.getObm().getCoordX());    		    		    
-    	}
-    	else
-    	{
-    		request.setAttribute("CoordX_Operador", CoordX_Operador);
-	    	request.setAttribute("CoordY_Operador", CoordY_Operador);  
-    	}
+    	//}
+    	//else
+    	//{
+    	//	request.setAttribute("CoordX_Operador", CoordX_Operador);
+	    //	request.setAttribute("CoordY_Operador", CoordY_Operador);  
+    	//}
     	
-    	if (!objCoordX_Acidente.equals(null)){    	
+    	//if (!objCoordX_Acidente.equals(null)){    	
     		request.setAttribute("CoordX_Acidente", at.getCoordx());
     		request.setAttribute("CoordY_Acidente", at.getCoordy());    		    		    
-    	}
-    	else
-    	{
-    		request.setAttribute("CoordX_Acidente", CoordX_Acidente);
-	    	request.setAttribute("CoordY_Acidente", CoordY_Acidente);  
-    	}
+    	//}
+    	//else
+    	//{
+    	//	request.setAttribute("CoordX_Acidente", CoordX_Acidente);
+	    //	request.setAttribute("CoordY_Acidente", CoordY_Acidente);  
+    	//}
 		
     	request.setAttribute("NomeOrigem", usuario.getObm().getNome());
-		request.setAttribute("EnderecoOrigem", usuario.getObm().getLogradouro());		
+		request.setAttribute("EnderecoOrigem", usuario.getObm().getLogradouro());
+		request.setAttribute("NumeroOrigem", usuario.getObm().getNumCompl());
 		request.setAttribute("BairroOrigem", usuario.getObm().getBairro());
 		request.setAttribute("MunicipioOrigem", usuario.getObm().getMunicipio().getMunicipio_nome());
 					
-		request.setAttribute("MunicipioDestino", at.getMunicipio_id().getMunicipio_nome());
-		request.setAttribute("BairroDestino", at.getBairro());
-		request.setAttribute("EnderecoDestino", at.getLogradouro());
 		request.setAttribute("NumeroAtendimento", at.getAtendimento_numero());
+		request.setAttribute("EnderecoDestino", at.getLogradouro());
+		request.setAttribute("NumeroDestino", at.getNumcompl());
+		request.setAttribute("BairroDestino", at.getBairro());
+		request.setAttribute("MunicipioDestino", at.getMunicipio_id().getMunicipio_nome());		
 		
 		RequestDispatcher view;
 		HttpSession sessao = request.getSession();

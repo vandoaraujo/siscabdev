@@ -75,17 +75,18 @@
 														<tr>
 															<td width="80%">
 																<div id="NomeOrigem">
-																	<%=request.getAttribute("NomeOrigem").toString()%>
+																	Nome: <%=request.getAttribute("NomeOrigem").toString()%>
 																</div>
 																<div id="EnderecoOrigem">
-																	<%=request.getAttribute("EnderecoOrigem").toString()%>
+																	Endereço: <%=request.getAttribute("EnderecoOrigem").toString()%>, <%=request.getAttribute("NumeroOrigem").toString()%>
 																</div>
 																<div id="BairroOrigem">
-																	<%=request.getAttribute("BairroOrigem").toString()%>
+																	Bairro: <%=request.getAttribute("BairroOrigem").toString()%>
 																</div>
 																<div id="MunicipioOrigem">
-																	<%=request.getAttribute("MunicipioOrigem").toString()%>
+																	Município: <%=request.getAttribute("MunicipioOrigem").toString()%>
 																</div>
+
 															</td>
 															<td align="center" valign="top">
 																<img src="img/pontoOrigem.gif" />
@@ -103,13 +104,13 @@
 																	Atendimento: Nº <%=request.getAttribute("NumeroAtendimento").toString()%>
 																</div>
 																<div id="EnderecoDestino">
-																	<%=request.getAttribute("EnderecoDestino").toString()%>
+																	Endereço: <%=request.getAttribute("EnderecoDestino").toString()%>, <%=request.getAttribute("NumeroDestino").toString()%>
 																</div>
 																<div id="BairroDestino">
-																	<%=request.getAttribute("BairroDestino").toString()%>
+																	Bairro: <%=request.getAttribute("BairroDestino").toString()%>
 																</div>
 																<div id="MunicipioDestino">
-																	<%=request.getAttribute("MunicipioDestino").toString()%>
+																	Município: <%=request.getAttribute("MunicipioDestino").toString()%>
 																</div>
 																</td>
 															<td align="center" valign="top">
@@ -128,13 +129,12 @@
 												Habilite o uso de JavaScript em seu browser para exibir o Mapa da Google
 											</noscript>
 										</div>	
-										<!-- <script language="JavaScript" src="js/google.js"></script> -->
 										<script type="text/javascript">
 											function carregaMapa(){
 												var CoordX_Operador = document.getElementById("CoordX_Operador").value;
 												var CoordY_Operador = document.getElementById("CoordY_Operador").value;
 												var CoordX_Acidente = document.getElementById("CoordX_Acidente").value;
-												var CoordY_Acidente = document.getElementById("CoordY_Acidente").value;
+												var CoordY_Acidente = document.getElementById("CoordY_Acidente").value;										
 												
 												var map;
 											    var directionsPanel;
@@ -144,14 +144,11 @@
 										      	map.setCenter(new GLatLng(-22.9049164, -43.1098755), 15);
 										      	map.addControl(new GSmallZoomControl());
 
+										      	directions = new GDirections(map, directionsPanel);										      	
+										      	//directions.load("from: "+CoordX_Operador+","+CoordY_Operador+" to: "+CoordX_Acidente+","+CoordY_Acidente+"");
 										      	
-										      	//directionsPanel = document.getElementById("route");
-										      	
-										      	directions = new GDirections(map, directionsPanel);
-										      	directions.load("from: "+CoordX_Operador+","+CoordY_Operador+" to: "+CoordX_Acidente+","+CoordY_Acidente+"");
-
-										      											      											    
-											}
+										      	directions.load("from: <%=request.getAttribute("MunicipioOrigem").toString()%>,<%=request.getAttribute("BairroOrigem").toString()%>,<%=request.getAttribute("EnderecoOrigem").toString()%>,<%=request.getAttribute("NumeroOrigem").toString()%> to: <%=request.getAttribute("MunicipioDestino").toString()%>,<%=request.getAttribute("BairroDestino").toString()%>,<%=request.getAttribute("EnderecoDestino").toString()%>,<%=request.getAttribute("NumeroDestino").toString()%>");
+											}																			
 										</script>
 									</td>								
 										<% }else{ %>
