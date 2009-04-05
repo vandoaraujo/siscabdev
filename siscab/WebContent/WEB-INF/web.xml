@@ -383,6 +383,11 @@
 		controle.ConsultaViaturas</servlet-class>
 	</servlet>
 
+
+	<servlet-mapping>
+		<servlet-name>TotalAtendimentosPorModoFechamento</servlet-name>
+		<url-pattern>/TotalAtendimentosPorModoFechamento</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
 		<url-pattern>/ServletNovoUsuario</url-pattern>
