@@ -21,6 +21,10 @@ import dao.OBMDao;
  */
 public class EfetivaRepasseAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Atendimento at = null;
+	String nomeOBM = null;
+	OBM obm = null;
+	int numeroAtendimento = 0;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,34 +46,39 @@ public class EfetivaRepasseAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
-		String nomeOBM = request.getParameter("obm"); 
+		numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
+		nomeOBM = request.getParameter("obm"); 
 		
-		OBM obm = OBMDao.getInstance().listarOBMNome(nomeOBM);
-		Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoAtendimentoNumero(numeroAtendimento);
+		finalizarRepasseAtendimento();
 		
+		repassarAtendimentoCronologia();
+				
+		System.out.println(" ATUALIZADO COM SUCESSO!!");
+		request.setAttribute("atendimentoNumero", at.getAtendimento_numero());
+		despacha(request, response,"salvar", obm.getNome());
+		
+	}
+	
+	private void finalizarRepasseAtendimento() {
+		
+		obm = OBMDao.getInstance().listarOBMNome(nomeOBM);
+		at = AtendimentoDao.getInstance().BuscaAtendimentoAtendimentoNumero(numeroAtendimento);
 		at.setObm_id(obm);
-		
 		AtendimentoDao.getInstance().atualizar(at);
+		
+	}
+
+	private void repassarAtendimentoCronologia() {
 		
 		//Iniciar cronologia do atendimento
 		CronoAtendimento crono =  new CronoAtendimento();
 		crono.setAtendimento_id(at);
 		crono.setCronoatendimento_tipoevento("repasse");
 		crono.setCronoatendimento_horaevento(new Date());
-		
 		CronoAtendimentoDao.getInstance().salvar(crono);
 		
-		System.out.println(" ATUALIZADO COM SUCESSO!!");
-		request.setAttribute("atendimentoNumero", at.getAtendimento_numero());
-		despacha(request, response,"salvar", obm.getNome());
-		
-		
-		
-		
 	}
-	
-	
+
 	private void despacha(HttpServletRequest request,
 			HttpServletResponse response, String string, String nomeOBM) {
 		

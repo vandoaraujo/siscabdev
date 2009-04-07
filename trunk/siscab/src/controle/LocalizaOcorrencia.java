@@ -71,7 +71,6 @@ public class LocalizaOcorrencia extends HttpServlet {
 			buscaChamadosProximos();
 		}
 		
-		
 		int numeroGeradoChamado = Integer.parseInt(request.getParameter("idChamado")); //cast
 				
 		//Este parametro não é usado para este caso de Uso...Seria apenas para log.

@@ -27,7 +27,6 @@ public class ObmControle extends HttpServlet {
      */
     public ObmControle() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -56,7 +55,7 @@ public class ObmControle extends HttpServlet {
 		
 		else{
 			
-			List obms = (List<OBM>) OBMDao.getInstance().listarTodasOBMs();
+			List<OBM> obms = (List<OBM>) OBMDao.getInstance().listarTodasOBMs();
 			request.setAttribute("obms", obms);
 			view = request.getRequestDispatcher("/listarOBMs.jsp");
 						

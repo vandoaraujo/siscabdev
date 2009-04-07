@@ -70,7 +70,7 @@ public class RegistrarChamado extends HttpServlet {
 			List<Municipio> municipios = (List<Municipio>)MunicipioDao.getInstance().listarTodosMunicipios();
 					  		  
 			  //Artificio para guardar a hora inicial
-			Chamado.retornaDataInicialChamado();		  
+			Chamado.setDataHoraInicioChamado();		  
 			  
 			request.setAttribute("municipios", municipios);
 			request.setAttribute("usuario", u);

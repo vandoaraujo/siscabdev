@@ -74,7 +74,7 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 		
 		//Atualiza lista de viaturas
 		
-		List <Viatura> viaturas = new ArrayList();
+		List <Viatura> viaturas = new ArrayList<Viatura>();
 		
 		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(atendimento);
 		
@@ -137,9 +137,6 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 		}
 		
 	}
-	
-	    
-	    
 }
 
 

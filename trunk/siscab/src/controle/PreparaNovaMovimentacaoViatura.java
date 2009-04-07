@@ -30,7 +30,6 @@ public class PreparaNovaMovimentacaoViatura extends HttpServlet {
      */
     public PreparaNovaMovimentacaoViatura() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

@@ -62,11 +62,11 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 		else{
 			
 			System.out.println("TEM VIATURA - CLASSE FINALIZA ATENDIMENTO");
-			informaUsuarioSobreAlocacaoViaturasAtendimento(request,response,modoFechamento,numeroAtendimento,idAtendimento,viatura);
+			informarUsuarioSobreAlocacaoViaturasAtendimento(request,response,modoFechamento,numeroAtendimento,idAtendimento,viatura);
 		}
 	}
 
-	private void informaUsuarioSobreAlocacaoViaturasAtendimento(
+	private void informarUsuarioSobreAlocacaoViaturasAtendimento(
 			HttpServletRequest request, HttpServletResponse response,
 			String modoFechamento, int numeroAtendimento,int idAtendimento, List<Viatura> viatura) {
 		
@@ -107,16 +107,9 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 		
 		System.out.println(" ############# Atendimento atualizado  e finalizado com sucesso");
 		
-		//Iniciar cronologia do atendimento
-		CronoAtendimento crono =  new CronoAtendimento();
-		crono.setAtendimento_id(atendimento);
-		crono.setCronoatendimento_tipoevento("finalização");
-		crono.setCronoatendimento_horaevento(new Date());
-		
-		CronoAtendimentoDao.getInstance().salvar(crono);
-		
+		finalizarCronologiaAtendimento(atendimento);
+	
 		System.out.println(" ############# Seta Cronologia do Atendimento - Finalizacao");
-		
 			
 		RequestDispatcher view;
 		request.setAttribute("mensagem", "Finalizado com sucesso");
@@ -132,6 +125,17 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private void finalizarCronologiaAtendimento(Atendimento atendimento) {
+		
+		//Iniciar cronologia do atendimento
+		CronoAtendimento crono =  new CronoAtendimento();
+		crono.setAtendimento_id(atendimento);
+		crono.setCronoatendimento_tipoevento("finalização");
+		crono.setCronoatendimento_horaevento(new Date());
+		CronoAtendimentoDao.getInstance().salvar(crono);
+		
 	}
 
 }

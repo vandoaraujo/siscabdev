@@ -41,8 +41,6 @@ public class EditaVitima extends HttpServlet {
 		
 		String atendimentoAtual = request.getParameter("atendimentoAtual");
 		
-		System.out.println("IMPRIME!!!!!!!!!!! ####################### "+ id);
-		
 		VitimaAtendida vitima = VitimaAtendidaDao.getInstance().BuscaVitimaId(id); 
 		
 		request.setAttribute("vitima", vitima);

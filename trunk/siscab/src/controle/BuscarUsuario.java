@@ -47,11 +47,11 @@ public class BuscarUsuario extends HttpServlet {
                 String registro1 = request.getParameter("registro");
                 String nomeObm = request.getParameter("obm");
          
-                procurarUsuarios(registro1,nomeObm,request,response);
+                procurarUsuario(registro1,nomeObm,request,response);
                 
         }
 
-		private void procurarUsuarios(String registro1, String nomeObm,
+		private void procurarUsuario(String registro1, String nomeObm,
 				HttpServletRequest request, HttpServletResponse response) throws IOException {
 			
 			//Verifica consulta conforme parametros
@@ -89,8 +89,6 @@ public class BuscarUsuario extends HttpServlet {
                	usu= UsuarioDao.getInstance().listar();
 
             }
-                           
-            //System.out.println("RESULTADO DA BUSCA QTD USUÁRIOS " + usu.size());
                            
             if (!response.isCommitted()){  
             	 

@@ -50,12 +50,13 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 		String modoFechamento = request.getParameter("modoFechamento");
 		int numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
 		int idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
+		
 		viaturas = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(idAtendimento);
 		
 		//Inicia transacao
 		ViaturaDao.getInstance().iniciaTransacao();
 		
-		trocaStatusViaturas();
+		trocarStatusViaturas();
 		//Finaliza Transacao
 		ViaturaDao.getInstance().finalizaTransacao();
 		System.out.println("Finalizou a transacao");
@@ -64,7 +65,7 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 
 	}
 	
-	private void trocaStatusViaturas() {
+	private void trocarStatusViaturas() {
 		
 		for(int i=0;i< viaturas.size(); i++){
 			Viatura v = viaturas.get(i);
@@ -86,11 +87,11 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 				
 		AtendimentoDao.getInstance().atualizar(atendimento);
 		
-		System.out.println(" ############# Atendimento atualizado e finalizado com sucesso ##############");
+		System.out.println("############# Atendimento atualizado e finalizado com sucesso ##############");
 		
 		finalizaCronologiaAtendimento();
 			
-		System.out.println(" ############# Cronologia do Atendimento - Finalizacao");
+		System.out.println("############# Cronologia do Atendimento - Finalizacao");
 			
 		RequestDispatcher view;
 		request.setAttribute("mensagem", "Finalizado com sucesso");

@@ -55,8 +55,6 @@ public class DespacharViatura extends HttpServlet {
 		sessao.setAttribute("viaturasEmProntidao", v);
 		RequestDispatcher view = request.getRequestDispatcher("/listarViaturasProntidao.jsp");
 		
-
-	
 		try {
 		view.forward(request, response);
 		} catch (ServletException e) {
