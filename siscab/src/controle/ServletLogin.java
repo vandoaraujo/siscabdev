@@ -56,7 +56,7 @@ public class ServletLogin extends HttpServlet {
 		String registro = request.getParameter("numRegistro");
 		String senha = request.getParameter("senha");
 		
-		boolean b = validaCampos(registro,senha,response,request);
+		boolean b = validaParametros(registro,senha,response,request);
 		if(b == true){
 			
 			try{		
@@ -64,7 +64,7 @@ public class ServletLogin extends HttpServlet {
 				usu = UsuarioDao.getInstance().buscarUsuario(numRegistro, senha);
 			}
 			catch(Exception n){
-				validaCampos(registro,senha,response,request);
+				validaParametros(registro,senha,response,request);
 			}
 					
 
@@ -82,7 +82,7 @@ public class ServletLogin extends HttpServlet {
 	
 	}
 	
-	private boolean validaCampos(String registro, String senha, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	private boolean validaParametros(String registro, String senha, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		
 		if(registro.equals("") || senha.equals("")){
 			

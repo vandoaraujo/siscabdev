@@ -35,7 +35,15 @@ public class EfetivaAtendimento extends HttpServlet {
 	String idAno = null;
 	String radioButton,obmRepassaAtendimento,obmAtendimento = null;
 	Atendimento atendimento = null;
-	Chamado chamado = null; 
+	Chamado chamado = null;
+	private String bairro;
+	private double coordX;
+	private double coordY;
+	private String logradouro;
+	private int numComplemento;
+	private TipoOcorrencia tipoO;
+	private String status;
+	private String municipio; 
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -59,35 +67,48 @@ public class EfetivaAtendimento extends HttpServlet {
 		
 		idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
 		obmAtendimento = request.getParameter("obmAtendimento");
-		String bairro = request.getParameter("bairro");
+		bairro = request.getParameter("bairro");
 		bairro.toLowerCase();
-		String municipio = request.getParameter("municipio");
+		municipio = request.getParameter("municipio");
 		radioButton = request.getParameter("radiobutton");
 		obmRepassaAtendimento = request.getParameter("obmRepassaAtendimento");
 		String latitude = request.getParameter("coordX");
 		if(latitude.equals("")){ latitude = "0"; }
 		String longitude = request.getParameter("coordY");
 		if(longitude.equals("")){longitude = "0"; }
-		float coordX = Float.parseFloat(latitude);
-		float coordY = Float.parseFloat(longitude);
-		String logradouro = request.getParameter("logradouro");
-		int numComplemento = Integer.parseInt(request.getParameter("numComplemento"));
+		coordX = Float.parseFloat(latitude);
+		coordY = Float.parseFloat(longitude);
+		logradouro = request.getParameter("logradouro");
+		numComplemento = Integer.parseInt(request.getParameter("numComplemento"));
 		String tipoOcorrencia = request.getParameter("tipoOcorrencia");
-		String status = request.getParameter("status");
+		status = request.getParameter("status");
 		
 		//Instancia objeto a ser salvo no BD 
 		atendimento = new Atendimento();
 	
-		pesquisaAnoVigente();
+		getAnoVigente();
 		
 		iniciaProximoIdAtendimento();
 		
-		verificaRepasseAtendimento();
+		verificarRepasseAtendimento();
 		
 		buscaChamadoAtual();
 					
-		TipoOcorrencia tipoO = TipoOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
+		tipoO = TipoOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(tipoOcorrencia);
 		
+		salvarAtendimento();
+				
+		iniciaCronologiaAtendimento();
+		
+		RequestDispatcher view = request.getRequestDispatcher("/atendimentoSalvo.jsp");
+		
+		request.setAttribute("numeroAtendimento",oid);
+		view.forward(request, response);
+		
+		}
+
+	private void salvarAtendimento() {
+
 		atendimento.setAtendimento_numero(oid);
 		atendimento.setChamado_id(chamado);
 		atendimento.setBairro(bairro);
@@ -103,15 +124,7 @@ public class EfetivaAtendimento extends HttpServlet {
 		
 		AtendimentoDao.getInstance().salvar(atendimento);
 		
-		iniciaCronologiaAtendimento();
-				
-		
-		RequestDispatcher view = request.getRequestDispatcher("/atendimentoSalvo.jsp");
-		
-		request.setAttribute("numeroAtendimento",oid);
-		view.forward(request, response);
-		
-		}
+	}
 
 	private void iniciaCronologiaAtendimento() {
 		
@@ -120,7 +133,6 @@ public class EfetivaAtendimento extends HttpServlet {
 		crono.setAtendimento_id(atendimento);
 		crono.setCronoatendimento_tipoevento("acionamento");
 		crono.setCronoatendimento_horaevento(new Date());
-		
 		CronoAtendimentoDao.getInstance().salvar(crono);
 		
 	}
@@ -131,7 +143,7 @@ public class EfetivaAtendimento extends HttpServlet {
 		chamado = ChamadoDao.getInstance().BuscaChamadoId(idAtendimento);
 	}
 
-	private void verificaRepasseAtendimento() {
+	private void verificarRepasseAtendimento() {
 		
 		//Verifica se o atendimento será analisado por outra OBM
 		if(radioButton.equals("sim")){
@@ -146,7 +158,7 @@ public class EfetivaAtendimento extends HttpServlet {
 		}	
 	}
 
-	private void pesquisaAnoVigente() {
+	private void getAnoVigente() {
 		
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.add(GregorianCalendar.YEAR,0);

@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,10 +13,13 @@ import modelo.Atendimento;
 import modelo.Municipio;
 import modelo.OBM;
 import modelo.TipoOcorrencia;
+import modelo.Viatura;
 import dao.AtendimentoDao;
+import dao.MovimentaViaturaDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
 import dao.TipoOcorrenciaDao;
+import dao.ViaturaDao;
 
 /**
  * Servlet implementation class AlteraAtendimento
@@ -33,9 +37,8 @@ public class AlteraAtendimento extends HttpServlet {
 	private String status;
 	private String tipoOcorrencia;
 	private int registroId = 0;
-	
+	List<Viatura> viaturas = null;
 	private Atendimento atendimento = null;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,8 +59,6 @@ public class AlteraAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	   	//Parametros do JSP
-
 		 registroId = Integer.parseInt(request.getParameter("registroAtendimento"));
    	 	 obmPresente = request.getParameter("obmAtendimento");
 		 municipio = request.getParameter("municipio");
@@ -122,18 +123,34 @@ public class AlteraAtendimento extends HttpServlet {
 			HttpServletResponse response, int registro) {
 		
 		int atendimentoNumero = atendimento.getAtendimento_numero();
+		
+		viaturas = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(atendimento.getId());
+		
+		ViaturaDao.getInstance().iniciaTransacao();
+		
+		trocaStatusViaturas();
+		//Finaliza Transacao
+		ViaturaDao.getInstance().finalizaTransacao();
+		
 		AtendimentoDao.getInstance().deletar(atendimento);
 		despacha(request, response, "deletar", atendimentoNumero);
+	}
+	
+	private void trocaStatusViaturas() {
+		
+		for(int i=0;i< viaturas.size(); i++){
+			Viatura v = viaturas.get(i);
+			v.setViatura_status("Em prontidão");
+			ViaturaDao.getInstance().atualizarDiversasViaturas(v);
+			System.out.println(" ############ Atualizou " + " viatura!   ################");
+		}
+		
 	}
 
 	private void alterar(HttpServletRequest request,
 			HttpServletResponse response, int registro) {
 						 					
 		 Municipio municipioDao = MunicipioDao.getInstance().listarMunicipioNome(municipio);
-		 
-		 System.out.println(" RECEBE MUNICIPIO ---#########################");
-		 System.out.println(municipioDao.toString());
-		 System.out.println("#########################");
 		 			
 		OBM obm = OBMDao.getInstance().listarOBMNome(obmPresente);
 		

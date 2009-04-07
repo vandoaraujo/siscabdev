@@ -45,19 +45,16 @@ public class EditaViatura extends HttpServlet {
 		request.setAttribute("viaturaAtual",via);
 		RequestDispatcher view = request.getRequestDispatcher("/editaViatura.jsp");
 		
-	
-		
-	try {
-		view.forward(request, response);
-	} catch (ServletException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
-	
 
 }

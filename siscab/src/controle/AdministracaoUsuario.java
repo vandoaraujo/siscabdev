@@ -22,7 +22,7 @@ public class AdministracaoUsuario extends HttpServlet {
      */
     public AdministracaoUsuario() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
         /**

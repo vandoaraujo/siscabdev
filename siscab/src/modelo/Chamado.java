@@ -117,7 +117,7 @@ public class Chamado {
 		this.horatermino = horatermino;
 	}
 	
-	public static void retornaDataInicialChamado(){
+	public static void setDataHoraInicioChamado(){
 		
 		GregorianCalendar calendar =  new GregorianCalendar();
 		calendar.add(GregorianCalendar.MONTH, 0);
@@ -128,7 +128,7 @@ public class Chamado {
 		
 	}
 	
-	public static Date getHoraInicioChamado(){
+	public static Date getDataHoraInicioChamado(){
 		return data;
 		
 	}

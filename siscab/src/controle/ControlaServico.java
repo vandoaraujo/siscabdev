@@ -68,75 +68,63 @@ public class ControlaServico extends HttpServlet {
 				
 			deletar(request, response,registroServico);
 		}
-		  
-		    
 						
-		}
-		
-		
+	}
 
-		protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-		{
+	protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 				
-				Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoId(registroAtendimento);
-				
-								
-				TipoServico tipoS = TipoServicoDao.getInstance().listarTipoServicoNome(tipoServico);
-					
-				ServicoRealizado servico = new ServicoRealizado();
-				servico.setAtendimentos(at);
-				servico.setTiposervico(tipoS);
-				
-				ServicoRealizadoDao.getInstance().salvar(servico);
-				
-				request.setAttribute("servico", servico);
-				despacha(request, response,"salvar", servico.getTiposervico().getTiposervico_descricao());
-				
+			Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoId(registroAtendimento);
+			TipoServico tipoS = TipoServicoDao.getInstance().listarTipoServicoNome(tipoServico);
+			ServicoRealizado servico = new ServicoRealizado();
+			servico.setAtendimentos(at);
+			servico.setTiposervico(tipoS);
+			ServicoRealizadoDao.getInstance().salvar(servico);
+			request.setAttribute("servico", servico);
+			despacha(request, response,"salvar", servico.getTiposervico().getTiposervico_descricao());
 		
-				
-			
-		}
+	}
+
+	/*
+	 * Recebe como parametro HttpRequest, response, a acao a ser executada e o nome do objeto
+	 */
+	private void despacha(HttpServletRequest request,
+			HttpServletResponse response, String string, String descricaoServico) {
 		
-		/*
-		 * Recebe como parametro HttpRequest, response, a acao a ser executada e o nome do objeto
-		 */
-		private void despacha(HttpServletRequest request,
-				HttpServletResponse response, String string, String descricaoServico) {
-			
-				RequestDispatcher view;
-				request.setAttribute("descricaoServico", descricaoServico);
-				if(string.equals("salvar")){
-					
-					request.setAttribute("mensagem", "salva com sucesso!!");
-					
-				}
-				else{
-					request.setAttribute("mensagem", "deletado com sucesso!!");
-				}
+			RequestDispatcher view;
+			request.setAttribute("descricaoServico", descricaoServico);
+			if(string.equals("salvar")){
 				
-				view = request.getRequestDispatcher("/mensagemServico.jsp");
+				request.setAttribute("mensagem", "salva com sucesso!!");
 				
-			
-				
-			try {
-				view.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-				
+			else{
+				request.setAttribute("mensagem", "deletado com sucesso!!");
+			}
 			
+			view = request.getRequestDispatcher("/mensagemServico.jsp");
+			
+		
+			
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		private void deletar(HttpServletRequest request,
-				HttpServletResponse response, int registroServico) {
 			
-			ServicoRealizado servico = ServicoRealizadoDao.getInstance().BuscaServicoId(registroServico);
-			String nomeServico = servico.getTiposervico().getTiposervico_descricao();
-			ServicoRealizadoDao.getInstance().deletar(servico);
-			despacha(request, response, "deletar", nomeServico);
+		
+	}
+
+	private void deletar(HttpServletRequest request,
+			HttpServletResponse response, int registroServico) {
+		
+		ServicoRealizado servico = ServicoRealizadoDao.getInstance().BuscaServicoId(registroServico);
+		String nomeServico = servico.getTiposervico().getTiposervico_descricao();
+		ServicoRealizadoDao.getInstance().deletar(servico);
+		despacha(request, response, "deletar", nomeServico);
 		}
 }

@@ -1,13 +1,9 @@
 package controle;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +18,6 @@ import modelo.MovimentaViaturaPK;
 import modelo.Viatura;
 import dao.AtendimentoDao;
 import dao.CronoAtendimentoDao;
-import dao.HibernateUtil;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
 
@@ -34,7 +29,6 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Viatura viatura=null;
 	MovimentaViatura mov = null;
-	//Atendimento atendimentoAtual = null;
 	Atendimento atendimento = null;
 	
     /**
@@ -42,7 +36,6 @@ public class AssociaViaturaAtendimento extends HttpServlet {
      */
     public AssociaViaturaAtendimento() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -56,10 +49,8 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+				
 		int idViatura = Integer.parseInt(request.getParameter("viatura"));
-		
 		System.out.println("Id da viatura" + idViatura);
 		
 		viatura = ViaturaDao.getInstance().BuscaViaturaId(idViatura);		
@@ -69,16 +60,12 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		
 		viatura.setViatura_status("Em atendimento");
 		
-		//atendimentoAtual = AtendimentoDao.getInstance().BuscaAtendimentoId(atendimento.getId());
-		
-		
-		
 		movimentaViaturaAoAtendimento();
 		
 		//Atualiza o status da viatura de em prontidão para em atendimento
 		ViaturaDao.getInstance().atualizar(viatura);
 		
-		salvaCronologiaAtendimentoPrimeiraViatura();
+		salvarCronologiaAtendimentoPrimeiraViatura();
 				
 		//Modifica o Status do Atendimento
 		atendimento.setStatus_atendimento("Em andamento");
@@ -88,7 +75,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		
 		//fazer uma busca de viaturas empenhadas...
 		//Lógica de na próxima página popular uma lista de viaturas já associadas e com tipo evento ao atendimento
-		List <Viatura> viaturas = new ArrayList();
+		List <Viatura> viaturas = new ArrayList<Viatura>();
 		
 		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().listaViaturasDeUmAtendimento(atendimento.getId());
 		
@@ -112,16 +99,14 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 	try {
 		view.forward(request, response);
 	} catch (ServletException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		
 	}
 
-	private void salvaCronologiaAtendimentoPrimeiraViatura() {
+	private void salvarCronologiaAtendimentoPrimeiraViatura() {
 		
 		CronoAtendimento cr = CronoAtendimentoDao.getInstance().verificaCronologiaAtendimentoInicio(atendimento.getId());
 		//Se a query retorna null, indica que nenhuma viatura ainda foi despachada para este atendimento

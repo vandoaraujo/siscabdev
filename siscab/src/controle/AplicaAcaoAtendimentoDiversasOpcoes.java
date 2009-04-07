@@ -39,7 +39,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
      */
     public AplicaAcaoAtendimentoDiversasOpcoes() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -70,27 +70,24 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		}
 		else if(operacao == 4){
 			
-			viaturasEmpenhadas(request, response,registroAtendimento);
+			viaturasEmpenhadasAtendimento(request, response,registroAtendimento);
 		}
 		else if(operacao == 5){
 			
-			vitimas(request, response,registroAtendimento);
+			vitimasAtendimento(request, response,registroAtendimento);
 		}
 		else if(operacao == 6){
 			
-			servicosExecutados(request, response,registroAtendimento);
+			servicosExecutadosAtendimento(request, response,registroAtendimento);
 		}
 		else if(operacao == 7){
 			
-			finalizarChamado(request, response,registroAtendimento);
+			finalizarAtendimento(request, response,registroAtendimento);
 		}
-		
-	    
-	    
 					
 	}
 		
-	private void finalizarChamado(HttpServletRequest request,
+	private void finalizarAtendimento(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
 		List<ModoFechamento> modo = ModoFechamentoDao.getInstance().listarTodosModosFechamento();
@@ -113,7 +110,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	}
 		
 		
-	private void servicosExecutados(HttpServletRequest request,
+	private void servicosExecutadosAtendimento(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
 
@@ -137,11 +134,9 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		
 	}
 
-	private void vitimas(HttpServletRequest request,
+	private void vitimasAtendimento(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 		
-		System.out.println("NUM constatado de vitimas" + at.getChamado_id().getNumaproxvitimas());
-
 		List <VitimaAtendida> vitimas = VitimaAtendidaDao.getInstance().listaVitimasReferenteUmAtendimento(at.getId());
 				
 		RequestDispatcher view;
@@ -160,26 +155,14 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		
 	}
 
-	private void viaturasEmpenhadas(HttpServletRequest request,
+	private void viaturasEmpenhadasAtendimento(HttpServletRequest request,
 			HttpServletResponse response, int registroAtendimento) {
 
-		//Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
-
-		List <Viatura> viaturas = new ArrayList();
 		
 		List <Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance().ListarViaturaNaoRepetidasEmAtendimento(at.getId());
-	
 							
-		for(int i=0;i<tiposEventosViatura.size();i++){
-			
-			Integer viatura_id = tiposEventosViatura.get(i).getId();
-			Viatura v = ViaturaDao.getInstance().BuscaViaturaId(viatura_id);
-			viaturas.add(v);
-			
-		}
-				
 		HttpSession sessao = request.getSession();
-		sessao.setAttribute("viaturas", viaturas);
+		sessao.setAttribute("viaturas", tiposEventosViatura);
 		RequestDispatcher view;
 		sessao.setAttribute("atendimentoAtual", at);
 		view = request.getRequestDispatcher("/iniciarViaturasEmpenhadas.jsp");
@@ -187,10 +170,9 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	try {
 		view.forward(request, response);
 	} catch (ServletException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
+		
 		e.printStackTrace();
 	}
 		
@@ -201,37 +183,11 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 		
 		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
-    	
-		//Object objCoordX_Operador = null;
-		//objCoordX_Operador = (Object)usuario.getObm().getCoordX();
-		//Double CoordX_Operador = 0.0;
-		//Double CoordY_Operador = 0.0;
-
-		//Object objCoordX_Acidente = null;
-		//objCoordX_Acidente = (Object)at.getCoordx();
-		//Double CoordX_Acidente = 0.0;
-		//Double CoordY_Acidente = 0.0;
-		
-    	//if (!objCoordX_Operador.equals(null)){    	
-	    	request.setAttribute("CoordX_Operador", usuario.getObm().getCoordX());
-	    	request.setAttribute("CoordY_Operador", usuario.getObm().getCoordX());    		    		    
-    	//}
-    	//else
-    	//{
-    	//	request.setAttribute("CoordX_Operador", CoordX_Operador);
-	    //	request.setAttribute("CoordY_Operador", CoordY_Operador);  
-    	//}
-    	
-    	//if (!objCoordX_Acidente.equals(null)){    	
-    		request.setAttribute("CoordX_Acidente", at.getCoordx());
-    		request.setAttribute("CoordY_Acidente", at.getCoordy());    		    		    
-    	//}
-    	//else
-    	//{
-    	//	request.setAttribute("CoordX_Acidente", CoordX_Acidente);
-	    //	request.setAttribute("CoordY_Acidente", CoordY_Acidente);  
-    	//}
-		
+		request.setAttribute("CoordX_Operador", usuario.getObm().getCoordX());
+		request.setAttribute("CoordY_Operador", usuario.getObm().getCoordX());    		    		    
+		request.setAttribute("CoordX_Acidente", at.getCoordx());
+		request.setAttribute("CoordY_Acidente", at.getCoordy());    		    		    
+  
     	request.setAttribute("NomeOrigem", usuario.getObm().getNome());
 		request.setAttribute("EnderecoOrigem", usuario.getObm().getLogradouro());
 		request.setAttribute("NumeroOrigem", usuario.getObm().getNumCompl());

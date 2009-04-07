@@ -67,7 +67,7 @@ public class RepasseAtendimento extends HttpServlet {
 
 	private void analisaPerfilUsuario() {
 		
-		//Se Controlador do COCB então transfere atendimento para uma daterminada OBM
+		//Se Controlador do COCB então transfere atendimento para uma determinada OBM
 		if(perfilUsuario == 4){
 			
 			List<OBM> obm = OBMDao.getInstance().listarTodasOBMsExcetoCOCB();

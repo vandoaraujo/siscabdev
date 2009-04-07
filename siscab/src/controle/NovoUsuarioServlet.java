@@ -38,7 +38,6 @@ public class NovoUsuarioServlet extends HttpServlet {
      */
     public NovoUsuarioServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -134,8 +133,6 @@ public class NovoUsuarioServlet extends HttpServlet {
 			usu.setObm(cobm);
 			
 			PerfilUsuario p = PerfilUsuarioDao.getInstance().listarPerfilNome(perfil);
-			
-			
 			
 			usu.setPerfil(p);
 			usu.setEmail(email);
