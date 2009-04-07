@@ -15,7 +15,6 @@
 		<servlet-name>ServletLogin</servlet-name>
 		<url-pattern>/ServletLogin</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
 		<description>
 		</description>
@@ -26,10 +25,9 @@
 		controle.TotalAtendimentosPorModoFechamento</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ServletLogin</servlet-name>
-		<url-pattern>/ServletLogin</url-pattern>
+		<servlet-name>TotalAtendimentosPorModoFechamento</servlet-name>
+		<url-pattern>/TotalAtendimentosPorModoFechamento</url-pattern>
 	</servlet-mapping>
-	
 	<servlet>
 		<description>
 		</description>
@@ -383,11 +381,6 @@
 		controle.ConsultaViaturas</servlet-class>
 	</servlet>
 
-
-	<servlet-mapping>
-		<servlet-name>TotalAtendimentosPorModoFechamento</servlet-name>
-		<url-pattern>/TotalAtendimentosPorModoFechamento</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ServletNovoUsuario</servlet-name>
 		<url-pattern>/ServletNovoUsuario</url-pattern>
