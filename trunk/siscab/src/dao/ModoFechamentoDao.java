@@ -6,14 +6,19 @@ import modelo.Chamado;
 import modelo.ModoFechamento;
 import modelo.NaturezaChamado;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class ModoFechamentoDao {
 	
 	
 	private static Session session;
 	private static ModoFechamentoDao instance = null;
+	static Logger logger = Logger.getLogger(ModoFechamentoDao.class);
+
 	
 	public static ModoFechamentoDao getInstance(){
 		instance = new ModoFechamentoDao();

@@ -7,15 +7,20 @@ import modelo.OBM;
 import modelo.Usuario;
 import modelo.VitimaAtendida;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import controle.Login;
+
 public class VitimaAtendidaDao {
 
 	private static Session session;
 	private static VitimaAtendidaDao instance = null;
+	static Logger logger = Logger.getLogger(VitimaAtendidaDao.class);
+
 	
 	public static VitimaAtendidaDao getInstance(){
 		instance = new VitimaAtendidaDao();
@@ -49,7 +54,7 @@ public class VitimaAtendidaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 	}
 	
 	public void atualizar(VitimaAtendida vitima) {
@@ -59,7 +64,7 @@ public class VitimaAtendidaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		logger.info("ATUALIZADO");
 		
 	}
 

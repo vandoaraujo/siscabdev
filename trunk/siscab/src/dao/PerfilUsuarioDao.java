@@ -6,14 +6,18 @@ import modelo.Atendimento;
 import modelo.OBM;
 import modelo.PerfilUsuario;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class PerfilUsuarioDao {
 	
 	
 	private static Session session;
 	private static PerfilUsuarioDao instance = null;
+	static Logger logger = Logger.getLogger(PerfilUsuarioDao.class);
 	
 	public static PerfilUsuarioDao getInstance(){
 		instance = new PerfilUsuarioDao();
@@ -47,7 +51,7 @@ public class PerfilUsuarioDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 	}
 	
 	public void atualizar(PerfilUsuario perfil) {
@@ -57,7 +61,7 @@ public class PerfilUsuarioDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		logger.info("ATUALIZADO");
 		
 	}
 

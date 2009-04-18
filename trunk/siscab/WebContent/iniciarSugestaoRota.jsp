@@ -63,7 +63,6 @@
 											CoordX_Acidente = request.getAttribute("CoordX_Acidente").toString();
 											CoordY_Acidente = request.getAttribute("CoordY_Acidente").toString();
 											
-											System.out.println(CoordX_Acidente);
 											if (CoordX_Acidente != null)
 											{
 										%>

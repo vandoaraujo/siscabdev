@@ -13,19 +13,9 @@
 <body>
  
 <script language="JavaScript">
-function validate()
-{	
-	if(document.frm.nome.value==""|| document.frm.senha.value=="")
-	{
-		alert("É necessário digitar nome e senha!!");
-		return;
-	}
-	  	document.frm.action="index.jsp";
-		document.frm.submit;
-	}
 </script>
 
-<form action ="ServletLogin" name="frm" method="post">
+<form action ="Login" name="frm" method="post">
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">

@@ -5,14 +5,18 @@ import java.util.List;
 import modelo.OBM;
 import modelo.SiscabException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.ObjectDeletedException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class OBMDao {
 
 	private static Session session;
 	private static OBMDao instance = null;
+	static Logger logger = Logger.getLogger(OBMDao.class);
 	
 	public static OBMDao getInstance(){
 		instance = new OBMDao();
@@ -47,7 +51,7 @@ public class OBMDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 		}
 		catch(ObjectDeletedException o){
 			
@@ -62,7 +66,7 @@ public class OBMDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		logger.info("ATUALIZADO");
 		
 	}
 

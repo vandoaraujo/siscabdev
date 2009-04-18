@@ -5,15 +5,20 @@ import java.util.List;
 import modelo.CronoAtendimento;
 import modelo.Usuario;
 import modelo.VitimaAtendida;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import controle.Login;
+
 public class CronoAtendimentoDao {
 	
 	private static Session session;
 	private static CronoAtendimentoDao instance = null;
+	static Logger logger = Logger.getLogger(CronoAtendimentoDao.class);
 	
 	public static CronoAtendimentoDao getInstance(){
 		instance = new CronoAtendimentoDao();
@@ -47,7 +52,7 @@ public class CronoAtendimentoDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 	}
 	
 	public void atualizar(CronoAtendimento cronoAtendimento) {
@@ -57,7 +62,7 @@ public class CronoAtendimentoDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		logger.info("ATUALIZADO");
 		
 	}
 

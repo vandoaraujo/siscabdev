@@ -6,16 +6,19 @@ import java.util.List;
 import modelo.OBM;
 import modelo.Viatura;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class ViaturaDao {
 
 	private static Session session;
 	private static ViaturaDao instance = null;
-	
+	static Logger logger = Logger.getLogger(ViaturaDao.class);
+
 	private Transaction t; 
-	
 
 	public static ViaturaDao getInstance(){
 		instance = new ViaturaDao();
@@ -54,7 +57,7 @@ public class ViaturaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 	}
 	
 	public void atualizar(Viatura viatura) {
@@ -64,7 +67,7 @@ public class ViaturaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("Viatura Atualizada");
+		logger.info("Viatura Atualizada");
 		
 	}
 	
@@ -78,7 +81,7 @@ public class ViaturaDao {
 		t.commit();
 		session.flush();	
 		session.close();
-		System.out.println("Viaturas Atualizadas");
+		logger.info("Viaturas Atualizadas");
 	}
 	
 	public void atualizarDiversasViaturas(Viatura viatura) {

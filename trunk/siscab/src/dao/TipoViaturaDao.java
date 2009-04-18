@@ -5,13 +5,17 @@ import java.util.List;
 import modelo.OBM;
 import modelo.TipoViatura;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class TipoViaturaDao {
 
 	private static Session session;
 	private static TipoViaturaDao instance = null;
+	static Logger logger = Logger.getLogger(TipoViaturaDao.class);
 	
 	public static TipoViaturaDao getInstance(){
 		instance = new TipoViaturaDao();

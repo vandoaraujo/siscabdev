@@ -5,13 +5,18 @@ import java.util.List;
 import modelo.TipoOcorrencia;
 import modelo.TipoServico;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class TipoServicoDao {
 	
 	private static Session session;
 	private static TipoServicoDao instance = null;
+	static Logger logger = Logger.getLogger(TipoServicoDao.class);
+
 		
 	public static TipoServicoDao getInstance(){
 		instance = new TipoServicoDao();

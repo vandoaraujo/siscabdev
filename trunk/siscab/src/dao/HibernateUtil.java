@@ -1,8 +1,11 @@
 package dao;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+
+import controle.Login;
 
 public class HibernateUtil {
 	
@@ -11,6 +14,8 @@ public class HibernateUtil {
 	private static Session session;
 	
 	private static HibernateUtil singleton = null;
+	
+	private static Logger logger = Logger.getLogger(HibernateUtil.class);
 	
 	public static HibernateUtil getInstance(){
 		if(singleton==null){
@@ -21,6 +26,7 @@ public class HibernateUtil {
 	
 	private HibernateUtil(){
 		
+		logger.info(this.getClass());
 		AnnotationConfiguration conf = new AnnotationConfiguration();
 		conf.configure("hibernate.cfg.xml");
 		factory = conf.buildSessionFactory();	
@@ -39,7 +45,7 @@ public class HibernateUtil {
 	public static void closeFactory(SessionFactory factory) {
 	if (factory != null) {
 		factory.close();
-		System.out.println("factory Session closed - Hibernate Util Class!!");
+		logger.info("factory Session closed - Hibernate Util Class!!");
 	}
 	}
 	
