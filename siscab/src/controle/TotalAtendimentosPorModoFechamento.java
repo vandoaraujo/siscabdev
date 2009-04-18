@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	private Long canceladaSolicitante= null;
 	private Long trote= null;
 	private Long semAtuação= null;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -58,27 +60,39 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 		String dataInicial = request.getParameter("dataInicial");
 		String dataFinal = request.getParameter("dataFinal");
 		
+		//dataFinal.concat(" 23:59:00");
+		
 		DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			formatadaInicial = new java.sql.Date(formataData.parse(dataInicial).getTime());
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+		
+		/*DateFormat formataDataFinal = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		try {
-			formatadaFinal = new java.sql.Date(formataData.parse(dataFinal).getTime());
+			formatadaFinal = new java.sql.Date(formataDataFinal.parse(dataFinal).getTime());
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}*/
+		
+		DateFormat formataDataFinal = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		try {
+			formatadaFinal = new java.sql.Date(formataDataFinal.parse(dataFinal).getTime());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
-			
+		System.out.println(" ############# Data passada para o Banco" + formatadaInicial);	
+		System.out.println(" ############# Data FORMATADA FINAL" + formatadaFinal);	
+
+		
+		
 		Iterator it = AtendimentoDao.getInstance().ParametrosResultadosRelatorio(formatadaInicial, formatadaFinal);
-		
-		System.out.println("RESULTADO DA QUERY " + it.toString());
-		
-		modosFechamento = new ArrayList<String>();
+				modosFechamento = new ArrayList<String>();
 		numeroAtendimentos = new ArrayList<Long>();
 		
 		while (it.hasNext()){
@@ -104,11 +118,11 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 			}
 		}
 		
-		System.out.println("MODO FECHAMENTO" + modosFechamento.get(1));
+		System.out.println("MODO FECHAMENTO" + modosFechamento.get(0).toString());
+		System.out.println("NUMERO" + numeroAtendimentos.get(0).toString());
+		
+		System.out.println("MODO FECHAMENTO" + modosFechamento.get(1).toString());
 		System.out.println("NUMERO" + numeroAtendimentos.get(1).toString());
-		
-		
-		
 		
 		RequestDispatcher view;
 		request.setAttribute("dataInicial", dataInicial);
@@ -119,8 +133,8 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 		request.setAttribute("QtdTrote", trote);
 		request.setAttribute("QtdSemAtuacao", semAtuação);
 		request.setAttribute("dataGeracao", new Date());
-		//request.setAttribute("modosFechamento", modosFechamento);
-		//request.setAttribute("qtdAtendimentos", numeroAtendimentos);
+		request.setAttribute("modosFechamento", modosFechamento);
+		request.setAttribute("qtdAtendimentos", numeroAtendimentos);
 		view = request.getRequestDispatcher("/relatorioTotalAtendimentosPorModoFechamento.jsp");
 		
 			

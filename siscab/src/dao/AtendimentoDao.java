@@ -84,7 +84,18 @@ public class AtendimentoDao {
 						"order by count(a.id) desc").setDate("horaInicial",dataInicial).setDate("horaFinal",dataFinal).list().iterator();
 			return modoFechamentosInteiros;	
 		}
+		
+		
+		public Iterator ParametrosResultadosRelatorioTeste(Date dataInicial, String dataFinal){
 			
+			Iterator modoFechamentosInteiros = session.createQuery("SELECT m.descricao,COUNT(a.id) from modelo.Atendimento a, modelo.ModoFechamento m,modelo.CronoAtendimento c where m.id = a.modofechamento_id and" +
+					"  c.cronoatendimento_horaevento >=:horaInicial and c.cronoatendimento_horaevento <=:horaFinal and c.atendimento_id = a.id and" +
+						" a.status_atendimento = 'Finalizado' and c.cronoatendimento_tipoevento = 'finalização'" +
+						"  group by m.descricao " +
+						"order by count(a.id) desc").setDate("horaInicial",dataInicial).setString("horaFinal",dataFinal).list().iterator();
+			return modoFechamentosInteiros;	
+		}
+				
 		public List<Atendimento> listarOcorrenciasProximas(int municipio, String bairro){
 			
 			List<Atendimento> atendimentos = (List<Atendimento>) session.createQuery("from modelo.Atendimento a where a.municipio_id=:municipio and a.bairro=:bairroParametro and status_atendimento <> 'Finalizado'").setInteger("municipio", municipio).setString("bairroParametro", bairro).list();  
