@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.MovimentaViatura;
@@ -31,6 +33,8 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 	MovimentaViatura mov = null;
 	Atendimento atendimento = null;
 	
+	static Logger logger = Logger.getLogger(AssociaViaturaAtendimento.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,14 +53,16 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				
+		
+		logger.info(getServletName());
+		
 		int idViatura = Integer.parseInt(request.getParameter("viatura"));
-		System.out.println("Id da viatura" + idViatura);
+		logger.info("Id da viatura" + idViatura);
 		
 		viatura = ViaturaDao.getInstance().BuscaViaturaId(idViatura);		
 		atendimento = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		
-		System.out.println("Atendimento vindo do request " + atendimento);
+		logger.info("Atendimento vindo do request " + atendimento);
 		
 		viatura.setViatura_status("Em atendimento");
 		
@@ -71,7 +77,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 		atendimento.setStatus_atendimento("Em andamento");
 		AtendimentoDao.getInstance().atualizar(atendimento);
 		
-		System.out.println("Atualizou o Atendimento para situacao Status Em andamento");
+		logger.info("Atualizou o Atendimento para situacao Status Em andamento");
 		
 		//fazer uma busca de viaturas empenhadas...
 		//Lógica de na próxima página popular uma lista de viaturas já associadas e com tipo evento ao atendimento
@@ -117,10 +123,10 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 			crono.setCronoatendimento_tipoevento("início");
 			crono.setCronoatendimento_horaevento(new Date());
 			CronoAtendimentoDao.getInstance().salvar(crono);
-			System.out.println("SALVO a CronologiaAtendimento como início");
+			logger.info("SALVO a CronologiaAtendimento como início");
 		}
 		else{
-			System.out.println("TESTE - CLASSE ASSOCIA VIATURA ATENDIMENTO -- NAO ASSOCIOU UMA CRONOLOGIA REPETIDA");
+			logger.info("TESTE - CLASSE ASSOCIA VIATURA ATENDIMENTO -- NAO ASSOCIOU UMA CRONOLOGIA REPETIDA");
 		}
 		
 		

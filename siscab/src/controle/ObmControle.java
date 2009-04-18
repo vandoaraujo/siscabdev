@@ -2,17 +2,16 @@ package controle;
 
 import java.io.IOException;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modelo.OBM;
 import modelo.Usuario;
-
 import dao.OBMDao;
 
 /**
@@ -21,7 +20,9 @@ import dao.OBMDao;
 public class ObmControle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RequestDispatcher view;
-       
+
+	static Logger logger = Logger.getLogger(ObmControle.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,6 +44,7 @@ public class ObmControle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
 		if(!(usuario.getPerfil().getId() == 1)){

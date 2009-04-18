@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.OBM;
 import modelo.PerfilUsuario;
 import modelo.SiscabException;
@@ -32,6 +34,8 @@ public class NovoUsuarioServlet extends HttpServlet {
 	private String email;
 	private String senha; 
 	private String status;
+	
+	static Logger logger = Logger.getLogger(NovoUsuarioServlet.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -52,15 +56,12 @@ public class NovoUsuarioServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-	    //<input type="hidden" name="registroUsuario" value =${usuario.numRegistro} > 
+		logger.info(getServletName());
 	    int registroUsuario = 0;
 	    int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
     	registroUsuario = Integer.parseInt(request.getParameter("registroUsuario"));
- 
-	    
-	    //Controle de qual operacao será realizada
-	    
+
+    	//Ação a ser realizada
 	    if(operacao == 1){
 		
 	    	try {
@@ -79,16 +80,10 @@ public class NovoUsuarioServlet extends HttpServlet {
 			
 			deletar(request, response,registroUsuario);
 		}
-	    
-	    
-					
 	}
-	
-	
 
 	protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SiscabException 
 	{
-			
 					
 			numRegistro = Integer.parseInt(request.getParameter("registro"));
 			nomeGuerra = request.getParameter("nomeGuerra");
@@ -97,7 +92,6 @@ public class NovoUsuarioServlet extends HttpServlet {
 			email = request.getParameter("email");
 			senha = request.getParameter("senha");
 			status = request.getParameter("status");
-		
 			
 			//Verifica Duplicidade de Pessoas já cadastradas no BD
 			List<Usuario> usuarios = UsuarioDao.getInstance().buscarNumRegistroRepetido(numRegistro);
@@ -107,7 +101,6 @@ public class NovoUsuarioServlet extends HttpServlet {
 					SiscabException siscab = new SiscabException("Usuário já cadastrado com este Numero de Registro!");
 					//response.sendRedirect("siscabException.jsp");
 					RequestDispatcher view = request.getRequestDispatcher("/siscabException.jsp");
-					
 										
 					try {
 						view.forward(request, response);
@@ -120,13 +113,11 @@ public class NovoUsuarioServlet extends HttpServlet {
 					}
 						
 			}
-			else{
-			
+			else
+			{
 					
 			OBM cobm = OBMDao.getInstance().listarOBMNome(obm);
-			
 			OBMDao.getInstance().fechaSession();
-					
 			Usuario usu = new Usuario();
 			usu.setNomeGuerra(nomeGuerra);
 			usu.setNumRegistro(numRegistro);
@@ -144,8 +135,6 @@ public class NovoUsuarioServlet extends HttpServlet {
 			despacha(request, response,"salvar", usu.getNomeGuerra());
 			
 			}
-			
-		
 	}
 	
 	/*
@@ -194,10 +183,6 @@ public class NovoUsuarioServlet extends HttpServlet {
 		String nome = usu.getNomeGuerra();
 		UsuarioDao.getInstance().deletar(usu);
 		despacha(request, response, "deletar", nome);
-		
-		
-		
-		
 	}
 
 	private void alterar(HttpServletRequest request,
@@ -212,7 +197,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 		status = request.getParameter("status");
 		status.toUpperCase();
 		
-		System.out.println("TEM QUE MODIFICAR O STATUS PARA MAIUSCULO " + status);
+		logger.info("TEM QUE MODIFICAR O STATUS PARA MAIUSCULO " + status);
 				
 		Usuario usu = UsuarioDao.getInstance().BuscaUsuarioId(registro);
 		usu.setNumRegistro(numRegistro);

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import dao.AtendimentoDao;
 
 /**
@@ -29,7 +31,7 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	private Long canceladaSolicitante= null;
 	private Long trote= null;
 	private Long semAtuação= null;
-	
+	static Logger logger = Logger.getLogger(TotalAtendimentosPorModoFechamento.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,6 +53,7 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		Date formatadaInicial=null;
 		Date formatadaFinal=null;
 				
@@ -86,8 +89,8 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		System.out.println(" ############# Data passada para o Banco" + formatadaInicial);	
-		System.out.println(" ############# Data FORMATADA FINAL" + formatadaFinal);	
+		logger.info(" ############# Data passada para o Banco" + formatadaInicial);	
+		logger.info(" ############# Data FORMATADA FINAL" + formatadaFinal);	
 
 		
 		
@@ -118,11 +121,11 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 			}
 		}
 		
-		System.out.println("MODO FECHAMENTO" + modosFechamento.get(0).toString());
-		System.out.println("NUMERO" + numeroAtendimentos.get(0).toString());
+		logger.info("MODO FECHAMENTO" + modosFechamento.get(0).toString());
+		logger.info("NUMERO" + numeroAtendimentos.get(0).toString());
 		
-		System.out.println("MODO FECHAMENTO" + modosFechamento.get(1).toString());
-		System.out.println("NUMERO" + numeroAtendimentos.get(1).toString());
+		logger.info("MODO FECHAMENTO" + modosFechamento.get(1).toString());
+		logger.info("NUMERO" + numeroAtendimentos.get(1).toString());
 		
 		RequestDispatcher view;
 		request.setAttribute("dataInicial", dataInicial);

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import dao.AtendimentoDao;
 
@@ -17,7 +19,9 @@ import dao.AtendimentoDao;
  */
 public class EditaAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	static Logger logger = Logger.getLogger(EditaAtendimento.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,6 +42,7 @@ public class EditaAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		int registro = (Integer.parseInt(request.getParameter("registro")));
 		Atendimento atendimento = (Atendimento)AtendimentoDao.getInstance().BuscaAtendimentoAtendimentoNumero(registro);
 		

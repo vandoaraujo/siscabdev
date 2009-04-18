@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.ModoFechamento;
@@ -25,6 +27,7 @@ import dao.MovimentaViaturaDao;
  */
 public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	static Logger logger = Logger.getLogger(FinalizaAtendimentoPorModoFechamento.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,6 +49,7 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		String modoFechamento = request.getParameter("modoFechamento");
 		int numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
 		int idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
@@ -54,14 +58,14 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 		
 		if(viatura.isEmpty()){
 			
-			System.out.println("Numero de viaturas Classe Finaliza Atendimento: " + viatura.size());
+			logger.info("Numero de viaturas Classe Finaliza Atendimento: " + viatura.size());
 			
 			efetivaFinalizacaoAtendimento(request,response,modoFechamento,idAtendimento);
 			
 		}
 		else{
 			
-			System.out.println("TEM VIATURA - CLASSE FINALIZA ATENDIMENTO");
+			logger.info("TEM VIATURA - CLASSE FINALIZA ATENDIMENTO");
 			informarUsuarioSobreAlocacaoViaturasAtendimento(request,response,modoFechamento,numeroAtendimento,idAtendimento,viatura);
 		}
 	}
@@ -101,15 +105,15 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 		ModoFechamento m = ModoFechamentoDao.getInstance().listarModoFechamentoNome(modoFechamento);
 		atendimento.setModofechamento_id(m.getId());
 		atendimento.setStatus_atendimento("Finalizado");
-		System.out.println(" ############### Setou o modoFechamento");
+		logger.info(" ############### Setou o modoFechamento");
 		
 		AtendimentoDao.getInstance().atualizar(atendimento);
 		
-		System.out.println(" ############# Atendimento atualizado  e finalizado com sucesso");
+		logger.info(" ############# Atendimento atualizado  e finalizado com sucesso");
 		
 		finalizarCronologiaAtendimento(atendimento);
 	
-		System.out.println(" ############# Seta Cronologia do Atendimento - Finalizacao");
+		logger.info(" ############# Seta Cronologia do Atendimento - Finalizacao");
 			
 		RequestDispatcher view;
 		request.setAttribute("mensagem", "Finalizado com sucesso");

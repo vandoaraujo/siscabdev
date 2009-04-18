@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Usuario;
 
 import dao.UsuarioDao;
@@ -18,7 +20,8 @@ import dao.UsuarioDao;
 public class EditaUsuario extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
+	static Logger logger = Logger.getLogger(EditaUsuario.class);
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,12 +42,10 @@ public class EditaUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+			logger.info(getServletName());
 			Integer id = Integer.parseInt(request.getParameter("registro"));
-						
 			Usuario usuario = UsuarioDao.getInstance().BuscaUsuarioId(id); 
-			
 			request.setAttribute("usuario", usuario);
-			
 			RequestDispatcher view = request.getRequestDispatcher("EditaUsuario.jsp");
 			try {
 				view.forward(request, response);

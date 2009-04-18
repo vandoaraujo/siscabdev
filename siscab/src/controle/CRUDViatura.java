@@ -3,14 +3,20 @@ package controle;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import modelo.OBM;
 import modelo.TipoViatura;
 import modelo.Viatura;
+import dao.HibernateUtil;
 import dao.OBMDao;
 import dao.TipoViaturaDao;
 import dao.ViaturaDao;
@@ -26,8 +32,10 @@ public class CRUDViatura extends HttpServlet {
 	private String obsViatura;
 	private int registroViatura;
 	private String tipoViatura;
+	static Logger logger = Logger.getLogger(CRUDViatura.class);
+
+
 	
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,7 +56,7 @@ public class CRUDViatura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		logger.info(getServletName().toString());
 		numeroViatura = request.getParameter("numero");
 		obm = request.getParameter("obm");
 		statusViatura = request.getParameter("status");

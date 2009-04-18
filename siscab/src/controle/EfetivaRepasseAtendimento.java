@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.OBM;
@@ -25,6 +27,8 @@ public class EfetivaRepasseAtendimento extends HttpServlet {
 	String nomeOBM = null;
 	OBM obm = null;
 	int numeroAtendimento = 0;
+	
+	static Logger logger = Logger.getLogger(EfetivaRepasseAtendimento.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,6 +50,7 @@ public class EfetivaRepasseAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
 		nomeOBM = request.getParameter("obm"); 
 		
@@ -53,7 +58,7 @@ public class EfetivaRepasseAtendimento extends HttpServlet {
 		
 		repassarAtendimentoCronologia();
 				
-		System.out.println(" ATUALIZADO COM SUCESSO!!");
+		logger.info(" ATUALIZADO COM SUCESSO!!");
 		request.setAttribute("atendimentoNumero", at.getAtendimento_numero());
 		despacha(request, response,"salvar", obm.getNome());
 		

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.MovimentaViatura;
 import modelo.Viatura;
 import dao.MovimentaViaturaDao;
@@ -23,7 +25,8 @@ public class PreparaNovaMovimentacaoViatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int viaturaAtual,atendimentoAtual;
 	private List<String> opcaoEvento = null;
-	
+	static Logger logger = Logger.getLogger(PreparaNovaMovimentacaoViatura.class);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -43,7 +46,8 @@ public class PreparaNovaMovimentacaoViatura extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		logger.info(getServletName());
 		opcaoEvento = new ArrayList<String>();
         viaturaAtual = Integer.parseInt(request.getParameter("viaturaAtual"));
         atendimentoAtual = Integer.parseInt(request.getParameter("atendimentoAtual"));

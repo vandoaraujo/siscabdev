@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.OBM;
 import dao.AtendimentoDao;
@@ -22,6 +24,8 @@ public class RepasseAtendimento extends HttpServlet {
 	RequestDispatcher view;
 	private HttpServletRequest request;
 	private int perfilUsuario;
+	static Logger logger = Logger.getLogger(RepasseAtendimento.class);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -43,6 +47,7 @@ public class RepasseAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		this.request = request;
 		int registro = Integer.parseInt(request.getParameter("registro"));
 		perfilUsuario = Integer.parseInt(request.getParameter("perfilUsuario"));

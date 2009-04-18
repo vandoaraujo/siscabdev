@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Municipio;
 import modelo.Viatura;
 import dao.MunicipioDao;
@@ -19,7 +21,8 @@ import dao.ViaturaDao;
  */
 public class EditaViatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	static Logger logger = Logger.getLogger(EditaViatura.class);
+   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,6 +43,7 @@ public class EditaViatura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		int registro = (Integer.parseInt(request.getParameter("registro")));
 		Viatura via = (Viatura)ViaturaDao.getInstance().BuscaViaturaId(registro);
 		request.setAttribute("viaturaAtual",via);

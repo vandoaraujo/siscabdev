@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.VitimaAtendida;
 import dao.VitimaAtendidaDao;
 
@@ -16,7 +18,8 @@ import dao.VitimaAtendidaDao;
  */
 public class EditaVitima extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	static Logger logger = Logger.getLogger(EditaVitima.class);
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,6 +40,7 @@ public class EditaVitima extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		Integer id = Integer.parseInt(request.getParameter("registro"));
 		
 		String atendimentoAtual = request.getParameter("atendimentoAtual");

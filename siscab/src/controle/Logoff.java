@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import dao.HibernateUtil;
 
 /**
@@ -16,7 +18,8 @@ import dao.HibernateUtil;
  */
 public class Logoff extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-       
+	static Logger logger = Logger.getLogger(Logoff.class);
+   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,8 +32,8 @@ public class Logoff extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("Aplication closed!");
+		logger.info(getServletName());
+		logger.info("Aplication closed!");
 		getServletContext().removeAttribute("usuarioCorrente"); 
 		HibernateUtil.closeFactory();	
 	

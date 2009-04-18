@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.Municipio;
 import modelo.OBM;
@@ -28,8 +30,8 @@ public class LocalizaOcorrencia extends HttpServlet {
 	String municipio = null;
 	String bairro = null;
 	String endereco = null;
-	String numero = null;		
-	
+	String numero = null;	
+	static Logger logger = Logger.getLogger(LocalizaOcorrencia.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,6 +53,7 @@ public class LocalizaOcorrencia extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		logger.info(getServletName());
 		this.request = request;
 		this.response = response;
 		
