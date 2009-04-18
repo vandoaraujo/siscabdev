@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,28 +11,40 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.Usuario;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import dao.HibernateUtil;
 import dao.UsuarioDao;
 
 /**
  * Servlet implementation class ServletLogin
  */
-public class ServletLogin extends HttpServlet {
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Usuario usu = null;
 	HibernateUtil h = null;
+	
+	static Logger logger = Logger.getLogger(Login.class);
 	     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletLogin() {
+    public Login() {
         super();
+		//logger.info("Inicializando");
+
     }
     
 	   
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        
+    	//inicializa o sistema de logging com as configurações padrão.
+		BasicConfigurator.configure();
+		//Configura o Nivel que irá aparecer no Console
+		logger.setLevel(Level.INFO);
         h = HibernateUtil.getInstance();
 			    
     }
@@ -52,9 +62,11 @@ public class ServletLogin extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		//Faz chamada ao Banco de Dados instanciando uma SessionFactory
-		
+	
 		String registro = request.getParameter("numRegistro");
 		String senha = request.getParameter("senha");
+		
+		logger.info(getServletName());
 		
 		boolean b = validaParametros(registro,senha,response,request);
 		if(b == true){
@@ -75,6 +87,7 @@ public class ServletLogin extends HttpServlet {
 		else {
 			
 			request.setAttribute("mensagem", "É necessário preencher usuário e senha");
+			logger.info("dados incompletos.jsp");
 			RequestDispatcher view = request.getRequestDispatcher("/dadosIncompletos.jsp");
 			view.forward(request, response);
 		}

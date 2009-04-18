@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.CronoAtendimento;
 import modelo.ModoFechamento;
@@ -27,6 +29,8 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private List<Viatura> viaturas = null;
     Atendimento atendimento = null;
+	static Logger logger = Logger.getLogger(LiberarViaturasFecharAtendimento.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -47,6 +51,7 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		String modoFechamento = request.getParameter("modoFechamento");
 		int numeroAtendimento = Integer.parseInt(request.getParameter("numeroAtendimento"));
 		int idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
@@ -59,7 +64,7 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 		trocarStatusViaturas();
 		//Finaliza Transacao
 		ViaturaDao.getInstance().finalizaTransacao();
-		System.out.println("Finalizou a transacao");
+		logger.info("Finalizou a transacao");
 		
 		efetivaFinalizacaoAtendimento(request,response,modoFechamento,idAtendimento);
 
@@ -71,7 +76,7 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 			Viatura v = viaturas.get(i);
 			v.setViatura_status("Em prontidão");
 			ViaturaDao.getInstance().atualizarDiversasViaturas(v);
-			System.out.println(" ############ Atualizou " + " viatura!   ################");
+			logger.info(" ############ Atualizou " + " viatura!   ################");
 		}
 		
 	}
@@ -87,11 +92,11 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 				
 		AtendimentoDao.getInstance().atualizar(atendimento);
 		
-		System.out.println("############# Atendimento atualizado e finalizado com sucesso ##############");
+		logger.info("############# Atendimento atualizado e finalizado com sucesso ##############");
 		
 		finalizaCronologiaAtendimento();
 			
-		System.out.println("############# Cronologia do Atendimento - Finalizacao");
+		logger.info("############# Cronologia do Atendimento - Finalizacao");
 			
 		RequestDispatcher view;
 		request.setAttribute("mensagem", "Finalizado com sucesso");

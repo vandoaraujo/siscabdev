@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.Municipio;
 import modelo.OBM;
@@ -39,6 +41,9 @@ public class AlteraAtendimento extends HttpServlet {
 	private int registroId = 0;
 	List<Viatura> viaturas = null;
 	private Atendimento atendimento = null;
+	
+	static Logger logger = Logger.getLogger(AlteraAtendimento.class);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -59,23 +64,25 @@ public class AlteraAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		 registroId = Integer.parseInt(request.getParameter("registroAtendimento"));
-   	 	 obmPresente = request.getParameter("obmAtendimento");
-		 municipio = request.getParameter("municipio");
-		 bairro = request.getParameter("bairro");
-		 logradouro = request.getParameter("logradouro");
-		 numComplemento = Integer.parseInt(request.getParameter("numComplemento"));
-		 coordX = Double.parseDouble(request.getParameter("coordX"));
-		 coordY = Double.parseDouble(request.getParameter("coordY"));
-		 status= request.getParameter("status");
-		 tipoOcorrencia = request.getParameter("tipoOcorrencia");
+		logger.info(getServletName());
+
+		registroId = Integer.parseInt(request.getParameter("registroAtendimento"));
+		obmPresente = request.getParameter("obmAtendimento");
+		municipio = request.getParameter("municipio");
+		bairro = request.getParameter("bairro");
+		logradouro = request.getParameter("logradouro");
+		numComplemento = Integer.parseInt(request.getParameter("numComplemento"));
+		coordX = Double.parseDouble(request.getParameter("coordX"));
+		coordY = Double.parseDouble(request.getParameter("coordY"));
+		status= request.getParameter("status");
+		tipoOcorrencia = request.getParameter("tipoOcorrencia");
 		 
-		 atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(registroId);
-		 
-		 int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
+		atendimento = AtendimentoDao.getInstance().BuscaAtendimentoId(registroId);
+		
+		int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
   	    //Controle de qual operacao será realizada
 	    if(operacao == 2){
-			
+	    	
 			alterar(request, response, registroId);
 		}	    
 		else{
@@ -89,22 +96,20 @@ public class AlteraAtendimento extends HttpServlet {
 	 * Recebe como parametro HttpRequest, response, a acao a ser executada e o nome do objeto
 	 */
 	private void despacha(HttpServletRequest request,
-			HttpServletResponse response, String string, int numeroAtendimento) {
+		HttpServletResponse response, String string, int numeroAtendimento) {
 		
-			RequestDispatcher view;
-			request.setAttribute("numeroAtendimento", numeroAtendimento);
+		RequestDispatcher view;
+		request.setAttribute("numeroAtendimento", numeroAtendimento);
 			
-			if(string.equals("alterar")){
-				request.setAttribute("mensagem", "alterado com sucesso!!");
+		if(string.equals("alterar")){
+			request.setAttribute("mensagem", "alterado com sucesso!!");
 
-			}
-			else{
-				request.setAttribute("mensagem", "deletado com sucesso!!");
-			}
+		}
+		else{
+			request.setAttribute("mensagem", "deletado com sucesso!!");
+		}
 			
-			view = request.getRequestDispatcher("/atendimentoMensagem.jsp");
-			
-		
+		view = request.getRequestDispatcher("/atendimentoMensagem.jsp");
 			
 		try {
 			view.forward(request, response);
@@ -142,7 +147,7 @@ public class AlteraAtendimento extends HttpServlet {
 			Viatura v = viaturas.get(i);
 			v.setViatura_status("Em prontidão");
 			ViaturaDao.getInstance().atualizarDiversasViaturas(v);
-			System.out.println(" ############ Atualizou " + " viatura!   ################");
+			logger.info(" ############ Atualizou " + " viatura!   ################");
 		}
 		
 	}
@@ -150,7 +155,7 @@ public class AlteraAtendimento extends HttpServlet {
 	private void alterar(HttpServletRequest request,
 			HttpServletResponse response, int registro) {
 						 					
-		 Municipio municipioDao = MunicipioDao.getInstance().listarMunicipioNome(municipio);
+		Municipio municipioDao = MunicipioDao.getInstance().listarMunicipioNome(municipio);
 		 			
 		OBM obm = OBMDao.getInstance().listarOBMNome(obmPresente);
 		

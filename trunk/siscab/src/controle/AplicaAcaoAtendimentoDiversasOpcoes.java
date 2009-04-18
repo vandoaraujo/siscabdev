@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import sun.misc.Compare;
 
 import modelo.Atendimento;
@@ -33,6 +35,8 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private Atendimento at = null;
+	
+	static Logger logger = Logger.getLogger(AplicaAcaoAtendimentoDiversasOpcoes.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,7 +57,8 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		
+		logger.info(getServletName());
 		at = (Atendimento) request.getSession().getAttribute("atendimentoAtual"); 
 		int registroAtendimento = 0;
 	    int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));

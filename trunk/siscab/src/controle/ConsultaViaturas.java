@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import modelo.TipoViatura;
 import dao.TipoViaturaDao;
 
@@ -20,6 +22,8 @@ public class ConsultaViaturas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RequestDispatcher view = null;
        
+	static Logger logger = Logger.getLogger(ConsultaViaturas.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,7 +44,7 @@ public class ConsultaViaturas extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			
+			logger.info(getServletName());
 			List<TipoViatura> tipos = TipoViaturaDao.getInstance().listarTodosTiposViaturas();
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("tiposViatura", tipos);

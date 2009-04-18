@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.OBM;
 import modelo.ServicoRealizado;
@@ -30,7 +32,9 @@ public class ControlaServico extends HttpServlet {
 	private String tipoServico;
 	private int registroServico;
 	private int numeroAtendimento;
-       
+    
+	static Logger logger = Logger.getLogger(ControlaServico.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -52,6 +56,7 @@ public class ControlaServico extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 
 		tipoServico = request.getParameter("tipoServico");
 		registroAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));

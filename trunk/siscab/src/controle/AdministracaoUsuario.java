@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Usuario;
 
 /**
@@ -16,6 +18,8 @@ import modelo.Usuario;
 public class AdministracaoUsuario extends HttpServlet {
         private static final long serialVersionUID = 1L;
         RequestDispatcher view;
+        
+    static Logger logger = Logger.getLogger(AdministracaoUsuario.class);
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,7 +41,9 @@ public class AdministracaoUsuario extends HttpServlet {
          */
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-                Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
+        		logger.info(getServletName());
+
+        		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 
                 if(!(usuario.getPerfil().getId() == 1)){
 

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Chamado;
 import modelo.Municipio;
 import modelo.Usuario;
@@ -25,6 +27,8 @@ import dao.UsuarioDao;
 public class RegistrarChamado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RequestDispatcher view;
+	static Logger logger = Logger.getLogger(RegistrarChamado.class);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,7 +51,7 @@ public class RegistrarChamado extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		logger.info(getServletName());
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
 		if((!(usuario.getPerfil().getId() == 2)) && (!(usuario.getPerfil().getId() == 3))){

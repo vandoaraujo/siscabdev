@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.Chamado;
 import modelo.CronoAtendimento;
@@ -44,6 +46,8 @@ public class EfetivaAtendimento extends HttpServlet {
 	private TipoOcorrencia tipoO;
 	private String status;
 	private String municipio; 
+	
+	static Logger logger = Logger.getLogger(EfetivaAtendimento.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -65,6 +69,7 @@ public class EfetivaAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		idAtendimento = Integer.parseInt(request.getParameter("idAtendimento"));
 		obmAtendimento = request.getParameter("obmAtendimento");
 		bairro = request.getParameter("bairro");

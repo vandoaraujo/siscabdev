@@ -8,11 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class IniciaSituacaoAtendimentosOBM
  */
 public class IniciaSituacaoAtendimentosOBM extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	static Logger logger = Logger.getLogger(IniciaSituacaoAtendimentosOBM.class);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,7 +37,7 @@ public class IniciaSituacaoAtendimentosOBM extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		logger.info(getServletName());
 		RequestDispatcher view;
 		view = request.getRequestDispatcher("/painelSituacaoAtendimentos.jsp");
 				

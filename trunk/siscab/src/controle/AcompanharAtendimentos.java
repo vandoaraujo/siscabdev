@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.Usuario;
 import dao.AtendimentoDao;
@@ -20,6 +22,9 @@ public class AcompanharAtendimentos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RequestDispatcher view;
        
+	static Logger logger = Logger.getLogger(AcompanharAtendimentos.class);
+
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,6 +46,7 @@ public class AcompanharAtendimentos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			//Inicia Caso de Uso Acompanhar Atendimentos não finalizados
 		
+		logger.info(getServletName());
 		
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
@@ -55,7 +61,7 @@ public class AcompanharAtendimentos extends HttpServlet {
 		else{
 		
 		List<Atendimento> atendimentos = AtendimentoDao.getInstance().listarAtendimentosNaoFinalizados();
-		System.out.println("Qtd atendimentos " + atendimentos.size());
+		logger.info("Qtd atendimentos " + atendimentos.size());
 		
 		request.setAttribute("atendimentos", atendimentos);
 		view = request.getRequestDispatcher("/atendimentosNaoFinalizados.jsp");

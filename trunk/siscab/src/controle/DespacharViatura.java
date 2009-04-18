@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import modelo.Usuario;
 import modelo.Viatura;
 import dao.ViaturaDao;
@@ -19,7 +21,9 @@ import dao.ViaturaDao;
  */
 public class DespacharViatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
+	static Logger logger = Logger.getLogger(DespacharViatura.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,7 +44,8 @@ public class DespacharViatura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		logger.info(getServletName());
+
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
 		int obm_Id = usuario.getObm().getId();

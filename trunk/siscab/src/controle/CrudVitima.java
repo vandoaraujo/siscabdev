@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.VitimaAtendida;
 import dao.AtendimentoDao;
@@ -31,7 +33,7 @@ public class CrudVitima extends HttpServlet {
 	private int corNumero;
 	private int situacaoVitimaNumero;
 
-       
+	static Logger logger = Logger.getLogger(CrudVitima.class);
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -52,7 +54,7 @@ public class CrudVitima extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
+		logger.info(getServletName());
 		nome = request.getParameter("nome");
 		idade =Integer.parseInt(request.getParameter("idade"));
 		sexo = request.getParameter("sexo");

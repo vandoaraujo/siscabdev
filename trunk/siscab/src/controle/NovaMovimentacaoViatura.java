@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.MovimentaViatura;
 import modelo.Viatura;
@@ -23,7 +25,7 @@ import dao.ViaturaDao;
  */
 public class NovaMovimentacaoViatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	static Logger logger = Logger.getLogger(NovaMovimentacaoViatura.class);
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,7 +46,7 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		logger.info(getServletName());
 	    int registroViatura = (Integer.parseInt(request.getParameter("registro")));
 	    int numeroAtendimento = (Integer.parseInt(request.getParameter("numeroAtendimento")));
 	    int operacaoARealizar = Integer.parseInt(request.getParameter("operacaoARealizar"));
@@ -70,7 +72,7 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 		
 		ViaturaDao.getInstance().atualizar(via);
 		
-		System.out.println("######### Atualizou o STATUS DA VIATURA!!!   ##############");
+		logger.info("######### Atualizou o STATUS DA VIATURA!!!   ##############");
 		
 		//Atualiza lista de viaturas
 		

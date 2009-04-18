@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class IniciaTotalChamadosPorNatureza
  */
 public class IniciaTotalChamadosPorNatureza extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	static Logger logger = Logger.getLogger(IniciaTotalChamadosPorNatureza.class);
+   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,7 +37,7 @@ public class IniciaTotalChamadosPorNatureza extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		logger.info(getServletName());
 		RequestDispatcher view;
 		view = request.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
 		

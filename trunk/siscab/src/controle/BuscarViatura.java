@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.OBM;
 import modelo.TipoViatura;
 import modelo.Viatura;
@@ -25,6 +27,7 @@ public class BuscarViatura extends HttpServlet {
 	RequestDispatcher view = null;
 	List<Viatura> viaturas = null;
 	
+	static Logger logger = Logger.getLogger(BuscarViatura.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,6 +49,7 @@ public class BuscarViatura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+    	logger.info(getServletName());
 		String statusViatura = request.getParameter("status");
 		String tipoViatura = request.getParameter("tipoViatura");
 		
@@ -60,7 +64,7 @@ public class BuscarViatura extends HttpServlet {
 		//Verifica consulta conforme parametros
         if(status.equals("") && tipoViatura.equals("")){
                
-        		System.out.println("Caiu aqui");
+        		logger.info("Caiu aqui");
 				request.setAttribute("parametrosVazios","Necessário preencher um dos valores para a busca!");
 				view = request.getRequestDispatcher("/procurarViaturas.jsp");
 				try {

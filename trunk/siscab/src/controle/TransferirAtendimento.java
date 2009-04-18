@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Atendimento;
 import modelo.Usuario;
 import dao.AtendimentoDao;
@@ -19,6 +21,7 @@ import dao.AtendimentoDao;
 public class TransferirAtendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RequestDispatcher view;
+	static Logger logger = Logger.getLogger(TransferirAtendimento.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,6 +43,7 @@ public class TransferirAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 		
 		if(!(usuario.getPerfil().getId() == 2) && !(usuario.getPerfil().getId() == 3) && !(usuario.getPerfil().getId() == 4)){

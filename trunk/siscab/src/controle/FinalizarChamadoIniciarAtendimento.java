@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Chamado;
 import modelo.NaturezaChamado;
 import modelo.OBM;
@@ -29,6 +31,8 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
     private Date dataInicio = null;
     int identificadorChamado, numAproxVitimas = 0;
     String infoComplementares, nomeSolicitante, obmSolicitada, naturezaChamado, origemChamado, telefone = null;
+	static Logger logger = Logger.getLogger(FinalizarChamadoIniciarAtendimento.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,6 +53,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		//Parametros --- ver...
 		String operacaoARealizar = request.getParameter("operacaoARealizar");
 		String registroOcorrencia = request.getParameter("registroOcorrencia");

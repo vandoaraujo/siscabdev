@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import dao.ChamadoDao;
 
 /**
@@ -15,6 +17,7 @@ import dao.ChamadoDao;
  */
 public class TotalChamadosPorNatureza extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	static Logger logger = Logger.getLogger(TotalChamadosPorNatureza.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,6 +39,7 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(getServletName());
 		String dataInicial = request.getParameter("dataInicial");
 		String dataFinal = request.getParameter("dataFinal");
 		

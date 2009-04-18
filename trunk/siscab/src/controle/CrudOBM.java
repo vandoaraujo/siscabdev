@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import modelo.Municipio;
 import modelo.OBM;
 import modelo.SiscabException;
@@ -32,6 +34,8 @@ public class CrudOBM extends HttpServlet {
 	private String status;
 	private int statusObm;
 	
+	static Logger logger = Logger.getLogger(CrudOBM.class);
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -52,7 +56,8 @@ public class CrudOBM extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 	
+		 		
+			logger.info(getServletName());
 			int registroUsuario = 0;
 		    int operacao = Integer.parseInt(request.getParameter("operacaoARealizar"));
 	    	registroUsuario = Integer.parseInt(request.getParameter("registroOBM"));
