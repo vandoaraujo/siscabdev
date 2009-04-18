@@ -2,13 +2,19 @@ package dao;
 
 import java.util.List;
 import modelo.Municipio;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class MunicipioDao {
 	
 	private static Session session;
 	private static MunicipioDao instance = null;
+	static Logger logger = Logger.getLogger(MunicipioDao.class);
+
 	
 	public static MunicipioDao getInstance(){
 		instance = new MunicipioDao();

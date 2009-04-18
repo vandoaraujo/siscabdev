@@ -5,14 +5,18 @@ import java.util.List;
 import modelo.Chamado;
 import modelo.OBM;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class ChamadoDao {
 
 	private static Session session;
 	private static ChamadoDao instance = null;
+	static Logger logger = Logger.getLogger(ChamadoDao.class);
 	
 	public static ChamadoDao getInstance(){
 		instance = new ChamadoDao();
@@ -46,7 +50,7 @@ public class ChamadoDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 	}
 	
 	public void atualizar(Chamado chamado) {
@@ -56,7 +60,7 @@ public class ChamadoDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		logger.info("ATUALIZADO");
 		
 	}
 

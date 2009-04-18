@@ -5,16 +5,18 @@ import java.util.List;
 import modelo.TipoViatura;
 import modelo.TipoOcorrencia;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class TipoOcorrenciaDao {
 
 	private static Session session;
-	// Singleton
 	private static TipoOcorrenciaDao instance = null;
-	
-	
+	static Logger logger = Logger.getLogger(TipoOcorrenciaDao.class);
+
 	public static TipoOcorrenciaDao getInstance(){
 		instance = new TipoOcorrenciaDao();
 		return instance;

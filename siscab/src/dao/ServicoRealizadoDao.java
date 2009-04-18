@@ -6,14 +6,18 @@ import modelo.Atendimento;
 import modelo.ServicoRealizado;
 import modelo.VitimaAtendida;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import controle.Login;
+
 public class ServicoRealizadoDao {
-	
 	
 	private static Session session;
 	private static ServicoRealizadoDao instance = null;
+	static Logger logger = Logger.getLogger(ServicoRealizadoDao.class);
+
 	
 	public static ServicoRealizadoDao getInstance(){
 		instance = new ServicoRealizadoDao();
@@ -47,7 +51,7 @@ public class ServicoRealizadoDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 	}
 	
 	public void atualizar(ServicoRealizado servico) {
@@ -57,7 +61,7 @@ public class ServicoRealizadoDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		logger.info("ATUALIZADO");
 		
 	}
 

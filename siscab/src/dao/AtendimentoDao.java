@@ -6,13 +6,18 @@ import java.util.List;
 
 import modelo.Atendimento;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import controle.Login;
 
 public class AtendimentoDao {
 
 		private static Session session;
 		private static AtendimentoDao instance = null;
+		static Logger logger = Logger.getLogger(AtendimentoDao.class);
+
 		
 		public static AtendimentoDao getInstance(){
 			instance = new AtendimentoDao();
@@ -46,7 +51,7 @@ public class AtendimentoDao {
 			t.commit();
 			session.flush();
 			session.close();
-			System.out.println("DELETADO");
+			logger.info("DELETADO");
 		}
 		
 		public void atualizar(Atendimento atendimento) {
@@ -56,7 +61,7 @@ public class AtendimentoDao {
 			t.commit();
 			session.flush();
 			session.close();
-			System.out.println("ATUALIZADO");
+			logger.info("ATUALIZADO");
 			
 		}
 

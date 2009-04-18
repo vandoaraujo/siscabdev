@@ -6,17 +6,21 @@ import modelo.MovimentaViatura;
 import modelo.Usuario;
 import modelo.Viatura;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import controle.Login;
+
 public class MovimentaViaturaDao {
 
-		
 	private static Session session;
 	private static MovimentaViaturaDao instance = null;
+	static Logger logger = Logger.getLogger(MovimentaViaturaDao.class);
+
 	
 	public static MovimentaViaturaDao getInstance(){
 		instance = new MovimentaViaturaDao();
@@ -49,7 +53,7 @@ public class MovimentaViaturaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("DELETADO");
+		logger.info("DELETADO");
 	}
 	
 	public void atualizar(MovimentaViatura viaturasEmpenhadas) {
@@ -59,7 +63,7 @@ public class MovimentaViaturaDao {
 		t.commit();
 		session.flush();
 		session.close();
-		System.out.println("ATUALIZADO");
+		logger.info("ATUALIZADO");
 		
 	}
 
