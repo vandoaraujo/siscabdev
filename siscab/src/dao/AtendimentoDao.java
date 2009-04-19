@@ -134,6 +134,18 @@ public class AtendimentoDao {
 			
 		}
 		
+		public List<Atendimento> listarAtendimentosNaoFinalizadosOBM(int obmId){
+
+			List<Atendimento> atendimentos = (List<Atendimento>) session.createQuery("from modelo.Atendimento a where a.obm_id=:idOBM and a.status_atendimento <> 'Finalizado'").setInteger("idOBM", obmId).list();  
+			return atendimentos;
+		}
+		
+		public List<Atendimento> listarAtendimentosOBM(int obmId){
+
+			List<Atendimento> atendimentos = (List<Atendimento>) session.createQuery("from modelo.Atendimento a where a.obm_id=:idOBM").setInteger("idOBM", obmId).list();  
+			return atendimentos;
+		}
+		
 		
 		
 }

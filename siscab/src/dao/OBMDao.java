@@ -41,6 +41,7 @@ public class OBMDao {
 		t.commit();
 		session.flush();
 		session.close();
+		logger.info("Salvo");
 		
 	}
 		
