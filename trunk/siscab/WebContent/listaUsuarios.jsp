@@ -44,7 +44,7 @@
 									
 									<%if(usuarios.size()== 0){ %>
 									     <div style="color:red"> Nenhum Usuário cadastrado </div>
-									   
+									   	 <a href="buscarUsuario.jsp">Procurar Usuarios</a>				
 									<%} else{
 										
 										

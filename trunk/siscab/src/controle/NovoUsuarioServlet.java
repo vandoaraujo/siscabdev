@@ -98,7 +98,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 			
 			if(!usuarios.isEmpty()){
 					
-					SiscabException siscab = new SiscabException("Usuário já cadastrado com este Numero de Registro!");
+					SiscabException siscab = new SiscabException("Usuário já cadastrado com este Numero de Registro \n\n!");
 					//response.sendRedirect("siscabException.jsp");
 					RequestDispatcher view = request.getRequestDispatcher("/siscabException.jsp");
 										

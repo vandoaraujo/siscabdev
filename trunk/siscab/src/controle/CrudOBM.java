@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,15 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-
+import modelo.Atendimento;
 import modelo.Municipio;
 import modelo.OBM;
 import modelo.SiscabException;
-import modelo.Usuario;
+import modelo.Viatura;
+
+import org.apache.log4j.Logger;
+
+import dao.AtendimentoDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
-import dao.UsuarioDao;
+import dao.ViaturaDao;
 
 /**
  * Servlet implementation class CrudOBM
@@ -111,6 +115,15 @@ public class CrudOBM extends HttpServlet {
 			
 			OBM obm = new OBM();
 			obm.setNome(nome);
+			
+			//Analisa se existe OBM com mesmo nome
+			OBM obmIgual = OBMDao.getInstance().listarOBMNome(obm.getNome());
+			if(obmIgual != null){
+				despacha(request, response,"obmIgual", obm.getNome());
+
+			}
+			else{
+			
 			obm.setMunicipio(municipioDao);
 			obm.setBairro(bairro);
 			obm.setLogradouro(logradouro);
@@ -123,8 +136,7 @@ public class CrudOBM extends HttpServlet {
 			request.setAttribute("obm", obm);
 			despacha(request, response,"salvar", obm.getNome());
 				
-		
-				
+			}		
 			
 		}
 		
@@ -132,26 +144,38 @@ public class CrudOBM extends HttpServlet {
 		 * Recebe como parametro HttpRequest, response, a acao a ser executada e o nome do objeto
 		 */
 		private void despacha(HttpServletRequest request,
-				HttpServletResponse response, String string, String nomeOBM) {
+				HttpServletResponse response, String acao, String nomeOBM) {
 			
-				RequestDispatcher view;
-				request.setAttribute("obm", nomeOBM);
-				if(string.equals("salvar")){
-					
-					request.setAttribute("mensagem", "salvo com sucesso!!");
-					
-				}
+			RequestDispatcher view;
+			request.setAttribute("obm", nomeOBM);
+			if(acao.equals("salvar")){
 				
-				else if(string.equals("alterar")){
-					request.setAttribute("mensagem", "alterado com sucesso!!");
+				request.setAttribute("mensagem", "salvo com sucesso!!");
+				
+			}
+			
+			else if(acao.equals("excecao")){
+				request.setAttribute("mensagem", "Não é possível mudar seu status para Inativa," +
+						" pois a OBM presente possui viaturas alocadas ou existem atendimentos não finalizados");
+			}
+			else if (acao.equals("obmIgual")){
+				request.setAttribute("mensagem", "OBM não salva! Já existe uma OBM com este nome!");
+			}
+			
+			else if (acao.equals("existeAtendimento")){
+				request.setAttribute("mensagem", "Esta OBM prestou atendimento e não pode ser deletada!");
+			}
+			
+			else if(acao.equals("alterar")){
+				request.setAttribute("mensagem", "alterado com sucesso!!");
 
-				}
-				else{
-					request.setAttribute("mensagem", "deletado com sucesso!!");
-				}
-				
-				view = request.getRequestDispatcher("OBMMensagem.jsp");
-				
+			}
+			else if(acao.equals("deletar")){
+				request.setAttribute("mensagem", "deletado com sucesso!!");
+			}
+			
+			view = request.getRequestDispatcher("OBMMensagem.jsp");
+			
 			
 				
 			try {
@@ -172,42 +196,56 @@ public class CrudOBM extends HttpServlet {
 			
 			OBM obm = OBMDao.getInstance().BuscaOBMId(registro);
 			String nome = obm.getNome();
-			try {
-				OBMDao.getInstance().deletar(obm);
-			} catch (SiscabException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			//Analisa se já prestou atendimento
+			List<Atendimento> atendimento = AtendimentoDao.getInstance().listarAtendimentosNaoFinalizadosOBM(registro);
+			
+			if(atendimento != null){
+				despacha(request, response,"existeAtendimento", nome);
 			}
-			despacha(request, response, "deletar", nome);
 			
+			else{
 			
-			
-			
+				try {
+					OBMDao.getInstance().deletar(obm);
+				} catch (SiscabException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				despacha(request, response, "deletar", nome);
+			}
 		}
 
 		private void alterar(HttpServletRequest request,
 				HttpServletResponse response, int registro) {
 			
 					 					
-			 Municipio municipioDao = MunicipioDao.getInstance().listarMunicipioNome(municipio);
+			Municipio municipioDao = MunicipioDao.getInstance().listarMunicipioNome(municipio);
 			 
 			OBM obm = OBMDao.getInstance().BuscaOBMId(registro);
-
-			obm.setNome(nome);
-			obm.setMunicipio(municipioDao);
-			obm.setBairro(bairro);
-			obm.setLogradouro(logradouro);
-			obm.setNumCompl(numComplemento);
-			obm.setCoordX(coordX);
-			obm.setCoordY(coordY);
-			obm.setStatus(statusObm);
-							
-			OBMDao.getInstance().atualizar(obm);
-			request.setAttribute("obm", obm);
-			despacha(request, response,"alterar", obm.getNome());
+			
+			//Analisa se existem viaturas alocadas a esta OBM ou atendimentos não finalizados
+			List<Viatura> viaturas  = ViaturaDao.getInstance().listaViaturasObm(registro);
+			logger.info(viaturas.size());
+			List<Atendimento> atendimento = AtendimentoDao.getInstance().listarAtendimentosNaoFinalizadosOBM(registro);
+			logger.info("HASH " + atendimento);
+			if((viaturas != null) || (atendimento != null)){
+				despacha(request, response,"excecao", obm.getNome());
+			}
+			else{
+			
+				obm.setNome(nome);
+				obm.setMunicipio(municipioDao);
+				obm.setBairro(bairro);
+				obm.setLogradouro(logradouro);
+				obm.setNumCompl(numComplemento); 
+				obm.setCoordX(coordX);
+				obm.setCoordY(coordY);
+				obm.setStatus(statusObm);
+								
+				OBMDao.getInstance().atualizar(obm);
+				request.setAttribute("obm", obm);
+				despacha(request, response,"alterar", obm.getNome());
+			}
 			
 		}
-
 }
-
-

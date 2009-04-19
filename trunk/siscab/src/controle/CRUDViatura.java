@@ -1,22 +1,21 @@
 package controle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
 import modelo.OBM;
 import modelo.TipoViatura;
 import modelo.Viatura;
-import dao.HibernateUtil;
+
+import org.apache.log4j.Logger;
+
+import dao.MovimentaViaturaDao;
 import dao.OBMDao;
 import dao.TipoViaturaDao;
 import dao.ViaturaDao;
@@ -88,14 +87,22 @@ public class CRUDViatura extends HttpServlet {
 				TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(tipoViatura);
 				Viatura via = new Viatura();
 				via.setNumero(numeroViatura);
-				via.setObm(cobm);
-				via.setTipo_viatura(tipoV);
-				via.setViatura_obs(obsViatura);
-				via.setViatura_status(statusViatura);
-				ViaturaDao.getInstance().salvar(via);
-				request.setAttribute("viatura", via);
-				despacha(request, response,"salvar", via.getNumero());
-			
+				
+				Viatura v = ViaturaDao.getInstance().listarViaturasNumero(numeroViatura);
+				if(v != null){
+					despacha(request, response,"viaturaRepetida", via.getNumero());
+
+				}
+				else{
+					
+					via.setObm(cobm);
+					via.setTipo_viatura(tipoV);
+					via.setViatura_obs(obsViatura);
+					via.setViatura_status(statusViatura);
+					ViaturaDao.getInstance().salvar(via);
+					request.setAttribute("viatura", via);
+					despacha(request, response,"salvar", via.getNumero());
+				}
 		}
 		
 		/*
@@ -113,12 +120,26 @@ public class CRUDViatura extends HttpServlet {
 				}
 				
 				else if(string.equals("alterar")){
-					request.setAttribute("mensagem", "alterado com sucesso!!");
+					request.setAttribute("mensagem", "alterada com sucesso!!");
+
+				}
+				else if(string.equals("viaturaRepetida")){
+					request.setAttribute("mensagem", "Viatura não salva! Já existe uma viatura com este numero!");
+
+				}
+				else if(string.equals("Em atendimento")){
+					request.setAttribute("mensagem", "Não e possivel alterar esta viatura pois ela se encontra em atendimento!");
+
+				}
+				else if(string.equals("Em atendimento Exclusao")){
+					request.setAttribute("mensagem", "Não e possivel deletar esta viatura já realizou atendimento!");
 
 				}
 				else{
-					request.setAttribute("mensagem", "deletado com sucesso!!");
+					request.setAttribute("mensagem", "deletada com sucesso!!");
 				}
+				
+				
 				
 				view = request.getRequestDispatcher("/mensagemViatura.jsp");
 				
@@ -141,24 +162,40 @@ public class CRUDViatura extends HttpServlet {
 				HttpServletResponse response, int registroViatura) {
 			
 			Viatura via = ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
+			//Viatura que realizou atendimento não pode ser excluida
+			List<Viatura> viaturas = MovimentaViaturaDao.getInstance().ListarViaturasRealizaramAtendimento(via.getId());
+			if(viaturas != null){
+				despacha(request, response, "Em atendimento Exclusao", numeroViatura);
+			}
+			else{
 			String numeroViatura = via.getNumero();
 			ViaturaDao.getInstance().deletar(via);
 			despacha(request, response, "deletar", numeroViatura);
+			}
 		}
 
 		private void alterar(HttpServletRequest request,
 				HttpServletResponse response, int registroViatura) {
 			
 			Viatura via = ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
-			OBM obmAtual = OBMDao.getInstance().listarOBMNome(obm);
-			TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(tipoViatura);
-			via.setNumero(numeroViatura);
-			via.setObm(obmAtual);
-			via.setTipo_viatura(tipoV);
-			via.setViatura_obs(obsViatura);
-			via.setViatura_status(statusViatura);
-			ViaturaDao.getInstance().atualizar(via);
-			despacha(request, response, "alterar", via.getNumero());		
+			//Viatura em atendimento não pode ser modificada
+			if(via.getViatura_status().equals("Em atendimento")){
+				
+				despacha(request, response, "Em atendimento", via.getNumero());
+
+			}
+			else
+			{
+				OBM obmAtual = OBMDao.getInstance().listarOBMNome(obm);
+				TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(tipoViatura);
+				via.setNumero(numeroViatura);
+				via.setObm(obmAtual);
+				via.setTipo_viatura(tipoV);
+				via.setViatura_obs(obsViatura);
+				via.setViatura_status(statusViatura);
+				ViaturaDao.getInstance().atualizar(via);
+				despacha(request, response, "alterar", via.getNumero());
+			}
 		}
 	
 }
