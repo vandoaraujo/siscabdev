@@ -33,7 +33,7 @@ pageEncoding="ISO-8859-1"%>
 <tr>
 <td style="padding-left:20px; padding-top:20px;">
 <fieldset style="width:300px"><legend>&nbsp;Administração - Usuários&nbsp;</legend>
-<a href="ServletNovoUsuario">Novo Usuario</a><br>
+<a href="NovoUsuario">Novo Usuario</a><br>
 <a href="buscarUsuario.jsp">Procurar Usuarios</a>
 </fieldset>
 </td>

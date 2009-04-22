@@ -32,10 +32,10 @@
 		<description>
 		</description>
 			<display-name>
-		ServletNovoUsuario</display-name>
-		<servlet-name>ServletNovoUsuario</servlet-name>
+		NovoUsuario</display-name>
+		<servlet-name>NovoUsuario</servlet-name>
 		<servlet-class>
-		controle.ServletNovoUsuario</servlet-class>
+		controle.NovoUsuario</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
@@ -380,14 +380,9 @@
 		<servlet-class>
 		controle.ConsultaViaturas</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
-		<servlet-name>ServletNovoUsuario</servlet-name>
-		<url-pattern>/ServletNovoUsuario</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>NovoUsuarioServlet</servlet-name>
-		<url-pattern>/NovoUsuarioServlet</url-pattern>
+		<servlet-name>NovoUsuario</servlet-name>
+		<url-pattern>/NovoUsuario</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>BuscarUsuario</servlet-name>
@@ -536,6 +531,10 @@
 	<servlet-mapping>
 		<servlet-name>ConsultaViaturas</servlet-name>
 		<url-pattern>/ConsultaViaturas</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NovoUsuarioServlet</servlet-name>
+		<url-pattern>/NovoUsuarioServlet</url-pattern>
 	</servlet-mapping>
 		<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

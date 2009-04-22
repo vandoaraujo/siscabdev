@@ -50,15 +50,10 @@ public class AdministracaoUsuario extends HttpServlet {
                         request.setAttribute("descricaoServico", "Cadastro de Usuários");
                         request.setAttribute("perfil", "Administrador");
                         view = request.getRequestDispatcher("/acessoNegado.jsp");
-
                 }
-
                 else{
-
                         view = request.getRequestDispatcher("/administracao_usuario.jsp");
-
                 }
-
                 try {
                         view.forward(request, response);
                 } catch (ServletException e) {
