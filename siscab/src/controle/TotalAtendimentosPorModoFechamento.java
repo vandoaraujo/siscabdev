@@ -6,9 +6,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,8 +62,20 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 		
 		String dataInicial = request.getParameter("dataInicial");
 		String dataFinal = request.getParameter("dataFinal");
+
+		//Quebra a data ajustando para + 1
+		StringTokenizer st = new StringTokenizer(dataFinal,"/");
+		List<String> token = new ArrayList();
+		while (st.hasMoreTokens()) {
+          token.add(st.nextToken()); 
+		}
+		int dia = Integer.parseInt(token.get(0));
+		dia++;
+		logger.info("data ajustada" + dia);
 		
-		//dataFinal.concat(" 23:59:00");
+		String dataFormatada = Integer.toString(dia) + "/" + token.get(1) + "/" + token.get(2);
+
+		logger.info("Data final após ajustes" + dataFormatada);
 		
 		DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
 		try {
@@ -72,25 +84,16 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		
-		/*DateFormat formataDataFinal = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		DateFormat formataDataFinal = new SimpleDateFormat("dd/MM/yyyy");
 		try {
-			formatadaFinal = new java.sql.Date(formataDataFinal.parse(dataFinal).getTime());
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
-		DateFormat formataDataFinal = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		try {
-			formatadaFinal = new java.sql.Date(formataDataFinal.parse(dataFinal).getTime());
+			formatadaFinal = new java.sql.Date(formataDataFinal.parse(dataFormatada).getTime());
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		logger.info(" ############# Data passada para o Banco" + formatadaInicial);	
-		logger.info(" ############# Data FORMATADA FINAL" + formatadaFinal);	
+		logger.info(" ############# Data inicial passada para o Banco" + formatadaInicial);	
+		logger.info(" ############# Data FORMATADA FINAL apos conversoes" + formatadaFinal);	
 
 		
 		
