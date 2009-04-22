@@ -66,14 +66,14 @@
   padding:0in 5.4pt 0in 5.4pt'>
 
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(modoFechamento.get(controle).toString());} else {out.print(" ");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(modoFechamento.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print(" ");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0 ");} %></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -89,14 +89,14 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(modoFechamento.get(controle).toString());} else {out.print(" ");}%> </span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(modoFechamento.get(controle).toString());} else {out.print("&nbsp;");}%> </span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print(" ");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0");}%></span></p>
 
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
@@ -112,7 +112,7 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(modoFechamento.get(controle).toString());} else {out.print(" ");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(modoFechamento.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
 
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
@@ -120,7 +120,7 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><%if(controle < tamanhoModoFechamento) { out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print(" ");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><%if(controle < tamanhoModoFechamento) { out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -136,14 +136,14 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento) { out.print(modoFechamento.get(controle).toString());} else {out.print(" ");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhoModoFechamento) { out.print(modoFechamento.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString());controle++;} else {out.print("");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString());controle++;} else {out.print("0");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -159,7 +159,7 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><%if(controle < tamanhoModoFechamento) { out.print(modoFechamento.get(controle).toString());} else {out.print(" ");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><%if(controle < tamanhoModoFechamento) { out.print(modoFechamento.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -167,7 +167,7 @@
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
 
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print(" ");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
