@@ -16,6 +16,7 @@
 <%! int controle,tamanhoModoFechamento,tamanhoNumeroAtendimento=0; %>
 <%		List modoFechamento = (List)request.getAttribute("modosFechamento"); 
 		List numeroAtendimentos = (List)request.getAttribute("qtdAtendimentos");
+		List percentualAtendimento = (List)request.getAttribute("percentualAtendimento");
 %>				
 <%		tamanhoModoFechamento = modoFechamento.size();
 %>
@@ -73,14 +74,14 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0 ");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");} %></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR>00.00%</span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++; } else {out.print("&nbsp;");} %></span></p>
 
   </td>
  </tr>
@@ -96,7 +97,7 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
 
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
@@ -104,7 +105,7 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR>00.00%</span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:3'>
@@ -120,14 +121,14 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><%if(controle < tamanhoModoFechamento) { out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><%if(controle < tamanhoModoFechamento) { out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR>00.00%</span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
 
@@ -143,7 +144,7 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString());controle++;} else {out.print("0");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -151,7 +152,7 @@
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
 
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR>0.00%</span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:5'>
@@ -167,14 +168,14 @@
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
 
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); controle++;} else {out.print("0");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR>0.00%</span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhoModoFechamento){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:6;mso-yfti-lastrow:yes'>
@@ -192,7 +193,7 @@
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
   margin-bottom:3.0pt;margin-left:0in;text-align:right'><b style='mso-bidi-font-weight:
-  normal'><span lang=PT-BR>0000</span></b></p>
+  normal'><span lang=PT-BR>${somaAtendimentos}</span></b></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;

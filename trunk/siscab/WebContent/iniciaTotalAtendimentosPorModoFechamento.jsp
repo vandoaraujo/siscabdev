@@ -42,6 +42,8 @@
 </tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
+						<div style="color:red; display:inline"> ${msg} </div>
+						<br> 
 						<fieldset style="width:650px"><legend>&nbsp;Tela de Busca Total de Atendimentos por Modo Fechamento&nbsp;</legend>
 							
 							<form action="TotalAtendimentosPorModoFechamento" method="post">

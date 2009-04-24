@@ -130,7 +130,7 @@ public class MovimentaViaturaDao {
 	
 	public List<Viatura> ListarViaturasRealizaramAtendimento(int idViatura){
 		
-		List<Viatura> viaturas = (List<Viatura>) session.createQuery("select distinct v from MovimentaViatura mv, Viatura v where mv.chaveComposta.viatura_id = v.id ").setInteger("viatura_id", idViatura).list();
+		List<Viatura> viaturas = (List<Viatura>) session.createQuery("select distinct v from MovimentaViatura mv, Viatura v where mv.chaveComposta.viatura_id=:viaturaId ").setInteger("viaturaId", idViatura).list();
 		return viaturas;
 	}
 	
