@@ -1,0 +1,46 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost/siscab</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">r00t</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">1800</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.connection.isolation">2</property>
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        
+        <!-- <property name="connection.pool_size">1</property> -->
+        
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+  	    <mapping class="modelo.OBM"/>
+  	    <mapping class="modelo.Usuario"/>
+	    <mapping class="modelo.Municipio"/>	
+  	    <mapping class="modelo.Chamado"/>
+  	    <mapping class="modelo.Atendimento"/>
+  	    <mapping class="modelo.Viatura"/>
+  	    <mapping class="modelo.VitimaAtendida"/>	
+  	    <mapping class="modelo.TipoViatura"/>
+  	    <mapping class="modelo.TipoOcorrencia"/>
+  	    <mapping class="modelo.NaturezaChamado"/>
+  	    <mapping class="modelo.TipoServico"/>
+  	    <mapping class="modelo.ServicoRealizado"/>
+  	    <mapping class="modelo.MovimentaViatura"/>
+  	    <mapping class="modelo.CronoAtendimento"/>
+  	    <mapping class="modelo.PerfilUsuario"/>
+  	    <mapping class="modelo.ModoFechamento"/>
+  	    
+  	</session-factory>
+
+</hibernate-configuration>    
+   
+   

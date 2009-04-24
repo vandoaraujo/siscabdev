@@ -1,0 +1,28 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-family: Trebuchet MS;
+	font-size:12px;
+}
+#map_info {
+	display     : block;
+	float       : left;
+	width       : 265px;
+}
+
+#map_canvas {
+	float       : left;
+	height      : 512px;
+	width       : 512px;
+}
+
+#q {
+	font-size   : 11px;
+}
+
+.infowindow {
+	font-size   : 9px;
+	text-align  : left;
+}

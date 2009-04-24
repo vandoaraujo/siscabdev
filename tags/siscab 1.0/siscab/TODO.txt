@@ -1,0 +1,98 @@
+###############
+Manter OBMS, Cadastro de Usuários e cadastro de viaturas - Luciana
+
+Obm já cadastrada: o sistema notifica o usuário, e retorna à tela Inicial do caso de Uso
+Obm já realizou atendimento: o sistema informa que a OBM não pode ser excluida.
+OBM a ser desativada está associada a um atendimento não finalizado: o sistema informa que a OBM não pode ser
+desativada.
+
+########################
+
+Consertar campo Status OBM. OK!!!!!!!!!!
+
+###########################
+
+DUVIDA: CAMPO ORIGEM TABELA CHAMADOS ---  VER COM LUCIANA
+
+#########################
+
+CONSERTO DE HORA CORRETA INICIAL E FINAL -- CASO DE USO REGISTRAR CHAMADO.   OK!!!!!!
+
+##########################
+
+Tabela MOvimentaViatura apresenta campo movimentaviaturatipoevento como inteiro não tendo nenhuma tabela com este mapeamento...
+
+########################## 
+
+Perfil
+
+Menu
+
+Atendimentos
+Registrar Chamado (Atendente do COCB/Operador da OBM) --- OK!!!
+Transferir Atendimento (Atendente do COCB/Operador da OBM/Controlador COCB) --- OK!!
+Acompanhar Atendimento (Operador da OBM) -- OK!!
+Cadastro de Viaturas (Controlador COCB)
+
+Consultas e Relatórios
+
+Painel de situação dos atendimentos (Todos) ---- OK!
+Total de chamados por natuureza (Todos) ---- OK!
+Total de atendimentos por modo de fechamento (Todos) ---- OK!
+
+Administração
+
+Cadastro de Usuários (Administrador) --- OK!
+Cadastro de OBMs (Administrador) --- OK!
+
+Sair do sistema (Todos) --- OK!
+
+
+
+############################
+
+Revisão do capítulo 2
+
+
+######### BY BRUNO ###################
+
+Fechar Google Maps RealizaChamado --- OK!
+Terminar os htmls e os css das telas já realizadas --- FALTA AS NOVAS TELAS
+Javascripts --- POR ULTIMO
+
+Registrar Chamado = OK (inclusão de gravação de coordenadas no banco de dados)
+
+UC-26 FINALIZADO.
+
+Seguindo para UC-16
+
+############################
+
+Fazer uma nova versão do diagrama de classes e uma nova versão do Diagrama Lógico do Banco - LUCIANA
+
+###########################
+
+Tabela Atendimentos
+ 
+atendimento_numero refactoring numero --- depois
+
+###########################
+
+Modificar nomes de tabela e nomes de campos e verificar tipos no documento de projeto físico do banco de dados.
+Após isso, analisar e consertar possíveis erros de modelagem do banco.
+
+
+############################
+
+Minha porta do Tomcat - 1983
+
+############################
+
+CONSERTAR BUG CLASSE APLICACAOATENDIMENTODIVERSASOPCOES.JAVA
+a query traz uma lista repetidas de viaturas devido a tabela possuir itens repetidos, com eventos distintos. - RESOLVIDO!!!
+
+############################
+
+ListaEventosViaturaAtendimento.jsp - Só funciona o primeiro botão excluir...tem dois forms dentro de um for...
+Falta edição de data tb... OK (incluido por Bruno)
+
