@@ -28,6 +28,19 @@
 		<servlet-name>TotalAtendimentosPorModoFechamento</servlet-name>
 		<url-pattern>/TotalAtendimentosPorModoFechamento</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<description>
+		</description>
+		<display-name>
+		TotalAtendimentosPorTipoOcorrencia</display-name>
+		<servlet-name>TotalAtendimentosPorTipoOcorrencia</servlet-name>
+		<servlet-class>
+		controle.TotalAtendimentosPorTipoOcorrencia</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TotalAtendimentosPorTipoOcorrencia</servlet-name>
+		<url-pattern>/TotalAtendimentosPorTipoOcorrencia</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<description>
 		</description>

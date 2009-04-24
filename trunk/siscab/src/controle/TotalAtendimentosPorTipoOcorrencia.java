@@ -19,20 +19,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import dao.AtendimentoDao;
-import dao.ChamadoDao;
 
 /**
- * Servlet implementation class TotalChamadosPorNatureza
+ * Servlet implementation class TotalAtendimentosPorTipoOcorrencia
  */
-public class TotalChamadosPorNatureza extends HttpServlet {
+public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RequestDispatcher view;
-	static Logger logger = Logger.getLogger(TotalChamadosPorNatureza.class);
+	static Logger logger = Logger.getLogger(TotalAtendimentosPorTipoOcorrencia.class);
+       
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TotalChamadosPorNatureza() {
+    public TotalAtendimentosPorTipoOcorrencia() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,9 +53,9 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 		Date formatadaInicial=null;
 		Date formatadaFinal=null;
 				
-		List<String> naturezaChamado = null;
-		List<Long> numeroChamados = null;
-		List<Float> percentualChamado = null;
+		List<String> tipoOcorrencia = null;
+		List<Long> numeroAtendimentos = null;
+		List<Float> percentualAtendimento = null;
 		
 		String dataInicial = request.getParameter("dataInicial");
 		String dataFinal = request.getParameter("dataFinal");
@@ -64,7 +64,7 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 		{
 
 			request.setAttribute("msg", "Necessário informar data inicial e data final!");
-			view = request.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
+			view = request.getRequestDispatcher("/iniciaTotalAtendimentosPorTipoOcorrencia.jsp");
 
 		}
 		else{
@@ -101,7 +101,7 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 			if(comparaDataInicial > comparaDataFinal){
 
 				request.setAttribute("msg", "A data inicial é maior do que a data final!");
-				view = request.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
+				view = request.getRequestDispatcher("/iniciaTotalAtendimentosPorTipoOcorrencia.jsp");
 				try {
 					view.forward(request, response);
 				} catch (ServletException e) {
@@ -132,48 +132,48 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 			logger.info(" ############# Data inicial passada para o Banco" + formatadaInicial);	
 			logger.info(" ############# Data FORMATADA FINAL apos conversoes" + formatadaFinal);	
 	
-			Iterator it = ChamadoDao.getInstance().ParametrosResultadosRelatorioChamadosPorNatureza(formatadaInicial, formatadaFinal);
+			Iterator it = AtendimentoDao.getInstance().ParametrosResultadosRelatorioTipoOcorrencia(formatadaInicial, formatadaFinal);
 			
 		
 			if(it.hasNext() == false){
 	
 				request.setAttribute("msg", "Nenhum atendimento no período informado!");
-				view = request.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
+				view = request.getRequestDispatcher("/iniciaTotalAtendimentosPorTipoOcorrencia.jsp");
 	
 			}
 			else{
 			
-				naturezaChamado = new ArrayList<String>();
-				numeroChamados = new ArrayList<Long>();
+				tipoOcorrencia = new ArrayList<String>();
+				numeroAtendimentos = new ArrayList<Long>();
 				int count=0;
-				long somaChamados=0;
+				long somaAtendimentos=0;
 
 			while (it.hasNext()){
 				
 				Object [] linhas = (Object[]) it.next();
-				naturezaChamado.add((String) linhas[0]);
-				numeroChamados.add((Long) linhas [1]);
-				numeroChamados.get(count);
-				somaChamados = somaChamados + (long) numeroChamados.get(count);
+				tipoOcorrencia.add((String) linhas[0]);
+				numeroAtendimentos.add((Long) linhas [1]);
+				numeroAtendimentos.get(count);
+				somaAtendimentos = somaAtendimentos + (long) numeroAtendimentos.get(count);
 				count++;
 			}
 			
-			logger.info("QTD " + somaChamados);
-			percentualChamado = new ArrayList<Float>();
-			for(int i=0;i<numeroChamados.size(); i++){
-				float percentual = (float) ((numeroChamados.get(i) * 100) / somaChamados);
+			logger.info("QTD " + somaAtendimentos);
+			percentualAtendimento = new ArrayList<Float>();
+			for(int i=0;i<numeroAtendimentos.size(); i++){
+				float percentual = (float) ((numeroAtendimentos.get(i) * 100) / somaAtendimentos);
 				logger.info("Percentual " + i + " " + percentual);
-				percentualChamado.add(percentual);
+				percentualAtendimento.add(percentual);
 			}
 			
-			request.setAttribute("percentualChamados", percentualChamado);
+			request.setAttribute("percentualAtendimento", percentualAtendimento);
 			request.setAttribute("dataInicial", dataInicial);
 			request.setAttribute("dataFinal", dataFinal);
 			request.setAttribute("dataGeracao", new Date());
-			request.setAttribute("chamadosPorNatureza", naturezaChamado);
-			request.setAttribute("qtdChamados", numeroChamados);
-			request.setAttribute("somaChamados", somaChamados);
-			view = request.getRequestDispatcher("/relatorioTotalChamadosPorNatureza.jsp");
+			request.setAttribute("tipoOcorrencia", tipoOcorrencia);
+			request.setAttribute("qtdAtendimentos", numeroAtendimentos);
+			request.setAttribute("somaAtendimentos", somaAtendimentos);
+			view = request.getRequestDispatcher("/relatorioTotalAtendimentosPorTipoOcorrencia.jsp");
 			
 			}
 			
