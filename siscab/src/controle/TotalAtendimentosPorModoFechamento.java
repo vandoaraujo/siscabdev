@@ -25,12 +25,7 @@ import dao.AtendimentoDao;
  */
 public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private Long atendida = null;
-	private Long naoAtendida= null;
-	private Long canceladaSolicitante= null;
-	private Long trote= null;
-	private Long semAtuação= null;
+	RequestDispatcher view;
 	static Logger logger = Logger.getLogger(TotalAtendimentosPorModoFechamento.class);
        
     /**
@@ -59,103 +54,139 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 				
 		List<String> modosFechamento = null;
 		List<Long> numeroAtendimentos = null;
+		List<Float> percentualAtendimento = null;
 		
 		String dataInicial = request.getParameter("dataInicial");
 		String dataFinal = request.getParameter("dataFinal");
+		
+		if(dataInicial.equals("") || dataFinal.equals(""))
+		{
 
-		//Quebra a data ajustando para + 1
-		StringTokenizer st = new StringTokenizer(dataFinal,"/");
-		List<String> token = new ArrayList();
-		while (st.hasMoreTokens()) {
-          token.add(st.nextToken()); 
-		}
-		int dia = Integer.parseInt(token.get(0));
-		dia++;
-		logger.info("data ajustada" + dia);
-		
-		String dataFormatada = Integer.toString(dia) + "/" + token.get(1) + "/" + token.get(2);
+			request.setAttribute("msg", "Necessário informar data inicial e data final!");
+			view = request.getRequestDispatcher("/iniciaTotalAtendimentosPorModoFechamento.jsp");
 
-		logger.info("Data final após ajustes" + dataFormatada);
-		
-		DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			formatadaInicial = new java.sql.Date(formataData.parse(dataInicial).getTime());
-		} catch (ParseException e1) {
-			e1.printStackTrace();
 		}
-		
-		DateFormat formataDataFinal = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			formatadaFinal = new java.sql.Date(formataDataFinal.parse(dataFormatada).getTime());
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		logger.info(" ############# Data inicial passada para o Banco" + formatadaInicial);	
-		logger.info(" ############# Data FORMATADA FINAL apos conversoes" + formatadaFinal);	
+		else{
 
+			DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				formatadaInicial = new java.sql.Date(formataData.parse(dataInicial).getTime());
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			
+			//Pega a data inicial para comparaçao de datas
+			StringTokenizer stInicial = new StringTokenizer(dataInicial,"/");
+			List<String> tokenInicial = new ArrayList<String>();
+			while (stInicial.hasMoreTokens()) {
+	          tokenInicial.add(stInicial.nextToken()); 
+			}
+			
+			int comparaDataInicial = Integer.parseInt(tokenInicial.get(0)) + Integer.parseInt(tokenInicial.get(1)) + Integer.parseInt(tokenInicial.get(2));
+			
+			logger.info("Valor da data Inicial" + comparaDataInicial);	
+			
+			//Quebra a data final ajustando para + 1
+			StringTokenizer st = new StringTokenizer(dataFinal,"/");
+			List<String> tokenFinal = new ArrayList<String>();
+			while (st.hasMoreTokens()) {
+	          tokenFinal.add(st.nextToken()); 
+			}
+			
+			int comparaDataFinal = Integer.parseInt(tokenFinal.get(0)) + Integer.parseInt(tokenFinal.get(1)) + Integer.parseInt(tokenFinal.get(2));
+
+			logger.info("Valor da data Final" + comparaDataFinal);	
+
+			if(comparaDataInicial > comparaDataFinal){
+
+				request.setAttribute("msg", "A data inicial é maior do que a data final!");
+				view = request.getRequestDispatcher("/iniciaTotalAtendimentosPorModoFechamento.jsp");
+				try {
+					view.forward(request, response);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
+			}
+			
+			int dia = Integer.parseInt(tokenFinal.get(0));			
+			dia++;
+			logger.info("data ajustada" + dia);
+			
+			String dataFormatada = Integer.toString(dia) + "/" + tokenFinal.get(1) + "/" + tokenFinal.get(2);
+	
+			logger.info("Data final após ajustes" + dataFormatada);
+			
+			DateFormat formataDataFinal = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				formatadaFinal = new java.sql.Date(formataDataFinal.parse(dataFormatada).getTime());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		
+			logger.info(" ############# Data inicial passada para o Banco" + formatadaInicial);	
+			logger.info(" ############# Data FORMATADA FINAL apos conversoes" + formatadaFinal);	
+	
+			Iterator it = AtendimentoDao.getInstance().ParametrosResultadosRelatorio(formatadaInicial, formatadaFinal);
+			
 		
-		Iterator it = AtendimentoDao.getInstance().ParametrosResultadosRelatorio(formatadaInicial, formatadaFinal);
+			if(it.hasNext() == false){
+	
+				request.setAttribute("msg", "Nenhum atendimento no período informado!");
+				view = request.getRequestDispatcher("/iniciaTotalAtendimentosPorModoFechamento.jsp");
+	
+			}
+			else{
+			
 				modosFechamento = new ArrayList<String>();
-		numeroAtendimentos = new ArrayList<Long>();
-		
-		while (it.hasNext()){
+				numeroAtendimentos = new ArrayList<Long>();
+				int count=0;
+				long somaAtendimentos=0;
+
+			while (it.hasNext()){
+				
+				Object [] linhas = (Object[]) it.next();
+				modosFechamento.add((String) linhas[0]);
+				numeroAtendimentos.add((Long) linhas [1]);
+				numeroAtendimentos.get(count);
+				somaAtendimentos = somaAtendimentos + (long) numeroAtendimentos.get(count);
+				count++;
+			}
 			
-			Object [] linhas = (Object[]) it.next();
-			modosFechamento.add((String) linhas[0]);
-			numeroAtendimentos.add((Long) linhas [1]);
+			logger.info("QTD " + somaAtendimentos);
+			percentualAtendimento = new ArrayList<Float>();
+			for(int i=0;i<numeroAtendimentos.size(); i++){
+				float percentual = (float) ((numeroAtendimentos.get(i) * 100) / somaAtendimentos);
+				logger.info("Percentual " + i + " " + percentual);
+				percentualAtendimento.add(percentual);
+			}
 			
-			if(linhas[0].equals("Atendida")){
-				atendida=((Long) linhas [1]);
+			request.setAttribute("percentualAtendimento", percentualAtendimento);
+			request.setAttribute("dataInicial", dataInicial);
+			request.setAttribute("dataFinal", dataFinal);
+			request.setAttribute("dataGeracao", new Date());
+			request.setAttribute("modosFechamento", modosFechamento);
+			request.setAttribute("qtdAtendimentos", numeroAtendimentos);
+			request.setAttribute("somaAtendimentos", somaAtendimentos);
+			view = request.getRequestDispatcher("/relatorioTotalAtendimentosPorModoFechamento.jsp");
+			
 			}
-			else if(linhas[0].equals("Não atendida")){
-				naoAtendida = ((Long) linhas [1]);
-			}
-			else if(linhas[0].equals("Cancelada pelo solicitante")){
-				canceladaSolicitante = ((Long) linhas [1]); 
-			}
-			else if(linhas[0].equals("Falso aviso (trote)")){
-				trote = ((Long) linhas [1]);
-			}
-			else if(linhas[0].equals("Sem atuação")){
-				semAtuação = ((Long) linhas [1]);
-			}
+			
 		}
-		
-		logger.info("MODO FECHAMENTO" + modosFechamento.get(0).toString());
-		logger.info("NUMERO" + numeroAtendimentos.get(0).toString());
-		
-		logger.info("MODO FECHAMENTO" + modosFechamento.get(1).toString());
-		logger.info("NUMERO" + numeroAtendimentos.get(1).toString());
-		
-		RequestDispatcher view;
-		request.setAttribute("dataInicial", dataInicial);
-		request.setAttribute("dataFinal", dataFinal);
-		request.setAttribute("QtdAtendida", atendida);
-		request.setAttribute("QtdNaoAtendida", naoAtendida);
-		request.setAttribute("QtdCanceladaSolicitante", canceladaSolicitante);
-		request.setAttribute("QtdTrote", trote);
-		request.setAttribute("QtdSemAtuacao", semAtuação);
-		request.setAttribute("dataGeracao", new Date());
-		request.setAttribute("modosFechamento", modosFechamento);
-		request.setAttribute("qtdAtendimentos", numeroAtendimentos);
-		view = request.getRequestDispatcher("/relatorioTotalAtendimentosPorModoFechamento.jsp");
-		
-			
-		try {
-			view.forward(request, response);
-		} catch (ServletException e) {
+		if (!response.isCommitted()){  	
+			try {
+				view.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+			}
+		}
 	}
-		
-	
-		
-	}
-
 }

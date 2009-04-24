@@ -132,7 +132,7 @@ public class CRUDViatura extends HttpServlet {
 
 				}
 				else if(string.equals("Em atendimento Exclusao")){
-					request.setAttribute("mensagem", "Não e possivel deletar esta viatura já realizou atendimento!");
+					request.setAttribute("mensagem", "Não e possivel deletar esta viatura, pois já realizou atendimento!");
 
 				}
 				else{
