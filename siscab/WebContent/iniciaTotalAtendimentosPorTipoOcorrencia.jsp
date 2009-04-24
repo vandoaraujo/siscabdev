@@ -42,17 +42,18 @@
 </tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<div style="color:black; display:inline; border-color:black; font-size:14"> Relatórios :: Total de Atendimentos por Modo de Fechamento</div>
+					<div style="color:black; display:inline; border-color:black; font-size:14"> Relatórios :: Total de Atendimentos por Tipo de Ocorrência</div>
 					<br>
 						<div style="color:red; display:inline"> ${msg} </div>
 						<br> 
 						<fieldset style="width:650px"><legend>&nbsp;Informe o período de referência&nbsp;</legend>
-							<form action="TotalAtendimentosPorModoFechamento" method="post">
+							
+							<form action="TotalAtendimentosPorTipoOcorrencia" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td style="width:100px">Data Inicial:</td>
-									<td><input type="text" name="dataInicial" readonly="readonly" size=11 VALUE="" />
+									<td><input type="text" name="dataInicial" readonly="readonly" size=11 VALUE="" klojy,,/>
 									<input type="button" value="..." onclick="displayCalendar(document.forms[0].dataInicial,'dd/mm/yyyy',this)">
 									</td>								
 								</tr>
@@ -72,7 +73,6 @@
 							 			</form>	
 									</td>								
 								</tr>
-						</fieldset>	
 					</td>
 				</tr>				
 			</table>

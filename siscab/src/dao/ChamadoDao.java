@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import modelo.Chamado;
@@ -88,6 +90,14 @@ public class ChamadoDao {
 		tx.commit();
 		return chamado;		
 
+	}
+	
+	public Iterator ParametrosResultadosRelatorioChamadosPorNatureza(Date dataInicial, Date dataFinal){
+		
+		Iterator chamadosPorNatureza = session.createQuery("select n.naturezachamado_descricao, count (distinct c.id) from modelo.Chamado c, modelo.NaturezaChamado n " + 
+				"where c.naturezachamado = n.id and c.horainicio >=:horaInicial and c.horainicio <=:horaFinal " + 
+				"group by n.naturezachamado_descricao order by count(c.id) desc").setDate("horaInicial",dataInicial).setDate("horaFinal",dataFinal).list().iterator();
+		return chamadosPorNatureza;
 	}
 	
 	public Chamado BuscaChamadoId(Integer id) {

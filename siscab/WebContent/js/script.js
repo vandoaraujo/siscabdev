@@ -24,6 +24,7 @@ function mmLoadMenus() {
   mm_menu_0217221648_0.addMenuItem("Situação&nbsp;Atendimentos","location='situacaoAtendimento.jsp'");
   mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Chamados&nbsp;por&nbsp;Natureza","location='IniciaTotalChamadosPorNatureza'");
   mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Atendimentos","location='iniciaTotalAtendimentosPorModoFechamento.jsp'");
+  mm_menu_0217221648_0.addMenuItem("Atendimentos&nbsp;por&nbsp;Tipo&nbsp;Ocorrencia","location='iniciaTotalAtendimentosPorTipoOcorrencia.jsp'");
   mm_menu_0217221648_0.hideOnMouseOut=true;
   mm_menu_0217221648_0.bgColor='#555555';
   mm_menu_0217221648_0.menuBorder=1;

@@ -41,8 +41,6 @@ public class IniciaTotalChamadosPorNatureza extends HttpServlet {
 		RequestDispatcher view;
 		view = request.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
 		
-	
-		
 		try {
 			view.forward(request, response);
 		} catch (ServletException e) {

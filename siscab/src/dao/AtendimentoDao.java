@@ -82,7 +82,7 @@ public class AtendimentoDao {
 		
 		public Iterator ParametrosResultadosRelatorio(Date dataInicial, Date dataFinal){
 			
-			Iterator modoFechamentosInteiros = session.createQuery("SELECT m.descricao,COUNT(a.id) from modelo.Atendimento a, modelo.ModoFechamento m,modelo.CronoAtendimento c where m.id = a.modofechamento_id and" +
+			Iterator modoFechamentosInteiros = session.createQuery("SELECT m.descricao,COUNT( distinct a.id) from modelo.Atendimento a, modelo.ModoFechamento m,modelo.CronoAtendimento c where m.id = a.modofechamento_id and" +
 					"  c.cronoatendimento_horaevento >=:horaInicial and c.cronoatendimento_horaevento <=:horaFinal and c.atendimento_id = a.id and" +
 						" a.status_atendimento = 'Finalizado' and c.cronoatendimento_tipoevento = 'finalização'" +
 						"  group by m.descricao " +
@@ -91,14 +91,14 @@ public class AtendimentoDao {
 		}
 		
 		
-		public Iterator ParametrosResultadosRelatorioTeste(Date dataInicial, String dataFinal){
+		public Iterator ParametrosResultadosRelatorioTipoOcorrencia(Date dataInicial, Date dataFinal){
 			
-			Iterator modoFechamentosInteiros = session.createQuery("SELECT m.descricao,COUNT(a.id) from modelo.Atendimento a, modelo.ModoFechamento m,modelo.CronoAtendimento c where m.id = a.modofechamento_id and" +
-					"  c.cronoatendimento_horaevento >=:horaInicial and c.cronoatendimento_horaevento <=:horaFinal and c.atendimento_id = a.id and" +
-						" a.status_atendimento = 'Finalizado' and c.cronoatendimento_tipoevento = 'finalização'" +
-						"  group by m.descricao " +
-						"order by count(a.id) desc").setDate("horaInicial",dataInicial).setString("horaFinal",dataFinal).list().iterator();
-			return modoFechamentosInteiros;	
+			Iterator tipoOcorrenciasAtendimento = session.createQuery("SELECT toc.tipoocorrencia_descricao,COUNT( distinct a.id) from modelo.Atendimento a, modelo.TipoOcorrencia toc,modelo.CronoAtendimento c where toc.id = a.tipoocorrencia and" +
+					"  c.cronoatendimento_horaevento >=:horaInicial and c.cronoatendimento_horaevento <=:horaFinal and c.atendimento_id = a.id" +
+						" and c.cronoatendimento_tipoevento = 'início'" +
+						"  group by toc.tipoocorrencia_descricao" +
+						" order by count(a.id) desc").setDate("horaInicial",dataInicial).setDate("horaFinal",dataFinal).list().iterator();
+			return tipoOcorrenciasAtendimento;
 		}
 				
 		public List<Atendimento> listarOcorrenciasProximas(int municipio, String bairro){

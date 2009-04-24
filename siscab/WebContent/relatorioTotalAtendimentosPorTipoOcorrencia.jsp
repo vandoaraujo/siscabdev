@@ -13,12 +13,12 @@
 </head>
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
-<%! int controle,tamanhochamadosPorNatureza,tamanhoNumeroAtendimento=0; %>
-<%		List chamadosPorNatureza = (List)request.getAttribute("chamadosPorNatureza"); 
-		List numeroAtendimentos = (List)request.getAttribute("qtdChamados");
-		List percentualAtendimento = (List)request.getAttribute("percentualChamados");
+<%! int controle,tamanhotipoOcorrencia,tamanhoNumeroAtendimento=0; %>
+<%		List tipoOcorrencia = (List)request.getAttribute("tipoOcorrencia"); 
+		List numeroAtendimentos = (List)request.getAttribute("qtdAtendimentos");
+		List percentualAtendimento = (List)request.getAttribute("percentualAtendimento");
 %>				
-<%		tamanhochamadosPorNatureza = chamadosPorNatureza.size();
+<%		tamanhotipoOcorrencia = tipoOcorrencia.size();
 %>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -42,7 +42,7 @@
   '>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
   3.0pt;margin-left:0in'><b style='mso-bidi-font-weight:normal'><span
-  lang=PT-BR> Descrição Chamados Por Natureza</span></b></p>
+  lang=PT-BR>Tipos de Ocorrência do Atendimento</span></b></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border:solid windowtext 1.0pt;
   border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
@@ -66,21 +66,21 @@
   padding:0in 5.4pt 0in 5.4pt'>
 
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(tipoOcorrencia.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");} %></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++; } else {out.print("&nbsp;");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++; } else {out.print("&nbsp;");} %></span></p>
 
   </td>
  </tr>
@@ -89,14 +89,14 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%> </span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(tipoOcorrencia.get(controle).toString());} else {out.print("&nbsp;");}%> </span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
 
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
@@ -104,7 +104,7 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:3'>
@@ -112,7 +112,7 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(tipoOcorrencia.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
 
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
@@ -120,14 +120,14 @@
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><%if(controle < tamanhochamadosPorNatureza) { out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><%if(controle < tamanhotipoOcorrencia) { out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
 
@@ -136,14 +136,14 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza) { out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia) { out.print(tipoOcorrencia.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(numeroAtendimentos.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -151,7 +151,7 @@
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
 
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:5'>
@@ -159,7 +159,7 @@
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:
-  3.0pt;margin-left:0in'><span lang=PT-BR><%if(controle < tamanhochamadosPorNatureza) { out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
+  3.0pt;margin-left:0in'><span lang=PT-BR><%if(controle < tamanhotipoOcorrencia) { out.print(tipoOcorrencia.get(controle).toString());} else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=104 valign=top style='width:78.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -167,14 +167,14 @@
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
 
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%></span></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
-  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
+  margin-bottom:3.0pt;margin-left:0in;text-align:right'><span lang=PT-BR><% if(controle < tamanhotipoOcorrencia){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:6;mso-yfti-lastrow:yes'>
@@ -192,7 +192,7 @@
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal align=right style='margin-top:3.0pt;margin-right:0in;
   margin-bottom:3.0pt;margin-left:0in;text-align:right'><b style='mso-bidi-font-weight:
-  normal'><span lang=PT-BR>${somaChamados}</span></b></p>
+  normal'><span lang=PT-BR>${somaAtendimentos}</span></b></p>
   </td>
   <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
