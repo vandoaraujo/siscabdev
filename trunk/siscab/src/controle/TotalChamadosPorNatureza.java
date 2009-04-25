@@ -2,10 +2,12 @@ package controle;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -18,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import dao.AtendimentoDao;
 import dao.ChamadoDao;
 
 /**
@@ -55,7 +56,7 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 				
 		List<String> naturezaChamado = null;
 		List<Long> numeroChamados = null;
-		List<Float> percentualChamado = null;
+		List<String> percentualChamado = null;
 		
 		String dataInicial = request.getParameter("dataInicial");
 		String dataFinal = request.getParameter("dataFinal");
@@ -154,22 +155,24 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 				naturezaChamado.add((String) linhas[0]);
 				numeroChamados.add((Long) linhas [1]);
 				numeroChamados.get(count);
-				somaChamados = somaChamados + (long) numeroChamados.get(count);
+				somaChamados = somaChamados + (long)numeroChamados.get(count);
 				count++;
 			}
 			
 			logger.info("QTD " + somaChamados);
-			percentualChamado = new ArrayList<Float>();
+			percentualChamado = new ArrayList<String>();
+			DecimalFormat formatador = new DecimalFormat("##,##.##");  
 			for(int i=0;i<numeroChamados.size(); i++){
-				float percentual = (float) ((numeroChamados.get(i) * 100) / somaChamados);
+				double percentual = (double) ((numeroChamados.get(i) * 100) / (double)somaChamados);
 				logger.info("Percentual " + i + " " + percentual);
-				percentualChamado.add(percentual);
+				percentualChamado.add(formatador.format(percentual));
 			}
 			
+			GregorianCalendar calendar =  new GregorianCalendar();
 			request.setAttribute("percentualChamados", percentualChamado);
 			request.setAttribute("dataInicial", dataInicial);
 			request.setAttribute("dataFinal", dataFinal);
-			request.setAttribute("dataGeracao", new Date());
+			request.setAttribute("dataGeracao", calendar.getTime().getDate() + "/" + (calendar.getTime().getMonth()+1) + "/" + (calendar.getTime().getYear() +1900) + " às " + calendar.getTime().getHours() + "h:" +  calendar.getTime().getMinutes() + "min:" + calendar.getTime().getSeconds() + "seg");
 			request.setAttribute("chamadosPorNatureza", naturezaChamado);
 			request.setAttribute("qtdChamados", numeroChamados);
 			request.setAttribute("somaChamados", somaChamados);

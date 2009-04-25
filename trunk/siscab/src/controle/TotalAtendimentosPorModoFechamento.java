@@ -2,10 +2,12 @@ package controle;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -54,7 +56,7 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 				
 		List<String> modosFechamento = null;
 		List<Long> numeroAtendimentos = null;
-		List<Float> percentualAtendimento = null;
+		List<String> percentualAtendimento = null;
 		
 		String dataInicial = request.getParameter("dataInicial");
 		String dataFinal = request.getParameter("dataFinal");
@@ -158,17 +160,19 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 			}
 			
 			logger.info("QTD " + somaAtendimentos);
-			percentualAtendimento = new ArrayList<Float>();
+			percentualAtendimento = new ArrayList<String>();
+			DecimalFormat formatador = new DecimalFormat("##,##.##");  
 			for(int i=0;i<numeroAtendimentos.size(); i++){
-				float percentual = (float) ((numeroAtendimentos.get(i) * 100) / somaAtendimentos);
+				float percentual = (float) ((numeroAtendimentos.get(i) * 100) / (double)somaAtendimentos);
 				logger.info("Percentual " + i + " " + percentual);
-				percentualAtendimento.add(percentual);
+				percentualAtendimento.add(formatador.format(percentual));
 			}
-			
+
+			GregorianCalendar calendar =  new GregorianCalendar();
 			request.setAttribute("percentualAtendimento", percentualAtendimento);
 			request.setAttribute("dataInicial", dataInicial);
 			request.setAttribute("dataFinal", dataFinal);
-			request.setAttribute("dataGeracao", new Date());
+			request.setAttribute("dataGeracao", calendar.getTime().getDate() + "/" + (calendar.getTime().getMonth()+1) + "/" + (calendar.getTime().getYear() +1900) + " às " + calendar.getTime().getHours() + "h:" +  calendar.getTime().getMinutes() + "min:" + calendar.getTime().getSeconds() + "seg");
 			request.setAttribute("modosFechamento", modosFechamento);
 			request.setAttribute("qtdAtendimentos", numeroAtendimentos);
 			request.setAttribute("somaAtendimentos", somaAtendimentos);
