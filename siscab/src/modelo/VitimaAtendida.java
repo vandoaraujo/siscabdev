@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -17,96 +16,93 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-@Table(name="vitimas")
+@Table(name = "vitimas")
 public class VitimaAtendida {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int id;
-		
-		private String nome;
-		
-		private int idade;
-		
-		private char sexo;
-		
-		@ManyToOne(fetch = FetchType.EAGER)
-		@JoinColumn(name = "atendimento_id", insertable=true, updatable =true)
-		@Fetch(FetchMode.JOIN)
-		@Cascade(CascadeType.SAVE_UPDATE)
-		private Atendimento atendimento_id;
-		
-		private int cor;
-		@Column(name="situacaofinal")
-		private int vitima_situacao;
-		
-		private String hospitaldestino;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-		public int getId() {
-			return id;
-		}
+    private String nome;
 
-		public void setId(int id) {
-			this.id = id;
-		}
+    private int idade;
 
-		public String getNome() {
-			return nome;
-		}
+    private char sexo;
 
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "atendimento_id", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private Atendimento atendimento_id;
 
-		public int getIdade() {
-			return idade;
-		}
+    private int cor;
+    @Column(name = "situacaofinal")
+    private int vitima_situacao;
 
-		public void setIdade(int idade) {
-			this.idade = idade;
-		}
+    private String hospitaldestino;
 
-		public char getSexo() {
-			return sexo;
-		}
+    public Atendimento getAtendimento() {
+	return atendimento_id;
+    }
 
-		public void setSexo(char sexo) {
-			this.sexo = sexo;
-		}
+    public int getCor() {
+	return cor;
+    }
 
-		public Atendimento getAtendimento() {
-			return atendimento_id;
-		}
+    public String getHospitaldestino() {
+	return hospitaldestino;
+    }
 
-		public void setAtendimento(Atendimento atendimento) {
-			this.atendimento_id = atendimento;
-		}
+    public int getId() {
+	return id;
+    }
 
-		public int getCor() {
-			return cor;
-		}
+    public int getIdade() {
+	return idade;
+    }
 
-		public void setCor(int cor) {
-			this.cor = cor;
-		}
+    public String getNome() {
+	return nome;
+    }
 
-		public int getVitima_situacao() {
-			return vitima_situacao;
-		}
+    public char getSexo() {
+	return sexo;
+    }
 
-		public void setVitima_situacao(int vitima_situacao) {
-			this.vitima_situacao = vitima_situacao;
-		}
+    public int getVitima_situacao() {
+	return vitima_situacao;
+    }
 
-		public String getHospitaldestino() {
-			return hospitaldestino;
-		}
+    public void setAtendimento(Atendimento atendimento) {
+	this.atendimento_id = atendimento;
+    }
 
-		public void setHospitaldestino(String hospitaldestino) {
-			this.hospitaldestino = hospitaldestino;
-		}
-		
+    public void setCor(int cor) {
+	this.cor = cor;
+    }
+
+    public void setHospitaldestino(String hospitaldestino) {
+	this.hospitaldestino = hospitaldestino;
+    }
+
+    public void setId(int id) {
+	this.id = id;
+    }
+
+    public void setIdade(int idade) {
+	this.idade = idade;
+    }
+
+    public void setNome(String nome) {
+	this.nome = nome;
+    }
+
+    public void setSexo(char sexo) {
+	this.sexo = sexo;
+    }
+
+    public void setVitima_situacao(int vitima_situacao) {
+	this.vitima_situacao = vitima_situacao;
+    }
+
 }
-		
-	
-		

@@ -7,35 +7,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tiposservicos")
+@Table(name = "tiposservicos")
 public class TipoServico {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int id;
-		
-		private String tiposervico_descricao;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
+    private String tiposervico_descricao;
 
-		public int getId() {
-			return id;
-		}
+    public int getId() {
+	return id;
+    }
 
-		public void setId(int id) {
-			this.id = id;
-		}
+    public String getTiposervico_descricao() {
+	return tiposervico_descricao;
+    }
 
-		public String getTiposervico_descricao() {
-			return tiposervico_descricao;
-		}
+    public void setId(int id) {
+	this.id = id;
+    }
 
-		public void setTiposervico_descricao(String tiposervico_descricao) {
-			this.tiposervico_descricao = tiposervico_descricao;
-		}
+    public void setTiposervico_descricao(String tiposervico_descricao) {
+	this.tiposervico_descricao = tiposervico_descricao;
+    }
 
-		
-		
-	
-	
-	
 }

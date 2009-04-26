@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -20,120 +16,116 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-@Table(name="obm")
+@Table(name = "obm")
 public class OBM {
-			
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int id;
 
-		private String nome;
-		
-		/*@OneToMany(mappedBy="obm",fetch = FetchType.EAGER)
-		@Cascade(CascadeType.DELETE_ORPHAN)
-		private Collection<Usuario> usuarios;
-		*/
-		
-		@ManyToOne(fetch = FetchType.EAGER)
-		@JoinColumn(name = "municipio_id", insertable=true, updatable =true)
-		@Fetch(FetchMode.JOIN)
-		@Cascade(CascadeType.SAVE_UPDATE)
-		private Municipio municipio;
-		
-		private String bairro;
-		
-		private String logradouro;
-		
-		private String numCompl;
-		@Column(name="coordx")
-		private double coordX;
-		@Column(name="coordy")
-		private double coordY;
-		@Column(name="status_obm")
-		private int statusObm;
-		
-		public int getId() {
-			return id;
-		}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-		public void setId(int id) {
-			this.id = id;
-		}
+    private String nome;
 
-		public String getNome() {
-			return nome;
-		}
+    /*
+     * @OneToMany(mappedBy="obm",fetch = FetchType.EAGER)
+     * 
+     * @Cascade(CascadeType.DELETE_ORPHAN) private Collection<Usuario> usuarios;
+     */
 
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "municipio_id", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private Municipio municipio;
 
-		/*public Collection<Usuario> getUsuarios() {
-			return usuarios;
-		}
+    private String bairro;
 
-		public void setUsuarios(Collection<Usuario> usuarios) {
-			this.usuarios = usuarios;
-		}*/
+    private String logradouro;
 
-		public Municipio getMunicipio() {
-			return municipio;
-		}
+    private String numCompl;
+    @Column(name = "coordx")
+    private double coordX;
+    @Column(name = "coordy")
+    private double coordY;
+    @Column(name = "status_obm")
+    private int statusObm;
 
-		public void setMunicipio(Municipio municipio) {
-			this.municipio = municipio;
-		}
+    public String getBairro() {
+	return bairro;
+    }
 
-		public String getBairro() {
-			return bairro;
-		}
+    public double getCoordX() {
+	return coordX;
+    }
 
-		public void setBairro(String bairro) {
-			this.bairro = bairro;
-		}
+    public double getCoordY() {
+	return coordY;
+    }
 
-		public String getLogradouro() {
-			return logradouro;
-		}
+    public int getId() {
+	return id;
+    }
 
-		public void setLogradouro(String logradouro) {
-			this.logradouro = logradouro;
-		}
+    /*
+     * public Collection<Usuario> getUsuarios() { return usuarios; }
+     * 
+     * public void setUsuarios(Collection<Usuario> usuarios) { this.usuarios =
+     * usuarios; }
+     */
 
-		public String getNumCompl() {
-			return numCompl;
-		}
+    public String getLogradouro() {
+	return logradouro;
+    }
 
-		public void setNumCompl(String numCompl) {
-			this.numCompl = numCompl;
-		}
+    public Municipio getMunicipio() {
+	return municipio;
+    }
 
-		public double getCoordX() {
-			return coordX;
-		}
+    public String getNome() {
+	return nome;
+    }
 
-		public void setCoordX(double coordX) {
-			this.coordX = coordX;
-		}
+    public String getNumCompl() {
+	return numCompl;
+    }
 
-		public double getCoordY() {
-			return coordY;
-		}
+    public int getStatus() {
+	return statusObm;
+    }
 
-		public void setCoordY(double coordY) {
-			this.coordY = coordY;
-		}
+    public void setBairro(String bairro) {
+	this.bairro = bairro;
+    }
 
-		public int getStatus() {
-			return statusObm;
-		}
+    public void setCoordX(double coordX) {
+	this.coordX = coordX;
+    }
 
-		public void setStatus(int status) {
-			this.statusObm = status;
-		}
+    public void setCoordY(double coordY) {
+	this.coordY = coordY;
+    }
 
-			
-		
-	}
+    public void setId(int id) {
+	this.id = id;
+    }
 
+    public void setLogradouro(String logradouro) {
+	this.logradouro = logradouro;
+    }
 
+    public void setMunicipio(Municipio municipio) {
+	this.municipio = municipio;
+    }
+
+    public void setNome(String nome) {
+	this.nome = nome;
+    }
+
+    public void setNumCompl(String numCompl) {
+	this.numCompl = numCompl;
+    }
+
+    public void setStatus(int status) {
+	this.statusObm = status;
+    }
+
+}

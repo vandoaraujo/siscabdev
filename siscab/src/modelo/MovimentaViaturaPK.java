@@ -8,38 +8,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class MovimentaViaturaPK implements Serializable{
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="atendimento_id")
-	private Atendimento atendimento_id;
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "viatura_id")
-	private Viatura viatura_id;
+public class MovimentaViaturaPK implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	public Atendimento getAtendimentos() {
-		return atendimento_id;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "atendimento_id")
+    private Atendimento atendimento_id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "viatura_id")
+    private Viatura viatura_id;
 
-	public void setAtendimentos(Atendimento atendimentos) {
-		this.atendimento_id = atendimentos;
-	}
+    public Atendimento getAtendimentos() {
+	return atendimento_id;
+    }
 
+    public Viatura getViatura() {
+	return viatura_id;
+    }
 
-	public Viatura getViatura() {
-		return viatura_id;
-	}
+    public void setAtendimentos(Atendimento atendimentos) {
+	this.atendimento_id = atendimentos;
+    }
 
-
-	public void setViatura(Viatura viatura) {
-		this.viatura_id = viatura;
-	}
-	
-	
+    public void setViatura(Viatura viatura) {
+	this.viatura_id = viatura;
+    }
 
 }
