@@ -15,10 +15,13 @@ Ocorrência</title>
 </head>
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
-<%! int controle,tamanhotipoOcorrencia,tamanhoNumeroAtendimento=0; %>
-<%		List tipoOcorrencia = (List)request.getAttribute("tipoOcorrencia"); 
-		List numeroAtendimentos = (List)request.getAttribute("qtdAtendimentos");
-		List percentualAtendimento = (List)request.getAttribute("percentualAtendimento");
+<%! int controle,tamanhotipoOcorrencia,tamanhoNumeroAtendimento=0; 
+	List tipoOcorrencia, numeroAtendimentos,percentualAtendimento = null;
+	%>
+<%	
+		tipoOcorrencia = (List)request.getAttribute("tipoOcorrencia"); 
+		numeroAtendimentos = (List)request.getAttribute("qtdAtendimentos");
+		percentualAtendimento = (List)request.getAttribute("percentualAtendimento");
 %>
 <%		tamanhotipoOcorrencia = tipoOcorrencia.size();
 %>

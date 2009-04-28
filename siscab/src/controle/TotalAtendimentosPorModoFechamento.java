@@ -60,6 +60,8 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	logger.info(getServletName());
 	Date formatadaInicial = null;
 	Date formatadaFinal = null;
+	
+	Iterator it = null;
 
 	List<String> modosFechamento = null;
 	List<Long> numeroAtendimentos = null;
@@ -151,7 +153,7 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	    logger.info(" ############# Data FORMATADA FINAL apos conversoes"
 		    + formatadaFinal);
 
-	    Iterator it = AtendimentoDao.getInstance()
+	    it = AtendimentoDao.getInstance()
 		    .ParametrosResultadosRelatorio(formatadaInicial,
 			    formatadaFinal);
 
@@ -161,6 +163,18 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 			"Nenhum atendimento no período informado!");
 		view = request
 			.getRequestDispatcher("/iniciaTotalAtendimentosPorModoFechamento.jsp");
+		
+		if (!response.isCommitted()) {
+		    try {
+			view.forward(request, response);
+		    } catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
+		}
 
 	    } else {
 
@@ -168,10 +182,11 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 		numeroAtendimentos = new ArrayList<Long>();
 		int count = 0;
 		long somaAtendimentos = 0;
+		Object[] linhas = null;
 
 		while (it.hasNext()) {
 
-		    Object[] linhas = (Object[]) it.next();
+		    linhas = (Object[]) it.next();
 		    modosFechamento.add((String) linhas[0]);
 		    numeroAtendimentos.add((Long) linhas[1]);
 		    numeroAtendimentos.get(count);

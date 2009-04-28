@@ -59,6 +59,8 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 	logger.info(getServletName());
 	Date formatadaInicial = null;
 	Date formatadaFinal = null;
+	
+	Iterator it = null; 
 
 	List<String> naturezaChamado = null;
 	List<Long> numeroChamados = null;
@@ -73,6 +75,16 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 		    "Necessário informar data inicial e data final!");
 	    view = request
 		    .getRequestDispatcher("/informaParametrosTotalChamados.jsp");
+	   
+		    try {
+			view.forward(request, response);
+		    } catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
 
 	} else {
 
@@ -116,14 +128,17 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 			"A data inicial é maior do que a data final!");
 		view = request
 			.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
-		try {
-		    view.forward(request, response);
-		} catch (ServletException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		} catch (IOException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
+		
+		if (!response.isCommitted()) {
+		    try {
+			view.forward(request, response);
+		    } catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
 		}
 	    }
 
@@ -150,7 +165,7 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 	    logger.info(" ############# Data FORMATADA FINAL apos conversoes"
 		    + formatadaFinal);
 
-	    Iterator it = ChamadoDao.getInstance()
+	    it = ChamadoDao.getInstance()
 		    .ParametrosResultadosRelatorioChamadosPorNatureza(
 			    formatadaInicial, formatadaFinal);
 
@@ -161,16 +176,29 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 		view = request
 			.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
 
+		if (!response.isCommitted()) {
+		    try {
+			view.forward(request, response);
+		    } catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
+		}
+
 	    } else {
 
 		naturezaChamado = new ArrayList<String>();
 		numeroChamados = new ArrayList<Long>();
 		int count = 0;
 		long somaChamados = 0;
+		Object[] linhas = null;
 
 		while (it.hasNext()) {
 
-		    Object[] linhas = (Object[]) it.next();
+		    linhas = (Object[]) it.next();
 		    naturezaChamado.add((String) linhas[0]);
 		    numeroChamados.add((Long) linhas[1]);
 		    numeroChamados.get(count);
