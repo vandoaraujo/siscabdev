@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +19,12 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "obm")
-public class OBM {
+public class OBM implements Serializable{
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
