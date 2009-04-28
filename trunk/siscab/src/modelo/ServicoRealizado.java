@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,12 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "servicos")
-public class ServicoRealizado {
+public class ServicoRealizado implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

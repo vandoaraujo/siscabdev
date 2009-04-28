@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,7 +24,7 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "chamados")
-public class Chamado {
+public class Chamado implements Serializable {
 
     public static Date getDataHoraInicioChamado() {
 	return data;

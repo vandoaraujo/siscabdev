@@ -115,13 +115,11 @@ public class PreparaNovaMovimentacaoViatura extends HttpServlet {
 	    opcaoEvento.add("Chegada ao Hospital");
 	    opcaoEvento.add("Saída do Hospital");
 	    opcaoEvento.add("Retorno à OBM");
-	} else if (m.getMovimentaviatura_tipoevento().equals(
-		"Chegada ao Hospital")) {
+	} else if (m.getMovimentaviatura_tipoevento().equals("Chegada ao Hospital")) {
 
 	    opcaoEvento.add("Saída do Hospital");
 	    opcaoEvento.add("Retorno à OBM");
-	} else if (m.getMovimentaviatura_tipoevento().equals(
-		"Saída do Hospital")) {
+	} else if (m.getMovimentaviatura_tipoevento().equals("Saída do Hospital")) {
 
 	    opcaoEvento.add("Retorno à OBM");
 	}

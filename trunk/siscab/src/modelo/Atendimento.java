@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -22,7 +23,12 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "atendimentos")
-public class Atendimento {
+public class Atendimento implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

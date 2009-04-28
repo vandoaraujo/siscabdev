@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,11 +61,18 @@ public class ControlaServico extends HttpServlet {
 	request.setAttribute("descricaoServico", descricaoServico);
 	if (string.equals("salvar")) {
 
-	    request.setAttribute("mensagem", "salva com sucesso!!");
+	    request.setAttribute("mensagem", "salvo com sucesso!!");
 
-	} else {
+	} else if(string.equals("tipoServicoRepetido")){
+	    
+	    request.setAttribute("mensagem", "Este serviço já foi cadastrado para este Atendimento!!");
+
+	}
+	else {
 	    request.setAttribute("mensagem", "deletado com sucesso!!");
 	}
+	
+	
 
 	view = request.getRequestDispatcher("/mensagemServico.jsp");
 
@@ -132,10 +140,20 @@ public class ControlaServico extends HttpServlet {
 	ServicoRealizado servico = new ServicoRealizado();
 	servico.setAtendimentos(at);
 	servico.setTiposervico(tipoS);
-	ServicoRealizadoDao.getInstance().salvar(servico);
-	request.setAttribute("servico", servico);
-	despacha(request, response, "salvar", servico.getTiposervico()
+	
+	List<ServicoRealizado> s  = ServicoRealizadoDao.getInstance().listaNomeServicosReferenteUmAtendimento(tipoS.getId(),registroAtendimento);
+	if(s.isEmpty()){
+	    
+	    ServicoRealizadoDao.getInstance().salvar(servico);
+	    request.setAttribute("servico", servico);
+	    despacha(request, response, "salvar", servico.getTiposervico()
 		.getTiposervico_descricao());
+	}
+	else{
+	
+	    despacha(request, response, "tipoServicoRepetido", servico.getTiposervico()
+			.getTiposervico_descricao());
+	}
 
     }
 }

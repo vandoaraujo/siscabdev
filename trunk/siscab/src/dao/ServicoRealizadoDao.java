@@ -65,6 +65,17 @@ public class ServicoRealizadoDao {
 		.setInteger("servicosAtendimento", atendimentoId).list();
 	return servicos;
     }
+    
+    public List<ServicoRealizado> listaNomeServicosReferenteUmAtendimento(
+	    int idServico, int atendimentoId) {
+
+	List<ServicoRealizado> servicos = session
+		.createQuery(
+			"from modelo.ServicoRealizado s where s.atendimento_id=:servicosAtendimento" +
+			" and s.tiposervico_id =:tipoServico")
+		.setInteger("servicosAtendimento", atendimentoId).setInteger("tipoServico", idServico).list();
+	return servicos;
+    }
 
     public void salvar(ServicoRealizado servico) {
 
