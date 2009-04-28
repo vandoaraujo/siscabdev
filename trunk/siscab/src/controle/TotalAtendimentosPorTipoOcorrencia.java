@@ -58,8 +58,11 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 	    HttpServletResponse response) throws ServletException, IOException {
 
 	logger.info(getServletName());
+	int comparaDataInicial = 0;
+	int comparaDataFinal = 0;
 	Date formatadaInicial = null;
 	Date formatadaFinal = null;
+	Iterator it = null;
 
 	List<String> tipoOcorrencia = null;
 	List<Long> numeroAtendimentos = null;
@@ -92,7 +95,7 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 		tokenInicial.add(stInicial.nextToken());
 	    }
 
-	    int comparaDataInicial = Integer.parseInt(tokenInicial.get(0))
+	    comparaDataInicial = Integer.parseInt(tokenInicial.get(0))
 		    + Integer.parseInt(tokenInicial.get(1))
 		    + Integer.parseInt(tokenInicial.get(2));
 
@@ -105,7 +108,7 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 		tokenFinal.add(st.nextToken());
 	    }
 
-	    int comparaDataFinal = Integer.parseInt(tokenFinal.get(0))
+	    comparaDataFinal = Integer.parseInt(tokenFinal.get(0))
 		    + Integer.parseInt(tokenFinal.get(1))
 		    + Integer.parseInt(tokenFinal.get(2));
 
@@ -151,7 +154,7 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 	    logger.info(" ############# Data FORMATADA FINAL apos conversoes"
 		    + formatadaFinal);
 
-	    Iterator it = AtendimentoDao.getInstance()
+	    it = AtendimentoDao.getInstance()
 		    .ParametrosResultadosRelatorioTipoOcorrencia(
 			    formatadaInicial, formatadaFinal);
 
@@ -161,6 +164,19 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 			"Nenhum atendimento no período informado!");
 		view = request
 			.getRequestDispatcher("/iniciaTotalAtendimentosPorTipoOcorrencia.jsp");
+		
+		if (!response.isCommitted()){
+		
+		try {
+			view.forward(request, response);
+		    } catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
+		}
 
 	    } else {
 
@@ -168,10 +184,11 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 		numeroAtendimentos = new ArrayList<Long>();
 		int count = 0;
 		long somaAtendimentos = 0;
-
+		Object[] linhas = null;
+		
 		while (it.hasNext()) {
 
-		    Object[] linhas = (Object[]) it.next();
+		    linhas = (Object[]) it.next();
 		    tipoOcorrencia.add((String) linhas[0]);
 		    numeroAtendimentos.add((Long) linhas[1]);
 		    numeroAtendimentos.get(count);
