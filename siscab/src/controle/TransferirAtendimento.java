@@ -65,6 +65,9 @@ public class TransferirAtendimento extends HttpServlet {
 	    view = request.getRequestDispatcher("/acessoNegado.jsp");
 
 	}
+	
+	 
+	
 	// Usuario é o controlador do COCB
 	else if ((usuario.getPerfil().getId() == 4)) {
 
