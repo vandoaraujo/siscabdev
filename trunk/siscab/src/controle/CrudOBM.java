@@ -64,7 +64,7 @@ public class CrudOBM extends HttpServlet {
 	List<Atendimento> atendimento = AtendimentoDao.getInstance()
 		.listarAtendimentosNaoFinalizadosOBM(registro);
 	logger.info("HASH " + atendimento);
-	if ((viaturas != null) || (atendimento != null)) {
+	if ((viaturas.size() != 0) || (atendimento.size() != 0)) {
 	    despacha(request, response, "excecao", obm.getNome());
 	} else {
 

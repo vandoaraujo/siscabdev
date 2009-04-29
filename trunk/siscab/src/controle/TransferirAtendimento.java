@@ -68,9 +68,9 @@ public class TransferirAtendimento extends HttpServlet {
 	// Usuario é o controlador do COCB
 	else if ((usuario.getPerfil().getId() == 4)) {
 
-	    // Passo a OBM do usuário. Se o usuário tem o perfil de controlador
-	    // do COCB ou atendente do
-	    // COCB ele está cadastrado no COCB.
+	    /* Passo a OBM do usuário. Se o usuário tem o perfil de controlador
+	     do COCB ou atendente do
+	     COCB ele está cadastrado no COCB. */
 	    List<Atendimento> at = AtendimentoDao.getInstance()
 		    .BuscaAtendimentosRedirecionadosAoCOCB(
 			    usuario.getObm().getId());
@@ -87,7 +87,6 @@ public class TransferirAtendimento extends HttpServlet {
 	    List<Atendimento> at = AtendimentoDao.getInstance()
 		    .BuscaAtendimentosRedirecionadosAoCOCB(
 			    usuario.getObm().getId());
-
 	    request.setAttribute("atendimentos", at);
 	    request.setAttribute("obm", usuario.getObm().getNome());
 	    request.setAttribute("perfil", "Operador da OBM");

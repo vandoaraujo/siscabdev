@@ -71,7 +71,7 @@
 						<form action="NovaMovimentacaoViatura" method="post">
 					<tr>
 						<td>
-						<div><%= i+1 %> :: NumeroViatura = <a
+						<div><%= i+1 %> :: NumeroViatura = <%=via.getNumero() %> <a
 							href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=1">Status
 						Viatura: <%= via.getViatura_status()%>TipoViatura: <%= via.getTipo_viatura().getTipoviatura_descricao().toString()%></a>&nbsp;
 
