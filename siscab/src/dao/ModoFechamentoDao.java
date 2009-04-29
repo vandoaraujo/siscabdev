@@ -45,7 +45,7 @@ public class ModoFechamentoDao {
     }
 
     public List<ModoFechamento> listarTodosModosFechamento() {
-	List<ModoFechamento> l = session.createQuery(
+	List<ModoFechamento> l = (List<ModoFechamento>)session.createQuery(
 		"from modelo.ModoFechamento").list();
 	return l;
 

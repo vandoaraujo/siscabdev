@@ -21,7 +21,7 @@ import dao.UsuarioDao;
  * Servlet implementation class BuscarUsuario
  */
 public class BuscarUsuario extends HttpServlet {
-
+    
     private static final long serialVersionUID = 1L;
     List<Usuario> usu;
     RequestDispatcher view = null;
