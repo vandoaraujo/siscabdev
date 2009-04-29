@@ -65,8 +65,7 @@ public class RegistrarChamado extends HttpServlet {
 		&& (!(usuario.getPerfil().getId() == 3))) {
 
 	    request.setAttribute("descricaoServico", "Registrar Chamado");
-	    request.setAttribute("perfil",
-		    "Atendente do COCB ou Operador da OBM");
+	    request.setAttribute("perfil","Atendente do COCB ou Operador da OBM");
 	    view = request.getRequestDispatcher("/acessoNegado.jsp");
 
 	}

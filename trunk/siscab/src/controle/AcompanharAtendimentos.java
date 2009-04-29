@@ -56,6 +56,7 @@ public class AcompanharAtendimentos extends HttpServlet {
 
 	Usuario usuario = (Usuario) getServletContext().getAttribute(
 		"usuarioCorrente");
+	
 
 	if (!(usuario.getPerfil().getId() == 3)) {
 
@@ -68,7 +69,7 @@ public class AcompanharAtendimentos extends HttpServlet {
 	else {
 
 	    List<Atendimento> atendimentos = AtendimentoDao.getInstance()
-		    .listarAtendimentosNaoFinalizados();
+		    .listarAtendimentosNaoFinalizadosOBM(usuario.getObm().getId());
 	    logger.info("Qtd atendimentos " + atendimentos.size());
 
 	    request.setAttribute("atendimentos", atendimentos);

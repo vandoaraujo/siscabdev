@@ -90,7 +90,7 @@ public class AtendimentoDao {
 
 	List<Atendimento> atendimentos = session
 		.createQuery(
-			"from modelo.Atendimento a where a.obm_id=:idOBM and a.status_atendimento <> 'Finalizado'")
+			"from modelo.Atendimento a where a.obm_id=:idOBM and a.status_atendimento <> 'Finalizado' order by a.id desc")
 		.setInteger("idOBM", obmId).list();
 	return atendimentos;
     }
