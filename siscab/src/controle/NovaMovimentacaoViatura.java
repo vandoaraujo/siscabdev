@@ -122,8 +122,7 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 
 	ViaturaDao.getInstance().atualizar(via);
 
-	logger
-		.info("######### Atualizou o STATUS DA VIATURA!!!   ##############");
+	logger.info("######### Atualizou o STATUS DA VIATURA!!!   ##############");
 
 	// Atualiza lista de viaturas
 

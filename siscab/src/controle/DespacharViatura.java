@@ -59,7 +59,7 @@ public class DespacharViatura extends HttpServlet {
 	int obm_Id = usuario.getObm().getId();
 
 	List<Viatura> v = ViaturaDao.getInstance()
-		.listaViaturasOBMStatusPrecisao(obm_Id);
+		.listaViaturasOBMStatusEmProntidao(obm_Id);
 	// Pegar atendimento atual através do HttpSession
 	// atendimentoAtual
 	String obm = usuario.getObm().getNome();
