@@ -74,9 +74,15 @@ public class OBMDao {
     public List<OBM> listarTodasOBMs() {
 	List<OBM> l = session.createQuery("from modelo.OBM").list();
 	return l;
-
+	
     }
-
+    
+    public List<OBM> listarOBMsAtivas() {
+	List<OBM> l = session.createQuery("from modelo.OBM where status_obm = 1 order by nome").list();
+	return l;
+	
+    }    
+   
     public List<OBM> listarTodasOBMsExcetoCOCB() {
 	List<OBM> l = session.createQuery(
 		"from modelo.OBM where nome <> 'COCB'").list();
