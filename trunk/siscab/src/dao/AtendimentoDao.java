@@ -85,6 +85,17 @@ public class AtendimentoDao {
 	return atendimentos;
 
     }
+    
+    
+    public List<Atendimento> listarAtendimentoEmAndamento() {
+
+	List<Atendimento> atendimentos = session
+		.createQuery(
+			"from modelo.Atendimento a where a.status_atendimento <> 'Em andamento'")
+		.list();
+	return atendimentos;
+
+    }
 
     public List<Atendimento> listarAtendimentosNaoFinalizadosOBM(int obmId) {
 
