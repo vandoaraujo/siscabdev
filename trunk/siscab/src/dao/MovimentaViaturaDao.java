@@ -123,8 +123,7 @@ public class MovimentaViaturaDao {
 	List<MovimentaViatura> tiposEventosViaturaAtendimento = session
 		.createQuery(
 			"from modelo.MovimentaViatura v where v.chaveComposta.atendimento_id=:atendimento_id and v.chaveComposta.viatura_id=:viatura_id")
-		.setInteger("atendimento_id", atendimentoAtual).setInteger(
-			"viatura_id", viaturaAtual).list();
+		.setInteger("atendimento_id", atendimentoAtual).setInteger("viatura_id", viaturaAtual).list();
 	return tiposEventosViaturaAtendimento;
     }
 

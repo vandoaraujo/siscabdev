@@ -175,8 +175,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	request.setAttribute("CoordY_Acidente", at.getCoordy());
 
 	request.setAttribute("NomeOrigem", usuario.getObm().getNome());
-	request
-		.setAttribute("EnderecoOrigem", usuario.getObm()
+	request.setAttribute("EnderecoOrigem", usuario.getObm()
 			.getLogradouro());
 	request.setAttribute("NumeroOrigem", usuario.getObm().getNumCompl());
 	request.setAttribute("BairroOrigem", usuario.getObm().getBairro());

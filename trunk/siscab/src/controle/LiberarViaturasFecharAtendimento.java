@@ -16,6 +16,7 @@ import modelo.ModoFechamento;
 import modelo.Viatura;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 
 import dao.AtendimentoDao;
 import dao.CronoAtendimentoDao;
@@ -70,11 +71,11 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 		.ListarViaturaNaoRepetidasEmAtendimento(idAtendimento);
 
 	// Inicia transacao
-	ViaturaDao.getInstance().iniciaTransacao();
+	Transaction t = ViaturaDao.getInstance().iniciaTransacao();
 
 	trocarStatusViaturas();
 	// Finaliza Transacao
-	ViaturaDao.getInstance().finalizaTransacao();
+	ViaturaDao.getInstance().finalizaTransacao(t);
 	logger.info("Finalizou a transacao");
 
 	efetivaFinalizacaoAtendimento(request, response, modoFechamento,
@@ -95,8 +96,7 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 
 	AtendimentoDao.getInstance().atualizar(atendimento);
 
-	logger
-		.info("############# Atendimento atualizado e finalizado com sucesso ##############");
+	logger.info("############# Atendimento atualizado e finalizado com sucesso ##############");
 
 	finalizaCronologiaAtendimento();
 

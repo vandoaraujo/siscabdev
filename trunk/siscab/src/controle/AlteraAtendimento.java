@@ -16,6 +16,7 @@ import modelo.TipoOcorrencia;
 import modelo.Viatura;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 
 import dao.AtendimentoDao;
 import dao.MovimentaViaturaDao;
@@ -88,11 +89,11 @@ public class AlteraAtendimento extends HttpServlet {
 	viaturas = MovimentaViaturaDao.getInstance()
 		.ListarViaturaNaoRepetidasEmAtendimento(atendimento.getId());
 
-	ViaturaDao.getInstance().iniciaTransacao();
+	Transaction t = ViaturaDao.getInstance().iniciaTransacao();
 
 	trocaStatusViaturas();
 	// Finaliza Transacao
-	ViaturaDao.getInstance().finalizaTransacao();
+	ViaturaDao.getInstance().finalizaTransacao(t);
 
 	AtendimentoDao.getInstance().deletar(atendimento);
 	despacha(request, response, "deletar", atendimentoNumero);

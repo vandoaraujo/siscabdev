@@ -69,16 +69,17 @@ public class ViaturaDao {
 	session.close();
     }
 
-    public void finalizaTransacao() {
+    public void finalizaTransacao(Transaction tra) {
 
-	t.commit();
+	tra.commit();
 	session.flush();
 	session.close();
 	logger.info("Viaturas Atualizadas");
     }
 
-    public void iniciaTransacao() {
+    public Transaction iniciaTransacao() {
 	t = session.beginTransaction();
+	return t;
 
     }
 
@@ -107,7 +108,7 @@ public class ViaturaDao {
 	return viaturasOBM;
     }
 
-    public List<Viatura> listaViaturasOBMStatusPrecisao(int obmAtual) {
+    public List<Viatura> listaViaturasOBMStatusEmProntidao(int obmAtual) {
 
 	List<Viatura> viaturasOBM = session
 		.createQuery(
