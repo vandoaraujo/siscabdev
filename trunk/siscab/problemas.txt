@@ -1,0 +1,7 @@
+--> Situação Atendimento
+Balão com nº de atendimento, tipo ocorrência, bairro, municipio e endereço.
+Não sei fazer mostrar estes dados no balão. Só sei passar os dados do endereço.
+Verei isso na próxima semana.
+
+--> Situação Viaturas
+Quem é esse cara. Quem é o servlet dele.
