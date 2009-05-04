@@ -42,7 +42,11 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:650px"><legend>&nbsp;Tela de Busca Total de Atendimentos por Modo Fechamento&nbsp;</legend>
+					
+					<h2>Relatórios :: Total de Atendimentos por Tipo de Ocorrência</h2>
+					
+					
+						<fieldset style="width:650px"><legend>&nbsp;Informe o período de referência&nbsp;</legend>
 							
 							<form action="TotalAtendimentosPorModoFechamento" method="post">
 								
@@ -64,9 +68,6 @@
 									<td>
 										<input type="submit" value="Ver Relatório" />
 										</form>	
-										<form action="administracao_usuario.jsp" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
-							 			</form>	
 									</td>								
 								</tr>
 						</fieldset>	
