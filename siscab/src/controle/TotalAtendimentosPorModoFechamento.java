@@ -160,7 +160,7 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 	    if (it.hasNext() == false) {
 
 		request.setAttribute("msg",
-			"Nenhum atendimento no período informado!");
+			"Nenhum atendimento registrado no período informado.");
 		view = request
 			.getRequestDispatcher("/iniciaTotalAtendimentosPorModoFechamento.jsp");
 		
