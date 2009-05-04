@@ -97,11 +97,11 @@ function campoObrigatorio()
 								</tr>
 								<tr>	
 									<td><label>Coord. X:</label></td>
-									<td><input name="coordX" type="text" size=40/> * </td>
+									<td><input name="coordX" type="text" size=40 onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Coord. Y:</label></td>
-									<td><input name="coordY" type="text" size=40/> * </td>
+									<td><input name="coordY" type="text" size=40 onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Status:</label></td>

@@ -10,6 +10,25 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
+<script>
+function campoObrigatorio()
+{
+	if ( (document.form.nome.value != null) && (document.form.nome.value != "") && 
+			(document.form.municipio.value != null) && (document.form.municipio.value != "") && 
+				(document.form.bairro.value != null) && (document.form.bairro.value != "") &&
+					(document.form.logradouro.value != null) && (document.form.logradouro.value != "") &&
+						(document.form.numComplemento.value != null) && (document.form.numComplemento.value != "") &&
+							(document.form.coordX.value != null) && (document.form.coordX.value != "") &&
+								(document.form.coordY.value != null) && (document.form.coordY.value != ""))
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
+</script>
 </head>
 
 <body>
@@ -38,12 +57,15 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:350px"><legend>&nbsp;Editar de OBM&nbsp;</legend>
-							<form action="CrudOBM" method="post">
+					
+					<h2>Administração :: Cadastro de OBMs :: Editar OBM</h2>
+					
+						<fieldset style="width:350px"><legend>&nbsp;Dados da OBM selecionada&nbsp;</legend>
+							<form name="form" action="CrudOBM" method="post">
 							<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
-									<td><input name="nome" type="text" value="${obmAtual.nome}" /></td>
+									<td><input name="nome" type="text" value="${obmAtual.nome}" /> *  </td>
 								</tr>
 								<tr>								
 									<td><label>Municipio:</label></td>
@@ -56,29 +78,29 @@
 								 	 for(Municipio m: municipio){
 									 out.println("<option>"+m.getMunicipio_nome());
 								 	}
-									out.println("</select>");
+									out.println("</select> * ");
 									%>
 									</td>
 								</tr>
 								<tr>	
 									<td><label>Bairro:</label></td>
-									<td><input name="bairro" type="text" value="${obmAtual.bairro}" /></td>
+									<td><input name="bairro" type="text" value="${obmAtual.bairro}" /> * </td>
 								</tr>
 								<tr>
 									<td><label>Logradouro:</label></td>
-									<td><input name="logradouro" type="text" value="${obmAtual.logradouro}" /></td>
+									<td><input name="logradouro" type="text" value="${obmAtual.logradouro}" /> * </td>
 								</tr>
 								<tr>
 									<td><label>Num. Complemento:</label></td>
-									<td><input name="numComplemento" type="text" value="${obmAtual.numCompl}" /></td>
+									<td><input name="numComplemento" type="text" value="${obmAtual.numCompl}" /> * </td>
 								</tr>
 								<tr>	
 									<td><label>Coord. X:</label></td>
-									<td><input name="coordX" type="text" value=${obmAtual.coordX} /></td>
+									<td><input name="coordX" type="text" value=${obmAtual.coordX} onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Coord. Y:</label></td>
-									<td><input name="coordY" type="text" value=${obmAtual.coordY} /></td>
+									<td><input name="coordY" type="text" value=${obmAtual.coordY} onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>
 									<td><label>Status:</label></td>
@@ -93,15 +115,14 @@
 									    	 %>
 									    	 O perfil atual deste OBM é Inativa. No momento seu status será trocada para Ativa
 									    	  	Ativo <input name="statusObm" type="radio" value="ativa" checked/>
-									    	 	Inativo <input name="statusObm" type="radio" value="inativa" /> 
+									    	 	Inativo <input name="statusObm" type="radio" value="inativa" /> *
 									    	 
 									     <% }%></td>
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>
-										<input type="submit" value="Deletar" onclick="this.form.operacaoARealizar.value=3"/>							
-										<input type="hidden" name="operacaoARealizar" value ="">
+										<input type="submit" value="Alterar" onclick="return campoObrigatorio()"/>							
+										<input type="hidden" name="operacaoARealizar" value ="2">
 							 			<input type="hidden" name="registroOBM" value =${obmAtual.id}>
 							 			</form>
 							 			 		

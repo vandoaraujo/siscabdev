@@ -131,7 +131,7 @@ public class CrudOBM extends HttpServlet {
 	request.setAttribute("obm", nomeOBM);
 	if (acao.equals("salvar")) {
 
-	    request.setAttribute("mensagem", "salvo com sucesso!!");
+	    request.setAttribute("mensagem", "OBM foi incluída no cadastro.");
 
 	}
 
@@ -139,23 +139,22 @@ public class CrudOBM extends HttpServlet {
 	    request
 		    .setAttribute(
 			    "mensagem",
-			    "Não é possível mudar seu status para Inativa,"
-				    + " pois a OBM presente possui viaturas alocadas ou existem atendimentos não finalizados");
+			    "OBM não pode ser desativada no momento, pois esta associada à atendimentos(s) não finalizado(s)");
 	} else if (acao.equals("obmIgual")) {
 	    request.setAttribute("mensagem",
-		    "OBM não salva! Já existe uma OBM com este nome!");
+		    "OBM já cadastrada!");
 	}
 
 	else if (acao.equals("existeAtendimento")) {
 	    request.setAttribute("mensagem",
-		    "Esta OBM prestou atendimento e não pode ser deletada!");
+		    "OBM não pode ser excluída do cadastro, pois existe(m) registro(s) de atendimento(s) associado(s) a esta.\nSedesejar que ela não seja exibida nas caixas de listagem, altere seu status para Inativa");
 	}
 
 	else if (acao.equals("alterar")) {
-	    request.setAttribute("mensagem", "alterado com sucesso!!");
+	    request.setAttribute("mensagem", "Dados da OBM foram alterados.");
 
 	} else if (acao.equals("deletar")) {
-	    request.setAttribute("mensagem", "deletado com sucesso!!");
+	    request.setAttribute("mensagem", "OBM foi excluída do cadastro.");
 	}
 
 	view = request.getRequestDispatcher("OBMMensagem.jsp");
