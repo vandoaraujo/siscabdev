@@ -47,7 +47,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:600px"><legend>&nbsp;Lista de Viaturas Associadas a este atendimento&nbsp;</legend>						
+					<fieldset style="width:600px"><legend>&nbsp;Lista de Viaturas Associadas a este atendimento&nbsp;</legend>						
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td>

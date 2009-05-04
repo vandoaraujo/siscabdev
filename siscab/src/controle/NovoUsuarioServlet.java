@@ -95,15 +95,15 @@ public class NovoUsuarioServlet extends HttpServlet {
 	request.setAttribute("nomeUsuario", nomeGuerra);
 	if (string.equals("salvar")) {
 
-	    request.setAttribute("mensagem", "salvo com sucesso!!");
+	    request.setAttribute("mensagem", "Usuário incluído no cadastro.");
 
 	}
 
 	else if (string.equals("alterar")) {
-	    request.setAttribute("mensagem", "alterado com sucesso!!");
+	    request.setAttribute("mensagem", "Dados do usuário foram alterados.");
 
 	} else {
-	    request.setAttribute("mensagem", "deletado com sucesso!!");
+	    request.setAttribute("mensagem", "Usuário foi excluído do cadastro.");
 	}
 
 	view = request
@@ -185,7 +185,7 @@ public class NovoUsuarioServlet extends HttpServlet {
 	if (!usuarios.isEmpty()) {
 
 	    SiscabException siscab = new SiscabException(
-		    "Usuário já cadastrado com este Numero de Registro \n\n!");
+		    "Usuário já cadastrado.");
 	    // response.sendRedirect("siscabException.jsp");
 	    RequestDispatcher view = request
 		    .getRequestDispatcher("/siscabException.jsp");

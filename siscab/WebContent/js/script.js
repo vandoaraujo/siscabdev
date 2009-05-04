@@ -55,6 +55,7 @@ function SomenteNumeros(e)
 
 function SomenteLetras(e)
 {
+	alert("ola");
 	var tecla=(window.event)?event.keyCode:e.which;
 	if((tecla > 65 && tecla < 90) || (tecla > 97 && tecla < 122)  || (tecla == 8 || tecla == 0)) 
 		return true; 
@@ -88,13 +89,4 @@ function mascaraData(campoData, e){
 	return true;
 }
 
-function campoObrigatorio(campo, msg)
-{
-	if ( (campo.value != null || campo.value != "") )
-		return true;
-	else
-	{
-		alert(msg);	
-		return false;
-	}
-}
+
