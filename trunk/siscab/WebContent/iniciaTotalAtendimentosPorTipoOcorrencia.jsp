@@ -85,9 +85,6 @@
 						<td></td>
 						<td><input type="submit" value="Ver Relatório" />
 						</form>
-						<form action="administracao_usuario.jsp" method="post"
-							style="display: inline;"><input type="submit"
-							value="Voltar" /></form>
 						</td>
 					</tr>
 					</td>
