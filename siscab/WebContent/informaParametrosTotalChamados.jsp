@@ -47,6 +47,13 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
+					
+					<h2>Relatórios :: Total de Chamados por Natureza</h2>
+					
+					<br>
+					<div style="color: red; display: inline">${msg}</div>
+					<br>
+					
 						<fieldset style="width:650px"><legend>&nbsp;Tela de Busca Total de Chamados Por Natureza&nbsp;</legend>
 							
 							<form action="TotalChamadosPorNatureza" method="post">
@@ -54,8 +61,8 @@
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td style="width:100px">Data Inicial:</td>
-									<td><input type="text" name="date1" readonly="readonly" size=11 VALUE=""/>
-									<input type="button" value="..." onclick="displayCalendar(document.forms[1].date1,'dd/mm/yyyy',this)">
+									<td><input type="text" name="dataInicial" readonly="readonly" size=11 VALUE=""/>
+									<input type="button" value="..." onclick="displayCalendar(document.forms[1].dataInicial,'dd/mm/yyyy',this)">
 									</td>								
 								</tr>
 								<tr>
@@ -69,9 +76,6 @@
 									<td>
 										<input type="submit" value="Ver Relatório" />
 										</form>	
-										<form action="administracao_usuario.jsp" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
-							 			</form>	
 									</td>								
 								</tr>
 						</fieldset>	
