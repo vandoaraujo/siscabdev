@@ -241,7 +241,8 @@
 								</td>
 							</tr>
 						</table>
-						<br /><input type="button" name="imprimir" value="Imprimir" onclick="window.print()"/>
+						<br /><input type="button" name="imprimir" value="Imprimir" onclick="window.print()"/>&nbsp;
+						<input type="button" name="Voltar" value="Voltar" onclick="window.back()"/>
 						</td>
 						</tr>
 						</table>
