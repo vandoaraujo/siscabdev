@@ -15,6 +15,7 @@ Fechamento</title>
 </head>
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
+<%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
 <%! int controle,tamanhoModoFechamento,tamanhoNumeroAtendimento=0; %>
 <%		List modoFechamento = (List)request.getAttribute("modosFechamento"); 
 		List numeroAtendimentos = (List)request.getAttribute("qtdAtendimentos");

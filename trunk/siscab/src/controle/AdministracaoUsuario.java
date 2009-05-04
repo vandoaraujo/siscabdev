@@ -1,6 +1,7 @@
 package controle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,12 +13,15 @@ import modelo.Usuario;
 
 import org.apache.log4j.Logger;
 
+import dao.UsuarioDao;
+
 /**
  * Servlet implementation class AdministracaoUsuario
  */
 public class AdministracaoUsuario extends HttpServlet {
     private static final long serialVersionUID = 1L;
     RequestDispatcher view;
+    List<Usuario> usu;
 
     static Logger logger = Logger.getLogger(AdministracaoUsuario.class);
 
@@ -57,7 +61,9 @@ public class AdministracaoUsuario extends HttpServlet {
 	    request.setAttribute("descricaoServico", "Cadastro de Usuários");
 	    request.setAttribute("perfil", "Administrador");
 	    view = request.getRequestDispatcher("/acessoNegado.jsp");
-	} else {
+	} else {	    
+	    usu = UsuarioDao.getInstance().listar();
+	    request.setAttribute("usuarios", usu);
 	    view = request.getRequestDispatcher("/administracao_usuario.jsp");
 	}
 	try {

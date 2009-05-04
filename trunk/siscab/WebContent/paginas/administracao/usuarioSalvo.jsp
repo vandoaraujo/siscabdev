@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  
+  pageEncoding="ISO-8859-1" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +15,7 @@
 
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
+<%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr
@@ -44,14 +48,18 @@
 			</tr>
 			<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
-				<fieldset style="width: 450px"><legend>&nbsp;Sucesso&nbsp;</legend>
+				
+				<h2>Administração :: Cadastro de Usuários</h2>
+				
+				
+				<fieldset style="width: 450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
 
 
-				Usuário ${nomeUsuario}, <font color="red">${mensagem} </font>
+				<font color="red">${mensagem} </font>
 				<p><br>
 				</p>
 
-				<form action="administracao_usuario.jsp" method="post"
+				<form action="AdministracaoUsuario" method="post"
 					style="display: inline;"><input type="submit" value="Voltar" />
 				</form>
 				</fieldset>
