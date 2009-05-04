@@ -47,7 +47,7 @@ function fechar(){
 function SomenteNumeros(e)
 {
     var tecla=(window.event)?event.keyCode:e.which;
-    if((tecla > 47 && tecla < 58) || (tecla == 8 || tecla == 0)) 
+    if((tecla > 47 && tecla < 58) || (tecla == 9 || tecla == 8 || tecla == 46)) 
 		return true;
     else
 		return false;
@@ -55,7 +55,6 @@ function SomenteNumeros(e)
 
 function SomenteLetras(e)
 {
-	alert("ola");
 	var tecla=(window.event)?event.keyCode:e.which;
 	if((tecla > 65 && tecla < 90) || (tecla > 97 && tecla < 122)  || (tecla == 8 || tecla == 0)) 
 		return true; 
