@@ -13,15 +13,13 @@
 <script>
 function campoObrigatorio()
 {
-	//nome
-	//municipio
-	//bairro
-	//logradouro
-	//numComplemento
-	//coordX
-	//coordY
-	
-	if ( (document.form.registro.value != null) && (document.form.registro.value != "") && (document.form.nomeGuerra.value != null) && (document.form.nomeGuerra.value != "") && (document.form.senha.value != null) && (document.form.senha.value != "") )
+	if ( (document.form.nome.value != null) && (document.form.nome.value != "") && 
+			(document.form.municipio.value != null) && (document.form.municipio.value != "") && 
+				(document.form.bairro.value != null) && (document.form.bairro.value != "") &&
+					(document.form.logradouro.value != null) && (document.form.logradouro.value != "") &&
+						(document.form.numComplemento.value != null) && (document.form.numComplemento.value != "") &&
+							(document.form.coordX.value != null) && (document.form.coordX.value != "") &&
+								(document.form.coordY.value != null) && (document.form.coordY.value != ""))
 		return true;
 	else
 	{
@@ -65,7 +63,7 @@ function campoObrigatorio()
 					
 						<fieldset style="width:450px"><legend>&nbsp;Dados da nova OBM&nbsp;</legend>
 							
-							<form action="CrudOBM" method="post">
+							<form name="form" action="CrudOBM" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
@@ -114,8 +112,8 @@ function campoObrigatorio()
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
-										<input type="hidden" name="operacaoARealizar" value ="">
+										<input type="submit" value="Incluir" onclick="return campoObrigatorio()"/>
+										<input type="hidden" name="operacaoARealizar" value ="1">
 								 		<input type="hidden" name="registroOBM" value ="1">
 								 		</form>
 								 		<form action="ObmControle" method="post" style="display:inline;">
