@@ -54,7 +54,7 @@
 					<div style="color: red; display: inline">${msg}</div>
 					<br>
 					
-						<fieldset style="width:650px"><legend>&nbsp;Tela de Busca Total de Chamados Por Natureza&nbsp;</legend>
+						<fieldset style="width:650px"><legend>&nbsp;Informe o período de referência&nbsp;</legend>
 							
 							<form action="TotalChamadosPorNatureza" method="post">
 								

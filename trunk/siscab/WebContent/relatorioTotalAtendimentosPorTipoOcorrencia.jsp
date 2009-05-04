@@ -69,7 +69,7 @@
 								<td width=440 valign=top
 									style='width: 330.0pt; border: solid windowtext 1.0pt;'>
 								<p class=MsoNormal
-									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in'><b
+									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 9px'><b
 									style='mso-bidi-font-weight: normal'><span lang=PT-BR>Tipos
 								de Ocorrência do Atendimento</span></b></p>
 								</td>

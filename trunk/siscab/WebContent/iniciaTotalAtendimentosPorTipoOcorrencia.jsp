@@ -55,14 +55,13 @@
 			</tr>
 			<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
-				<div
-					style="color: black; display: inline; border-color: black; font-size: 14">
-				Relatórios :: Total de Atendimentos por Tipo de Ocorrência</div>
+				
+				<h2>Relatórios :: Atendimentos por Tipo de Ocorrência</h2>
+				
 				<br>
 				<div style="color: red; display: inline">${msg}</div>
 				<br>
-				<fieldset style="width: 650px"><legend>&nbsp;Informe
-				o período de referência&nbsp;</legend>
+				<fieldset style="width: 650px"><legend>&nbsp;Informe o período de referência&nbsp;</legend>
 
 				<form action="TotalAtendimentosPorTipoOcorrencia" method="post">
 

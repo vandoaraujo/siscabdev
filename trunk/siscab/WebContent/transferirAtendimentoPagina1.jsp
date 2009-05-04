@@ -42,42 +42,49 @@
 						
 						
 						<fieldset style="width:700px"><legend>&nbsp;Lista de Atendimentos Vinculadas a ${obm}&nbsp;</legend>
-							<div style="color:red">Clique em um Atendimento para Transferência</div>
 						
 						
-
-						<% ArrayList atendimento=(ArrayList<Atendimento>) request.getAttribute("atendimentos");
-	
-					%>
-					
-					<%if(atendimento.size()== 0){ %>
-					     <h2> Nenhum Atendimento não finalizado no momento vinculado a sua ${obm}<p>
-					     
-					     Retorne ao menu: <h4><a href="paginaPrincipal.jsp" title="Menu">Menu</a></h4>
-					     </h2>
-					   
-					<%} else{ %>
-						
-						<table cellspacing="4" cellpadding="4">													
-							
-						<%
-						for(int i=0;i<atendimento.size();i++){
-							Atendimento atendimentos =(Atendimento)atendimento.get(i);
-					    %> 
-					    
-    						<tr>
-    							<td>					    
-								    <%= i+1 %> :: NúmeroAtendimento: <%=atendimentos.getAtendimento_numero()%> <a href="RepasseAtendimento?registro=<%=atendimentos.getId()%>&perfilUsuario=<%=usuario.getPerfil().getId()%>"> Municipio:<%= atendimentos.getMunicipio_id().getMunicipio_nome()%>, Bairro: <%=atendimentos.getBairro()%>,
-								    Logradouro: <%=atendimentos.getLogradouro()%>, TipoOcorrencia: <%=atendimentos.getTipoocorrencia().getTipoocorrencia_descricao() %>, QtdVitimas: <%=atendimentos.getChamado_id().getNumaproxvitimas()%>, OBMAtendimento: <%=atendimentos.getObm_id().getNome()%></a>								   
-								</td>
-							</tr>
-							<tr>
-					    		<td>
-					    			<hr>
-					    		</td>
-					    	</tr>
-						<%}  }%>
-						</table>
+						<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
+								<% ArrayList atendimento=(ArrayList<Atendimento>) request.getAttribute("atendimentos");
+									%>
+									
+									<%if(atendimento.size()== 0){ %>
+									     <div style="color:red"> Nenhum Atendimento cadastrado </div>
+									   
+									<%} else{
+										
+										%>
+										
+										<tr bgcolor="#FFFFFF">
+										  	<th>Tipo Ocorrência</th>
+										  	<th>Município</th>
+										  	<th>Bairro</th>
+										  	<th>Endereço</th>
+										  	<th>Opções</th>
+										</tr>
+									
+										<%										
+										for(int i=0;i<atendimento.size();i++){
+											Atendimento atendimentos =(Atendimento)atendimento.get(i);
+									    
+									    if (i%2==0){
+									    %> 									    									  									    
+									     <tr bgcolor="#EFEFEF">
+									     <%}else{ %>
+									     
+									     <tr bgcolor="#F9D8D0">
+									     <%} %>
+									    	<td><%=atendimentos.getTipoocorrencia().getTipoocorrencia_descricao()%></td>
+									    	<td><%=atendimentos.getMunicipio_id().getMunicipio_nome()%></td>
+									    	<td><%=atendimentos.getBairro()%></td>
+									    	<td><%=atendimentos.getLogradouro()%></td>
+									    	<td>
+									    		<a href="RepasseAtendimento?registro=<%=atendimentos.getId()%>"><img src="img/btnTransferir.gif" border="0"></a>									    		
+									       	</td>
+									    </tr>								    										
+									   <%} 
+									}%>
+							</table>				
 						</fieldset>
 					</td>
 				</tr>
