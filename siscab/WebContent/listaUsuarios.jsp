@@ -79,7 +79,7 @@
 									    	<td><%=u.getObm().getNome()%></td>
 									    	<td><%=u.getPerfil().getPerfil_descricao()%></td>
 									    	<td>
-									    		<a href="EditaUsuario?registro=<%=u.getId()%>&modo=edicao"><img src="img/btnEditar.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+									    		<a href="EditaUsuario?registro=<%=u.getId()%>"><img src="img/btnEditar.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
 									    		<a href="NovoUsuarioServlet?operacaoARealizar=3&registroUsuario=<%=u.getId()%>" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a>
 									       	</td>
 									    </tr>								    										

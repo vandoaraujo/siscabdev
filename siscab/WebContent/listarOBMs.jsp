@@ -85,7 +85,7 @@ pageEncoding="ISO-8859-1"%>
 									    	<td><%=obm.getBairro()%></td>
 									    	<td><%=obm.getMunicipio().getMunicipio_nome()%></td>
 									    	<td>
-									    		<a href="EditaOBM?registro=<%=obm.getId()%>&modo=edicao"><img src="img/btnEditar.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+									    		<a href="EditaOBM?registro=<%=obm.getId()%>"><img src="img/btnEditar.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
 									    		<a href="CrudOBM?operacaoARealizar=3&registroOBM=<%=obm.getId()%>" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a>
 									       	</td>
 									       	
