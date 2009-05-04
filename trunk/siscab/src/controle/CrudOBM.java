@@ -51,6 +51,15 @@ public class CrudOBM extends HttpServlet {
     private void alterar(HttpServletRequest request,
 	    HttpServletResponse response, int registro) {
 
+	coordX = Double.parseDouble(request.getParameter("coordX"));
+	coordY = Double.parseDouble(request.getParameter("coordY"));
+	status = request.getParameter("statusObm");
+
+	if (status.equals("ativa"))
+	    statusObm = 1;
+	else
+	    statusObm = 0;
+	
 	Municipio municipioDao = MunicipioDao.getInstance()
 		.listarMunicipioNome(municipio);
 
@@ -93,7 +102,9 @@ public class CrudOBM extends HttpServlet {
 	List<Atendimento> atendimento = AtendimentoDao.getInstance()
 		.listarAtendimentosNaoFinalizadosOBM(registro);
 
-	if (atendimento != null) {
+	logger.info("Qtd Atendimentos" + atendimento.size());
+
+	if (atendimento.size() > 0) {
 	    despacha(request, response, "existeAtendimento", nome);
 	}
 
@@ -191,14 +202,7 @@ public class CrudOBM extends HttpServlet {
 	bairro = request.getParameter("bairro");
 	logradouro = request.getParameter("logradouro");
 	numComplemento = request.getParameter("numComplemento");
-	coordX = Double.parseDouble(request.getParameter("coordX"));
-	coordY = Double.parseDouble(request.getParameter("coordY"));
-	status = request.getParameter("statusObm");
-
-	if (status.equals("ativa"))
-	    statusObm = 1;
-	else
-	    statusObm = 0;
+	
 
 	// Controle de qual operacao será realizada
 
@@ -221,6 +225,15 @@ public class CrudOBM extends HttpServlet {
     protected void salvar(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
 
+	coordX = Double.parseDouble(request.getParameter("coordX"));
+	coordY = Double.parseDouble(request.getParameter("coordY"));
+	status = request.getParameter("statusObm");
+
+	if (status.equals("ativa"))
+	    statusObm = 1;
+	else
+	    statusObm = 0;
+	
 	Municipio municipioDao = MunicipioDao.getInstance()
 		.listarMunicipioNome(municipio);
 
