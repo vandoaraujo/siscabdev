@@ -37,47 +37,62 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:780px"><legend>&nbsp;Lista de Atendimentos Nao Finalizados&nbsp;</legend>
-							<div style="color:red">Clique em um Atendimento para alteraçöes</div>
 						
+						<h2>Atendimentos :: Acompanhar Atendimento</h2>
+						
+						<!-- OBM Responsável: <strong><%//=atendimentos.getObm_id().getNome()%></strong> -->
+						
+						<fieldset style="width:780px"><legend>&nbsp;Atendimentos não finalizados desta OBM&nbsp;</legend>
 				
-						
-						<% ArrayList atendimento=(ArrayList<Atendimento>) request.getAttribute("atendimentos");
-	
-					%>
-					
-					<%if(atendimento.size()== 0){ %>
-					     <h2> Nenhum Atendimento com Status = "Pendente" cadastrado <p>
-					     
-					     Retorne ao menu: <h4><a href="paginaPrincipal.jsp" title="Menu">Menu</a></h4>
-					     </h2>
-					   
-					<%} else{ %>
-						
-						<table cellspacing="4" cellpadding="4">
-						
-						<%
-						
-						for(int i=0;i<atendimento.size();i++){
-							Atendimento atendimentos =(Atendimento)atendimento.get(i);
-					    %> 
-					    
-					    <tr>
-						    <td>
-							    <%= i+1 %> :: NúmeroAtendimento: <%=atendimentos.getAtendimento_numero()%> <a href="EditaAtendimento?registro=<%=atendimentos.getAtendimento_numero()%>"> Municipio:<%= atendimentos.getMunicipio_id().getMunicipio_nome()%>, Bairro: <%=atendimentos.getBairro()%>,
-							    Logradouro: <%=atendimentos.getLogradouro()%>, TipoOcorrencia: <%=atendimentos.getTipoocorrencia().getTipoocorrencia_descricao() %>, QtdVitimas: <%=atendimentos.getChamado_id().getNumaproxvitimas()%>, OBMAtendimento: <%=atendimentos.getObm_id().getNome()%></a>
-						    </td>
-					    </tr>
-					    <tr>
-					    	<td>
-					    		<hr>
-					    	</td>
-					    </tr>
-					   <%}  }%>
-						
-						</table>
+						<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
+								<%  ArrayList atendimento=(ArrayList<Atendimento>) request.getAttribute("atendimentos");
+									%>
+									
+									<%if(atendimento.size()== 0){ %>
+									     <div style="color:red"> Nenhum Atendimento com Status = "Pendente" cadastrado </div>
+									   
+									<%} else{
+										
+										%>
+										
+										<tr bgcolor="#FFFFFF">
+										  	<th>Tipo de Ocorrência</th>
+										  	<th>Município</th>
+										  	<th>Bairro</th>
+										  	<th>Endereço</th>
+										  	<th>Status</th>
+										  	<th>Opções</th>
+										</tr>
+									
+										<%										
+										for(int i=0;i<atendimento.size();i++){
+											Atendimento atendimentos =(Atendimento)atendimento.get(i);
+									    
+									    if (i%2==0){
+									    %> 									    									  									    
+									     <tr bgcolor="#EFEFEF">
+									     <%}else{ %>
+									     
+									     <tr bgcolor="#F9D8D0">
+									     <%} %>
+									    	<td><%=atendimentos.getTipoocorrencia().getTipoocorrencia_descricao()%></td>
+									    	<td><%=atendimentos.getMunicipio_id().getMunicipio_nome()%></td>
+									    	<td><%=atendimentos.getBairro()%></td>
+									    	<td><%=atendimentos.getLogradouro()%></td>									    	
+									    	<td><%=atendimentos.getStatus_atendimento()%></td>									    	
+									    	<td>
+									    		<a href="EditaAtendimento?registro=<%=atendimentos.getAtendimento_numero()%>"><img src="img/btnVerFicha.gif" border="0"></a>
+									       	</td>							       	
+									    </tr>								    										
+									   <%} 
+									}%>
+							</table>											
 						</fieldset>
-
+					</table>
+				</td>
+			</tr>
+		</table>
+	
 
 </body>
 </html>

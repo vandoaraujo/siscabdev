@@ -37,11 +37,11 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-					<% Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");	%>		
-					   Perfil: ${perfil}<br>
+					<% Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");	%>					
 						
+						<h2>Atendimentos :: Transferir Atendimento</h2>
 						
-						<fieldset style="width:700px"><legend>&nbsp;Lista de Atendimentos Vinculadas a ${obm}&nbsp;</legend>
+						<fieldset style="width:700px"><legend>&nbsp;Atendimentos pendentes aguardando transferência&nbsp;</legend>
 						
 						
 						<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
@@ -79,7 +79,7 @@
 									    	<td><%=atendimentos.getBairro()%></td>
 									    	<td><%=atendimentos.getLogradouro()%></td>
 									    	<td>
-									    		<a href="RepasseAtendimento?registro=<%=atendimentos.getId()%>"><img src="img/btnTransferir.gif" border="0"></a>									    		
+									    		<a href="RepasseAtendimento?registro=<%=atendimentos.getId()%>&perfilUsuario=<%=usuario.getPerfil().getId()%>"><img src="img/btnTransferir.gif" border="0"></a>									    		
 									       	</td>
 									    </tr>								    										
 									   <%} 
