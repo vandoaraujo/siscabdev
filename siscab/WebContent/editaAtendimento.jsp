@@ -12,6 +12,19 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
+<script>
+function campoObrigatorio()
+{
+	if ( (document.form.registro.value != null) && (document.form.registro.value != "") && (document.form.nomeGuerra.value != null) && (document.form.nomeGuerra.value != "") && (document.form.senha.value != null) && (document.form.senha.value != "") )
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
+</script>
 </head>
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
@@ -39,16 +52,11 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Lista de Atendimentos Vinculadas a ${obm}&nbsp;</legend>
-						<% Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");	%>		
-					   Perfil: ${perfil}<br>
-						
 					
-
-						Obs: O presente Chamado possui uma Natureza de Solicitação de Socorro.<br>
-						
-						<fieldset style="width:450px"><legend>&nbsp;Tela de Tranferência de Atendimento de Obms&nbsp;</legend>
-						
+					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Editar dados do Atendimento</h2>
+					
+					
+						<fieldset style="width:450px"><legend>&nbsp;Dados do Atendimento&nbsp;</legend>
 						
 						<%! Atendimento atendimento=null; String logradouro=null; %>
 						
@@ -56,63 +64,13 @@
 						
 						<% logradouro =  atendimento.getLogradouro(); %>
 						
-						<%//= logradouro %>
-						
-						<form action="AlteraAtendimento" method="post">
-						
-						<br>Informacoes do Atendimento<br><br>
+						<form action="AlteraAtendimento" method="post">											
 						
 						<table>
 							<tr>
-								<td>Obm Atual do Atendimento:</td>
-								<td><select name="obmAtendimento">
-									<option selected><%=atendimento.getObm_id().getNome() %></option>
-									<!-- Popula a combo que aparecerá na tela -->
-									<%
-									  List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
-									  for(OBM s: obms){
-										 out.println("<option>"+s.getNome()+ "</option>");
-									  }
-									out.println("</select>");
-									%>
-								</td>
+								<td>Número Atendimento:</td>
+								<td><input name="numeroAtendimento" type="text" size =10 readonly="readonly" value="<%= atendimento.getAtendimento_numero() %>"></td>
 							</tr>
-							<tr>
-								<td>Bairro:</td>
-								<td><input name="bairro" type="text" size =45 value="<%= atendimento.getBairro() %>"></td>
-							</tr>
-							<tr>
-								<td>Município:</td>
-								<td><select name="municipio">
-									<option selected><%=atendimento.getMunicipio_id().getMunicipio_nome() %></option>
-									
-									<!-- Popula a combo de municipios que aparecerá na tela -->
-									<%
-								    
-									 List<Municipio> municipio = MunicipioDao.getInstance().listarTodosMunicipios();
-								 	 for(Municipio m: municipio){
-									 out.println("<option>"+m.getMunicipio_nome());
-								 	}
-									out.println("</select>");
-									%>
-								</td>
-							</tr>
-							<tr>
-								<td>Coord X:</td>
-								<td><input name="coordX" type="text" value=<%= atendimento.getCoordx() %>></td>
-							</tr>
-							<tr>
-								<td>Coord Y:</td>
-								<td><input name="coordY" type="text" value=<%= atendimento.getCoordy() %>></td>
-							</tr>
-							<tr>
-								<td>Logradouro:</td>
-								<td><INPUT TYPE=TEXT NAME="logradouro" SIZE=30 MAXLENGHT=40 value= "<%= logradouro %>"></td>
-							</tr>
-							<tr>
-								<td>Num. Complemento:</td>
-								<td><input name="numComplemento" type="text" size=10 value=<%= atendimento.getNumcompl() %>></td>
-							</tr>							
 							<tr>
 								<td>Tipo da Ocorrência:</td>
 								<td>
@@ -131,17 +89,44 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Status do Atendimento:</td>
-								<td>
-									<select name="status">
-									<option selected> <%= atendimento.getStatus_atendimento() %></option>
-									</select>
+								<td>Município:</td>
+								<td><select name="municipio">
+									<option selected><%=atendimento.getMunicipio_id().getMunicipio_nome() %></option>
+									
+									<!-- Popula a combo de municipios que aparecerá na tela -->
+									<%
+								    
+									 List<Municipio> municipio = MunicipioDao.getInstance().listarTodosMunicipios();
+								 	 for(Municipio m: municipio){
+									 out.println("<option>"+m.getMunicipio_nome());
+								 	}
+									out.println("</select>");
+									%>
 								</td>
 							</tr>
 							<tr>
+								<td>Bairro:</td>
+								<td><input name="bairro" type="text" size =45 value="<%= atendimento.getBairro() %>"></td>
+							</tr>
+							<tr>
+								<td>Logradouro:</td>
+								<td><INPUT TYPE=TEXT NAME="logradouro" SIZE=30 MAXLENGHT=40 value= "<%= logradouro %>"></td>
+							</tr>
+							<tr>
+								<td>Num. Complemento:</td>
+								<td><input name="numComplemento" type="text" size=10 value=<%= atendimento.getNumcompl() %>></td>
+							</tr>							
+							<tr>
+								<td>Coord X:</td>
+								<td><input name="coordX" type="text" value=<%= atendimento.getCoordx() %>></td>
+							</tr>
+							<tr>
+								<td>Coord Y:</td>
+								<td><input name="coordY" type="text" value=<%= atendimento.getCoordy() %>></td>
+							</tr>
+							<tr>
 								<td colspan="2">
-									<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>
-									<input type="submit" value="Deletar" onclick="this.form.operacaoARealizar.value=3"/>							
+									<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>							
 									<input type="hidden" name="operacaoARealizar" value ="">
 									<input type="hidden" name="registroAtendimento" value = <%= atendimento.getId() %> >
 								</form>
@@ -152,7 +137,6 @@
 								</td>
 							</tr>
 						</table>			
-					</fieldset>
 					</fieldset>
 					</td>
 				</tr>

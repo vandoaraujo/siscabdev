@@ -37,18 +37,18 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Repassar Atendimento&nbsp;</legend>
+						
+						<h2>Atendimentos :: Transferir Atendimento</h2>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Efeturar Transferência&nbsp;</legend>
 						<% Usuario usuario = (Usuario) getServletContext().getAttribute("usuarioCorrente");
 						 	Atendimento at = (Atendimento) request.getAttribute("atendimentos");	%>	
 						
 						<form action="EfetivaRepasseAtendimento" method="post">						
 						<table>						
 							<tr>
-								<td width="100px" nowrap="nowrap">Seu perfil: <strong>${perfil}</strong></td>
-							</tr>
-							<tr>
 								<td>Numero Atendimento:</td>
-								<td><input name="numeroAtendimento" type="text" size=20 value="<%= at.getAtendimento_numero() %>"></td>							
+								<td><input name="numeroAtendimento" type="text" size=20 value="<%= at.getAtendimento_numero() %>" readonly="readonly"></td>							
 							</tr>						
 							<tr>
 							
@@ -64,7 +64,7 @@
 								for(OBM o: obms){
 								 out.println("<option>"+o.getNome());
 							 	}
-								out.println("</select>");
+								out.println("</select> *");
 								%>
 								</td>
 													
@@ -73,18 +73,19 @@
 							  	<td>Obm de Transferencia:</td>
 							  	<td><select name="obm">													
 								<!-- Popula a combo de obm que aparecerá na tela - OPERADOR DA OBM-->
-								<option selected>COCB 
+								<option selected>COCB</select> * 
 								</td>
 								<%} %>
 																					
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" value="Efetivar Repasse"></td>
+								<td><input type="submit" value="Salvar"></td>
 							</tr>	
 						</table>
 						</form>
 						</fieldset>
+						<br/>( * ) Campo Obrigatório
 					</td>
 				</tr>
 			</table>
