@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="modelo.Usuario"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="modelo.Usuario"%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -37,10 +37,10 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Viatura&nbsp;</legend>
-							Viatura ${viatura.numero}, <div style="color:red; display:inline">${mensagem}</div>
+						<fieldset style="width:450px"><legend>&nbsp;Ocorrências&nbsp;</legend>
+							<div style="color:red; display:inline"> É necessário inserir o munícipio e o bairro para realização do serviço! </div>
 							<p><br></p>
-																																		
+																													
 						</fieldset>	
 					</td>
 				</tr>				

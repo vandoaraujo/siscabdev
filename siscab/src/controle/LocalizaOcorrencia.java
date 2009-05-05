@@ -86,6 +86,14 @@ public class LocalizaOcorrencia extends HttpServlet {
 	endereco = request.getParameter("endereco");
 	numero = request.getParameter("numero");
 	bairro.toLowerCase();
+	
+	if((municipio.equals("") || bairro.equals("")) && operacaoARealizar == 2){
+	    
+	    	RequestDispatcher view = request
+	    	.getRequestDispatcher("/msgOcorrenciasProximas.jsp");
+	    	view.forward(request, response);
+	}
+	else{
 
 	request.setAttribute("municipio", municipio);
 	// Set dois atributos importantes
@@ -138,6 +146,8 @@ public class LocalizaOcorrencia extends HttpServlet {
 	    RequestDispatcher view = request
 		    .getRequestDispatcher("/MostraMapaLocalOcorrencia.jsp");
 	    view.forward(request, response);
+	}
+	
 	}
 
     }
