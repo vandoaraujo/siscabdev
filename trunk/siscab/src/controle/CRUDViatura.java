@@ -91,11 +91,8 @@ public class CRUDViatura extends HttpServlet {
 	RequestDispatcher view;
 	request.setAttribute("numeroViatura", numeroViatura);
 	if (string.equals("salvar")) {
-
 	    request.setAttribute("mensagem", "salva com sucesso!!");
-
 	}
-
 	else if (string.equals("alterar")) {
 	    request.setAttribute("mensagem", "alterada com sucesso!!");
 
@@ -114,7 +111,12 @@ public class CRUDViatura extends HttpServlet {
 		    .setAttribute("mensagem",
 			    "Não e possivel deletar esta viatura, pois já realizou atendimento!");
 
-	} else {
+	} else if (string.equals("numeroViaturaException")) {
+	    request
+	    .setAttribute("mensagem",
+		    "O número da viatura deve conter no máximo 3 caracteres!");
+	}
+	else {
 	    request.setAttribute("mensagem", "deletada com sucesso!!");
 	}
 
@@ -189,7 +191,11 @@ public class CRUDViatura extends HttpServlet {
 	if (v != null) {
 	    despacha(request, response, "viaturaRepetida", via.getNumero());
 
-	} else {
+	}
+	else if(via.getNumero().length() > 3){
+	    despacha(request, response, "numeroViaturaException", via.getNumero());
+	}
+	else {
 
 	    via.setObm(cobm);
 	    via.setTipo_viatura(tipoV);

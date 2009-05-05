@@ -100,7 +100,7 @@ public class CrudOBM extends HttpServlet {
 	String nome = obm.getNome();
 	// Analisa se já prestou atendimento
 	List<Atendimento> atendimento = AtendimentoDao.getInstance()
-		.listarAtendimentosNaoFinalizadosOBM(registro);
+		.listarAtendimentosOBM(registro);
 
 	logger.info("Qtd Atendimentos" + atendimento.size());
 

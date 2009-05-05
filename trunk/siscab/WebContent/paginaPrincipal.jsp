@@ -63,7 +63,7 @@ String grava = data.format(cal.getTime());
 						<td valign="top" width="520px">
 						<div id="map_canvas">Map loading..
 						<noscript>Habilite o uso de JavaScript em seu browser
-						para exibir o Mapa da Google</noscript>
+						para exibir o Mapa do Google</noscript>
 						</div>
 						<script language="JavaScript" src="js/google.js"></script>						
 						</td>				
