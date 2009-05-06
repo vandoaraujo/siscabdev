@@ -38,10 +38,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						
-						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Viaturas Empenhadas :: Registrar Movimentação</h2>
-						
-						<fieldset style="width:450px"><legend>&nbsp;Nova movimentação&nbsp;</legend>
+						<fieldset style="width:450px"><legend>&nbsp;Incluir Tipo Evento&nbsp;</legend>
 							
 							<form action="CrudTipoEvento" method="post">
 								
@@ -78,18 +75,14 @@
 									<td colspan="2">
 										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
-										
+										</form>
 								 	</td>								
 								</tr>
-							</table>
-							</form>																																							
-						</fieldset>
-						<br />	
-						<input type="button" value="Voltar" onclick="window.back()">																
+								<tr>																																							
+						</fieldset>	
 					</td>
 				</tr>				
 			</table>
-			
 		</td>
 	</tr>
 </table>

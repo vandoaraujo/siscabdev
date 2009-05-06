@@ -87,7 +87,7 @@
 									}%>
 							</table>
 								
-										<form action="paginaPrincipal.jsp" method="post">
+										<form action="ViaturasControle" method="post">
 							 				<input type="submit" value="Voltar"/>
 							 			</form>	
 									</td>								

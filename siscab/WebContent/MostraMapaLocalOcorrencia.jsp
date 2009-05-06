@@ -99,7 +99,7 @@
 									<tr>
 										<td>Município:</td>
 										<td><select name="municipio">
-									 					<option><%=municipio%></option>
+									 					<option>${municipio}</option>
 														</select>
 										</td>
 								    <tr>

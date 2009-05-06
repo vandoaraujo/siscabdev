@@ -38,9 +38,13 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 						<fieldset style="width:450px"><legend>&nbsp;Viatura&nbsp;</legend>
-							Vitima ${nomeVitima}, <div style="color:red; display:inline">${mensagem}</div>
+							Evento ${nomeEvento}, <div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-					    </fieldset>	
+							<form action="AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=4&registroAtendimento=${idAtendimento}" method="post" style="display:inline;">
+				 				<input type="submit" value="Voltar"/>
+				 			</form>	
+					    </fieldset>
+					    	
 					</td>
 				</tr>				
 			</table>
