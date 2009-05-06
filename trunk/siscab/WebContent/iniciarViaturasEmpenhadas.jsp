@@ -50,7 +50,8 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-					<fieldset style="width:600px"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
+					
+					<fieldset style="width:90%"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
 								
 								<form action="NovaMovimentacaoViatura" method="post">
 								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
@@ -85,19 +86,20 @@
 									    	<td><%=via.getAtendimentos()%></td>
 									    	<!--  Aqui deveria entrar a lista de movimentações  -->
 									    	<td>									    						    
-									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1">Registrar Movimentação</a>
-									    		&nbsp;&nbsp;&nbsp;
-									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2">Liberar Viatura</a>
+									    	<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a>
+									    		<br />
+									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2"><img src="img/btnLiberarViatura.gif" border="0"></a>
 									       	</td>
 									    </tr>								    										
 									   <%} 
 									}%>
 							</table>
 						   </form> 
-															
-										<form action="AcompanharAtendimentos" method="post">
-							 				<input type="submit" value="Voltar"/>
-							 			</form>	
+						  </fieldset>
+						  <br />
+						 	<form action="AcompanharAtendimentos" method="post">
+								<input type="submit" value="Voltar"/>
+							</form>	
 					</td>
 				</tr>				
 			</table>
