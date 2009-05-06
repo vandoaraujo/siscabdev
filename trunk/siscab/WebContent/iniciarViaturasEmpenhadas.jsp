@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Viatura,modelo.Atendimento" %>
+<%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Viatura,modelo.Atendimento,modelo.MovimentaViatura,dao.MovimentaViaturaDao" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,7 +12,7 @@
 	<script language="JavaScript" src="js/script.js"></script>
 </head>
 <body>
-<% Atendimento at = (Atendimento)	request.getSession().getAttribute("atendimentoAtual");
+<% Atendimento at = (Atendimento)  request.getSession().getAttribute("atendimentoAtual");
 %>
 
 <script language="JavaScript1.2">mmLoadMenus();</script>
@@ -50,8 +50,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-					
-					<fieldset style="width:90%"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
+					<fieldset style="width:90px"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
 								
 								<form action="NovaMovimentacaoViatura" method="post">
 								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
@@ -83,10 +82,15 @@
 									     <tr bgcolor="#F9D8D0">
 									     <%} %>
 									    	<td><%=via.getTipo_viatura().getTipoviatura_descricao()%></td>
-									    	<td><%=via.getAtendimentos()%></td>
+									    	<td><% List <MovimentaViatura> movimentacoes =  MovimentaViaturaDao.getInstance().listaTiposEventosViaturaAtendimento(at.getId(),via.getId());
+									    	for(int j = 0 ; j<movimentacoes.size();j++){
+									    		out.println(movimentacoes.get(j).getMovimentaviatura_tipoevento() + "<br>");
+									    	}
+									    	%>
+									    	</td>
 									    	<!--  Aqui deveria entrar a lista de movimentações  -->
 									    	<td>									    						    
-									    	<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a>
+									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a>
 									    		<br />
 									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2"><img src="img/btnLiberarViatura.gif" border="0"></a>
 									       	</td>
@@ -94,12 +98,12 @@
 									   <%} 
 									}%>
 							</table>
-						   </form> 
-						  </fieldset>
-						  <br />
-						 	<form action="AcompanharAtendimentos" method="post">
-								<input type="submit" value="Voltar"/>
-							</form>	
+						   </form>
+						   </fieldset> 
+															
+										<form action="AcompanharAtendimentos" method="post">
+							 				<input type="submit" value="Voltar"/>
+							 			</form>	
 					</td>
 				</tr>				
 			</table>
