@@ -107,7 +107,7 @@ public class CrudTipoEvento extends HttpServlet {
 			
 			MovimentaViaturaDao.getInstance().salvar(tipoEvento);
 			request.setAttribute("movimentaViatura", tipoEvento);
-			despacha(request, response,"salvar", tipoEvento.getMovimentaviatura_tipoevento());
+			despacha(request, response,"salvar", tipoEvento.getMovimentaviatura_tipoevento(),at.getId());
 			
 		
 				
@@ -118,37 +118,38 @@ public class CrudTipoEvento extends HttpServlet {
 		 * Recebe como parametro HttpRequest, response, a acao a ser executada e o nome do objeto
 		 */
 		private void despacha(HttpServletRequest request,
-				HttpServletResponse response, String string, String nomeVitima) {
+				HttpServletResponse response, String string, String nomeEvento,int idAtendimento) {
 			
-				RequestDispatcher view;
-				request.setAttribute("nomeVitima", nomeVitima);
-				if(string.equals("salvar")){
-					
-					request.setAttribute("mensagem", "salva com sucesso!!");
-					
-				}
-				
-				else if(string.equals("alterar")){
-					request.setAttribute("mensagem", "alterado com sucesso!!");
+		    RequestDispatcher view;
+		    request.setAttribute("nomeEvento", nomeEvento);
+		    request.setAttribute("idAtendimento", idAtendimento);
+		    if(string.equals("salvar")){
+			
+			request.setAttribute("mensagem", "salvo com sucesso!!");
+			
+		    }
+    				
+		    else if(string.equals("alterar")){
+			request.setAttribute("mensagem", "alterado com sucesso!!");
 
-				}
-				else{
-					request.setAttribute("mensagem", "deletado com sucesso!!");
-				}
+		    }
+		    else{
+			request.setAttribute("mensagem", "deletado com sucesso!!");
+		    }
+		    
+		    view = request.getRequestDispatcher("/mensagemEventoViatura.jsp");
 				
-				view = request.getRequestDispatcher("/mensagemVitima.jsp");
+    			
 				
-			
-				
-			try {
-				view.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		    try {
+			view.forward(request, response);
+		    } catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		    }
 				
 			
 		}
