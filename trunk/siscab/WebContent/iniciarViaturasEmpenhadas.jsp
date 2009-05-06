@@ -40,62 +40,64 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:200px"><legend>&nbsp;Viatura&nbsp;</legend>
+					
+					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Viaturas Empenhadas</h2>
+					
+						<fieldset style="width:200px"><legend>&nbsp;Opções&nbsp;</legend>
 							<a href="DespacharViatura?numeroAtendimento<%= at.getId() %>">Despachar Viatura</a>
 						</fieldset>										
 					</td>
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-					<fieldset style="width:600px"><legend>&nbsp;Lista de Viaturas Associadas a este atendimento&nbsp;</legend>						
-								<table border="0" cellpadding="0" cellspacing="3" width="100%">
-								<tr>
-									<td>
-									<% ArrayList viatura=(ArrayList<Viatura>) request.getSession().getAttribute("viaturas");
+					<fieldset style="width:600px"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
+								
+								<form action="NovaMovimentacaoViatura" method="post">
+								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
+								<% ArrayList viatura=(ArrayList<Viatura>) request.getSession().getAttribute("viaturas");
 									%>
 									
-									<% if(viatura.size()== 0){ %>
-									     <div style="color:red"> Nenhuma Viatura no momento</div>
+									<%if(viatura.size()== 0){ %>
+									     <div style="color:red"> Nenhuma Viatura no Momento</div>
 									   
 									<%} else{
 										
 										%>
 										
-										
-										
-										<% for(int i=0;i<viatura.size();i++){
-												Viatura via =(Viatura)viatura.get(i);
-												 %> 
-									    <form action="NovaMovimentacaoViatura" method="post">
-									    <tr>
-									    <td>
-									    <div>     
+										<tr bgcolor="#FFFFFF">
+										  	<th>Tipo/Número</th>
+										  	<th>Movimentações</th>
+										  	<th>Opções</th>
+										</tr>
+									
+										<%										
+										for(int i=0;i<viatura.size();i++){
+											Viatura via =(Viatura)viatura.get(i);
+									    
+									    if (i%2==0){
+									    %> 									    									  									    
+									     <tr bgcolor="#EFEFEF">
+									     <%}else{ %>
 									     
-									    <%= i+1 %> :: NumeroViatura = <a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=1">Status Viatura: <%= via.getViatura_status()%>TipoViatura: <%= via.getTipo_viatura().getTipoviatura_descricao().toString()%></a>&nbsp;
-									    					    								    						 										 				
-									     <input type="submit" value="Liberar Viatura" onclick="this.form.operacaoARealizar.value=2"/>
-									     <input type="hidden" name="operacaoARealizar" value ="">
-									     <input type="hidden" name="registro" value ="<%=via.getId()%>"/>
-									      <input type="hidden" name="numeroAtendimento" value ="<%= at.getId()%>"/>
-									     <br>
-									    </div>
-									    </td>
-									    </tr>
-									   </form> 
-									   <%}
-										
-										
-										
+									     <tr bgcolor="#F9D8D0">
+									     <%} %>
+									    	<td><%=via.getTipo_viatura().getTipoviatura_descricao()%></td>
+									    	<td><%=via.getAtendimentos()%></td>
+									    	<!--  Aqui deveria entrar a lista de movimentações  -->
+									    	<td>									    						    
+									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1">Registrar Movimentação</a>
+									    		&nbsp;&nbsp;&nbsp;
+									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2">Liberar Viatura</a>
+									       	</td>
+									    </tr>								    										
+									   <%} 
 									}%>
-									</td>								
-								</tr>
-								<tr>
-									<td>																		
+							</table>
+						   </form> 
+															
 										<form action="AcompanharAtendimentos" method="post">
 							 				<input type="submit" value="Voltar"/>
 							 			</form>	
-									</td>								
-								</tr>
 					</td>
 				</tr>				
 			</table>

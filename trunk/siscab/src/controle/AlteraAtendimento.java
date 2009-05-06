@@ -110,7 +110,7 @@ public class AlteraAtendimento extends HttpServlet {
 	request.setAttribute("numeroAtendimento", numeroAtendimento);
 
 	if (string.equals("alterar")) {
-	    request.setAttribute("mensagem", "alterado com sucesso!!");
+	    request.setAttribute("mensagem", "Dados do atendimento foram alterados.");
 
 	} else {
 	    request.setAttribute("mensagem", "deletado com sucesso!!");

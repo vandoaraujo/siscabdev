@@ -38,8 +38,13 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
+						
+						<h2>Atendimentos :: Cadastro de Viaturas :: Procurar Viaturas</h2>
+						
 						<div><font color="red">${parametrosVazios}</font></div>
-						<fieldset style="width:450px"><legend>&nbsp;Buscar Viatura&nbsp;</legend>						
+						
+						
+						<fieldset style="width:450px"><legend>&nbsp;Informe os parâmetros de procura&nbsp;</legend>						
 						<form action="BuscarViatura" method="post">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 							<tr>
@@ -73,7 +78,7 @@
 									<td colspan="2">																		
 										<input type="submit" name="evento" value="Buscar"/>
 										</form>	
-										<form action="administracao_usuario.jsp" method="post" style="display:inline;">
+										<form action="ViaturasControle" method="post" style="display:inline;">
 							 				<input type="submit" value="Voltar"/>
 							 			</form>	
 									</td>								

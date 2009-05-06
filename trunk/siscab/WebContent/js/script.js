@@ -5,7 +5,7 @@ function mmLoadMenus() {
   mm_menu_0217221104_0.addMenuItem("Registrar&nbsp;Chamado","location='RegistrarChamado'");
   mm_menu_0217221104_0.addMenuItem("Transferir&nbsp;Atendimento","location='TransferirAtendimento'");
   mm_menu_0217221104_0.addMenuItem("Acompanhar&nbsp;Atendimento","location='AcompanharAtendimentos'");
-  mm_menu_0217221104_0.addMenuItem("Situação&nbsp;das&nbsp;Viaturas","location='AcompanharAtendimentos'");
+  mm_menu_0217221104_0.addMenuItem("Situação&nbsp;das&nbsp;Viaturas","location='listaViaturasDescritivo.jsp'");
   mm_menu_0217221104_0.addMenuItem("Cadastro&nbsp;de&nbsp;Viaturas","location='ViaturasControle'");
   mm_menu_0217221104_0.hideOnMouseOut=true;
   mm_menu_0217221104_0.bgColor='#555555';

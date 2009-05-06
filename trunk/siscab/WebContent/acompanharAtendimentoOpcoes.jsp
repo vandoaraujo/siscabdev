@@ -97,7 +97,7 @@
 									<fieldset style="width:60%"><legend>&nbsp;Opções&nbsp;</legend>
 										<input type="submit" value="Editar" onclick="this.form.operacaoARealizar.value=2"/>
 										<br />
-										<input type="submit" value="Sugestão de Rota" onclick="this.form.operacaoARealizar.value=3"/>
+										<a href="#" onclick="window.open('AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=3&registroAtendimento=<%=atendimento.getAtendimento_numero()%>')"><img src="img/btnSugestaoRota.gif" border="0"></a>
 										<br />
 										<input type="submit" value="Viaturas Empenhadas" onclick="this.form.operacaoARealizar.value=4"/>
 										<br />

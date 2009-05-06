@@ -39,41 +39,54 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:800px"><legend>&nbsp;Resultado da Busca&nbsp;</legend>						
-								<table border="0" cellpadding="0" cellspacing="3" width="100%">
-								<tr>
-									<td>
-									<% 	
-										viatura=(ArrayList<Viatura>) request.getAttribute("viaturas");
-															
+					
+					<h2>Atendimentos :: Cadastro de Viaturas :: Procurar Viaturas</h2>
+					
+					
+						<fieldset style="width:800px"><legend>&nbsp;Resultado da procura&nbsp;</legend>						
+								
+								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
+
+								<% viatura=(ArrayList<Viatura>) request.getAttribute("viaturas");
 									%>
 									
-									<% if(viatura.isEmpty() ){ %>
-									     <div style="color:red"> Nenhuma Viatura encontrada! </div>
+									<%if(viatura.isEmpty() ){ %>
+								     <div style="color:red"> Nenhuma Viatura encontrada! </div>
 									   
 									<%} else{
 										
+										%>
 										
+										<tr bgcolor="#FFFFFF">
+										  	<th>Tipo/Número</th>
+										  	<th>OBM</th>
+										  	<th>Status</th>
+										  	<th>Opções</th>
+										</tr>
+									
+										<%										
 										for(int i=0;i<viatura.size();i++){
-												Viatura via =(Viatura)viatura.get(i);
-												 %> 
+											Viatura via =(Viatura)viatura.get(i);
 									    
-									    <tr>
-									    <td>
-									    <div>     
-									    
-									    <%= i+1 %> >> <a href="EditaViatura?registro=<%=via.getId()%>"><font color="black"> Tipo: <%= via.getTipo_viatura().getTipoviatura_descricao() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Número: <%= via.getNumero() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obm: <%= via.getObm().getNome()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status: <%= via.getViatura_status() %></font> </a><br>
-									    </div>
-									    </td>
-									    </tr>
+									    if (i%2==0){
+									    %> 									    									  									    
+									     <tr bgcolor="#EFEFEF">
+									     <%}else{ %>
+									     
+									     <tr bgcolor="#F9D8D0">
+									     <%} %>
+									    	<td><%=via.getTipo_viatura().getTipoviatura_descricao()%>-<%=via.getNumero()%></td>
+									    	<td><%=via.getObm().getNome()%></td>
+									    	<td><%=via.getViatura_status()%></td>
+									    	<td>									    	
+									    		<a href="EditaViatura?registro=<%=via.getId()%>"><img src="img/btnEditar.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+									    		<a href="CRUDViatura?operacaoARealizar=3&registroViatura=<%=via.getId()%>" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a>
+									       	</td>
+									    </tr>								    										
 									   <%} 
-										
-										
 									}%>
-									</td>								
-								</tr>
-								<tr>
-									<td>																		
+							</table>
+								
 										<form action="paginaPrincipal.jsp" method="post">
 							 				<input type="submit" value="Voltar"/>
 							 			</form>	

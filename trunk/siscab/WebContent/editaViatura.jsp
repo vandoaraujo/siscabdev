@@ -9,6 +9,19 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
+<script>
+function campoObrigatorio()
+{
+	if ( (document.form.numero.value != null) && (document.form.numero.value != "") )
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
+</script>
 </head>
 <body>
 
@@ -37,14 +50,17 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
+					
+					<h2>Atendimentos :: Cadastro de Viaturas :: Edita Viatura</h2>					
+					
 						<fieldset style="width:450px"><legend>&nbsp;Editar Viatura&nbsp;</legend>
 							
-							<form action="CRUDViatura" method="post">
+							<form name="form" action="CRUDViatura" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nº Viatura:</label></td>
-									<td><input name="numero" type="text" value ="${viaturaAtual.numero}" /></td>								
+									<td><input name="numero" type="text" value ="${viaturaAtual.numero}" maxlength="3" /> *</td>								
 								</tr>
 								<tr>
 									<td><label>Obm:</label></td>
@@ -57,7 +73,7 @@
 									 	 for(OBM s: obms){
 										 out.println("<option>"+s.getNome()+"</option>");
 									 	}
-										out.println("</select>");
+										out.println("</select> *");
 										%>									
 									</td>								
 								</tr>
@@ -71,7 +87,7 @@
 										<option>Inoperante - Sem tripulação
 										<option>Inoperante - Em manutenção
 										<option>Inoperante - Desativada
-										</select>									
+										</select> *									
 									</td>								
 								</tr>
 								
@@ -89,7 +105,7 @@
 												out.print("<option>"+tipos.get(i).getTipoviatura_descricao().toString());
 												}
 						 				}
-												out.println("</select>");
+												out.println("</select> *");
 									%></td></tr>	
 								<tr>
 									<td><label>Obs. Viatura</label></td>
@@ -97,9 +113,8 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>
-										<input type="submit" value="Deletar" onclick="this.form.operacaoARealizar.value=3"/>
-										<input type="hidden" name="operacaoARealizar" value ="">
+										<input type="submit" value="Alterar" onclick="return campoObrigatorio()"/>
+   									    <input type="hidden" name="operacaoARealizar" value ="2">
 								 		<input type="hidden" name="registroViatura" value ="${viaturaAtual.id}"> 
 										</form>	
 										<form action="ViaturasControle" method="post" style="display:inline;">
@@ -107,7 +122,9 @@
 							 			</form>	
 									</td>								
 								</tr>
+							</table>
 						</fieldset>	
+						<br />( * ) Campos Obrigatórios						
 					</td>
 				</tr>				
 			</table>
