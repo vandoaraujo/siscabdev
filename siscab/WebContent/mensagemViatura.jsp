@@ -37,10 +37,13 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Viatura&nbsp;</legend>
-							Viatura ${viatura.numero}, <div style="color:red; display:inline">${mensagem}</div>
+					
+					<h2>Atendimentos :: Cadastro de Viaturas</h2>
+					
+						<fieldset style="width:450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
+							<div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-																																		
+							<input type="button" name="Voltar" value="Voltar" onclick="window.back()">																											
 						</fieldset>	
 					</td>
 				</tr>				
