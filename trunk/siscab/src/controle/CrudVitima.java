@@ -116,15 +116,15 @@ public class CrudVitima extends HttpServlet {
 	request.setAttribute("nomeVitima", nomeVitima);
 	if (string.equals("salvar")) {
 
-	    request.setAttribute("mensagem", "salva com sucesso!!");
+	    request.setAttribute("mensagem", "Vítima foi incluída na lista");
 
 	}
 
 	else if (string.equals("alterar")) {
-	    request.setAttribute("mensagem", "alterado com sucesso!!");
+	    request.setAttribute("mensagem", "Dados da vítima foram alterados.");
 
 	} else {
-	    request.setAttribute("mensagem", "deletado com sucesso!!");
+	    request.setAttribute("mensagem", "Vítima foi excluída da lista.");
 	}
 
 	view = request.getRequestDispatcher("/mensagemVitima.jsp");
