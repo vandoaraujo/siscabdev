@@ -91,25 +91,25 @@ public class CRUDViatura extends HttpServlet {
 	RequestDispatcher view;
 	request.setAttribute("numeroViatura", numeroViatura);
 	if (string.equals("salvar")) {
-	    request.setAttribute("mensagem", "salva com sucesso!!");
+	    request.setAttribute("mensagem", "Viatura foi incluída no cadastro");
 	}
 	else if (string.equals("alterar")) {
-	    request.setAttribute("mensagem", "alterada com sucesso!!");
+	    request.setAttribute("mensagem", "Dados da viatura foram alterados.");
 
 	} else if (string.equals("viaturaRepetida")) {
 	    request
 		    .setAttribute("mensagem",
-			    "Viatura não salva! Já existe uma viatura com este numero!");
+			    "Viatura já cadastrada.");
 
 	} else if (string.equals("Em atendimento")) {
 	    request
 		    .setAttribute("mensagem",
-			    "Não e possivel alterar esta viatura pois ela se encontra em atendimento!");
+			    "Dados da viatura não podem ser alterados no momento, pois está em atendimento.");
 
 	} else if (string.equals("Em atendimento Exclusao")) {
 	    request
 		    .setAttribute("mensagem",
-			    "Não e possivel deletar esta viatura, pois já realizou atendimento!");
+			    "Viatura não pode ser excluída do cadastro, pois existe(m) registro(s) de atendimento(s) associado(s) a esta.");
 
 	} else if (string.equals("numeroViaturaException")) {
 	    request
@@ -117,7 +117,7 @@ public class CRUDViatura extends HttpServlet {
 		    "O número da viatura deve conter no máximo 3 caracteres!");
 	}
 	else {
-	    request.setAttribute("mensagem", "deletada com sucesso!!");
+	    request.setAttribute("mensagem", "Viatura foi excluída com sucesso.");
 	}
 
 	view = request.getRequestDispatcher("/mensagemViatura.jsp");
