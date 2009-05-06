@@ -39,28 +39,25 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:150px"><legend>&nbsp;Incluir Viatura&nbsp;</legend>
-							<a href="novaViatura.jsp">Incluir</a>
-						</fieldset>			
-						
-						<fieldset style="width:160px"><legend>&nbsp;Buscar Viatura&nbsp;</legend>
-							<a href=ConsultaViaturas>Procurar Viatura</a>
+					
+					<h2>Atendimentos :: Cadastro de Viaturas</h2>
+					
+					
+						<fieldset style="width:30%"><legend>&nbsp;Opções&nbsp;</legend>
+							<a href="novaViatura.jsp">Incluir Viatura</a>&nbsp;|&nbsp;<a href=ConsultaViaturas>Procurar Viatura</a>
 						</fieldset>								
 					</td>
 				</tr>
 				<tr>
-					<td>																		
-						<form action="paginaPrincipal.jsp" method="post">
-			 				<input type="submit" value="Voltar"/>
-			 			</form>	
-					</td>								
+					<td style="padding-left:20px; padding-top:20px;" colspan="2">
+						<fieldset style="width:30%"><legend>&nbsp;Viaturas Cadastradas&nbsp;</legend>
+							Não sei fazer!
+						</fieldset>								
+					</td>
 				</tr>
-			</fieldset>	
+			</table>	
 		</td>
 	</tr>				
-</table>
-</td>
-</tr>
 </table>
 </body>
 </html>

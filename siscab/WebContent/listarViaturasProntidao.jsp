@@ -41,7 +41,9 @@
 	
 						<div style="width:450px"><legend>&nbsp;${mensagem}&nbsp;</legend></div>											
 					
-						<fieldset style="width:450px"><legend>&nbsp;Lista de Viaturas Em prontidão&nbsp;</legend>						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Viaturas Empenhadas :: Despachar Viatura</h2>
+					
+						<fieldset style="width:450px"><legend>&nbsp;Viaturas Em prontidão&nbsp;</legend>						
 								<form action="AssociaViaturaAtendimento" method="post">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">								
 									<tr>
@@ -55,7 +57,7 @@
 										<%} else{
 											
 											%>
-											<div style="color:red"> Obm:&nbsp;${obm}! </div>
+											 <!-- <div style="color:red"> Obm:&nbsp;${obm}! </div> -->
 											<%
 											
 											for(int i=0;i<viatura.size();i++){
@@ -78,7 +80,7 @@
 										     
 									<tr>
 										<td colspan="2">
-											<input type="submit" value="Despachar Viatura" />
+											<input type="submit" value="Despachar" />&nbsp;<input type="button" value="Voltar" onclick="window.back()"/>
 										</td>								
 									</tr>
 										   

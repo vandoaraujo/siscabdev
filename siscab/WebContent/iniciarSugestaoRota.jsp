@@ -11,7 +11,7 @@
 	<script language="JavaScript" src="js/script.js"></script>
 	<script id="api" type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA1rJRd_d6NTBRsxYq3I7erBSVPiKh14QUveM1LzMKfwwniz5cMBRktlNQQD2Mh4zRyiEDe7djlt6huA"></script>
 
-
+</head>
 <body onload="carregaMapa();">
 <script language="JavaScript1.2">mmLoadMenus();</script>
 <%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
@@ -47,6 +47,10 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
+					
+					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Consultar Sugestão de Rota</h2>
+					
+					
 						<fieldset style="width:520px"><legend>&nbsp;Sugestão de Rota&nbsp;</legend>	
 							<form>
 								<input type="hidden" name="CoordX_Operador" id="CoordX_Operador" value="<%=request.getAttribute("CoordX_Operador") %>">
@@ -163,9 +167,7 @@
 								</tr>
 								<tr>
 									<td>	
-										<form action="AcompanharAtendimentos" method="post" style="display:inline;">
-											<input type="submit" value="Voltar"/>
-										</form>
+										<input type="submit" value="Fechar" onclick="window.close()"/>										
 									</td>
 								</tr>
 							</table>

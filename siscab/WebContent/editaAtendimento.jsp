@@ -15,7 +15,13 @@
 <script>
 function campoObrigatorio()
 {
-	if ( (document.form.registro.value != null) && (document.form.registro.value != "") && (document.form.nomeGuerra.value != null) && (document.form.nomeGuerra.value != "") && (document.form.senha.value != null) && (document.form.senha.value != "") )
+	if ( (document.form.tipoOcorrencia.value != null) && (document.form.tipoOcorrencia.value != "") && 
+			(document.form.municipio.value != null) && (document.form.municipio.value != "") && 
+				(document.form.bairro.value != null) && (document.form.bairro.value != "") &&
+					(document.form.logradouro.value != null) && (document.form.logradouro.value != "") &&
+						(document.form.numComplemento.value != null) && (document.form.numComplemento.value != "") &&
+							(document.form.coordX.value != null) && (document.form.coordX.value != "") &&
+								(document.form.coordY.value != null) && (document.form.coordY.value != "") )
 		return true;
 	else
 	{
@@ -64,7 +70,7 @@ function campoObrigatorio()
 						
 						<% logradouro =  atendimento.getLogradouro(); %>
 						
-						<form action="AlteraAtendimento" method="post">											
+						<form name="form" action="AlteraAtendimento" method="post">											
 						
 						<table>
 							<tr>
@@ -84,7 +90,7 @@ function campoObrigatorio()
 											out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
 											}
 					 				}
-											out.println("</select>");
+											out.println("</select> *");
 								%>
 								</td>
 							</tr>
@@ -100,35 +106,35 @@ function campoObrigatorio()
 								 	 for(Municipio m: municipio){
 									 out.println("<option>"+m.getMunicipio_nome());
 								 	}
-									out.println("</select>");
+									out.println("</select> *");
 									%>
 								</td>
 							</tr>
 							<tr>
 								<td>Bairro:</td>
-								<td><input name="bairro" type="text" size =45 value="<%= atendimento.getBairro() %>"></td>
+								<td><input name="bairro" type="text" size =45 value="<%= atendimento.getBairro() %>"> *</td>
 							</tr>
 							<tr>
 								<td>Logradouro:</td>
-								<td><INPUT TYPE=TEXT NAME="logradouro" SIZE=30 MAXLENGHT=40 value= "<%= logradouro %>"></td>
+								<td><INPUT TYPE=TEXT NAME="logradouro" SIZE=30 MAXLENGHT=40 value= "<%= logradouro %>"> *</td>
 							</tr>
 							<tr>
 								<td>Num. Complemento:</td>
-								<td><input name="numComplemento" type="text" size=10 value=<%= atendimento.getNumcompl() %>></td>
+								<td><input name="numComplemento" type="text" size=10 value=<%= atendimento.getNumcompl() %>> *</td>
 							</tr>							
 							<tr>
 								<td>Coord X:</td>
-								<td><input name="coordX" type="text" value=<%= atendimento.getCoordx() %>></td>
+								<td><input name="coordX" type="text" value=<%= atendimento.getCoordx() %> onkeypress="return SomenteNumeros(event)"> * </td>
 							</tr>
 							<tr>
 								<td>Coord Y:</td>
-								<td><input name="coordY" type="text" value=<%= atendimento.getCoordy() %>></td>
+								<td><input name="coordY" type="text" value=<%= atendimento.getCoordy() %> onkeypress="return SomenteNumeros(event)"> * </td>
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>							
-									<input type="hidden" name="operacaoARealizar" value ="">
-									<input type="hidden" name="registroAtendimento" value = <%= atendimento.getId() %> >
+									<input type="submit" value="Alterar" onclick="return campoObrigatorio()"/>							
+									<input type="hidden" name="operacaoARealizar" value ="2">
+									<input type="hidden" name="registroAtendimento" value ="<%=atendimento.getId()%>">
 								</form>
 									<form action="AcompanharAtendimentos" method="post" style="display:inline;">
 							 			<input type="submit" value="Voltar"/>
