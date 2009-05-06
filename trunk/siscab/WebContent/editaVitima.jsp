@@ -10,20 +10,6 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
-<script>
-function campoObrigatorio()
-{
-	if ( (document.form.nome.value != null) && (document.form.nome.value != "") &&
-			(document.form.idade.value != null) && (document.form.idade.value != "")	)
-		return true;
-	else
-	{
-		alert("Favor preencher todos campos obrigatórios");	
-		return false;
-	}
-
-}
-</script>
 </head>
 <body>
 <%! VitimaAtendida vitima=null; %>
@@ -53,22 +39,18 @@ function campoObrigatorio()
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-					
-					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Vítimas atendidas :: Editar Vítimas</h2>
-					
-					
-						<fieldset style="width:520px"><legend>&nbsp;Dados da vítima selecionada&nbsp;</legend>
+						<fieldset style="width:520px"><legend>&nbsp;Editar Vitima&nbsp;</legend>
 							
-						<form name="form" action="CrudVitima" method="post">
+						<form action="CrudVitima" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
-									<td colspan="8"><input name="nome" type="text" size=40 value="${vitima.nome}"/> * </td>
+									<td colspan="8"><input name="nome" type="text" size=40 value="${vitima.nome}"/></td>
 								</tr>
 								<tr>	
 									<td><label>Idade:</label></td>
-									<td colspan="8"><input name="idade" type="text" size=3 maxlength="3" value="${vitima.idade}" onkeypress="return SomenteNumeros(event);"/> * </td>
+									<td colspan="8"><input name="idade" type="text" size=3 maxlength="3" value="${vitima.idade}"/></td>
 								</tr>
 								<tr>
 									<td><label>Cor:</label></td>
@@ -159,7 +141,7 @@ function campoObrigatorio()
 												</select>
 										<% } %>
 												
-									* </td>	
+									</td>	
 								</tr>
 								<tr>	
 									<td><label>Hospital Destino:</label></td>
@@ -167,9 +149,9 @@ function campoObrigatorio()
 								</tr>
 								<tr>
 									<td colspan="9">
-										<input type="submit" value="Salvar" onclick="return campoObrigatorio();"/>
-										<input type="button" value="Voltar" onclick="history.back()"/>
-										<input type="hidden" name="operacaoARealizar" value ="2">
+										<input type="submit" value="Alterar" onclick="this.form.operacaoARealizar.value=2"/>
+										<input type="submit" value="Deletar" onclick="this.form.operacaoARealizar.value=3"/>
+										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroVitima" value ="${vitima.id}"/>
 								 		<input type="hidden" name="atendimentoAtual" value="${atendimentoAtual}"/> 								 		
 								 	</td>								

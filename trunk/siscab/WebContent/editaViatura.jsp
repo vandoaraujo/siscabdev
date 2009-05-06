@@ -82,7 +82,6 @@ function campoObrigatorio()
 									<td>
 										<select name="status">
 										<option selected>${viaturaAtual.viatura_status}</option>
-										<option>Em atendimento 
 										<option>Em prontidão
 										<option>Inoperante - Sem tripulação
 										<option>Inoperante - Em manutenção

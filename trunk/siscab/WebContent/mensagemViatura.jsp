@@ -43,7 +43,9 @@
 						<fieldset style="width:450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
 							<div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-							<input type="button" name="Voltar" value="Voltar" onclick="window.back()">																											
+								<form action="ViaturasControle" method="post" style="display:inline;">
+							 				<input type="submit" value="Voltar"/>
+							 			</form>																											
 						</fieldset>	
 					</td>
 				</tr>				

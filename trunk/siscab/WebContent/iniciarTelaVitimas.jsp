@@ -37,72 +37,48 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						
-						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Vítimas atendidas</h2>
-						
-						<fieldset style="width:200px"><legend>&nbsp;Opções&nbsp;</legend>
+						<fieldset style="width:200px"><legend>&nbsp;Vitima&nbsp;</legend>
 							<a href="novaVitima.jsp">Adicionar Vítima</a>
 						</fieldset>										
 					</td>
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:60%"><legend>&nbsp;Vítimas registradas&nbsp;</legend>						
-								
-							<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
-								<% ArrayList vitimas=(ArrayList<VitimaAtendida>) request.getSession().getAttribute("vitimas");
+						<fieldset style="width:450px"><legend>&nbsp;Lista de Vitimas Cadastrados&nbsp;</legend>						
+								<table border="0" cellpadding="0" cellspacing="3" width="100%">
+								<tr>
+									<td>
+									<% ArrayList vitimas=(ArrayList<VitimaAtendida>) request.getSession().getAttribute("vitimas");
 									%>
 									
-									<%if(vitimas.size()== 0){ %>
-								     <div style="color:red"> Nenhuma vitima cadastrada </div>
+									<% if(vitimas.size()== 0){ %>
+									     <div style="color:red"> Nenhuma vitima cadastrada </div>
 									   
 									<%} else{
 										
-										%>
 										
-										<tr bgcolor="#FFFFFF">
-										  	<th>Nome</th>
-										  	<th>Idade</th>
-										  	<th>Sexo</th>
-										  	<th>Cor</th>
-										  	<th>Situação Final</th>
-										  	<th>Hospital Destino</th>
-										  	<th>Opções</th>
-										</tr>
-									
-										<%										
 										for(int i=0;i<vitimas.size();i++){
-											VitimaAtendida vitima =(VitimaAtendida)vitimas.get(i);
-									    
-									    if (i%2==0){
-									    %> 									    									  									    
-									     <tr bgcolor="#EFEFEF">
-									     <%}else{ %>
-									     
-									     <tr bgcolor="#F9D8D0">
-									     <%} %>
-									    	<td><%=vitima.getNome()%></td>
-									    	<td><%=vitima.getIdade()%></td>
-									    	<td><%=vitima.getSexo()%></td>
-									    	<td><%=vitima.getCor()%></td>
-									    	<td><%=vitima.getVitima_situacao()%></td>
-									    	<td><%=vitima.getHospitaldestino()%></td>
-									    	<td>
-									    		<a href="EditaVitima?registro=<%=vitima.getId()%>&atendimentoAtual=<%=vitima.getAtendimento().getId()%>"><img src="img/btnEditar.gif" border="0"></a>&nbsp;
-									    		<a href="CrudVitima?operacaoARealizar=3&registroVitima=<%=vitima.getId()%>&atendimentoAtual" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a>
-										 		<input type="hidden" name="atendimentoAtual" value="${atendimentoAtual}"/> 
-									       	</td>									       	
-									    </tr>								    										
-									   <%} 
-									}%>
-							</table>
+												VitimaAtendida vitima =(VitimaAtendida)vitimas.get(i);
+												 %> 
+									</td>    
+							    <tr>
+								    <td>									    
+								    	<%= i+1 %> :: <a href="EditaVitima?registro=<%=vitima.getId()%>&atendimentoAtual=<%=vitima.getAtendimento().getId()%>">Nome: <%= vitima.getNome()%> SituacaoVitima: <%= vitima.getVitima_situacao()%></a><br>
+								    </td>
+							    </tr>
+									   <%} 	
+										}%>								
+								<tr>
+									<td>																		
+										<form action="AcompanharAtendimentos" method="post">
+							 				<input type="submit" value="Voltar"/>
+							 			</form>	
+									</td>								
+								</tr>
+								</table>
 						</fieldset>	
-						<br />					
-								<form action="AcompanharAtendimentos" method="post">
-					 				<input type="submit" value="Voltar"/>
-					 			</form>	
-					</td>								
-				</tr>
+					</td>
+				</tr>				
 			</table>
 		</td>
 	</tr>

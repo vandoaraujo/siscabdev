@@ -74,7 +74,7 @@
 									     
 									     <tr bgcolor="#F9D8D0">
 									     <%} %>
-									    	<td><%=u.getId()%></td>
+									    	<td><%=u.getNumRegistro() %></td>
 									    	<td><%=u.getNomeGuerra()%></td>
 									    	<td><%=u.getObm().getNome()%></td>
 									    	<td><%=u.getPerfil().getPerfil_descricao()%></td>

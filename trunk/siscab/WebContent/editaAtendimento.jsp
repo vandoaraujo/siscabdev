@@ -135,6 +135,8 @@ function campoObrigatorio()
 									<input type="submit" value="Alterar" onclick="return campoObrigatorio()"/>							
 									<input type="hidden" name="operacaoARealizar" value ="2">
 									<input type="hidden" name="registroAtendimento" value ="<%=atendimento.getId()%>">
+									<input type="hidden" name="obmAtendimento" value ="<%=atendimento.getObm_id().getNome()%>">
+									<input type="hidden" name="status" value ="<%=atendimento.getStatus_atendimento()%>">
 								</form>
 									<form action="AcompanharAtendimentos" method="post" style="display:inline;">
 							 			<input type="submit" value="Voltar"/>
