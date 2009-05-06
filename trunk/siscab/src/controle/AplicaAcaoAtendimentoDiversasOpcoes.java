@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import modelo.Atendimento;
 import modelo.ModoFechamento;
+import modelo.MovimentaViatura;
 import modelo.ServicoRealizado;
 import modelo.Usuario;
 import modelo.Viatura;
@@ -208,11 +209,11 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
     private void viaturasEmpenhadasAtendimento(HttpServletRequest request,
 	    HttpServletResponse response, int registroAtendimento) {
 
-	List<Viatura> tiposEventosViatura = MovimentaViaturaDao.getInstance()
+	List<Viatura> viaturasAtendimento = MovimentaViaturaDao.getInstance()
 		.ListarViaturaNaoRepetidasEmAtendimento(at.getId());
-
+	
 	HttpSession sessao = request.getSession();
-	sessao.setAttribute("viaturas", tiposEventosViatura);
+	sessao.setAttribute("viaturas", viaturasAtendimento);
 	RequestDispatcher view;
 	sessao.setAttribute("atendimentoAtual", at);
 	view = request.getRequestDispatcher("/iniciarViaturasEmpenhadas.jsp");

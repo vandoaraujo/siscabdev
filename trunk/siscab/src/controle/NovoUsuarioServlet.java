@@ -29,8 +29,8 @@ public class NovoUsuarioServlet extends HttpServlet {
 
     private int numRegistro;
     private String nomeGuerra;
-    private String obm;
-    private String perfil;
+    private String obm = null;
+    private String perfil = null;
     private String email;
     private String senha;
     private String status;
@@ -66,6 +66,25 @@ public class NovoUsuarioServlet extends HttpServlet {
 
 	PerfilUsuario p = PerfilUsuarioDao.getInstance().listarPerfilNome(
 		perfil);
+	
+	if (p.getId() == 3 && obmAtual.getId() == 1) {
+	    
+	    SiscabException siscab = new SiscabException(
+	    "O Cocb não possui Operador de OBM!.");
+	    RequestDispatcher view = request
+	    .getRequestDispatcher("/siscabException.jsp");
+
+	    	try {
+		view.forward(request, response);
+    		} catch (ServletException e) {
+    		    // TODO Auto-generated catch block
+    		    e.printStackTrace();
+    		} catch (IOException e) {
+    		    // TODO Auto-generated catch block
+    		    e.printStackTrace();
+    		}
+	}
+	else{
 
 	usu.setPerfil(p);
 	usu.setEmail(email);
@@ -73,6 +92,8 @@ public class NovoUsuarioServlet extends HttpServlet {
 	usu.setStatus(status);
 	UsuarioDao.getInstance().atualizar(usu);
 	despacha(request, response, "alterar", usu.getNomeGuerra());
+	
+	}
     }
 
     private void deletar(HttpServletRequest request,
@@ -181,6 +202,11 @@ public class NovoUsuarioServlet extends HttpServlet {
 	// Verifica Duplicidade de Pessoas já cadastradas no BD
 	List<Usuario> usuarios = UsuarioDao.getInstance()
 		.buscarNumRegistroRepetido(numRegistro);
+	
+	 PerfilUsuario p = PerfilUsuarioDao.getInstance().listarPerfilNome(
+		    perfil);
+	 
+	 OBM cobm = OBMDao.getInstance().listarOBMNome(obm);
 
 	if (!usuarios.isEmpty()) {
 
@@ -200,18 +226,32 @@ public class NovoUsuarioServlet extends HttpServlet {
 		e.printStackTrace();
 	    }
 
-	} else {
+	} 
+	
+	else if (p.getId() == 3 && cobm.getId() == 1) {
+	    
+	    SiscabException siscab = new SiscabException(
+	    "O Cocb não possui Operador de OBM!.");
+	    RequestDispatcher view = request
+	    .getRequestDispatcher("/siscabException.jsp");
 
-	    OBM cobm = OBMDao.getInstance().listarOBMNome(obm);
+	    	try {
+		view.forward(request, response);
+    		} catch (ServletException e) {
+    		    // TODO Auto-generated catch block
+    		    e.printStackTrace();
+    		} catch (IOException e) {
+    		    // TODO Auto-generated catch block
+    		    e.printStackTrace();
+    		}
+	}
+	else{
+	    
 	    OBMDao.getInstance().fechaSession();
 	    Usuario usu = new Usuario();
 	    usu.setNomeGuerra(nomeGuerra);
 	    usu.setNumRegistro(numRegistro);
 	    usu.setObm(cobm);
-
-	    PerfilUsuario p = PerfilUsuarioDao.getInstance().listarPerfilNome(
-		    perfil);
-
 	    usu.setPerfil(p);
 	    usu.setEmail(email);
 	    usu.setStatus(status);
