@@ -17,3 +17,8 @@ Botão "Localizar no mapa" ao lado de nro. complemento. Abriria um popup do Googl
 --> Cadastro de Viaturas
 Lista - Como fazer a lista. Atualmente tem parametros.
 
+--> IniciarTelaVitimas
+Tenho que colocar <input type="hidden" name="atendimentoAtual" value="${atendimentoAtual}"/> no botão 
+deletar da página desta forma:
+<a href="CrudVitima?operacaoARealizar=3&registroVitima=<%=vitima.getId()%>&atendimentoAtual<%=########%>" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a> -->
+Onde #### seria o valor. De onde vem este valor.
