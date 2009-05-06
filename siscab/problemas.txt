@@ -3,22 +3,17 @@
 2. Não sei fazer mostrar estes dados no balão. Só sei passar os dados do endereço.
 
 --> Situação Viaturas
-Quem é esse cara. Quem é o servlet dele. 
+Quem é esse cara. Quem é o servlet dele. (ESTE CASO DE USO NÃO ESTÁ NOS 17 PREVISTOS)
 
 --> OBM
 Botão "Localizar no mapa" ao lado de nro. complemento. Abriria um popup do Google Maps.
 
 --> Acompanhar Atendimento
 1. OBM responsável
-2. Editar está bugado. Status ganha null e dá Exception.
+2. Editar está bugado. Status ganha null e dá Exception. (FALTAVAM PARAMETROS NA NOVA TELA QUE ERAM OBRIGATORIOS PARA O UPDATE)
 3. Movimentações em viaturas empenhadas (Viaturas empenhadas neste atendimento)
 4. Numero Atendimento - Despachar viatura
 
 --> Cadastro de Viaturas
-Lista - Como fazer a lista. Atualmente tem parametros.
+Lista - Como fazer a lista. Atualmente tem parametros. COrrigido!
 
---> IniciarTelaVitimas
-Tenho que colocar <input type="hidden" name="atendimentoAtual" value="${atendimentoAtual}"/> no botão 
-deletar da página desta forma:
-<a href="CrudVitima?operacaoARealizar=3&registroVitima=<%=vitima.getId()%>&atendimentoAtual<%=########%>" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a> -->
-Onde #### seria o valor. De onde vem este valor.
