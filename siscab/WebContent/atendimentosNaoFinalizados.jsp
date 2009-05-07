@@ -40,7 +40,7 @@
 						
 						<h2>Atendimentos :: Acompanhar Atendimento</h2>
 						
-						<!-- OBM Responsável: <strong><%//=atendimentos.getObm_id().getNome()%></strong> -->
+						OBM Responsável: <strong>${obm} </strong>
 						
 						<fieldset style="width:780px"><legend>&nbsp;Atendimentos não finalizados desta OBM&nbsp;</legend>
 				

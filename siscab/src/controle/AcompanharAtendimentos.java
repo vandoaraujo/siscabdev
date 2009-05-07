@@ -73,6 +73,7 @@ public class AcompanharAtendimentos extends HttpServlet {
 	    logger.info("Qtd atendimentos " + atendimentos.size());
 
 	    request.setAttribute("atendimentos", atendimentos);
+	    request.setAttribute("obm", usuario.getObm().getNome() );
 	    view = request
 		    .getRequestDispatcher("/atendimentosNaoFinalizados.jsp");
 
