@@ -71,7 +71,7 @@ public class CRUDViatura extends HttpServlet {
 	// Viatura que realizou atendimento não pode ser excluida
 	List<Viatura> viaturas = MovimentaViaturaDao.getInstance()
 		.ListarViaturasRealizaramAtendimento(via.getId());
-	if (viaturas != null) {
+	if (!viaturas.isEmpty()) {
 	    despacha(request, response, "Em atendimento Exclusao",
 		    numeroViatura);
 	} else {
