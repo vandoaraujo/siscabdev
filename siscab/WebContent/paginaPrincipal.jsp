@@ -97,7 +97,7 @@ String grava = data.format(cal.getTime());
 								<tr>
 									<td>
 									<%
-									 List<Atendimento> atendimentoPendente = AtendimentoDao.getInstance().listarAtendimentosNaoFinalizados();
+									 List<Atendimento> atendimentoPendente = AtendimentoDao.getInstance().listarAtendimentoPendentes();
 									 for(Atendimento a: atendimentoPendente){												 		
 								 		 	%><a href="#" onclick="showLocation2('Atendimento Pendente','><%=a.getLogradouro() %> <%=a.getNumcompl() %> <%=a.getBairro() %> <%=a.getMunicipio_id().getMunicipio_nome() %> RJ Brasil', 'Nº Atendimento: <%=a.getAtendimento_numero() %>','Logradouro: <%=a.getLogradouro() %>', 'Nº: <%=a.getNumcompl() %>', 'Bairro: <%=a.getBairro() %>' ,'Município: <%=a.getMunicipio_id().getMunicipio_nome() %>')">
 									 		 	<%=a.getAtendimento_numero()%> -

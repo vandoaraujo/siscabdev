@@ -91,7 +91,17 @@ public class AtendimentoDao {
 
 	List<Atendimento> atendimentos = session
 		.createQuery(
-			"from modelo.Atendimento a where a.status_atendimento <> 'Em andamento'")
+			"from modelo.Atendimento a where a.status_atendimento = 'Em andamento'")
+		.list();
+	return atendimentos;
+
+    }
+    
+    public List<Atendimento> listarAtendimentoPendentes() {
+
+	List<Atendimento> atendimentos = session
+		.createQuery(
+			"from modelo.Atendimento a where a.status_atendimento = 'Pendente'")
 		.list();
 	return atendimentos;
 

@@ -114,7 +114,7 @@ function campoObrigatorio()
 
 					<tr>
 						<td><label>Senha:</label></td>
-						<td><input name="senha" type="text" /> * </td>
+						<td><input name="senha" type="password" /> * </td>
 					</tr>
 					<tr>
 						<td colspan="2">
