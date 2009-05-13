@@ -60,12 +60,12 @@ function habilitaCombo(priID, prstHabilita){
 									<table>						
 										<tr>
 											<td nowrap="nowrap">Numero do Chamado:</td>
-											<td><input name="idChamado" type="text" readonly="readonly" value="${idChamado}"></td>
+											<td>${idChamado}</td>
 										</tr>
 
 										<%! String grava = null;%>
 										
-											<% SimpleDateFormat data = new SimpleDateFormat("HH:mm");
+											<% SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 													Calendar cal = Calendar.getInstance(); 
 													grava = data.format(cal.getTimeInMillis());  %>						
 									
@@ -79,7 +79,7 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>-->
 										<tr>
 											<td>Obm que atendeu:</td>
-											<td><input name="obmUsuario" type="text" readonly="readonly" value="${usuario.obm.nome}"></td>
+											<td>${usuario.obm.nome}</td>
 										</tr>
 										<tr>
 											<td>Origem:</td>
@@ -142,7 +142,7 @@ function habilitaCombo(priID, prstHabilita){
 											<%	} else {  %>																													
 											<select name="obmRepassaAtendimento" id="obmRepassaAtendimento">
 											<%
-											List<OBM> obm = OBMDao.getInstance().listarOBMsAtivas();
+											List<OBM> obm = OBMDao.getInstance().listarTodasOBMsExcetoCOCB();
 									
 											for(int i=0;i<obm.size();i++){
 												out.print("<option>"+obm.get(i).getNome().toString());

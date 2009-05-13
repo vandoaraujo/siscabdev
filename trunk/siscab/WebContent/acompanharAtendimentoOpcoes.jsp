@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,modelo.Usuario,modelo.Atendimento, modelo.OBM" %>
 <%@ page import="java.util.ArrayList" %>
+<%@	page import="java.text.SimpleDateFormat" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +15,9 @@
 </head>
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
-<%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
+<%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); 
+String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
+%>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
@@ -128,11 +132,11 @@
 											</tr>
 											<tr>
 												<td>Data/Hora Inicio:</td>
-												<td><%=atendimento.getChamado_id().getHorainicio()%></td>
+												<td><%=new SimpleDateFormat(FORMATACAO_DATA).format(atendimento.getChamado_id().getHorainicio())%></td>
 											</tr>
 											<tr>
 												<td>Data/Hora Fim:</td>
-												<td><%=atendimento.getChamado_id().getHoratermino()%></td>
+												<td><%= new SimpleDateFormat(FORMATACAO_DATA).format(atendimento.getChamado_id().getHoratermino())%></td>
 											</tr>
 											<tr>
 												<td>OBM que atendeu:</div></td>

@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Chamado;
 import modelo.Municipio;
+import modelo.OBM;
 import modelo.Usuario;
 
 import org.apache.log4j.Logger;
 
 import dao.ChamadoDao;
 import dao.MunicipioDao;
+import dao.OBMDao;
 import dao.UsuarioDao;
 
 /**
@@ -30,6 +32,7 @@ public class RegistrarChamado extends HttpServlet {
     private static final long serialVersionUID = 1L;
     RequestDispatcher view;
     static Logger logger = Logger.getLogger(RegistrarChamado.class);
+    List<OBM> obms = null;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -83,7 +86,7 @@ public class RegistrarChamado extends HttpServlet {
 
 	    // Artificio para guardar a hora inicial
 	    Chamado.setDataHoraInicioChamado();
-
+	    
 	    request.setAttribute("municipios", municipios);
 	    request.setAttribute("usuario", u);
 	    request.setAttribute("idChamado", id);
