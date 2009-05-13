@@ -46,14 +46,7 @@ public class CrudVitima extends HttpServlet {
 
     private void alterar(HttpServletRequest request,
 	    HttpServletResponse response, int registroVitima) {
-	
-	nome = request.getParameter("nome");
-	idade = Integer.parseInt(request.getParameter("idade"));
-	sexo = request.getParameter("sexo");
-	cor = request.getParameter("cor");
-	situacaoVitima = request.getParameter("situacaoVitima");
-	hospitalDestino = request.getParameter("hospital");
-	
+
 	Atendimento atendimento = AtendimentoDao.getInstance()
 		.BuscaAtendimentoId(atendimentoAtualId);
 
@@ -167,6 +160,12 @@ public class CrudVitima extends HttpServlet {
 	    HttpServletResponse response) throws ServletException, IOException {
 
 	logger.info(getServletName());
+	nome = request.getParameter("nome");
+	idade = Integer.parseInt(request.getParameter("idade"));
+	sexo = request.getParameter("sexo");
+	cor = request.getParameter("cor");
+	situacaoVitima = request.getParameter("situacaoVitima");
+	hospitalDestino = request.getParameter("hospital");
 	registroVitima = Integer.parseInt(request
 		.getParameter("registroVitima"));
 	int operacao = Integer.parseInt(request
@@ -192,13 +191,6 @@ public class CrudVitima extends HttpServlet {
     protected void salvar(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
 
-	nome = request.getParameter("nome");
-	idade = Integer.parseInt(request.getParameter("idade"));
-	sexo = request.getParameter("sexo");
-	cor = request.getParameter("cor");
-	situacaoVitima = request.getParameter("situacaoVitima");
-	hospitalDestino = request.getParameter("hospital");
-	
 	Atendimento atendimento = AtendimentoDao.getInstance()
 		.BuscaAtendimentoId(atendimentoAtualId);
 

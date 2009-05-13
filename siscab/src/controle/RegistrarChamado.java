@@ -89,7 +89,7 @@ public class RegistrarChamado extends HttpServlet {
 	    request.setAttribute("idChamado", id);
 	    request.setAttribute("gravaData", horaData);
 
-	    view = request.getRequestDispatcher("/RegistrarChamado1.jsp");
+	    view = request.getRequestDispatcher("/registrarChamado2.jsp");
 
 	}
 
