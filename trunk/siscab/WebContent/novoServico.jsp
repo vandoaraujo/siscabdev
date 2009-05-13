@@ -38,7 +38,10 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Incluir Servico&nbsp;</legend>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Serviços Executados :: Incluir Serviço</h2>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Dados do novo serviço&nbsp;</legend>
 							
 							<form action="ControlaServico" method="post">
 								
@@ -52,7 +55,7 @@
 											for(int i=0;i<tipos.size();i++){
 												out.print("<option>"+tipos.get(i).getTiposervico_descricao());
 						 					}
-												out.println("</select>");
+												out.println("</select> *");
 		 								%>
 		 							</td>
 		 						</tr>	
@@ -66,7 +69,8 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
+										<input type="submit" value="Salvar" onclick="this.form.operacaoARealizar.value=1"/>
+										<input type="button" value="Voltar" onclick="history.back()" />
 										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroServico" value ="1">
 									</td>								

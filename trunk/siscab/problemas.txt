@@ -1,0 +1,16 @@
+--> Situação Atendimento
+1. Balão com nº de atendimento, tipo ocorrência, bairro, municipio e endereço.
+2. Não sei fazer mostrar estes dados no balão. Só sei passar os dados do endereço.
+3. showLocation2
+
+--> OBM
+Botão "Localizar no mapa" ao lado de nro. complemento. Abriria um popup do Google Maps.
+
+
+--> EfetivaRepasseAtendimento
+Falta H3 ###################### OK
+Botão Voltar ################## OK
+
+
+
+

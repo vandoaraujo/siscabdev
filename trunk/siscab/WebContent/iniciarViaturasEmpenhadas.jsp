@@ -50,7 +50,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-					<fieldset style="width:90px"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
+					<fieldset style="width:95%"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
 								
 								<form action="NovaMovimentacaoViatura" method="post">
 								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
@@ -65,9 +65,9 @@
 										%>
 										
 										<tr bgcolor="#FFFFFF">
-										  	<th>Tipo/Número</th>
+										  	<th width="200px">Tipo/Número</th>
 										  	<th>Movimentações</th>
-										  	<th>Opções</th>
+										  	<th width="200px">Opções</th>
 										</tr>
 									
 										<%										
@@ -90,8 +90,7 @@
 									    	</td>
 									    	<!--  Aqui deveria entrar a lista de movimentações  -->
 									    	<td>									    						    
-									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a>
-									    		<br />
+									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a> 									    	
 									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2"><img src="img/btnLiberarViatura.gif" border="0"></a>
 									       	</td>
 									    </tr>								    										
