@@ -43,7 +43,7 @@
  Número de atendimento =<font color="blue"> ${numeroAtendimento} </font> 
 <br>
 
-	<form action="RegistrarChamado" method="post" style="display:inline;">
+	<form action="paginaPrincipal.jsp" style="display:inline;">
 				 				<input type="submit" value="Voltar"/>
 				 			</form>	
 																																										
