@@ -37,60 +37,52 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						
-						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Serviços Executados</h2>
-						
-						<fieldset style="width:200px"><legend>&nbsp;Opções&nbsp;</legend>
-							<a href="novoServico.jsp?registroAtendimento=<%= request.getSession().getAttribute("registroAtendimento")%>&numeroAtendimento=<%= request.getSession().getAttribute("numeroAtendimento")%>">Incluir Serviço</a>
+						<fieldset style="width:200px"><legend>&nbsp;Serviços&nbsp;</legend>
+							<a href="novoServico.jsp?registroAtendimento=<%= request.getSession().getAttribute("registroAtendimento")%>&numeroAtendimento=<%= request.getSession().getAttribute("numeroAtendimento")%>">Adicionar Serviço</a>
 						</fieldset>										
 					</td>
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
 						<fieldset style="width:450px"><legend>&nbsp;Lista de Servicos Cadastrados&nbsp;</legend>						
-								
-								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
-								<% ArrayList servicos=(ArrayList<ServicoRealizado>) request.getSession().getAttribute("servicos");
+								<table border="0" cellpadding="0" cellspacing="3" width="100%">
+								<tr>
+									<td>
+									<% ArrayList servicos=(ArrayList<ServicoRealizado>) request.getSession().getAttribute("servicos");
 									%>
 									
-									<%if(servicos.size()== 0){ %>
-								     <div style="color:red"> Nenhum serviço cadastrado </div>
+									<% if(servicos.size()== 0){ %>
+									     <div style="color:red"> Nenhum serviço cadastrado </div>
 									   
 									<%} else{
 										
-										%>
 										
-										<tr bgcolor="#FFFFFF">
-										  	<th>Tipo de Serviço</th>
-										  	<th>Opções</th>
-										</tr>
-									
-										<%										
 										for(int i=0;i<servicos.size();i++){
 											ServicoRealizado serv =(ServicoRealizado)servicos.get(i);
+												 %> 
 									    
-									    if (i%2==0){
-									    %> 									    									  									    
-									     <tr bgcolor="#EFEFEF">
-									     <%}else{ %>
+							    <tr>
+								    <td>		     
+									     Clique no serviço para deletá-lo<br>
 									     
-									     <tr bgcolor="#F9D8D0">
-									     <%} %>
-									    	<td><%=serv.getTiposervico().getTiposervico_descricao()%></td>
-									    	<td>
-									    		<a href="ControlaServico?registroServico=<%=serv.getId()%>&operacaoARealizar=3&idAtendimento=${registroAtendimento}"><img src="img/btnExcluir.gif" border="0"></a>
-									       	</td>
-									    </tr>								    										
-									   <%} 
+									    <%= i+1 %> :: NumeroServico = <a href="ControlaServico?registroServico=<%=serv.getId()%>&operacaoARealizar=3&numeroAtendimento=<%= request.getSession().getAttribute("registroAtendimento")%>"><%= serv.getTiposervico().getTiposervico_descricao() %></a>
+								    </td>
+							    </tr>
+							   <%} 
+										
+										
 									}%>
-							</table>																     									   
-									
+
+								<tr>
+									<td>																		
+										<form action="AcompanharAtendimentos" method="post">
+							 				<input type="submit" value="Voltar"/>
+							 			</form>	
+									</td>								
+								</tr>
+								</table>
 						</fieldset>	
-						<br />																
-						<form action="AcompanharAtendimentos" method="post">
-			 				<input type="submit" value="Voltar"/>
-			 			</form>	
-					</td>									
+					</td>
 				</tr>				
 			</table>
 		</td>

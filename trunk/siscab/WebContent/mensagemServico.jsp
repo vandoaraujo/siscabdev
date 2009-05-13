@@ -37,13 +37,10 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						
-						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Serviços Executados</h2>
-						
 						<fieldset style="width:450px"><legend>&nbsp;Serviço&nbsp;</legend>
-							<div style="color:red; display:inline">${mensagem}</div>
+							Servico executado: ${descricaoServico}, <div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-							<input type="button" value="Voltar" onclick="history.back()" />																						
+																													
 						</fieldset>	
 					</td>
 				</tr>				
