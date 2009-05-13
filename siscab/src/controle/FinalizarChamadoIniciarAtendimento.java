@@ -59,8 +59,6 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
     private String obmRepassaAtendimento;
     private float coordX;
     private float coordY;
-    private String logradouro;
-    private int numComplemento;
     private String status;
     private Atendimento atendimento;
     static Logger logger = Logger.getLogger(FinalizarChamadoIniciarAtendimento.class);
@@ -73,21 +71,6 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	// TODO Auto-generated constructor stub
     }
     
-    
-    private void buscaChamadosProximos() throws ServletException, IOException {
-
-	Municipio mun = MunicipioDao.getInstance().listarMunicipioNome(
-		municipio);
-	List<Atendimento> at = AtendimentoDao.getInstance()
-		.listarOcorrenciasProximas(mun.getId(), bairro);
-	request.setAttribute("municipio", municipio);
-	request.setAttribute("listaAtendimentosProximos", at);
-	RequestDispatcher view = request
-		.getRequestDispatcher("/ProcurarOcorrenciasProximas.jsp");
-	view.forward(request, response);
-
-    }
-
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -371,6 +354,21 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 
 	// Busca ultimo chamado na transacao corrente
 	chamado = ChamadoDao.getInstance().BuscaChamadoId(numeroGeradoChamado);
+    }
+    
+    
+    private void buscaChamadosProximos() throws ServletException, IOException {
+
+	Municipio mun = MunicipioDao.getInstance().listarMunicipioNome(
+		municipio);
+	List<Atendimento> at = AtendimentoDao.getInstance()
+		.listarOcorrenciasProximas(mun.getId(), bairro);
+	request.setAttribute("municipio", municipio);
+	request.setAttribute("listaAtendimentosProximos", at);
+	RequestDispatcher view = request
+		.getRequestDispatcher("/ProcurarOcorrenciasProximas.jsp");
+	view.forward(request, response);
+
     }
 
 }

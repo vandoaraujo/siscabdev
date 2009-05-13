@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,modelo.OBM,modelo.Usuario,modelo.Viatura,modelo.Atendimento,modelo.MovimentaViatura,dao.MovimentaViaturaDao" %>
 <%@ page import="java.util.ArrayList" %>
+<%@	page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +17,10 @@
 %>
 
 <script language="JavaScript1.2">mmLoadMenus();</script>
-<%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
+<%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); 
+  String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
+
+%>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr style="background-image:url(img/back_cabecalho.jpg); background-repeat:repeat-x;">
@@ -50,7 +54,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-					<fieldset style="width:90px"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
+					<fieldset style="width:800px"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
 								
 								<form action="NovaMovimentacaoViatura" method="post">
 								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
@@ -79,17 +83,18 @@
 									     <tr bgcolor="#EFEFEF">
 									     <%}else{ %>
 									     
-									     <tr bgcolor="#F9D8D0">
+									     <tr bgcolor="#F9D8D0" style=" height : 57px;">
 									     <%} %>
-									    	<td><%=via.getTipo_viatura().getTipoviatura_descricao()%></td>
-									    	<td><% List <MovimentaViatura> movimentacoes =  MovimentaViaturaDao.getInstance().listaTiposEventosViaturaAtendimento(at.getId(),via.getId());
+									    	<td style=" width : 159px;"><%=via.getTipo_viatura().getTipoviatura_descricao()%></td>
+									    	<td style=" width : 230px;"><% List <MovimentaViatura> movimentacoes =  MovimentaViaturaDao.getInstance().listaTiposEventosViaturaAtendimento(at.getId(),via.getId());
 									    	for(int j = 0 ; j<movimentacoes.size();j++){
-									    		out.println(movimentacoes.get(j).getMovimentaviatura_tipoevento() + "<br>");
+									    		  
+									    		out.println(new SimpleDateFormat(FORMATACAO_DATA).format(movimentacoes.get(j).getMovimentaviatura_horaEvento()) + " - "  + movimentacoes.get(j).getMovimentaviatura_tipoevento() + "<br>");
 									    	}
 									    	%>
 									    	</td>
 									    	<!--  Aqui deveria entrar a lista de movimentações  -->
-									    	<td>									    						    
+									    	<td style=" width : 192px;">									    						    
 									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a>
 									    		<br />
 									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2"><img src="img/btnLiberarViatura.gif" border="0"></a>

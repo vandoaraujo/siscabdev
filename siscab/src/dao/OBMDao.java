@@ -89,6 +89,13 @@ public class OBMDao {
 	return l;
 
     }
+    
+    public List<OBM> listarCOCB() {
+	List<OBM> l = session.createQuery(
+		"from modelo.OBM where id = 1").list();
+	return l;
+
+    }
 
     public void salvar(OBM area) {
 
