@@ -27,7 +27,6 @@ public class ControlaServico extends HttpServlet {
     private int registroAtendimento;
     private String tipoServico;
     private int registroServico;
-    private int numeroAtendimento;
 
     static Logger logger = Logger.getLogger(ControlaServico.class);
 
@@ -61,7 +60,7 @@ public class ControlaServico extends HttpServlet {
 	request.setAttribute("descricaoServico", descricaoServico);
 	if (string.equals("salvar")) {
 
-	    request.setAttribute("mensagem", "salvo com sucesso!!");
+	    request.setAttribute("mensagem", "Serviço foi incluído na lista.");
 
 	} else if(string.equals("tipoServicoRepetido")){
 	    
@@ -69,7 +68,7 @@ public class ControlaServico extends HttpServlet {
 
 	}
 	else {
-	    request.setAttribute("mensagem", "deletado com sucesso!!");
+	    request.setAttribute("mensagem", "Serviço foi excluído da lista.");
 	}
 	
 	
@@ -112,8 +111,6 @@ public class ControlaServico extends HttpServlet {
 	tipoServico = request.getParameter("tipoServico");
 	registroAtendimento = Integer.parseInt(request
 		.getParameter("idAtendimento"));
-	numeroAtendimento = Integer.parseInt(request
-		.getParameter("numeroAtendimento")); // nao utilizado
 	registroServico = Integer.parseInt(request
 		.getParameter("registroServico"));
 	int operacao = Integer.parseInt(request

@@ -38,7 +38,10 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Finalizar Atendimento</h2>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Finalização de atendimento&nbsp;</legend>
 							
 							<form action="FinalizaAtendimentoPorModoFechamento" method="post">
 								
@@ -52,7 +55,7 @@
 											for(int i=0;i<tipos.size();i++){
 												out.print("<option>"+tipos.get(i).getDescricao());
 						 				}
-												out.println("</select>");
+												out.println("</select> *");
 									%>
 									</td>
 								</tr>	
@@ -67,7 +70,8 @@
 								
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Finalizar Chamado" />					 		 										
+										<input type="submit" value="Salvar" />
+										<input type="button" value="Voltar" onclick="history.back()" />					 		 										
 									</td>								
 								</tr>
 								</table>

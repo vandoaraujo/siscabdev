@@ -47,12 +47,7 @@ function clicked(overlay, latlng) {
 function showLocation2(prstOrigem, prstValor, nome, logradouro, numero, bairro, municipio) {				
 	message  = "Não foi possível Geocodificar o endereço informado.";
 	geocoder.getLocations(prstValor, addAddressesToMap);
-	document.getElementById("label").innerHTML = prstOrigem;
-	document.getElementById("nome").innerHTML = nome;
-	document.getElementById("logradouro").innerHTML = logradouro;
-	document.getElementById("numero").innerHTML = numero;
-	document.getElementById("bairro").innerHTML = bairro;
-	document.getElementById("municipio").innerHTML = municipio;
+
 }
 
 function showLocation() {				
@@ -102,8 +97,8 @@ function addAddressesToMap(addresses) {
 	                        + accuracies[accuracy].desc + ")"  + "<br/>"
 	         + "LatLng: " + point.lat() + ", " + point.lng();
 
-	CoordX  = point.lat();
-	CoordY  = point.lng();
+	CoordX  = "Latitude: " + point.lat();
+	CoordY  = "Longitude: " + point.lng();
 	
 	document.getElementById("CoordX").innerHTML = CoordX;
 	document.getElementById("CoordY").innerHTML = CoordY;
