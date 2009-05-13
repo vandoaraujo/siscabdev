@@ -38,7 +38,7 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 						<fieldset style="width:450px"><legend>&nbsp;Viatura&nbsp;</legend>
-							<div style="color:red; display:inline">${mensagem}</div>
+							Vitima ${nomeVitima}, <div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
 					    </fieldset>	
 					</td>

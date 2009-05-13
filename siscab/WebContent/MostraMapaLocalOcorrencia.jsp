@@ -12,15 +12,7 @@
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
 	<script id="api" type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA1rJRd_d6NTBRsxYq3I7erBSVPiKh14QUveM1LzMKfwwniz5cMBRktlNQQD2Mh4zRyiEDe7djlt6huA"></script>
-
-<script language="JavaScript">
-function Transfere_Coordenadas()
-{
-	window.opener.getElementById("CoordX").value = "ola"; //document.form.getElementById("CoordX").value;
-	//window.opener.form.getElementById("CoordY").value = document.form.getElementById("CoordY").value;
-	window.close();
-}
-</script>																									  
+																									  
 </head>
 <body onload="init();" onunload="GUnload()">
 <script language="JavaScript1.2">mmLoadMenus();</script>
@@ -61,33 +53,90 @@ function Transfere_Coordenadas()
 								</td>
 							</tr>
 						</table>
-							<form name="form" method="post">
+	
+						<%!String municipio=null;%>
+						
+						<%
+													municipio = (String)request.getAttribute("municipio");
+												%>
+						
+							<form action="FinalizarChamadoIniciarAtendimento" onsubmit="showAddress(this.address.value); return false" method="post">
 								<table>
 									<tr>
 										<td>
-											<div id="CoordX"></div>
+											CoordX: <div id="CoordX"></div>
 										</td>
 										<td>	
-											<div id="CoordY"></div>
+											CoordY: <div id="CoordY"></div>
 										</td>
 									</tr>
 									<tr>
+										<td colspan="2"><hr></td>
+									</tr>
+									<tr>
+										<td>Origem do Chamado:</td>
+										<td><input name="origemChamado" type="text" readonly="readonly" value="${origemChamado}"></td>
+									</tr>
+									<tr>
+										<td>Nome do Solicitante:</td>
+										<td><input name="nomeSolicitante" type="text" readonly="readonly" value="${nomeSolicitante}"></td>
+									</tr>
+									<tr>
+										<td>Telefone:</td>
+										<td><input name="telefone" type="text" readonly="readonly" value="${telefone}"></td>
+									</tr>
+									<tr>
+										<td>Número Aproximado de Vitimas:</td>
+										<td><input name="numAproxVitimas" type="text" readonly="readonly" value="${aproxVitimas}"></td>
+									</tr>
+									<tr>
+										<td>Obm Solicitada:</td>
+										<td><input name="obmSolicitada" type="text" readonly="readonly" value="${nomeObmUsuario}"></td>
+									</tr>
+									<tr>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Município:</td>
+										<td><select name="municipio">
+									 					<option>${municipio}</option>
+														</select>
+										</td>
+								    <tr>
+										<td>Natureza Chamado:</td>
+										<td><select name="naturezaChamado">
+			 								<%
+			 									List<NaturezaChamado> tipos = NaturezaChamadoDao.getInstance().listarTodasNaturezasChamado();
+			 									 																		for(int i=0;i<tipos.size();i++){
+			 									 																			out.print("<option>"+tipos.get(i).getNaturezachamado_descricao());
+			 									 													 				}
+			 									 																			out.println("</select>");
+			 								%></td>
+									</tr>
+									<tr>
 										<td>												
+										<input name="bairro" type="hidden" readonly="readonly" value="${bairro}">
+										<input name="infoComplementares" type="hidden" readonly="readonly" value="${infoComplementares}">
+										<input name="numeroChamado" type="hidden" readonly="readonly" value="${numeroChamado}">
 										<input type="hidden" name="q" id="q" value=">${endereco} ${numero} ${bairro} ${municipio} RJ Brasil ">
+										<input type="submit" value="Finalizar Chamado" onclick="Coordenadas(); this.form.operacaoARealizar.value=1" >
+										<input type="hidden" name="operacaoARealizar" value ="">
+										<input type="hidden" name="endereco" value ="${endereco}">
 										
 										<script>
 										function Coordenadas(){
 											var CoordX = document.getElementById('CoordX').innerHTML;
-											var CoordY = document.getElementById('CoordY').innerHTML;																						
-											document.getElementById('hiddenCoordX').value = CoordX;
+											var CoordY = document.getElementById('CoordY').innerHTML;
 											document.getElementById('hiddenCoordY').value = CoordY;
+											document.getElementById('hiddenCoordX').value = CoordX;
 										}
 										</script>
 										
 										<input type="hidden" name="hiddenCoordX" id="hiddenCoordX">
 										<input type="hidden" name="hiddenCoordY" id="hiddenCoordY">
-										<input type="button" value="Confirmar Coordenadas Geográficas" onclick="Transfere_Coordenadas()">
-
+										
+										<input type="hidden" name="numero" value ="${numero}">
+										<input type="hidden" name="registroOcorrencia" value ="1">
 										</td>
 									</tr> 
 									</table>
