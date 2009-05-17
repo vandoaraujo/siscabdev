@@ -59,11 +59,28 @@ function campoObrigatorio()
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Nº Viatura:</label></td>
+									<td><label>Tipo:</label></td>
+									<td>
+										<select name="tipoViatura">
+										<% Viatura v =(Viatura) request.getAttribute("viaturaAtual"); %> 
+										<option selected> <%= v.getTipo_viatura().getTipoviatura_descricao().toString() %>
+										
+		 								<% 
+											List<TipoViatura> tipos = TipoViaturaDao.getInstance().listarTodosTiposViaturas();
+											for(int i=0;i<tipos.size();i++){
+												if(!v.getTipo_viatura().getTipoviatura_descricao().toString().equals(tipos.get(i).getTipoviatura_descricao().toString())){
+												out.print("<option>"+tipos.get(i).getTipoviatura_descricao().toString());
+												}
+						 				}
+												out.println("</select> *");
+									%></td>
+								</tr>	
+								<tr>
+									<td><label>Número:</label></td>
 									<td><input name="numero" type="text" value ="${viaturaAtual.numero}" maxlength="3" /> *</td>								
 								</tr>
 								<tr>
-									<td><label>Obm:</label></td>
+									<td><label>OBM Responsável:</label></td>
 									<td>
 										<select name="obm">
 										<option selected>${viaturaAtual.obm.nome}</option>
@@ -78,7 +95,7 @@ function campoObrigatorio()
 									</td>								
 								</tr>
 								<tr>
-									<td><label>Status Viatura:</label></td>
+									<td><label>Status:</label></td>
 									<td>
 										<select name="status">
 										<option selected>${viaturaAtual.viatura_status}</option>
@@ -89,35 +106,18 @@ function campoObrigatorio()
 										</select> *									
 									</td>								
 								</tr>
-								
-								<tr>
-									<td><label>Tipo Viatura:</label></td>
-									<td>
-										<select name="tipoViatura">
-										<% Viatura v =(Viatura) request.getAttribute("viaturaAtual"); %> 
-										<option selected> <%= v.getTipo_viatura().getTipoviatura_descricao().toString() %>
-										
-		 								<% 
-											List<TipoViatura> tipos = TipoViaturaDao.getInstance().listarTodosTiposViaturas();
-											for(int i=0;i<tipos.size();i++){
-												if(!v.getTipo_viatura().getTipoviatura_descricao().toString().equals(tipos.get(i).getTipoviatura_descricao().toString())){
-												out.print("<option>"+tipos.get(i).getTipoviatura_descricao().toString());
-												}
-						 				}
-												out.println("</select> *");
-									%></td></tr>	
-								<tr>
-									<td><label>Obs. Viatura</label></td>
+								<tr>								
+									<td><label>Observações:</label></td>
 									<td><TEXTAREA COLS=40 ROWS=5 NAME="obsViatura">${viaturaAtual.viatura_obs}</TEXTAREA></td>								
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Alterar" onclick="return campoObrigatorio()"/>
+										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>
    									    <input type="hidden" name="operacaoARealizar" value ="2">
 								 		<input type="hidden" name="registroViatura" value ="${viaturaAtual.id}"> 
 										</form>	
 										<form action="ViaturasControle" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
+							 				<input type="submit" value="Cancelar"/>
 							 			</form>	
 									</td>								
 								</tr>

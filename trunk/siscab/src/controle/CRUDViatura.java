@@ -117,7 +117,7 @@ public class CRUDViatura extends HttpServlet {
 		    "O número da viatura deve conter no máximo 3 caracteres!");
 	}
 	else {
-	    request.setAttribute("mensagem", "Viatura foi excluída com sucesso.");
+	    request.setAttribute("mensagem", "Viatura foi excluída do cadastro.");
 	}
 
 	view = request.getRequestDispatcher("/mensagemViatura.jsp");

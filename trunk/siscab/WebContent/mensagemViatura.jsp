@@ -44,7 +44,7 @@
 							<div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
 								<form action="ViaturasControle" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
+							 				<input type="submit" value="OK"/>
 							 			</form>																											
 						</fieldset>	
 					</td>

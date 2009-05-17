@@ -65,6 +65,8 @@ function campoObrigatorio()
 							
 							<form name="form" action="CrudOBM" method="post">
 								
+								Ver tamanho dos campos
+								Incluir botão para localização das coordenadas
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
@@ -92,37 +94,38 @@ function campoObrigatorio()
 									<td><input name="logradouro" type="text" size=40/> * </td>
 								</tr>
 								<tr>	
-									<td><label>Num. Complemento:</label></td>
+									<td><label>Nº/Complemento:</label></td>
 									<td><input name="numComplemento" type="text" size=40/> * </td>
 								</tr>
 								<tr>	
-									<td><label>Coord. X:</label></td>
+									<td><label>Latitude:</label></td>
 									<td><input name="coordX" type="text" size=40 onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>	
-									<td><label>Coord. Y:</label></td>
+									<td><label>Longitude:</label></td>
 									<td><input name="coordY" type="text" size=40 onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Status:</label></td>
-									<td>
+									<td>Dropdownlist
 										Ativa:<input name="statusObm" type="radio" value="ativa" checked>&nbsp;&nbsp;&nbsp;
 								 		Inativa: <input name="statusObm" type="radio" value="inativa"/> *
 									</td>	
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Incluir" onclick="return campoObrigatorio()"/>
+										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>
 										<input type="hidden" name="operacaoARealizar" value ="1">
 								 		<input type="hidden" name="registroOBM" value ="1">
 								 		</form>
 								 		<form action="ObmControle" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
+							 				<input type="submit" value="Cancelar"/>
 							 			</form>							 										
 									</td>								
-								</tr>
-								<tr>																																							
+								</tr>	
+								</table>																																													
 						</fieldset>	
+						( * ) Campos obrigatórios
 					</td>
 				</tr>				
 			</table>

@@ -55,17 +55,17 @@ function campoObrigatorio()
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 						<div><font color="red">${parametrosVazios}</font></div>
 						
-						<h2>Atendimentos :: Cadastro de Usuários :: Procurar Usuários</h2>
+						<h2>Administração :: Cadastro de Usuários :: Procurar Usuários</h2>
 						<fieldset style="width:450px"><legend>&nbsp;Informe os parâmetros de busca&nbsp;</legend>						
 								<form name="form" action="BuscarUsuario" method="post">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Nº de Registro:</label></td>
+									<td><label>Número de Registro:</label></td>
 									<td><input name="registro" type="text" onkeydown="return SomenteNumeros(event)"/></td>								
 								</tr>
 								<tr>
-									<td><label>Obm:</label></td>
-									<td>
+									<td><label>OBM:</label></td>
+									<td>Fazer javascript para informar pelo menos um dos parâmetros.
 										<select name="obm">
 										<option selected>
 										
@@ -81,10 +81,10 @@ function campoObrigatorio()
 								</tr>
 								<tr>
 									<td colspan="2">																		
-										<input type="submit" name="evento" value="Buscar" onclick="return campoObrigatorio();">
+										<input type="submit" name="evento" value="Procurar" onclick="return campoObrigatorio();">
 										</form>	
 										<form action="AdministracaoUsuario" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
+							 				<input type="submit" value="Cancelar"/>
 							 			</form>	
 									</td>								
 								</tr>

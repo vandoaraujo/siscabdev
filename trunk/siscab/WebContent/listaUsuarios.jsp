@@ -42,7 +42,7 @@
 					
 					<h2>Administração :: Cadastro de Usuários :: Procurar Usuários</h2>
 					
-						<fieldset style="width:50%"><legend>&nbsp;Resultado da Busca&nbsp;</legend>						
+						<fieldset style="width:50%"><legend>&nbsp;Resultado da Procura&nbsp;</legend>						
 
 							<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
 								<% ArrayList usuarios=(ArrayList<Usuario>) request.getAttribute("usuarios");
@@ -88,8 +88,8 @@
 							</table>
 
 							<p><br></p>
-							<form action="buscarUsuario.jsp" method="post">
-							 <input type="submit" value="Voltar"/>
+							<form action="AdministracaoUsuario" method="post">
+							 <input type="submit" value="OK"/>
 							 </form>	
 						</td>								
 					</tr>

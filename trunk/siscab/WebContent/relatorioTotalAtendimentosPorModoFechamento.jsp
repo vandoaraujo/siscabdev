@@ -63,8 +63,7 @@
 									style='width: 330.0pt; border: solid windowtext 1.0pt;'>
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 9px'><b
-									style='mso-bidi-font-weight: normal'><span lang=PT-BR>Modo
-								de Fechamento do Atendimento</span></b></p>
+									style='mso-bidi-font-weight: normal'><span lang=PT-BR>Modo de Fechamento do Atendimento</span></b></p>
 								</td>
 								<td width=104 valign=top
 									style='width: 78.0pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt'>
@@ -223,8 +222,7 @@
 
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in'><b
-									style='mso-bidi-font-weight: normal'><span lang=PT-BR>Total
-								de atendimentos registrados no período</span></b></p>
+									style='mso-bidi-font-weight: normal'><span lang=PT-BR>Total de atendimentos registrados no período</span></b></p>
 								</td>
 								<td width=104 valign=top
 									style='width: 78.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt'>

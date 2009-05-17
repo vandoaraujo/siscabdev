@@ -53,7 +53,7 @@ String grava = data.format(cal.getTime());
 			<tr>
 				<td style="padding-left: 20px; padding-top: 20px;" colspan="2">
 				
-				<h2>Atendimentos :: Painel de Situação de Atendimentos</h2>
+				<h2>Atendimentos :: Painel de Situação dos Atendimentos</h2>
 								
 				<form><input type="hidden" name="q" id="q" value="RJ Brasil">
 				</form>
@@ -97,15 +97,15 @@ String grava = data.format(cal.getTime());
 								<tr>
 									<td>
 									<%
-									 List<Atendimento> atendimentoPendente = AtendimentoDao.getInstance().listarAtendimentoPendentes();
-									 for(Atendimento a: atendimentoPendente){												 		
-								 		 	%><a href="#" onclick="showLocation2('Atendimento Pendente','><%=a.getLogradouro() %> <%=a.getNumcompl() %> <%=a.getBairro() %> <%=a.getMunicipio_id().getMunicipio_nome() %> RJ Brasil', 'Nº Atendimento: <%=a.getAtendimento_numero() %>','Logradouro: <%=a.getLogradouro() %>', 'Nº: <%=a.getNumcompl() %>', 'Bairro: <%=a.getBairro() %>' ,'Município: <%=a.getMunicipio_id().getMunicipio_nome() %>')">
-									 		 	<%=a.getAtendimento_numero()%> -
-									 		 	<%=a.getTipoocorrencia().getTipoocorrencia_descricao()%> -
-									 		 	<%=a.getBairro()%>									 		 	
+									 //List<Atendimento> atendimentoPendente = AtendimentoDao.getInstance().listarAtendimentoPendentes();
+									 //for(Atendimento a: atendimentoPendente){												 		
+								 		 	%><a href="#" onclick="showLocation2('Atendimento Pendente','><%//=a.getLogradouro() %> <%//=a.getNumcompl() %> <%//=a.getBairro() %> <%//=a.getMunicipio_id().getMunicipio_nome() %> RJ Brasil', 'Nº Atendimento: <%//=a.getAtendimento_numero() %>','Logradouro: <%//=a.getLogradouro() %>', 'Nº: <%//=a.getNumcompl() %>', 'Bairro: <%//=a.getBairro() %>' ,'Município: <%//=a.getMunicipio_id().getMunicipio_nome() %>')">
+									 		 	<%//=a.getAtendimento_numero()%> -
+									 		 	<%//=a.getTipoocorrencia().getTipoocorrencia_descricao()%> -
+									 		 	<%//=a.getBairro()%>									 		 	
 								 		 	</a><br>
 									<%
-														}
+										//				}
 														%>
 									</td>
 								</tr>

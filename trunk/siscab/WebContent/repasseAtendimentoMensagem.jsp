@@ -46,9 +46,18 @@
 			</tr>
 			<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
+				
+				<h2>Atendimentos :: Transferir Atendimento</h2>
+				
 				<fieldset style="width: 450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
+				
 				<strong><font color="green">Atendimento transferido para ${obm}.</font></strong>
+				
 				</fieldset>
+				<form action="TransferirAtendimento" method="post">
+					<input type="submit" value="OK">
+				</form>
+				
 				</td>
 			</tr>
 		</table>

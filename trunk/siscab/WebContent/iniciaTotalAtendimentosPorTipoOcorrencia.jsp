@@ -56,11 +56,8 @@
 			<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
 				
-				<h2>Relatórios :: Atendimentos por Tipo de Ocorrência</h2>
-				
-				<br>
-				<div style="color: red; display: inline">${msg}</div>
-				<br>
+				<h2>Relatórios :: Total de Atendimentos por Tipo de Ocorrência</h2>
+								
 				<fieldset style="width: 650px"><legend>&nbsp;Informe o período de referência&nbsp;</legend>
 
 				<form action="TotalAtendimentosPorTipoOcorrencia" method="post">
@@ -83,12 +80,14 @@
 					<tr>
 						<td></td>
 						<td><input type="submit" value="Ver Relatório" />
-						</form>
 						</td>
 					</tr>
-					</td>
-					</tr>
 				</table>
+				</form>
+				</fieldset>
+				<br>
+				<div style="color: red; display: inline">${msg}</div>
+				<br>
 				</td>
 			</tr>
 		</table>

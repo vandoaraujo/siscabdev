@@ -55,7 +55,7 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 					
-					<h2>Relatórios :: Atendimentos por Tipo de Ocorrência</h2>
+					<h2>Relatórios :: Total de Atendimentos por Tipo de Ocorrência</h2>
 
 
 				<fieldset style="width: 900px"><legend>&nbsp;Período
@@ -70,8 +70,7 @@
 									style='width: 330.0pt; border: solid windowtext 1.0pt;'>
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 9px'><b
-									style='mso-bidi-font-weight: normal'><span lang=PT-BR>Tipos
-								de Ocorrência do Atendimento</span></b></p>
+									style='mso-bidi-font-weight: normal'><span lang=PT-BR>Tipo de Ocorrência</span></b></p>
 								</td>
 								<td width=104 valign=top
 									style='width: 78.0pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt'>
