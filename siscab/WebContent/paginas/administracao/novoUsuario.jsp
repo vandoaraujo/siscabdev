@@ -34,28 +34,23 @@ function campoObrigatorio()
 	<tr	style="background-image: url(img/back_cabecalho.jpg); background-repeat: repeat-x;">
 		<td style="background-image: url(img/cabecalho.jpg); background-repeat: no-repeat;">
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tr style="height: 139px;">
-				<td align="right" style="padding-right: 20px;"><img src="img/logo.png"></td>
-			</tr>
-			<tr>
-				<td style="padding-left: 20px;" colspan="2"><a 
-					href="javascript:;"
-					onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')"
-					onMouseOut="MM_startTimeout();"><img
-					src="img/bt_atendimento.gif" name="image1" width="109" height="17"
-					border="0" id="image1"></a> <a href="javascript:;"
-					onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')"
-					onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif"
-					name="image3" width="153" height="17" border="0" id="image3"></a>
-				<a href="javascript:;"
-					onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')"
-					onMouseOut="MM_startTimeout();"><img
-					src="img/bt_administrador.gif" name="image2" width="109"
-					height="17" border="0" id="image2"></a> <a href="#"
-					onclick="fechar()"><img src="img/bt_sairsistema.gif"
-					name="close" width="109" height="17" border="0" id="close"></a></td>
-			</tr>
-			<tr>
+			<tr style="height:139px;">
+					<td align="right" style="padding-right:20px;" colspan="2">  	
+						<img src="img/logo.png">	 	
+					</td>
+				</tr>
+				<tr>
+					<td style="padding-left:20px;">						
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
+						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
+					</td>
+					<td align="right" style="padding-right:20px;">
+						<strong>Usuário:</strong> <%=usu.getNomeGuerra().toUpperCase() %>&nbsp;&nbsp;<strong>Perfil:</strong> <%=usu.getPerfil().getPerfil_descricao().toUpperCase() %>
+					</td>
+				</tr>
+				<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
 				
 				<h2>Administração :: Cadastro de Usuários :: Incluir Usuário</h2>
@@ -77,12 +72,13 @@ function campoObrigatorio()
 						<td><input name="email" type="text" /></td>
 					</tr>					
 					<tr>
-						<td><label>Obm:</label></td>
-						<td><select name="obm">
+						<td><label>OBM:</label></td>
+						<td>Javascript (obrigatório)<select name="obm">
 
 							<!-- Popula a combo que aparecerá na tela -->
 							<%
 									 	ArrayList<OBM> obms = (ArrayList)request.getAttribute("obms");
+										out.println("<option>- - -</option>");
 									 	 for(OBM s: obms){
 										 out.println("<option>"+s.getNome()+"</option>");
 									 	}
@@ -92,13 +88,14 @@ function campoObrigatorio()
 					</tr>
 					<tr>
 						<td><label>Perfil:</label></td>
-						<td><select name="perfil">
+						<td>Javascript (obrigatório)<select name="perfil">
 
 							<!-- Popula a combo que aparecerá na tela -->
 							<%
 									 	ArrayList<PerfilUsuario> perfis = (ArrayList)request.getAttribute("perfil");
+						 				out.println("<option>- - -</option>");
 									 	 for(PerfilUsuario p: perfis){
-										 out.println("<option>"+p.getPerfil_descricao().toUpperCase()+"</option>");
+									 	out.println("<option>"+p.getPerfil_descricao().toUpperCase()+"</option>");
 									 	}
 										out.println("</select> * ");
 										%>
@@ -107,7 +104,8 @@ function campoObrigatorio()
 					<tr>
 						<td><label>Status:</label></td>
 						<td><select name="status">
-							<option selected>ATIVO
+							<option selected>- - -
+							<option>ATIVO
 							<option>INATIVO
 						</select> *</td>
 					</tr>
@@ -118,20 +116,21 @@ function campoObrigatorio()
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="Cadastrar" onclick="return campoObrigatorio();"/>
+							<input type="submit" value="Salvar" onclick="return campoObrigatorio();"/>
 							<input type="hidden" name="operacaoARealizar" value="1">
 							<input type="hidden" name="registroUsuario" value="1">
 						</form>
 						<form action="AdministracaoUsuario" method="post"
 							style="display: inline;"><input type="submit"
-							value="Voltar" /></form>
+							value="Cancelar" /></form>
 						</td>
 					</tr>
-					</fieldset>
-					( * ) Campos Obrigatórios
+					</table>
+					</fieldset>					
 					</td>
 					</tr>
-				</table>
+				</table>				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( * ) Campos obrigatórios
 				</td>
 			</tr>
 		</table>

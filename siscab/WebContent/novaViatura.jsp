@@ -61,17 +61,33 @@ function campoObrigatorio()
 							
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 									<tr>
-										<td><label>Nº Viatura:</label></td>
+										<td><label>Tipo:</label></td>
+										<td>
+										<select name="tipoViatura">
+										<%
+										List<TipoViatura> tipos = TipoViaturaDao.getInstance().listarTodosTiposViaturas();
+										//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
+										out.println("<option>- - -</option>");
+										for(int i=0;i<tipos.size();i++){
+										out.print("<option>"+tipos.get(i).getTipoviatura_descricao());
+										}
+										out.println("</select> *");
+										%></td>
+									</tr>
+
+									<tr>
+										<td><label>Número:</label></td>
 									<td><input name="numero" type="text" maxlength="3"/> * </td>
 									</tr>
 									<tr>
-										<td><label>Obm:</label></td>
+										<td nowrap="nowrap"><label>OBM Responsável:</label></td>
 										<td>
 										<select name="obm">
 										
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
 										ArrayList<OBM> obms = (ArrayList<OBM>)OBMDao.getInstance().listarTodasOBMs();
+										out.println("<option>- - -</option>");
 										for(OBM s: obms){
 										out.println("<option>"+s.getNome()+"</option>");
 										}
@@ -80,7 +96,7 @@ function campoObrigatorio()
 										</td>
 									</tr>
 									<tr>
-										<td><label>Status Viatura:</label></td>
+										<td><label>Status:</label></td>
 										<td>
 										<select name="status">
 										<option>Inoperante - Sem tripulação
@@ -88,20 +104,7 @@ function campoObrigatorio()
 										</td>
 									</tr>
 									<tr>
-										<td><label>Tipo Viatura:</label></td>
-										<td>
-										<select name="tipoViatura">
-										<%
-										List<TipoViatura> tipos = TipoViaturaDao.getInstance().listarTodosTiposViaturas();
-										//ArrayList<String> tiposViaturas = tipo.getTiposViaturas();
-										for(int i=0;i<tipos.size();i++){
-										out.print("<option>"+tipos.get(i).getTipoviatura_descricao());
-										}
-										out.println("</select> *");
-										%></td>
-									</tr>
-									<tr>
-										<td><label>Obs. Viatura</label></td>
+										<td><label>Observações:</label></td>
 										<td><TEXTAREA COLS=40 ROWS=5 NAME="obsViatura"/></TEXTAREA></td>
 									</tr>
 									<tr>
@@ -111,7 +114,7 @@ function campoObrigatorio()
 										<input type="hidden" name="registroViatura" value ="1">
 										</form>
 										<form action="ViaturasControle" method="post" style="display:inline;">
-										<input type="submit" value="Voltar"/>
+										<input type="submit" value="Cancelar"/>
 										</form>
 										</td>
 									</tr>

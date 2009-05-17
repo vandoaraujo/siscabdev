@@ -60,7 +60,7 @@ function campoObrigatorio()
 					
 					<h2>Administração :: Cadastro de OBMs :: Editar OBM</h2>
 					
-						<fieldset style="width:350px"><legend>&nbsp;Dados da OBM selecionada&nbsp;</legend>
+						<fieldset style="width:450px"><legend>&nbsp;Dados da OBM selecionada&nbsp;</legend>
 							<form name="form" action="CrudOBM" method="post">
 							<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
@@ -91,29 +91,27 @@ function campoObrigatorio()
 									<td><input name="logradouro" type="text" value="${obmAtual.logradouro}" /> * </td>
 								</tr>
 								<tr>
-									<td><label>Num. Complemento:</label></td>
+									<td><label>Nº/Complemento:</label></td>
 									<td><input name="numComplemento" type="text" value="${obmAtual.numCompl}" /> * </td>
 								</tr>
 								<tr>	
-									<td><label>Coord. X:</label></td>
+									<td><label>Latitude:</label></td>
 									<td><input name="coordX" type="text" value=${obmAtual.coordX} onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>	
-									<td><label>Coord. Y:</label></td>
+									<td><label>Longitude:</label></td>
 									<td><input name="coordY" type="text" value=${obmAtual.coordY} onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>
 									<td><label>Status:</label></td>
-									<td><%  
-									     if((obmVO.getStatus() == 1)){
+									<td>Dropdownlist<%  
+									     if((obmVO.getStatus() == 0)){
 									    %>
-									      	   O perfil atual desta OBM é Ativa. No momento seu Status está sendo trocada para Inativa
 									    	 	Ativa  <input name="statusObm" type="radio" value="ativa" />
 									    	 	Inativa <input name="statusObm" type="radio" value="inativa" checked/>
 									    	 	 
-									     <%} else if (obmVO.getStatus() == 0){
-									    	 %>
-									    	 O perfil atual deste OBM é Inativa. No momento seu status será trocada para Ativa
+									     <%} else{
+									    	 %>									  
 									    	  	Ativo <input name="statusObm" type="radio" value="ativa" checked/>
 									    	 	Inativo <input name="statusObm" type="radio" value="inativa" /> *
 									    	 
@@ -121,19 +119,20 @@ function campoObrigatorio()
 								</tr>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Alterar" onclick="return campoObrigatorio()"/>							
+										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>							
 										<input type="hidden" name="operacaoARealizar" value ="2">
 							 			<input type="hidden" name="registroOBM" value =${obmAtual.id}>
 							 			</form>
 							 			 		
 							 			<form action="ObmControle" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
+							 				<input type="submit" value="Cancelar"/>
 							 			</form>																
 									</td>
 								</tr>
 							</table>							
 							
-						</fieldset>														
+						</fieldset>	
+						( * ) Campos obrigatórios													
 					</td>
 				</tr>				
 			</table>

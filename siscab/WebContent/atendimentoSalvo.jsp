@@ -37,14 +37,17 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Registrar Atendimento&nbsp;</legend>
-							Atendimento salvo com sucesso!<p>
+					
+					<h2>Atendimentos :: Registrar Chamado</h2>
+					
+						<fieldset style="width:450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
+							Chamado registrado no sistema.<p>
 
- Número de atendimento =<font color="blue"> ${numeroAtendimento} </font> 
-<br>
+ 							Registro de atendimento gerado: <strong>${numeroAtendimento}</strong> 
+							<br>
 
-	<form action="paginaPrincipal.jsp" style="display:inline;">
-				 				<input type="submit" value="Voltar"/>
+							<form action="paginaPrincipal.jsp" style="display:inline;">
+				 				<input type="submit" value="Ok"/>
 				 			</form>	
 																																										
 						</fieldset>	

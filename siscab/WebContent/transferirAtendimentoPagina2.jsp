@@ -47,13 +47,13 @@
 						<form action="EfetivaRepasseAtendimento" method="post">						
 						<table>						
 							<tr>
-								<td>Numero Atendimento:</td>
+								<td>Número atendimento:</td>
 								<td><input name="numeroAtendimento" type="text" size=20 value="<%= at.getAtendimento_numero() %>" readonly="readonly"></td>							
 							</tr>						
 							<tr>
 							
 							<% if(usuario.getPerfil().getId() == 4){%>
-							  	<td>Obm de Transferencia:</td>
+							  	<td>OBM:</td>
 							  	<td><select name="obm">													
 								<!-- Popula a combo de obm que aparecerá na tela - CONTROLADOR DO COCB -->
 								<%
@@ -70,7 +70,7 @@
 													
 								
 							<% } else if(usuario.getPerfil().getId() == 3){%>
-							  	<td>Obm de Transferencia:</td>
+							  	<td>OBM:</td>
 							  	<td><select name="obm">													
 								<!-- Popula a combo de obm que aparecerá na tela - OPERADOR DA OBM-->
 								<option selected>COCB</select> * 
@@ -80,7 +80,7 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" value="Salvar"></td>
+								<td><input type="submit" value="Salvar"> &nbsp; <input type="button" value="Cancelar" onclick="history.back()"></td>
 							</tr>	
 						</table>
 						</form>

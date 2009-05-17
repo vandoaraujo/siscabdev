@@ -49,7 +49,7 @@ function habilitaCombo(priID, prstHabilita){
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 								
-												
+						<h2>Atendimentos :: Registrar Chamado</h2>						
 												
 						<table>
 							<tr>
@@ -59,7 +59,7 @@ function habilitaCombo(priID, prstHabilita){
 								
 									<table>						
 										<tr>
-											<td nowrap="nowrap">Numero do Chamado:</td>
+											<td nowrap="nowrap">Número do chamado:</td>
 											<td>${idChamado}</td>
 										</tr>
 
@@ -70,7 +70,7 @@ function habilitaCombo(priID, prstHabilita){
 													grava = data.format(cal.getTimeInMillis());  %>						
 									
 										<tr>
-											<td width="100px" nowrap="nowrap">Hora do Chamado:</td>
+											<td width="100px" nowrap="nowrap">Data/Hora inicio:</td>
 											<td><%= grava %></td>
 										</tr>						
 										<!-- <tr>
@@ -91,11 +91,11 @@ function habilitaCombo(priID, prstHabilita){
 											</td>
 										</tr>
 										<tr>
-											<td>Nome Solicitante:</td>
+											<td>Nome solicitante:</td>
 											<td><input name="nomeSolicitante" type="text" size=40></td>
 										</tr>
 										<tr>
-											<td>Telefone Solicitante:</td>
+											<td>Telefone solicitante:</td>
 											<td><input name="telefoneSolicitante" type="text"></td>
 										</tr>										
 									</table>
@@ -106,7 +106,8 @@ function habilitaCombo(priID, prstHabilita){
 									<table>							
 										<tr>
 											<td colspan="2">
-												<input type="submit" value="Procurar Ocorrencias Proximas" onclick="this.form.operacaoARealizar.value=2" >
+												Fazer em link como popup
+												<input type="submit" value="Procurar Ocorrências Próximas" onclick="this.form.operacaoARealizar.value=2" >
 											</td>
 										</tr>
 										<tr>
@@ -114,7 +115,7 @@ function habilitaCombo(priID, prstHabilita){
 											<td></td>
 										</tr>
 										<tr>			
-											<td nowrap="nowrap" width="40%">Natureza do Chamado:</td>									
+											<td nowrap="nowrap" width="40%">Natureza do chamado:</td>									
 											<td>											
 											<select name="naturezaChamado" id="naturezaChamado">
 											<%
@@ -123,7 +124,7 @@ function habilitaCombo(priID, prstHabilita){
 											for(int i=0;i<natureza.size();i++){
 												out.print("<option>"+natureza.get(i).getNaturezachamado_descricao().toString());
 						 					}
-											out.println("</select>");
+											out.println("</select> *");
 											%>
 											</td>
 										</tr>
@@ -155,7 +156,7 @@ function habilitaCombo(priID, prstHabilita){
 										<tr>
 											<td colspan="2">
 												<input type="hidden" name="obmSolicitada" value ="${usuario.obm.nome}">
-												<input type="submit" value="FinalizarChamadoIniciarAtendimento" onclick="this.form.operacaoARealizar.value=1" >
+												<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
 											</td>
 										</tr>		
 									</table>
@@ -167,7 +168,7 @@ function habilitaCombo(priID, prstHabilita){
 								<fieldset style="width:450px"><legend>&nbsp;Dados da ocorrência&nbsp;</legend>
 									<table>	
 										<tr>
-											<td>Tipo Ocorrencia:</td>
+											<td>Tipo de ocorrência:</td>
 											<td><select name="tipoOcorrencia">
 						 						<%
 						 						List<TipoOcorrencia> tipos = TipoOcorrenciaDao.getInstance().listarTodosTiposOcorrencias();
@@ -175,7 +176,7 @@ function habilitaCombo(priID, prstHabilita){
 												for(int i=0;i<tipos.size();i++){
 													out.print("<option>"+tipos.get(i).getTipoocorrencia_descricao().toString());
 							 					}
-												out.println("</select>");
+												out.println("</select> *");
 						 						%>
 						 					</td>
 						 				</tr>	
@@ -191,22 +192,25 @@ function habilitaCombo(priID, prstHabilita){
 											for(Municipio m: municipio){
 											 out.println("<option>"+m.getMunicipio_nome());
 										 	}
-											out.println("</select>");
+											out.println("</select> *");
 											%>
 											</td>				
 										</tr>
 										<tr>
 											<td>Bairro:</td>
-											<td><input name="bairro" type="text" size=20></td>							
+											<td><input name="bairro" type="text" size=20> *</td>							
 										</tr>
 										<tr>
-											<td>Logradouro</td>
-											<td><input name="endereco" type="text" size=30></td>							
+											<td>Logradouro:</td>
+											<td><input name="endereco" type="text" size=30> *</td>							
 										</tr>
 										<tr>
-											<td>Nº Complemento</td>
+											<td>Nº/Complemento:</td>
 											<td>
 												<input name="numero" type="text" size=6> 												
+												Fazer com link.
+												O popup não terá o cabeçalho do sistema.
+												Mantêm título.
 												<input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=3"></td>
 												<input type="hidden" name="registroOcorrencia" value ="1">
 												<input type="hidden" name="operacaoARealizar" value ="">	
@@ -214,24 +218,26 @@ function habilitaCombo(priID, prstHabilita){
 											</td>							
 										</tr>
 										<tr>
-											<td>Latitude</td>
-											<td><input name="CoordX" type="text" size=30><div id="CoordX"></div></td>							
+											<td>Latitude:</td>
+											<td><input name="CoordX" type="text" size=25> *<div id="CoordX"></div></td>							
 										</tr>
 										<tr>
-											<td>Longitude</td>
-											<td><input name="CoordY" type="text" size=30><div id="CoordY"></div></td>							
+											<td>Longitude:</td>
+											<td><input name="CoordY" type="text" size=25> *<div id="CoordY"></div></td>							
 										</tr>
 										<tr>
-											<td>Num aproximado vítimas:</td>
+											<td>Nº aprox vítimas:</td>
 											<td><input name="numAproximadoVitimas" type="text" size=8></td>
 										</tr>
 										<tr>	
-											<td>Info Complementares:</td>
-											<td><textArea NAME="infoComplementares" COLS=30 ROWS=4></textArea></td>				
+											<td colspan="2">Informações complementares:</td>			
 										</tr>										
-									
+										<tr>	
+											<td colspan="2"><textArea NAME="infoComplementares" COLS=50 ROWS=4></textArea></td>				
+										</tr>																			
 									</table>
 									</fieldset>
+									( * ) Campos Obrigatórios
 									</form>
 								</td>
 								<td>

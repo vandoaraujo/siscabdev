@@ -37,12 +37,16 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;OBM&nbsp;</legend>
-							OBM ${obm}, <div style="color:red; display:inline">${mensagem}</div>
+					
+					<h2>Administração :: Cadastro de OBMs</h2>
+					
+					
+						<fieldset style="width:450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
+							${mensagem}
 							<p><br></p>
 
 							<form action="ObmControle" method="post" style="display:inline;">
-				 				<input type="submit" value="Voltar"/>
+				 				<input type="submit" value="OK"/>
 				 			</form>																																											
 						</fieldset>	
 					</td>

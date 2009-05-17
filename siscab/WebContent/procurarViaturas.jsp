@@ -41,14 +41,13 @@
 						
 						<h2>Atendimentos :: Cadastro de Viaturas :: Procurar Viaturas</h2>
 						
-						<div><font color="red">${parametrosVazios}</font></div>
 						
-						
+						Fazer javascript para selecionar um dos parametros												
 						<fieldset style="width:450px"><legend>&nbsp;Informe os parâmetros de procura&nbsp;</legend>						
 						<form action="BuscarViatura" method="post">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 							<tr>
-							<td><label>Tipo Viatura:</label></td>
+							<td><label>Tipo:</label></td>
 							<td>
 								<select name="tipoViatura">
 								<option selected></option>
@@ -62,7 +61,7 @@
 							</td>
 							</tr>
 							<tr>
-							<td><label>Status Viatura:</label></td>
+							<td><label>Status:</label></td>
 									<td>
 										<select name="status">
 										<option selected></option>
@@ -76,13 +75,16 @@
 								</tr>
 							<tr>
 									<td colspan="2">																		
-										<input type="submit" name="evento" value="Buscar"/>
+										<input type="submit" name="evento" value="Procurar"/>
 										</form>	
 										<form action="ViaturasControle" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
+							 				<input type="submit" value="Cancelar"/>
 							 			</form>	
 									</td>								
 								</tr>
+							</table>
+						</fieldset>
+						<div><font color="red">${parametrosVazios}</font></div>
 					</td>
 				</tr>				
 			</table>

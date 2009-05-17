@@ -40,7 +40,7 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 					
-						<h2>Atendimentos :: Cadastro de Usuários</h2>
+						<h2>Administração :: Cadastro de Usuários</h2>
 						<fieldset style="width:300px"><legend>&nbsp;Opções&nbsp;</legend>
 							<a href="NovoUsuario">Incluir Usuário</a>&nbsp;|&nbsp;<a href="buscarUsuario.jsp">Procurar Usuários</a>
 						</fieldset>

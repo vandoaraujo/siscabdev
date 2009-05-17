@@ -60,11 +60,11 @@ function campoObrigatorio()
 								<form name="form" action="NovoUsuarioServlet" method="get">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td nowrap="nowrap"><label>Nº de Registro:</label></td>
-									<td><input name="registro" type="text" value=${usuario.numRegistro} readonly="readonly" /> * </td>								
+									<td nowrap="nowrap"><label>Número de registro:</label></td>
+									<td><input name="registro" type="text" value=${usuario.numRegistro} readonly="readonly" /></td>								
 								</tr>
 								<tr>
-									<td><label>Nome de Guerra:</label></td>
+									<td><label>Nome de guerra:</label></td>
 									<td><input name="nomeGuerra" type="text" value=${usuario.nomeGuerra} /> * </td>								
 								</tr>
 								<tr>
@@ -79,6 +79,7 @@ function campoObrigatorio()
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
 											  List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
+											 //out.println("<option>- - -</option>");
 											 for(OBM s: obms){
 										 		out.println("<option>"+s.getNome());
 											}
@@ -86,30 +87,31 @@ function campoObrigatorio()
 										%>
 										
 								</tr>
-									<tr><td><label>perfil:</label></td>
+									<tr><td><label>Perfil:</label></td>
 									<td> <select name="perfil" >
-										<option>ADMINISTRADOR DO SISTEMA 
-										<option selected ><%= usuario.getPerfil().getPerfil_descricao() %> 
-										<option>OPERADOR DA OBM
-										<option>CONTROLADOR DA OBM
-										<option>COMANDANTE
-										<option>ATENDENTE DO COCB
+										<option>- - -</option>
+										<option>ADMINISTRADOR DO SISTEMA</option> 
+										<option selected ><%= usuario.getPerfil().getPerfil_descricao() %></option> 
+										<option>OPERADOR DA OBM</option>
+										<option>CONTROLADOR DA OBM</option>
+										<option>COMANDANTE</option>
+										<option>ATENDENTE DO COCB</option>
 										</select> *	 								
 																	
 								</tr>
 								<tr>
 								<tr>
 									<td><label>Status:</label></td>
-									<td><%  
+									<td>Mudar para dropdownlist<%  
 									     if(usuario.getStatus().equals("ATIVO")){
 									    %>
-									      	   O perfil atual deste Usuário é Ativo. No momento seu status será trocado para Inativo
+									     
 									    	 	Ativo  <input name="status" type="radio" value="ATIVO" />
 									    	 	Inativo <input name="status" type="radio" value="INATIVO" checked/>
 									    	 	 
 									     <%} else if (usuario.getStatus().equals("INATIVO")){
 									    	 %>
-									    	 O perfil atual deste Usuário é Inativo. No momento seu status será trocado para Ativo
+									    
 									    	  	Ativo <input name="status" type="radio" value="ATIVO" checked/>
 									    	 	Inativo <input name="status" type="radio" value="INATIVO" /> *
 									    	 
@@ -118,21 +120,23 @@ function campoObrigatorio()
 
 								<tr>
 									<td><label>Senha:</label></td>
-									<td><input name="senha" type="text" size="30" value=${usuario.senha} /></td>								
+									<td><input name="senha" type="password" size="30" value=${usuario.senha} /></td>								
 								</tr>
 								<tr>
 									<td colspan="2">								
-										<input type="submit" value="Alterar" onclick="return campoObrigatorio();"/>										
+										<input type="submit" value="Salvar" onclick="return campoObrigatorio();"/>										
 										<input type="hidden" name="operacaoARealizar" value ="2">
 									    <input type="hidden" name="registroUsuario" value =${usuario.id} > 
 										</form>	
 										
 										<form action="AdministracaoUsuario" method="post" style="display:inline;">							 				
-							 				<input type="submit" name="evento" value="Voltar"/>
+							 				<input type="submit" name="evento" value="Cancelar"/>
 							 			</form>	
 									</td>								
 								</tr>
+							</table>
 						</fieldset>	
+						( * ) Campos obrigatórios
 					</td>
 				</tr>				
 			</table>

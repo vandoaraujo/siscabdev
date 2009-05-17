@@ -44,14 +44,13 @@
 					
 					
 						<fieldset style="width:30%"><legend>&nbsp;Opções&nbsp;</legend>
-							<a href="novaViatura.jsp">Incluir Viatura</a>&nbsp;|&nbsp;<a href=ConsultaViaturas>Procurar Viatura</a>
+							<a href="novaViatura.jsp">Incluir Viatura</a>&nbsp;|&nbsp;<a href=ConsultaViaturas>Procurar Viaturas</a>
 						</fieldset>								
 					</td>
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:30%"><legend>&nbsp;Viaturas Cadastradas&nbsp;</legend>
-											<fieldset style="width:800px"><legend>&nbsp;Resultado da procura&nbsp;</legend>						
+						<fieldset style="width:50%"><legend>&nbsp;Viaturas Cadastradas&nbsp;</legend>					
 								
 								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
 
@@ -83,7 +82,7 @@
 									     
 									     <tr bgcolor="#F9D8D0">
 									     <%} %>
-									    	<td><%=via.getTipo_viatura().getTipoviatura_descricao()%>-<%=via.getNumero()%></td>
+									    	<td><%=via.getTipo_viatura().getTipoviatura_abreviacao()%>-<%=via.getNumero()%></td>
 									    	<td><%=via.getObm().getNome()%></td>
 									    	<td><%=via.getViatura_status()%></td>
 									    	<td>									    	

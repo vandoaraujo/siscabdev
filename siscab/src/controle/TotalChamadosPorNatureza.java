@@ -172,7 +172,7 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 	    if (it.hasNext() == false) {
 
 		request.setAttribute("msg",
-			"Nenhum atendimento registrado no período informado.");
+			"Nenhum chamado registrado no período informado.");
 		view = request
 			.getRequestDispatcher("/informaParametrosTotalChamados.jsp");
 

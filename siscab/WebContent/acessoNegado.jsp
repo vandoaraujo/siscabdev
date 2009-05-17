@@ -37,10 +37,11 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:950px"><legend>&nbsp;Acesso Negado&nbsp;</legend>
-							Este servico: <div style="color:red; display:inline"> ${descricaoServico}, </div> 
-							
-							só pode ser acessado pelo(s) perfil(is): <div style="color:red; display:inline">${perfil}</div>
+					
+					<h2>Acesso Negado :: ${descricaoServico}</h2>
+					
+						<fieldset style="width:950px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
+							Este serviço só pode ser acessado pelo(s) perfil(is): <div style="color:red; display:inline">${perfil}</div>
 							<p><br></p>
 																													
 						</fieldset>	

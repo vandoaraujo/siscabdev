@@ -139,15 +139,15 @@ public class CrudOBM extends HttpServlet {
 	    request
 		    .setAttribute(
 			    "mensagem",
-			    "OBM não pode ser desativada no momento, pois esta associada à atendimentos(s) não finalizado(s)");
+			    "OBM não pode ser desativada no momento, pois está associada a atendimentos(s) não finalizado(s)");
 	} else if (acao.equals("obmIgual")) {
 	    request.setAttribute("mensagem",
-		    "OBM já cadastrada!");
+		    "OBM já cadastrada.");
 	}
 
 	else if (acao.equals("existeAtendimento")) {
 	    request.setAttribute("mensagem",
-		    "OBM não pode ser excluída do cadastro, pois existe(m) registro(s) de atendimento(s) associado(s) a esta.\nSedesejar que ela não seja exibida nas caixas de listagem, altere seu status para Inativa");
+		    "OBM não pode ser excluída do cadastro, pois existe(m) registro(s) de atendimento(s) associado(s) a esta.\nSe desejar que ela não seja exibida nas caixas de listagem, altere seu status para Inativa");
 	}
 
 	else if (acao.equals("alterar")) {

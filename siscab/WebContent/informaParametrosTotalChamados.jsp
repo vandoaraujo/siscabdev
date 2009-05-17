@@ -49,11 +49,7 @@
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 					
 					<h2>Relatórios :: Total de Chamados por Natureza</h2>
-					
-					<br>
-					<div style="color: red; display: inline">${msg}</div>
-					<br>
-					
+									
 						<fieldset style="width:650px"><legend>&nbsp;Informe o período de referência&nbsp;</legend>
 							
 							<form action="TotalChamadosPorNatureza" method="post">
@@ -74,11 +70,17 @@
 								<tr>
 									<td></td>
 									<td>
-										<input type="submit" value="Ver Relatório" />
-										</form>	
+										<input type="submit" value="Ver Relatório" />										
 									</td>								
 								</tr>
+								</table>
+							</form>
 						</fieldset>	
+					
+					<br>					
+					<div style="color: red; display: inline">${msg}</div>
+					<br>
+						
 					</td>
 				</tr>				
 			</table>
