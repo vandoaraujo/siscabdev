@@ -10,16 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Atendimento;
+import modelo.Chamado;
 import modelo.Municipio;
 import modelo.OBM;
 import modelo.SiscabException;
+import modelo.Usuario;
 import modelo.Viatura;
 
 import org.apache.log4j.Logger;
 
 import dao.AtendimentoDao;
+import dao.ChamadoDao;
 import dao.MunicipioDao;
 import dao.OBMDao;
+import dao.UsuarioDao;
 import dao.ViaturaDao;
 
 /**
@@ -97,15 +101,32 @@ public class CrudOBM extends HttpServlet {
 	    HttpServletResponse response, int registro) {
 
 	OBM obm = OBMDao.getInstance().BuscaOBMId(registro);
+	
 	String nome = obm.getNome();
 	// Analisa se já prestou atendimento
 	List<Atendimento> atendimento = AtendimentoDao.getInstance()
 		.listarAtendimentosOBM(registro);
+	
+	List<Usuario> usuarios = UsuarioDao.getInstance().buscarUsuariosOBM(obm.getId());
+	
+	List<Chamado> chamados= ChamadoDao.getInstance().buscarChamadosOBM(obm.getId());
 
 	logger.info("Qtd Atendimentos" + atendimento.size());
+	
+	logger.info("Qtd Usuarios" + usuarios.size());
+	
+	logger.info("Qtd Chamados" + chamados.size());
 
 	if (atendimento.size() > 0) {
 	    despacha(request, response, "existeAtendimento", nome);
+	}
+	
+	else if(chamados.size() > 0){
+	    despacha(request, response, "existeChamado", nome);
+	}
+	
+	else if (usuarios.size() > 0){
+	    despacha(request, response, "existeUsuario", nome);
 	}
 
 	else {
@@ -134,7 +155,13 @@ public class CrudOBM extends HttpServlet {
 	    request.setAttribute("mensagem", "OBM foi incluída no cadastro.");
 
 	}
-
+	
+	else if (acao.equals("existeUsuario")){
+	    request.setAttribute("mensagem", "OBM possui usuários e não pode ser deletada.");
+	}
+	else if (acao.equals("existeChamado")){
+	    request.setAttribute("mensagem", "OBM possui chamados e não pode ser deletada.");
+	}
 	else if (acao.equals("excecao")) {
 	    request
 		    .setAttribute(
@@ -190,10 +217,10 @@ public class CrudOBM extends HttpServlet {
 	    HttpServletResponse response) throws ServletException, IOException {
 
 	logger.info(getServletName());
-	int registroUsuario = 0;
+	int registroObm = 0;
 	int operacao = Integer.parseInt(request
 		.getParameter("operacaoARealizar"));
-	registroUsuario = Integer.parseInt(request.getParameter("registroOBM"));
+	registroObm = Integer.parseInt(request.getParameter("registroOBM"));
 
 	// Parametros do JSP
 	nome = request.getParameter("nome");
@@ -211,12 +238,12 @@ public class CrudOBM extends HttpServlet {
 
 	} else if (operacao == 2) {
 
-	    alterar(request, response, registroUsuario);
+	    alterar(request, response, registroObm);
 	}
 
 	else {
 
-	    deletar(request, response, registroUsuario);
+	    deletar(request, response, registroObm);
 	}
 
     }

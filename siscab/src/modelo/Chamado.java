@@ -26,22 +26,7 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "chamados")
 public class Chamado implements Serializable {
 
-    public static Date getDataHoraInicioChamado() {
-	return data;
-
-    }
-
-    public static void setDataHoraInicioChamado() {
-
-	GregorianCalendar calendar = new GregorianCalendar();
-	calendar.add(Calendar.MONTH, 0);
-	calendar.add(Calendar.HOUR_OF_DAY, 0);
-	calendar.add(Calendar.MINUTE, 0);
-	DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-	data = new Date(formata.format(calendar.getTime()));
-
-    }
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -150,5 +135,22 @@ public class Chamado implements Serializable {
     public void setTelefoneSolicitante(String telefoneSolicitante) {
 	this.telefoneSolicitante = telefoneSolicitante;
     }
+    
+    public static Date getDataHoraInicioChamado() {
+	return data;
+
+    }
+
+    public static void setDataHoraInicioChamado() {
+
+	GregorianCalendar calendar = new GregorianCalendar();
+	calendar.add(Calendar.MONTH, 0);
+	calendar.add(Calendar.HOUR_OF_DAY, 0);
+	calendar.add(Calendar.MINUTE, 0);
+	DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+	data = new Date(formata.format(calendar.getTime()));
+
+    }
+
 
 }
