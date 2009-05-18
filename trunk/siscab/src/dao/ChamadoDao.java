@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import modelo.Chamado;
+import modelo.Usuario;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -73,6 +74,15 @@ public class ChamadoDao {
 	List<Chamado> chama = session.createQuery("from modelo.Chamado").list();
 	return chama;
 
+    }
+    
+
+    public List<Chamado> buscarChamadosOBM(int obm) {
+
+	List chamados = session
+		.createQuery("from modelo.Chamado c where c.obm=:obm")
+		.setInteger("obm", obm).list();
+	return chamados;
     }
 
     public Integer listaUltimoId() {
