@@ -76,7 +76,7 @@ public class AtendimentoDao {
 	session.close();
     }
 
-    public List<Atendimento> listarAtendimentosNaoFinalizados() {
+    public List<Atendimento> listarAtendimentosNaoFinalizados(){
 
 	List<Atendimento> atendimentos = session
 		.createQuery(
@@ -87,7 +87,7 @@ public class AtendimentoDao {
     }
     
     
-    public List<Atendimento> listarAtendimentoEmAndamento() {
+    public List<Atendimento> listarAtendimentoEmAndamento(){
 
 	List<Atendimento> atendimentos = session
 		.createQuery(
@@ -97,7 +97,7 @@ public class AtendimentoDao {
 
     }
     
-    public List<Atendimento> listarAtendimentoPendentes() {
+    public List<Atendimento> listarAtendimentoPendentes(){
 
 	List<Atendimento> atendimentos = session
 		.createQuery(
@@ -113,10 +113,10 @@ public class AtendimentoDao {
 		.createQuery(
 			"from modelo.Atendimento a where a.obm_id=:idOBM and a.status_atendimento <> 'Finalizado' order by a.id desc")
 		.setInteger("idOBM", obmId).list();
-	return atendimentos;
+	 return atendimentos;
     }
 
-    public List<Atendimento> listarAtendimentosOBM(int obmId) {
+    public List<Atendimento> listarAtendimentosOBM(int obmId){
 
 	List<Atendimento> atendimentos = session.createQuery(
 		"from modelo.Atendimento a where a.obm_id=:idOBM").setInteger(
@@ -125,7 +125,7 @@ public class AtendimentoDao {
     }
 
     public List<Atendimento> listarOcorrenciasProximas(int municipio,
-	    String bairro) {
+	    String bairro){
 
 	List<Atendimento> atendimentos = session
 		.createQuery(
