@@ -79,7 +79,7 @@ function campoObrigatorio()
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
 											  List<OBM> obms = OBMDao.getInstance().listarTodasOBMs();
-											 //out.println("<option>- - -</option>");
+											 out.println("<option selected>"+ usuario.getObm().getNome() + "</option>");
 											 for(OBM s: obms){
 										 		out.println("<option>"+s.getNome());
 											}
