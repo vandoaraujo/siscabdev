@@ -46,10 +46,12 @@ String grava = data.format(cal.getTime());
 					<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 					<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>
 				</td>
-				<td align="right" style="padding-right: 20px;"><strong>Usuário:</strong>
-				<%=usu.getNomeGuerra().toUpperCase() %>&nbsp;&nbsp;<strong>Perfil:</strong>
-				<%=usu.getPerfil().getPerfil_descricao().toUpperCase() %></td>
-			</tr>
+				<td align="right" style="padding-right: 40px;"><strong>Usuário:</strong>
+				&nbsp;&nbsp;&nbsp;&nbsp;<%=usu.getNomeGuerra().toUpperCase() %>&nbsp;&nbsp;<strong>Perfil:</strong>
+				<%=usu.getPerfil().getPerfil_descricao().toUpperCase() %>
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="AlteraDadosUsuario?usuarioId=<%= usu.getId() %>">Alterar Dados</a></td>
+				
+			
 			<tr>
 				<td style="padding-left: 20px; padding-top: 20px;" colspan="2">
 				

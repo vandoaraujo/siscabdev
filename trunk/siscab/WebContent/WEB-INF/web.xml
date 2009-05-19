@@ -393,6 +393,24 @@
 		<servlet-class>
 		controle.ConsultaViaturas</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AlteraDadosUsuario</display-name>
+		<servlet-name>AlteraDadosUsuario</servlet-name>
+		<servlet-class>
+		controle.AlteraDadosUsuario</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EfetivaAlteracaoDadosUsuario</display-name>
+		<servlet-name>EfetivaAlteracaoDadosUsuario</servlet-name>
+		<servlet-class>
+		controle.EfetivaAlteracaoDadosUsuario</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>NovoUsuario</servlet-name>
 		<url-pattern>/NovoUsuario</url-pattern>
@@ -548,6 +566,14 @@
 	<servlet-mapping>
 		<servlet-name>NovoUsuarioServlet</servlet-name>
 		<url-pattern>/NovoUsuarioServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AlteraDadosUsuario</servlet-name>
+		<url-pattern>/AlteraDadosUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EfetivaAlteracaoDadosUsuario</servlet-name>
+		<url-pattern>/EfetivaAlteracaoDadosUsuario</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

@@ -29,10 +29,10 @@ public class UsuarioDao {
 	session = HibernateUtil.getInstance().AbreUmaSession();
     }
 
-    public void atualizar(Usuario ator) {
+    public void atualizar(Usuario usuario) {
 
 	Transaction t = session.beginTransaction();
-	session.update(ator);
+	session.update(usuario);
 	t.commit();
 	session.flush();
 	session.close();
