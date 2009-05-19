@@ -86,7 +86,7 @@ function campoObrigatorio()
 										
 										<!-- Popula a combo que aparecerá na tela -->
 										<%
-										ArrayList<OBM> obms = (ArrayList<OBM>)OBMDao.getInstance().listarTodasOBMs();
+										ArrayList<OBM> obms = (ArrayList<OBM>)OBMDao.getInstance().listarTodasOBMsExcetoCOCB();
 										out.println("<option>- - -</option>");
 										for(OBM s: obms){
 										out.println("<option>"+s.getNome()+"</option>");
