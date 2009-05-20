@@ -411,6 +411,15 @@
 		<servlet-class>
 		controle.EfetivaAlteracaoDadosUsuario</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		SituacaoViaturasOBM</display-name>
+		<servlet-name>SituacaoViaturasOBM</servlet-name>
+		<servlet-class>
+		controle.SituacaoViaturasOBM</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>NovoUsuario</servlet-name>
 		<url-pattern>/NovoUsuario</url-pattern>
@@ -574,6 +583,10 @@
 	<servlet-mapping>
 		<servlet-name>EfetivaAlteracaoDadosUsuario</servlet-name>
 		<url-pattern>/EfetivaAlteracaoDadosUsuario</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SituacaoViaturasOBM</servlet-name>
+		<url-pattern>/SituacaoViaturasOBM</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
