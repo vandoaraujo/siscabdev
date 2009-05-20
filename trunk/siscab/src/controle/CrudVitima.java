@@ -55,6 +55,11 @@ public class CrudVitima extends HttpServlet {
 	vitima.setAtendimento(atendimento);
 	vitima.setNome(nome);
 	vitima.setIdade(idade);
+	
+	if(vitima.getIdade() > 150){
+	    despacha(request, response, "erro", vitima.getNome());
+	}
+	else{
 
 	if (sexo.equals("F")) {
 	    sexoChar = 'F';
@@ -93,6 +98,8 @@ public class CrudVitima extends HttpServlet {
 	vitima.setHospitaldestino(hospitalDestino);
 	VitimaAtendidaDao.getInstance().atualizar(vitima);
 	despacha(request, response, "alterar", vitima.getNome());
+	
+	}
     }
 
     private void deletar(HttpServletRequest request,
@@ -120,10 +127,15 @@ public class CrudVitima extends HttpServlet {
 
 	}
 
+	else if (string.equals("erro")) {
+	    request.setAttribute("mensagem", "Idade inválida!!");
+
+	}
 	else if (string.equals("alterar")) {
 	    request.setAttribute("mensagem", "alterado com sucesso!!");
 
-	} else {
+	} 
+	else {
 	    request.setAttribute("mensagem", "deletado com sucesso!!");
 	}
 
@@ -198,6 +210,11 @@ public class CrudVitima extends HttpServlet {
 	vitima.setAtendimento(atendimento);
 	vitima.setNome(nome);
 	vitima.setIdade(idade);
+	
+	if(vitima.getIdade() > 150){
+	    despacha(request, response, "erro", vitima.getNome());
+	}
+	else {
 
 	if (sexo.equals("F")) {
 	    sexoChar = 'F';
@@ -238,6 +255,8 @@ public class CrudVitima extends HttpServlet {
 	VitimaAtendidaDao.getInstance().salvar(vitima);
 	request.setAttribute("vitima", vitima);
 	despacha(request, response, "salvar", vitima.getNome());
+	
+	}
 
     }
 

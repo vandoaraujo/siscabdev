@@ -112,8 +112,6 @@ public class ControlaServico extends HttpServlet {
 	tipoServico = request.getParameter("tipoServico");
 	registroAtendimento = Integer.parseInt(request
 		.getParameter("idAtendimento"));
-	numeroAtendimento = Integer.parseInt(request
-		.getParameter("numeroAtendimento")); // nao utilizado
 	registroServico = Integer.parseInt(request
 		.getParameter("registroServico"));
 	int operacao = Integer.parseInt(request
