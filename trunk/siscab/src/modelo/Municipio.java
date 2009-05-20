@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "municipios")
-public class Municipio {
+public class Municipio implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
