@@ -41,15 +41,26 @@
 								</td>
 							</tr>
 						</table>
-	
-										<!-- <form action="FinalizarChamadoIniciarAtendimento" onsubmit="showAddress(this.address.value); return false" method="post"> -->
+						
+		  								<form action="PopulaGeoRegistrarChamado" onsubmit="showAddress(this.address.value); return false">
+										
+										<input name="infoComplementares" type="hidden" value="${infoComplementares}">
+										<input name="numeroChamado" type="hidden" value="${numeroChamado}">
+										<input name="endereco" type="hidden" value="${endereco}">
+						
+										<input name="telefone" type="hidden" value="${telefone}">
+										<input name="nomeSolicitante" type="hidden" value="${nomeSolicitante}">
+										<input name="numeroGeradoChamado" type="hidden" value="${numeroGeradoChamado}">
+						
+										<input name="municipio" type="hidden" value="${municipio}">
+										<input name="nomeSolicitante" type="hidden" value="${nomeSolicitante}">
+										<input name="numero" type="hidden" value="${numero}">					
+										
 										<input name="bairro" type="hidden" readonly="readonly" value="${bairro}">
 										<input name="infoComplementares" type="hidden" readonly="readonly" value="${infoComplementares}">
 										<input name="numeroChamado" type="hidden" readonly="readonly" value="${numeroChamado}">
-										<input type="hidden" name="q" id="q" value=">${endereco} ${numero} ${bairro} ${municipio} RJ Brasil ">
-										<input type="submit" value="Confirmar Coordenadas Geográficas" onclick="Coordenadas(); this.form.operacaoARealizar.value=1" >
-										<input type="hidden" name="operacaoARealizar" value ="">
-										<input type="hidden" name="endereco" value ="${endereco}">
+						
+										
 										
 										<script>
 										function Coordenadas(){
@@ -62,11 +73,11 @@
 										
 										<input type="hidden" name="hiddenCoordX" id="hiddenCoordX">
 										<input type="hidden" name="hiddenCoordY" id="hiddenCoordY">
+										<input type="hidden" name="q" id="q" value=">${endereco} ${numero} ${bairro} ${municipio} RJ Brasil ">
 										
-										<input type="hidden" name="numero" value ="${numero}">
-										<input type="hidden" name="registroOcorrencia" value ="1">
+										<input type="submit" value="Confirmar Coordenadas Geográficas" onclick="Coordenadas();" >
 										
-									
+									</label></label></form>
 					</fieldset>
 				</td>
 			</tr>

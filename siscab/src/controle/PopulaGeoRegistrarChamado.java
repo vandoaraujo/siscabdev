@@ -15,30 +15,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Chamado;
 import modelo.Municipio;
-import modelo.OBM;
 import modelo.Usuario;
 
 import org.apache.log4j.Logger;
 
 import dao.ChamadoDao;
 import dao.MunicipioDao;
-import dao.OBMDao;
 import dao.UsuarioDao;
 
 /**
- * Servlet implementation class RegistrarChamado
+ * Servlet implementation class PopulaGeoRegistrarChamado
  */
-public class RegistrarChamado extends HttpServlet {
+public class PopulaGeoRegistrarChamado extends HttpServlet {
     private static final long serialVersionUID = 1L;
     RequestDispatcher view;
-    static Logger logger = Logger.getLogger(RegistrarChamado.class);
+    static Logger logger = Logger.getLogger(PopulaGeoRegistrarChamado.class);
     Integer id;
-    String horaData = null;
  
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrarChamado() {
+    public PopulaGeoRegistrarChamado() {
 	super();
 	// TODO Auto-generated constructor stub
     }
@@ -79,8 +76,6 @@ public class RegistrarChamado extends HttpServlet {
 	else {
 	    
 		
-	    String horaData = informaHoraChamado();
-
 	    id = listaProximoId();
 
 	    Usuario u = UsuarioDao.getUsuarioLogado();
@@ -89,16 +84,30 @@ public class RegistrarChamado extends HttpServlet {
 		    .listarTodosMunicipios();
 
 	    // Artificio para guardar a hora inicial
-	    Chamado.setDataHoraInicioChamado();
 	    
 	    request.setAttribute("municipios", municipios);
 	    request.setAttribute("usuario", u);
-	    request.setAttribute("idChamado", id);
-	    request.setAttribute("gravaData", horaData);
+	    request.setAttribute("gravaData", Chamado.getDataHoraInicioChamado());
 
-	    view = request.getRequestDispatcher("/registrarChamado2.jsp");
+    	    request.setAttribute("bairro",request.getParameter("bairro"));
+    	    request.setAttribute("infoComplementares",request.getParameter("infoComplementares"));
+    	    request.setAttribute("idChamado",request.getParameter("numeroChamado"));
+    	    request.setAttribute("endereco",request.getParameter("endereco"));
+    	    request.setAttribute("telefone",request.getParameter("telefone"));
+    	    request.setAttribute("nomeSolicitante",request.getParameter("nomeSolicitante"));
+    	    request.setAttribute("numeroGeradoChamado",request.getParameter("numeroGeradoChamado"));
+    	    request.setAttribute("municipio",request.getParameter("municipio"));
+    	    request.setAttribute("numero",request.getParameter("numero"));
+    	    request.setAttribute("hiddenCoordY",request.getParameter("hiddenCoordY"));
+    	    request.setAttribute("hiddenCoordY",request.getParameter("hiddenCoordY"));
+  	    request.setAttribute("idChamado", id--);
+    	    
+    	    view = request.getRequestDispatcher("/registrarChamado2.jsp");
+  
+
+
 	}
-	
+
 	try {
 	    view.forward(request, response);
 	} catch (ServletException e) {
@@ -109,17 +118,6 @@ public class RegistrarChamado extends HttpServlet {
 
     }
 
-    private String informaHoraChamado() {
-
-	GregorianCalendar calendar = new GregorianCalendar();
-	calendar.add(Calendar.MONTH, 0);
-	calendar.add(Calendar.HOUR_OF_DAY, 0);
-	calendar.add(Calendar.MINUTE, 0);
-	DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-	String grava = formata.format(calendar.getTime());
-	//String horaData = grava;
-	return grava;
-    }
 
     private Integer listaProximoId() {
 

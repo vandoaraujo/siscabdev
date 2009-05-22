@@ -5,7 +5,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@page import="dao.NaturezaChamadoDao"%><html>
+<%@ page import="dao.NaturezaChamadoDao"%><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>SISCAB - SISTEMA DE CONTROLE DE ATENDIMENTOS DE BOMBEIROS</title>
@@ -63,7 +63,7 @@ function habilitaCombo(priID, prstHabilita){
 											<td>${idChamado}</td>
 										</tr>
 
-										<%! String grava = null;%>
+										<%! String grava;%>
 										
 											<% SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 													Calendar cal = Calendar.getInstance(); 
@@ -79,7 +79,7 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>-->
 										<tr>
 											<td>Obm que atendeu:</td>
-											<td>${usuario.obm.nome}</td>
+											<td><%=usu.getObm().getNome() %></td>
 										</tr>
 										<tr>
 											<td>Origem:</td>
@@ -92,11 +92,11 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>
 										<tr>
 											<td>Nome solicitante:</td>
-											<td><input name="nomeSolicitante" type="text" size=40></td>
+											<td><input name="nomeSolicitante" type="text" size=40 value="${nomeSolicitante}"></td>
 										</tr>
 										<tr>
 											<td>Telefone solicitante:</td>
-											<td><input name="telefoneSolicitante" type="text"></td>
+											<td><input name="telefoneSolicitante" type="text" value="${telefone}"></td>
 										</tr>										
 									</table>
 									</fieldset>
@@ -137,9 +137,9 @@ function habilitaCombo(priID, prstHabilita){
 											Não: <input name="radiobutton" type="radio" value="nao" checked onClick="habilitaCombo('obmRepassaAtendimento','n');">
 											
 											<select name="obmRepassaAtendimento" id="obmRepassaAtendimento" disabled="disabled">
-											<option selected>COCB											
-											</option>
+											<option selected>COCB</option>
 											</select>
+											
 											<%	} else {  %>																													
 											<select name="obmRepassaAtendimento" id="obmRepassaAtendimento">
 											<%
@@ -155,7 +155,7 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>
 										<tr>
 											<td colspan="2">
-												<input type="hidden" name="obmSolicitada" value ="${usuario.obm.nome}">
+												<input type="hidden" name="obmSolicitada" value=<%=usu.getObm().getNome() %>>
 												<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
 											</td>
 										</tr>		
@@ -187,7 +187,7 @@ function habilitaCombo(priID, prstHabilita){
 											<%
 										    
 										 	ArrayList<Municipio> municipio = (ArrayList)request.getAttribute("municipios");
-											%><option selected> 
+											%><option selected> ${municipio}
 											<% 
 											for(Municipio m: municipio){
 											 out.println("<option>"+m.getMunicipio_nome());
@@ -198,16 +198,16 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>
 										<tr>
 											<td>Bairro:</td>
-											<td><input name="bairro" type="text" size=20> *</td>							
+											<td><input name="bairro" type="text" size=20 value="${bairro}"> *</td>							
 										</tr>
 										<tr>
 											<td>Logradouro:</td>
-											<td><input name="endereco" type="text" size=30> *</td>							
+											<td><input name="endereco" type="text" size=30 value="${endereco}"> *</td>							
 										</tr>
 										<tr>
 											<td>Nº/Complemento:</td>
 											<td>
-												<input name="numero" type="text" size=6> 												
+												<input name="numero" type="text" size=6 value=${numero}> 												
 												Fazer com link.
 												O popup não terá o cabeçalho do sistema.
 												Mantêm título.
@@ -219,11 +219,11 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>
 										<tr>
 											<td>Latitude:</td>
-											<td><input name="CoordX" type="text" size=25> *<div id="CoordX"></div></td>							
+											<td><input name="CoordX" type="text" size=25 value="${hiddenCoordX}"> *<div id="CoordX"></div></td>							
 										</tr>
 										<tr>
 											<td>Longitude:</td>
-											<td><input name="CoordY" type="text" size=25> *<div id="CoordY"></div></td>							
+											<td><input name="CoordY" type="text" size=25 value="${hiddenCoordX}"> *<div id="CoordY"></div></td>							
 										</tr>
 										<tr>
 											<td>Nº aprox vítimas:</td>
@@ -233,7 +233,7 @@ function habilitaCombo(priID, prstHabilita){
 											<td colspan="2">Informações complementares:</td>			
 										</tr>										
 										<tr>	
-											<td colspan="2"><textArea NAME="infoComplementares" COLS=50 ROWS=4></textArea></td>				
+											<td colspan="2"><textArea NAME="infoComplementares" COLS=50 ROWS=4>${infoComplementares}</textArea></td>				
 										</tr>																			
 									</table>
 									</fieldset>
