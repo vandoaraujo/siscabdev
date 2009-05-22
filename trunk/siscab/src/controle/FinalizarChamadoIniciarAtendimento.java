@@ -98,14 +98,14 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	numeroGeradoChamado = Integer.parseInt(request
 		.getParameter("idChamado")); // cast
 	nomeSolicitante = request.getParameter("nomeSolicitante");
-	telefone = request.getParameter("telefone");
+	telefone = request.getParameter("telefoneSolicitante");
 	String aproxVitimas = request.getParameter("numAproximadoVitimas");
 	if (aproxVitimas.equals(""))
 	    aproxVitimas = "0";
 	numAproxVitimas = Integer.parseInt(aproxVitimas);
 	obmSolicitada = request.getParameter("obmSolicitada");
 	infoComplementares = request.getParameter("infoComplementares");
-	origemChamado = request.getParameter("origemChamado");
+	origemChamado = request.getParameter("origem");
 	naturezaChamado = request.getParameter("naturezaChamado");
 	nomeObmUsuario = request.getParameter("obmUsuario");
 	municipio = request.getParameter("municipio");
@@ -117,70 +117,69 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	request.setAttribute("municipio", municipio);
 	request.setAttribute("bairro", bairro);
 
-	
+	//Acao Botao Finalizar Chamado
 	if (operacaoARealizar == 1) {
 	
-    	getHoraFinalChamado();
+    		getHoraFinalChamado();
     
-    	// Artificio para setar a hora Inicial do Chamado no guardada no Servlet
-    	// RegistrarChamado
-    	dataInicio = Chamado.getDataHoraInicioChamado();
+    		//Artificio para setar a hora Inicial do Chamado no guardada no Servlet
+    		// RegistrarChamado
+    		dataInicio = Chamado.getDataHoraInicioChamado();
+    		salvarChamado();
     
-    	salvarChamado();
-    
-    	if (naturezaChamado.equals("Solicitação de socorro")) {
+    		if (naturezaChamado.equals("Solicitação de socorro")) {
             	    
-	      	buscaChamadoAtual();
-	    
-	    	obmAtendimento = request.getParameter("obmUsuario");
-		radioButton = request.getParameter("radiobutton");
-		obmRepassaAtendimento = request.getParameter("obmRepassaAtendimento");
-		String latitude = request.getParameter("CoordX");
-		if (latitude.equals("")) {
-		    latitude = "0";
-		}
-		String longitude = request.getParameter("CoordY");
-		if (longitude.equals("")) {
-		    longitude = "0";
-		}
-		coordX = Float.parseFloat(latitude);
-		coordY = Float.parseFloat(longitude);
-		String tipoOcorrencia = request.getParameter("tipoOcorrencia");
-		status = "Pendente";
+            		buscaChamadoAtual();
+        	    
+        	    	obmAtendimento = request.getParameter("obmUsuario");
+        		radioButton = request.getParameter("radiobutton");
+        		obmRepassaAtendimento = request.getParameter("obmRepassaAtendimento");
+        		String latitude = request.getParameter("CoordX");
+        		if (latitude.equals("")) {
+        		    latitude = "0";
+        		}
+        		String longitude = request.getParameter("CoordY");
+        		if (longitude.equals("")) {
+        		    longitude = "0";
+        		}
+        		coordX = Float.parseFloat(latitude);
+        		coordY = Float.parseFloat(longitude);
+        		String tipoOcorrencia = request.getParameter("tipoOcorrencia");
+        		status = "Pendente";
+        
+        		// Instancia objeto a ser salvo no BD
+        		atendimento = new Atendimento();
+        
+        		getAnoVigente();
+        
+        		iniciaProximoIdAtendimento();
+        
+        		verificarRepasseAtendimento();
+        
+        		buscaChamadoAtual();
+        
+        		tipoO = TipoOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(
+        			tipoOcorrencia);
+        
+        		salvarAtendimento();
+        
+        		iniciaCronologiaAtendimento();
+        
+        		RequestDispatcher view = request
+        			.getRequestDispatcher("/atendimentoSalvo.jsp");
+        
+        		request.setAttribute("numeroAtendimento", oid);
+        		view.forward(request, response);
 
-		// Instancia objeto a ser salvo no BD
-		atendimento = new Atendimento();
+    		} else {
 
-		getAnoVigente();
+    		    	RequestDispatcher view = request
+    		    	.getRequestDispatcher("/FinalizarChamado.jsp");
+    		    	view.forward(request, response);
 
-		iniciaProximoIdAtendimento();
-
-		verificarRepasseAtendimento();
-
-		buscaChamadoAtual();
-
-		tipoO = TipoOcorrenciaDao.getInstance().listarTiposOcorrenciaNome(
-			tipoOcorrencia);
-
-		salvarAtendimento();
-
-		iniciaCronologiaAtendimento();
-
-		RequestDispatcher view = request
-			.getRequestDispatcher("/atendimentoSalvo.jsp");
-
-		request.setAttribute("numeroAtendimento", oid);
-		view.forward(request, response);
-
-	} else {
-
-	    RequestDispatcher view = request
-		    .getRequestDispatcher("/FinalizarChamado.jsp");
-	    view.forward(request, response);
-
+    		}
 	}
-	}
-	
+	//Campos obrigatórios vazios
 	if((municipio.equals("") || bairro.equals("")) && operacaoARealizar == 2)
 	{
 	    
@@ -188,21 +187,21 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	    	.getRequestDispatcher("/msgOcorrenciasProximas.jsp");
 	    	view.forward(request, response);
 	}
-	//Campos obrigatórios vazios
+	//Ação Botão Procurar Ocorrencias Próximas
 	else if((!municipio.equals("") || !bairro.equals("")) && operacaoARealizar == 2)
 	{	    
 	    buscaChamadosProximos();
 	}
 	
 	// Ver este campo --- JSP passa o valor 1
-	int registroOcorrencia = Integer.parseInt(request
-		.getParameter("registroOcorrencia"));
+	//int registroOcorrencia = Integer.parseInt(request
+	//	.getParameter("registroOcorrencia"));
 
-	ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance()
-		.listarTodasOBMs();
+	//ArrayList<OBM> obms = (ArrayList<OBM>) OBMDao.getInstance()
+	//.listarTodasOBMs();
 
 	request.setAttribute("numeroChamado", numeroGeradoChamado);
-	request.setAttribute("obms", obms);
+	//request.setAttribute("obms", obms);
 	request.setAttribute("origemChamado", origemChamado);
 	request.setAttribute("nomeSolicitante", nomeSolicitante);
 	request.setAttribute("telefone", telefone);
@@ -213,6 +212,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	request.setAttribute("numero", numero);
 
 	if (operacaoARealizar == 3) {
+	    
 	    RequestDispatcher view = request
 		    .getRequestDispatcher("/MostraMapaLocalOcorrencia.jsp");
 	    view.forward(request, response);

@@ -438,6 +438,15 @@
 		<servlet-class>
 		controle.AlteraStatusViatura</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		PopulaGeoRegistrarChamado</display-name>
+		<servlet-name>PopulaGeoRegistrarChamado</servlet-name>
+		<servlet-class>
+		controle.PopulaGeoRegistrarChamado</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>NovoUsuario</servlet-name>
 		<url-pattern>/NovoUsuario</url-pattern>
@@ -613,6 +622,10 @@
 	<servlet-mapping>
 		<servlet-name>AlteraStatusViatura</servlet-name>
 		<url-pattern>/AlteraStatusViatura</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PopulaGeoRegistrarChamado</servlet-name>
+		<url-pattern>/PopulaGeoRegistrarChamado</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

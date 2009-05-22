@@ -69,14 +69,9 @@
 							<%} 
 							}%>
 							
-							</fieldset>													
-								<input type="button" value="Fechar" onclick="window.close()"/>
-
-
-
-
-
-
-
+							</fieldset>	
+							
+							<form> <input type="button" value=" Voltar " onclick="history.go(-1)"> </p> </form>  												
+								
 </body>
 </html>
