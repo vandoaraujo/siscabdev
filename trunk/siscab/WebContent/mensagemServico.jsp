@@ -40,7 +40,10 @@
 						<fieldset style="width:450px"><legend>&nbsp;Serviço&nbsp;</legend>
 							Servico executado: ${descricaoServico}, <div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-																													
+										<form action="acompanharAtendimentoOpcoes.jsp" style="display:inline;">
+														
+							 				<input type="submit" value="OK"/>
+							 			</form>																						
 						</fieldset>	
 					</td>
 				</tr>				
