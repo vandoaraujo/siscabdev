@@ -95,22 +95,6 @@ function campoObrigatorio()
 									</td>								
 								</tr>
 								<tr>
-									<td><label>Status:</label></td>
-									<td>
-										<select name="status">
-										<option selected>${viaturaAtual.viatura_status}</option>
-										<option>Em prontidão
-										<option>Inoperante - Sem tripulação
-										<option>Inoperante - Em manutenção
-										<option>Inoperante - Desativada
-										</select> *									
-									</td>								
-								</tr>
-								<tr>								
-									<td><label>Observações:</label></td>
-									<td><TEXTAREA COLS=40 ROWS=5 NAME="obsViatura">${viaturaAtual.viatura_obs}</TEXTAREA></td>								
-								</tr>
-								<tr>
 									<td colspan="2">
 										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>
    									    <input type="hidden" name="operacaoARealizar" value ="2">

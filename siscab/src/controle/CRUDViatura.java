@@ -27,8 +27,8 @@ public class CRUDViatura extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private String numeroViatura;
     private String obm;
-    private String statusViatura;
-    private String obsViatura;
+    //private String statusViatura;
+    //private String obsViatura;
     private int registroViatura;
     private String tipoViatura;
     static Logger logger = Logger.getLogger(CRUDViatura.class);
@@ -57,8 +57,8 @@ public class CRUDViatura extends HttpServlet {
 	    via.setNumero(numeroViatura);
 	    via.setObm(obmAtual);
 	    via.setTipo_viatura(tipoV);
-	    via.setViatura_obs(obsViatura);
-	    via.setViatura_status(statusViatura);
+	    via.setViatura_obs(null);
+	    via.setViatura_status("Inoperante - Sem tripulação");
 	    ViaturaDao.getInstance().atualizar(via);
 	    despacha(request, response, "alterar", via.getNumero());
 	}
@@ -155,8 +155,8 @@ public class CRUDViatura extends HttpServlet {
 	logger.info(getServletName().toString());
 	numeroViatura = request.getParameter("numero");
 	obm = request.getParameter("obm");
-	statusViatura = request.getParameter("status");
-	obsViatura = request.getParameter("obsViatura");
+	//statusViatura = request.getParameter("status");
+	//obsViatura = request.getParameter("obsViatura");
 	tipoViatura = request.getParameter("tipoViatura");
 	registroViatura = Integer.parseInt(request
 		.getParameter("registroViatura"));
@@ -184,6 +184,7 @@ public class CRUDViatura extends HttpServlet {
 	TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(
 		tipoViatura);
 	Viatura via = new Viatura();
+	numeroViatura.toUpperCase();
 	via.setNumero(numeroViatura);
 
 	Viatura v = ViaturaDao.getInstance()
@@ -199,8 +200,8 @@ public class CRUDViatura extends HttpServlet {
 
 	    via.setObm(cobm);
 	    via.setTipo_viatura(tipoV);
-	    via.setViatura_obs(obsViatura);
-	    via.setViatura_status(statusViatura);
+	    via.setViatura_obs(null);
+	    via.setViatura_status("Inoperante - Sem tripulação");
 	    ViaturaDao.getInstance().salvar(via);
 	    request.setAttribute("viatura", via);
 	    despacha(request, response, "salvar", via.getNumero());

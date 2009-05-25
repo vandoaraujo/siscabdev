@@ -96,18 +96,6 @@ function campoObrigatorio()
 										</td>
 									</tr>
 									<tr>
-										<td><label>Status:</label></td>
-										<td>
-										<select name="status">
-										<option>Inoperante - Sem tripulação
-										</select> *
-										</td>
-									</tr>
-									<tr>
-										<td><label>Observações:</label></td>
-										<td><TEXTAREA COLS=40 ROWS=5 NAME="obsViatura"/></TEXTAREA></td>
-									</tr>
-									<tr>
 										<td colspan="2">
 										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>
 										<input type="hidden" name="operacaoARealizar" value ="1">
