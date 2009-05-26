@@ -105,7 +105,8 @@ function addAddressesToMap(addresses) {
 	CoordX  = point.lat();	
 	CoordY  = point.lng();	
 
-	document.getElementById("Coordenadas").innerHTML = "Latitude: " + CoordX + "  -  Longitude: " + CoordY;
+	document.getElementById("CoordX").innerHTML = CoordX;
+	document.getElementById("CoordY").innerHTML = CoordY;
 	
 	document.getElementById("details").innerHTML = details;
 }
