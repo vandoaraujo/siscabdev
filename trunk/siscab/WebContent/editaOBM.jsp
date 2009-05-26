@@ -13,13 +13,18 @@
 <script>
 function campoObrigatorio()
 {
+	var indiceMunicipio = document.form.municipio.selectedIndex;
+	var indiceStatus = document.form.statusObm.selectedIndex;			
+		
 	if ( (document.form.nome.value != null) && (document.form.nome.value != "") && 
 			(document.form.municipio.value != null) && (document.form.municipio.value != "") && 
 				(document.form.bairro.value != null) && (document.form.bairro.value != "") &&
 					(document.form.logradouro.value != null) && (document.form.logradouro.value != "") &&
 						(document.form.numComplemento.value != null) && (document.form.numComplemento.value != "") &&
 							(document.form.coordX.value != null) && (document.form.coordX.value != "") &&
-								(document.form.coordY.value != null) && (document.form.coordY.value != ""))
+								(document.form.coordY.value != null) && (document.form.coordY.value != "") && 
+									(document.form.municipio.options[indiceMunicipio].text != "- - -") && 
+										(document.form.statusObm.options[indiceStatus].text != "- - -" ) )
 		return true;
 	else
 	{
@@ -92,32 +97,33 @@ function campoObrigatorio()
 								</tr>
 								<tr>
 									<td><label>Nº/Complemento:</label></td>
-									<td><input name="numComplemento" type="text" value="${obmAtual.numCompl}" /> * </td>
+									<td><input name="numComplemento" type="text" value="${obmAtual.numCompl}" /> * &nbsp;&nbsp;
+									<a href="MostraMapaOBM.jsp?endereco=${obmAtual.logradouro}&numero=${obmAtual.numCompl}&bairro=${obmAtual.bairro}&municipio=${obmAtual.municipio.municipio_nome}" target="_blank">Localizar no Mapa</a></td>
 								</tr>
 								<tr>	
 									<td><label>Latitude:</label></td>
-									<td><input name="coordX" type="text" value=${obmAtual.coordX} onkeydown="return SomenteNumeros(event)"/> * </td>
+									<td><input name="coordX" type="text" value=${obmAtual.coordX} onkeydown="return SomenteNumerosGoogleMaps(event)"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Longitude:</label></td>
-									<td><input name="coordY" type="text" value=${obmAtual.coordY} onkeydown="return SomenteNumeros(event)"/> * </td>
+									<td><input name="coordY" type="text" value=${obmAtual.coordY} onkeydown="return SomenteNumerosGoogleMaps(event)"/> * </td>
 								</tr>
 								<tr>
 									<td><label>Status:</label></td>
 									<td><%  
 									     if((obmVO.getStatus() == 0)){
 									    %>
-									    		<select name="statusObm">
-									    			<option selected>Ativa</option>
-									    	 		<option>Inativa</option>
-									    	 	</select>
+									    <select name="statusObm">
+											<option selected>ATIVA</option>
+											<option>INATIVA</option>
+										</select> *
 									    	 	 
 									     <%} else{
 									    	 %>									  
-									    		<select name="statusObm">
-									    			<option>Ativa</option>
-									    	 		<option selected>Inativa</option>
-									    	 	</select>
+									   	<select name="statusObm">
+											<option>ATIVA</option>
+											<option selected>INATIVA</option>
+										</select> *
 									    	 
 									     <% }%></td>
 								</tr>
