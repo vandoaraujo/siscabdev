@@ -41,8 +41,10 @@
 								</td>
 							</tr>
 						</table>
-						<div id="CoordX"></div>
-						<div id="CoordY"></div>		  							
+						
+						<div style="display:inline">Latitude: <div id="CoordX" style="display:inline"></div></div>
+						<div style="display:inline">Longitude: <div id="CoordY" style="display:inline"></div></div>
+								  							
 							<script>
 							function Coordenadas(){
 								var CoordX = document.getElementById('CoordX').innerHTML;
@@ -56,7 +58,7 @@
 							<input type="hidden" name="hiddenCoordY" id="hiddenCoordY">
 							<input type="hidden" name="q" id="q" value="><%=request.getParameter("endereco") %> <%=request.getParameter("numero") %> <%=request.getParameter("bairro") %> <%=request.getParameter("municipio") %> RJ Brasil ">
 							
-							<input type="submit" value="Confirmar Coordenadas Geográficas" onclick="Coordenadas();" >																		
+							<input type="submit" value="Confirmar Coordenadas Geográficas" onclick="window.close();" >																		
 					</fieldset>
 				</td>
 			</tr>

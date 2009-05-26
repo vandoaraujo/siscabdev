@@ -22,6 +22,8 @@ function habilitaCombo(priID, prstHabilita){
 
 function campoObrigatorioFinalizarChamado()
 {	
+	var indiceMunicipio = document.form.municipio.selectedIndex;
+	
 	if ( (document.form.nomeSolicitante.value != null) && 
 			(document.form.nomeSolicitante.value != "") &&
 				(document.form.telefoneSolicitante.value != null) && 
@@ -37,7 +39,9 @@ function campoObrigatorioFinalizarChamado()
 														(document.form.CoordX.value != null) && 
 															(document.form.CoordX.value != "") &&
 																(document.form.CoordY.value != null) && 
-																	(document.form.CoordY.value != "") )
+																	(document.form.CoordY.value != "") &&
+																		(document.form.municipio.options[indiceMunicipio].text != "- - -") && 
+																			(document.form.statusObm.options[indiceStatus].text != "- - -" ) )
 		return true;
 	else
 	{
@@ -46,6 +50,89 @@ function campoObrigatorioFinalizarChamado()
 	}
 
 }
+
+
+
+function campoObrigatorioLocalizarNoMapa()
+{	
+	document.form.operacaoARealizar.value = 3;
+	
+	var indiceMunicipio = document.form.municipio.selectedIndex;
+	
+	if ( (document.form.bairro.value != null) && 
+			(document.form.bairro.value != "") &&
+				(document.form.endereco.value != null) && 
+					(document.form.endereco.value != "") &&
+						(document.form.numero.value != null) && 
+							(document.form.numero.value != "") &&
+								(document.form.municipio.options[indiceMunicipio].text != ""))
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
+
+function campoObrigatorioProcurarOcorrenciasProximas()
+{	
+	document.form.operacaoARealizar.value = 2;
+	
+	var indiceMunicipio = document.form.municipio.selectedIndex;
+	
+	if ( (document.form.nomeSolicitante.value != null) && 
+			(document.form.nomeSolicitante.value != "") &&
+				(document.form.telefoneSolicitante.value != null) && 
+					(document.form.telefoneSolicitante.value != "") &&
+						(document.form.bairro.value != null) && 
+							(document.form.bairro.value != "") &&
+								(document.form.endereco.value != null) && 
+									(document.form.endereco.value != "") &&
+										(document.form.numero.value != null) && 
+											(document.form.numero.value != "") &&
+												(document.form.municipio.options[indiceMunicipio].text != ""))
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
+
+
+function mascaraTelefone(e){
+	var tecla=(window.event)?event.keyCode:e.which;
+	if ((tecla == 8 || tecla == 0))
+		return true;
+
+	if((tecla > 47 && tecla < 58))
+	{
+		var telefone = document.form.telefoneSolicitante.value;
+		if (telefone.length == 0)
+		{
+			telefone = telefone + '(';
+			document.form.telefoneSolicitante.value = telefone;
+			return true;              
+		}
+		if (telefone.length == 3){
+			  telefone = telefone + ')';
+			  document.form.telefoneSolicitante.value = telefone;
+			  return true;
+		}
+		if (telefone.length == 8){
+			  telefone = telefone + '-';
+			  document.form.telefoneSolicitante.value = telefone;
+			  return true;
+		}
+	}
+	else
+		return false;		
+
+	return true;
+}
+
 </script>
 </head>
 <body>
@@ -80,7 +167,7 @@ function campoObrigatorioFinalizarChamado()
 						<table>
 							<tr>
 								<td valign="top">
-								<form action="FinalizarChamadoIniciarAtendimento" method="post" style="display:inline">
+								<form action="FinalizarChamadoIniciarAtendimento" name="form" method="post" style="display:inline">
 								<fieldset style="width:450px"><legend>&nbsp;Dados do Chamado&nbsp;</legend>
 								
 									<table>						
@@ -118,7 +205,7 @@ function campoObrigatorioFinalizarChamado()
 										</tr>
 										<tr>
 											<td>Telefone solicitante:</td>
-											<td><input name="telefoneSolicitante" type="text" value="${telefone}"></td>
+											<td><input name="telefoneSolicitante" type="text" maxlength="13" value="${telefone}" onKeyDown="return mascaraTelefone(event)"></td>
 										</tr>										
 									</table>
 									</fieldset>
@@ -128,7 +215,7 @@ function campoObrigatorioFinalizarChamado()
 									<table>							
 										<tr>
 											<td colspan="2">
-												<input type="submit" value="Procurar Ocorrências Próximas" onclick="this.form.operacaoARealizar.value=2" >
+												<input type="submit" value="Procurar Ocorrências Próximas" onclick="return campoObrigatorioProcurarOcorrenciasProximas();" >
 											</td>
 										</tr>
 										<tr>
@@ -208,8 +295,9 @@ function campoObrigatorioFinalizarChamado()
 											<%
 										    
 										 	ArrayList<Municipio> municipio = (ArrayList)request.getAttribute("municipios");
-											%><option selected> ${municipio}
-											<% 
+											%>
+											<option selected>${municipio}
+											<%
 											for(Municipio m: municipio){
 											 out.println("<option>"+m.getMunicipio_nome());
 										 	}
@@ -228,10 +316,10 @@ function campoObrigatorioFinalizarChamado()
 										<tr>
 											<td>Nº/Complemento:</td>
 											<td>
-												<input name="numero" type="text" size=6 value=${numero}> 												
-												<input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=3"></td>
+												<input name="numero" type="text" size="6" value="${numero}" onkeypress="return SomenteNumeros(event);"> 												
+												<input type="submit" value="Localizar no Mapa" onclick="return campoObrigatorioLocalizarNoMapa();"></td>
 												<input type="hidden" name="registroOcorrencia" value ="1">
-												<input type="hidden" name="operacaoARealizar" value ="">	
+												<input type="hidden" name="operacaoARealizar" value ="">		
 												<input type="hidden" name="idChamado" value ="${idChamado}">																																
 											</td>							
 										</tr>
