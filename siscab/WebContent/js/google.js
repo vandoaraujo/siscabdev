@@ -101,7 +101,7 @@ function addAddressesToMap(addresses) {
 	         + "Acurácia: " + accuracy + " ("
 	                        + accuracies[accuracy].desc + ")"  + "<br/>"
 	         + "LatLng: " + point.lat() + ", " + point.lng();
-
+ 
 	CoordX  = point.lat();	
 	CoordY  = point.lng();	
 
