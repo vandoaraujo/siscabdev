@@ -41,8 +41,10 @@
 								</td>
 							</tr>
 						</table>
-							<div id="CoordX"></div>
-						
+												
+						<div>Latitude: <div id="CoordX"></div></div>
+						<div>Longitude: <div id="CoordY"></div></div>
+		  										  							
 		  								<form action="PopulaGeoRegistrarChamado" onsubmit="showAddress(this.address.value); return false">
 										
 										<input name="infoComplementares" type="hidden" value="${infoComplementares}">
@@ -78,7 +80,7 @@
 										
 										<input type="submit" value="Confirmar Coordenadas Geográficas" onclick="Coordenadas();" >
 										
-									</label></label></form>
+									</form>
 					</fieldset>
 				</td>
 			</tr>
