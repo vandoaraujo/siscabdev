@@ -90,7 +90,7 @@
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("---");}%>
 								</span></p>
 								</td>
 								<td width=104 valign=top
@@ -98,7 +98,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");} %>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("---");} %>
 								</span></p>
 								</td>
 								<td width=96 valign=top
@@ -106,7 +106,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++; } else {out.print("&nbsp;");} %>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++; } else {out.print("---");} %>
 								</span></p>
 
 								</td>
@@ -117,7 +117,7 @@
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("---");}%>
 								</span></p>
 								</td>
 								<td width=104 valign=top
@@ -125,7 +125,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("---");}%>
 								</span></p>
 
 								</td>
@@ -134,7 +134,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("---");} %>
 								</span></p>
 								</td>
 							</tr>
@@ -144,7 +144,7 @@
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("---");}%>
 								</span></p>
 
 								</td>
@@ -153,7 +153,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<%if(controle < tamanhochamadosPorNatureza) { out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%>
+								<%if(controle < tamanhochamadosPorNatureza) { out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("---");}%>
 								</span></p>
 								</td>
 								<td width=96 valign=top
@@ -161,7 +161,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("---");} %>
 								</span></p>
 								</td>
 							</tr>
@@ -172,7 +172,7 @@
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza) { out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%>
+								<% if(controle < tamanhochamadosPorNatureza) { out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("---");}%>
 								</span></p>
 								</td>
 								<td width=104 valign=top
@@ -180,7 +180,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString());} else {out.print("&nbsp;");}%>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString());} else {out.print("---");}%>
 								</span></p>
 								</td>
 								<td width=96 valign=top
@@ -189,7 +189,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("---");} %>
 								</span></p>
 								</td>
 							</tr>
@@ -199,7 +199,7 @@
 								<p class=MsoNormal
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in'><span
 									lang=PT-BR>
-								<%if(controle < tamanhochamadosPorNatureza) { out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("&nbsp;");}%>
+								<%if(controle < tamanhochamadosPorNatureza) { out.print(chamadosPorNatureza.get(controle).toString());} else {out.print("---");}%>
 								</span></p>
 								</td>
 								<td width=104 valign=top
@@ -208,7 +208,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("&nbsp;");}%>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(numeroAtendimentos.get(controle).toString()); } else {out.print("---");}%>
 								</span></p>
 								</td>
 								<td width=96 valign=top
@@ -216,7 +216,7 @@
 								<p class=MsoNormal align=right
 									style='margin-top: 3.0pt; margin-right: 0in; margin-bottom: 3.0pt; margin-left: 0in; text-align: right'><span
 									lang=PT-BR>
-								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("&nbsp;");} %>
+								<% if(controle < tamanhochamadosPorNatureza){ out.print(percentualAtendimento.get(controle).toString() + "%"); controle++;} else {out.print("---");} %>
 								</span></p>
 								</td>
 							</tr>
