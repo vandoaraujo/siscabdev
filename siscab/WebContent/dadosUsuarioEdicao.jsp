@@ -15,7 +15,15 @@
 function campoObrigatorio()
 {
 	if ( (document.form.novaSenha.value != null) && (document.form.novaSenha.value != "") && (document.form.repeticaoSenha.value != null) && (document.form.repeticaoSenha.value != "") && (document.form.senha.value != null) && (document.form.senha.value != "") )
-		return true;
+	{
+		if (validarEmail())
+			return true;
+		else
+		{
+			alert("Email inválido");	
+			return false;
+		}
+	}
 	else
 	{
 		alert("Favor preencher todos campos obrigatórios");	
@@ -23,6 +31,20 @@ function campoObrigatorio()
 	}
 
 }
+
+var reEmail3 = /^[\w-]+(\.[\w-]+)*@(([A-Za-z\d][A-Za-z\d-]{0,61}[A-Za-z\d]\.)+[A-Za-z]{2,6}|\[\d{1,3}(\.\d{1,3}){3}\])$/;
+var reEmail = reEmail3;
+
+function validarEmail()
+{
+	var pStr = document.form.email.value;
+	if (reEmail.test(pStr)) {
+		return true;
+	} else if (pStr != null && pStr != "") {
+		return false;
+	}
+}
+
 </script>
 </head>
 
