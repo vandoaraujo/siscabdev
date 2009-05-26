@@ -42,7 +42,7 @@
 							</tr>
 						</table>
 												
-						<div style="display:inline">Latitude: <div id="CoordX" style="display:inline"></div></div>
+					<div style="display:inline">Latitude: <div id="CoordX" style="display:inline"></div></div>
 						<div style="display:inline">Longitude: <div id="CoordY" style="display:inline"></div></div>
 		  										  							
 		  								<form action="PopulaGeoRegistrarChamado" onsubmit="showAddress(this.address.value); return false">
@@ -64,8 +64,7 @@
 										<input name="numeroChamado" type="hidden" readonly="readonly" value="${numeroChamado}">
 						
 										
-										
-										<script>
+									<script>
 										function Coordenadas(){
 											var CoordX = document.getElementById('CoordX').innerHTML;
 											var CoordY = document.getElementById('CoordY').innerHTML;
