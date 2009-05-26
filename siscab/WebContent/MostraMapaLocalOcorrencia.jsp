@@ -42,8 +42,8 @@
 							</tr>
 						</table>
 												
-						<div>Latitude: <div id="CoordX"></div></div>
-						<div>Longitude: <div id="CoordY"></div></div>
+						<div style="display:inline">Latitude: <div id="CoordX" style="display:inline"></div></div>
+						<div style="display:inline">Longitude: <div id="CoordY" style="display:inline"></div></div>
 		  										  							
 		  								<form action="PopulaGeoRegistrarChamado" onsubmit="showAddress(this.address.value); return false">
 										
