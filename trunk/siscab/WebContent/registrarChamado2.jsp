@@ -155,7 +155,7 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>
 										<tr>
 											<td colspan="2">
-												<input type="hidden" name="obmSolicitada" value=<%=usu.getObm().getNome() %>>
+												<input type="hidden" name="obmSolicitada" value="<%=usu.getObm().getNome() %>">
 												<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
 											</td>
 										</tr>		

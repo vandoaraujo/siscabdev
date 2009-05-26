@@ -41,6 +41,7 @@
 								</td>
 							</tr>
 						</table>
+							<div id="CoordX"></div>
 						
 		  								<form action="PopulaGeoRegistrarChamado" onsubmit="showAddress(this.address.value); return false">
 										
