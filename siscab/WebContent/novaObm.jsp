@@ -13,13 +13,18 @@
 <script>
 function campoObrigatorio()
 {
+	var indiceMunicipio = document.form.municipio.selectedIndex;
+	var indiceStatus = document.form.statusObm.selectedIndex;			
+		
 	if ( (document.form.nome.value != null) && (document.form.nome.value != "") && 
 			(document.form.municipio.value != null) && (document.form.municipio.value != "") && 
 				(document.form.bairro.value != null) && (document.form.bairro.value != "") &&
 					(document.form.logradouro.value != null) && (document.form.logradouro.value != "") &&
 						(document.form.numComplemento.value != null) && (document.form.numComplemento.value != "") &&
 							(document.form.coordX.value != null) && (document.form.coordX.value != "") &&
-								(document.form.coordY.value != null) && (document.form.coordY.value != ""))
+								(document.form.coordY.value != null) && (document.form.coordY.value != "") && 
+									(document.form.municipio.options[indiceMunicipio].text != "- - -") && 
+										(document.form.statusObm.options[indiceStatus].text != "- - -" ) )
 		return true;
 	else
 	{
@@ -78,8 +83,10 @@ function campoObrigatorio()
 										<!-- Popula a combo que aparecerá na tela -->
 										<%										
 									 	 List<Municipio> municipio =(List<Municipio>) MunicipioDao.getInstance().listarTodosMunicipios();
-									 	 for(Municipio m: municipio){
-										 out.println("<option>"+m.getMunicipio_nome());
+										%><option selected>- - -</option><%
+										for(Municipio m: municipio){
+									 	
+									 		 out.println("<option>"+m.getMunicipio_nome());
 									 	}
 										out.println("</select> * ");
 										%>
@@ -107,9 +114,11 @@ function campoObrigatorio()
 								</tr>
 								<tr>	
 									<td><label>Status:</label></td>
-									<td>Dropdownlist
-										Ativa:<input name="statusObm" type="radio" value="ativa" checked>&nbsp;&nbsp;&nbsp;
-								 		Inativa: <input name="statusObm" type="radio" value="inativa"/> *
+									<td><select name="statusObm">
+											<option selected>- - -</option>
+											<option>ATIVO</option>
+											<option>INATIVO</option>
+										</select> *									
 									</td>	
 								</tr>
 								<tr>

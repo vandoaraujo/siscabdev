@@ -98,7 +98,7 @@ public class PopulaGeoRegistrarChamado extends HttpServlet {
     	    request.setAttribute("numeroGeradoChamado",request.getParameter("numeroGeradoChamado"));
     	    request.setAttribute("municipio",request.getParameter("municipio"));
     	    request.setAttribute("numero",request.getParameter("numero"));
-    	    request.setAttribute("hiddenCoordY",request.getParameter("hiddenCoordY"));
+    	    request.setAttribute("hiddenCoordX",request.getParameter("hiddenCoordX"));
     	    request.setAttribute("hiddenCoordY",request.getParameter("hiddenCoordY"));
   	    request.setAttribute("idChamado", id--);
     	    

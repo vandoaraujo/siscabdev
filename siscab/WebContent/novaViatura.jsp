@@ -14,7 +14,10 @@
 <script>
 function campoObrigatorio()
 {
-	if ( (document.form.numero.value != null) && (document.form.numero.value != "") )
+	var indiceTipoViatura = document.form.tipoViatura.selectedIndex;
+	var indiceOBM = document.form.obm.selectedIndex;			
+	
+	if ( (document.form.numero.value != null) && (document.form.numero.value != "") && (document.form.tipoViatura.options[indiceTipoViatura].text != "- - -") && (document.form.obm.options[indiceOBM].text != "- - -" ) )
 		return true;
 	else
 	{

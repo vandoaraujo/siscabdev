@@ -102,11 +102,10 @@ function addAddressesToMap(addresses) {
 	                        + accuracies[accuracy].desc + ")"  + "<br/>"
 	         + "LatLng: " + point.lat() + ", " + point.lng();
 
-	CoordX  = point.lat();
-	CoordY  = point.lng();
-	
-	document.getElementById("CoordX").innerHTML = CoordX;
-	document.getElementById("CoordY").innerHTML = CoordY;
+	CoordX  = point.lat();	
+	CoordY  = point.lng();	
+
+	document.getElementById("Coordenadas").innerHTML = "Latitude: " + CoordX + "  -  Longitude: " + CoordY;
 	
 	document.getElementById("details").innerHTML = details;
 }
