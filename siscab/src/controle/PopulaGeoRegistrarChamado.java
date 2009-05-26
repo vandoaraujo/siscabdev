@@ -1,10 +1,6 @@
 package controle;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +19,7 @@ import dao.ChamadoDao;
 import dao.MunicipioDao;
 import dao.UsuarioDao;
 
+
 /**
  * Servlet implementation class PopulaGeoRegistrarChamado
  */
@@ -31,6 +28,7 @@ public class PopulaGeoRegistrarChamado extends HttpServlet {
     RequestDispatcher view;
     static Logger logger = Logger.getLogger(PopulaGeoRegistrarChamado.class);
     Integer id;
+    String coordX, coordY;
  
     /**
      * @see HttpServlet#HttpServlet()
@@ -89,6 +87,9 @@ public class PopulaGeoRegistrarChamado extends HttpServlet {
 	    request.setAttribute("usuario", u);
 	    request.setAttribute("gravaData", Chamado.getDataHoraInicioChamado());
 
+	    coordX = request.getParameter("hiddenCoordX");
+	    coordY = request.getParameter("hiddenCoordX");
+	    
     	    request.setAttribute("bairro",request.getParameter("bairro"));
     	    request.setAttribute("infoComplementares",request.getParameter("infoComplementares"));
     	    request.setAttribute("idChamado",request.getParameter("numeroChamado"));
@@ -98,10 +99,13 @@ public class PopulaGeoRegistrarChamado extends HttpServlet {
     	    request.setAttribute("numeroGeradoChamado",request.getParameter("numeroGeradoChamado"));
     	    request.setAttribute("municipio",request.getParameter("municipio"));
     	    request.setAttribute("numero",request.getParameter("numero"));
-    	    request.setAttribute("hiddenCoordX",request.getParameter("hiddenCoordX"));
-    	    request.setAttribute("hiddenCoordY",request.getParameter("hiddenCoordY"));
+    	    request.setAttribute("hiddenCoordX",coordX);
+    	    request.setAttribute("hiddenCoordY",coordY);
   	    request.setAttribute("idChamado", id--);
-    	    
+  	    
+  	    logger.info("Coordenada X " + coordX);
+  	    logger.info("Coordenada Y " + coordY);
+  	    
     	    view = request.getRequestDispatcher("/registrarChamado2.jsp");
   
 
