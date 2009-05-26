@@ -104,6 +104,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	    aproxVitimas = "0";
 	numAproxVitimas = Integer.parseInt(aproxVitimas);
 	obmSolicitada = request.getParameter("obmSolicitada");
+	logger.info("OBM passada da pagina RegistrarChamado2.jsp " + obmSolicitada);
 	infoComplementares = request.getParameter("infoComplementares");
 	origemChamado = request.getParameter("origem");
 	naturezaChamado = request.getParameter("naturezaChamado");
@@ -295,6 +296,7 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	// Busca Municipio para instanciar o atributo do objeto
 	Municipio m = MunicipioDao.getInstance().listarMunicipioNome(municipio);
 	atendimento.setMunicipio_id(m);
+	//atendimento.setObm_id(obm_id)
 	atendimento.setCoordx(coordX);
 	atendimento.setCoordy(coordY);
 	atendimento.setLogradouro(endereco);
@@ -314,11 +316,17 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	    obmAReceberSolicitacao = OBMDao.getInstance().listarOBMNome(
 		    obmRepassaAtendimento);
 	    atendimento.setObm_id(obmAReceberSolicitacao);
+	    
+	    logger.info("Repasse de OBM " + obmAReceberSolicitacao);
+
 
 	} else {
 	    obmAReceberSolicitacao = OBMDao.getInstance().listarOBMNome(
-		    obmAtendimento);
+		    obmSolicitada);
 	    atendimento.setObm_id(obmAReceberSolicitacao);
+	    
+	    logger.info("Repasse de OBM " + obmAReceberSolicitacao);
+
 	}
     }
 
@@ -336,6 +344,9 @@ public class FinalizarChamadoIniciarAtendimento extends HttpServlet {
 	chamado.setNumaproxvitimas(numAproxVitimas);
 	// Buscar no Banco a OBM
 	OBM obmUsuario = OBMDao.getInstance().listarOBMNome(obmSolicitada);
+	
+	logger.info("resultado da query de salvar chamado.jsp " + obmUsuario.getNome());
+
 	// OBM que recebeu aquele chamado, não o atendimento
 
 	// Busca no banco a Natureza do chamado

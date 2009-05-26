@@ -43,7 +43,7 @@
 
 <br>
 
-	<form action="RegistrarChamado" method="post" style="display:inline;">
+	<form action="paginaPrincipal.jsp" method="post" style="display:inline;">
 				 				<input type="submit" value="Voltar"/>
 				 			</form>	
 																																										

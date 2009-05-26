@@ -77,9 +77,16 @@ public class CrudOBM extends HttpServlet {
 	List<Atendimento> atendimento = AtendimentoDao.getInstance()
 		.listarAtendimentosNaoFinalizadosOBM(registro);
 	logger.info("HASH " + atendimento);
-	if ((viaturas.size() != 0) || (atendimento.size() != 0)) {
+	
+	if(viaturas.size() != 0){
+	    despacha(request, response, "viaturas", obm.getNome());
+	}
+	else if (atendimento.size() != 0) {
 	    despacha(request, response, "excecao", obm.getNome());
-	} else {
+	}
+	 
+	
+	else {
 
 	    obm.setNome(nome);
 	    obm.setMunicipio(municipioDao);
@@ -167,7 +174,14 @@ public class CrudOBM extends HttpServlet {
 		    .setAttribute(
 			    "mensagem",
 			    "OBM não pode ser desativada no momento, pois está associada a atendimentos(s) não finalizado(s)");
-	} else if (acao.equals("obmIgual")) {
+	}
+	else if (acao.equals("viaturas")) {
+	    request
+		    .setAttribute(
+			    "mensagem",
+			    "OBM não pode ser desativada no momento, pois possui viaturas associada(s)");
+	}
+	else if (acao.equals("obmIgual")) {
 	    request.setAttribute("mensagem",
 		    "OBM já cadastrada.");
 	}

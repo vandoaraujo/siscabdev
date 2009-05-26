@@ -104,16 +104,20 @@ function campoObrigatorio()
 								</tr>
 								<tr>
 									<td><label>Status:</label></td>
-									<td>Dropdownlist<%  
+									<td><%  
 									     if((obmVO.getStatus() == 0)){
 									    %>
-									    	 	Ativa  <input name="statusObm" type="radio" value="ativa" />
-									    	 	Inativa <input name="statusObm" type="radio" value="inativa" checked/>
+									    		<select name="statusObm">
+									    			<option selected>Ativa</option>
+									    	 		<option>Inativa</option>
+									    	 	</select>
 									    	 	 
 									     <%} else{
 									    	 %>									  
-									    	  	Ativo <input name="statusObm" type="radio" value="ativa" checked/>
-									    	 	Inativo <input name="statusObm" type="radio" value="inativa" /> *
+									    		<select name="statusObm">
+									    			<option>Ativa</option>
+									    	 		<option selected>Inativa</option>
+									    	 	</select>
 									    	 
 									     <% }%></td>
 								</tr>
