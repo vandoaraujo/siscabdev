@@ -20,6 +20,32 @@ function habilitaCombo(priID, prstHabilita){
         document.getElementById(priID).disabled = true;
 }
 
+function campoObrigatorioFinalizarChamado()
+{	
+	if ( (document.form.nomeSolicitante.value != null) && 
+			(document.form.nomeSolicitante.value != "") &&
+				(document.form.telefoneSolicitante.value != null) && 
+					(document.form.telefoneSolicitante.value != "") &&
+						(document.form.bairro.value != null) && 
+							(document.form.bairro.value != "") &&
+								(document.form.endereco.value != null) && 
+									(document.form.endereco.value != "") &&
+										(document.form.numero.value != null) && 
+											(document.form.numero.value != "") && 
+												(document.form.numAproximadoVitimas.value != null) && 
+													(document.form.numAproximadoVitimas.value != "") &&
+														(document.form.CoordX.value != null) && 
+															(document.form.CoordX.value != "") &&
+																(document.form.CoordY.value != null) && 
+																	(document.form.CoordY.value != "") )
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
 </script>
 </head>
 <body>
@@ -60,7 +86,7 @@ function habilitaCombo(priID, prstHabilita){
 									<table>						
 										<tr>
 											<td nowrap="nowrap">Número do chamado:</td>
-											<td>${idChamado}</td>
+											<td><strong>${idChamado}</strong></td>
 										</tr>
 
 										<%! String grava;%>
@@ -71,15 +97,11 @@ function habilitaCombo(priID, prstHabilita){
 									
 										<tr>
 											<td width="100px" nowrap="nowrap">Data/Hora inicio:</td>
-											<td><%= grava %></td>
+											<td><strong><%= grava %></strong></td>
 										</tr>						
-										<!-- <tr>
-											<td>Usuário:</td>
-											<td><input name="usuario" type="text" readonly="readonly" value="${usuario.nomeGuerra}"></td>
-										</tr>-->
 										<tr>
 											<td>Obm que atendeu:</td>
-											<td><%=usu.getObm().getNome() %></td>
+											<td><strong><%=usu.getObm().getNome() %></strong></td>
 										</tr>
 										<tr>
 											<td>Origem:</td>
@@ -106,7 +128,6 @@ function habilitaCombo(priID, prstHabilita){
 									<table>							
 										<tr>
 											<td colspan="2">
-												Fazer em link como popup
 												<input type="submit" value="Procurar Ocorrências Próximas" onclick="this.form.operacaoARealizar.value=2" >
 											</td>
 										</tr>
@@ -156,7 +177,7 @@ function habilitaCombo(priID, prstHabilita){
 										<tr>
 											<td colspan="2">
 												<input type="hidden" name="obmSolicitada" value="<%=usu.getObm().getNome() %>">
-												<input type="submit" value="Finalizar Chamado" onclick="this.form.operacaoARealizar.value=1" >
+												<input type="submit" value="Finalizar Chamado" onclick="return campoObrigatorioFinalizarChamado(); this.form.operacaoARealizar.value=1">
 											</td>
 										</tr>		
 									</table>
@@ -208,9 +229,6 @@ function habilitaCombo(priID, prstHabilita){
 											<td>Nº/Complemento:</td>
 											<td>
 												<input name="numero" type="text" size=6 value=${numero}> 												
-												Fazer com link.
-												O popup não terá o cabeçalho do sistema.
-												Mantêm título.
 												<input type="submit" value="Localizar no Mapa" onclick="this.form.operacaoARealizar.value=3"></td>
 												<input type="hidden" name="registroOcorrencia" value ="1">
 												<input type="hidden" name="operacaoARealizar" value ="">	
@@ -219,11 +237,11 @@ function habilitaCombo(priID, prstHabilita){
 										</tr>
 										<tr>
 											<td>Latitude:</td>
-											<td><input name="CoordX" type="text" size=25 value="${hiddenCoordX}"> *<div id="CoordX"></div></td>							
+											<td><input name="CoordX" type="text" size=25 readonly="readonly" value="${hiddenCoordX}"> *<div id="CoordX"></div></td>							
 										</tr>
 										<tr>
 											<td>Longitude:</td>
-											<td><input name="CoordY" type="text" size=25 value="${hiddenCoordX}"> *<div id="CoordY"></div></td>							
+											<td><input name="CoordY" type="text" size=25 readonly="readonly" value="${hiddenCoordY}"> *<div id="CoordY"></div></td>							
 										</tr>
 										<tr>
 											<td>Nº aprox vítimas:</td>

@@ -25,53 +25,81 @@
 			
 					<h2>Atendimentos :: Registrar Chamado :: Procurar Ocorrências Próximas</h2>
 			
-						<fieldset style="width:450px"><legend>&nbsp;Resultado da Procura&nbsp;</legend>							
+						<fieldset style="width:50%"><legend>&nbsp;Resultado da Procura&nbsp;</legend>
+
 							
-							<% ArrayList atendimento=(ArrayList<Atendimento>) request.getAttribute("listaAtendimentosProximos");
-							
-							if(atendimento.size()== 0){ %>
-							<h3>Nenhum atendimento não finalizado registrado em:</h3>
-							
-							<table width="90%">
-								<tr>
-									<td><strong>Munic&iacute;pio:</strong> ${municipio}</td>
-									<td align="right"><strong>Bairro:</strong> ${bairro}</td>
-								</tr>
-							</table>								
-							
-							
-							
-							<%} else{ %>
-							
-							<h3>Atendimentos não finalizados registrados em:</h3>
-							
-							<table width="90%">
-								<tr>
-									<td><strong>Munic&iacute;pio:</strong> ${municipio}</td>
-									<td align="right"><strong>Bairro:</strong> ${bairro}</td>
-								</tr>
-							</table>	
-							
-							<%
-							
-							for(int i=0;i<atendimento.size();i++){
-									Atendimento atend =(Atendimento)atendimento.get(i);
-							   %>																																																
-														
-							<fieldset>	
-							<font color="darkgreen"> 
-								<strong>Número do Atendimento:</strong> <%= atend.getAtendimento_numero()%> <br>
-								<strong>Bairro da Ocorrencia:</strong> <%= atend.getBairro()%> <br>
-								<strong>Rua:</strong> <%= atend.getLogradouro()%> <br>
-								<strong>Status do atendimento:</strong> <%= atend.getStatus_atendimento()%>
-							</font>
-							</fieldset>
-							<%} 
-							}%>
-							
-							</fieldset>	
-							
-							<form> <input type="button" value=" Voltar " onclick="history.go(-1)"> </p> </form>  												
+								<%  ArrayList atendimento=(ArrayList<Atendimento>) request.getAttribute("listaAtendimentosProximos");
+									%>
+									
+									<%if(atendimento.size()== 0){  %>
+									    Nenhum atendimento não finalizado registrado em
+									    <table border="0" cellpadding="4" cellspacing="1" width="100%">
+										<tr>
+											<td>
+												Munic&iacute;pio: ${municipio}
+											</td>
+											<td>
+												Bairro: ${bairro}</td>
+											</td>
+										</tr>										
+										</table>
+																				
+									   
+									<%} else{
+										
+										%>
+										
+										Atendimentos não finalizados registrados em:						
+										<table border="0" cellpadding="4" cellspacing="1" width="100%">
+										<tr>
+											<td>
+												Munic&iacute;pio: ${municipio}
+											</td>
+											<td>
+												Bairro: ${bairro}</td>
+											</td>
+										</tr>										
+										</table>
+										
+										<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
+										<tr bgcolor="#FFFFFF">
+										  	<th>Tipo de Ocorrência</th>
+										  	<th>Endereço</th>
+										  	<th>OBM Responsável</th>
+										  	<th>Status</th>
+										</tr>
+																			
+										<%										
+										for(int i=0;i<atendimento.size();i++){
+											Atendimento atend =(Atendimento)atendimento.get(i);
+									    
+									    if (i%2==0){
+									    %> 									    									  									    
+									     <tr bgcolor="#EFEFEF">
+									     <%}else{ %>
+									     
+									     <tr bgcolor="#F9D8D0">
+									     <%} %>
+									    	<td><%=atend.getTipoocorrencia().getTipoocorrencia_descricao()%></td>
+									    	<td><%=atend.getLogradouro()%></td>
+									    	<td><%=atend.getObm_id().getNome()%></td>
+									    	<td><%=atend.getStatus_atendimento() %></td>
+									       	
+									    </tr>
+									    								    										
+									   <%} 
+										
+									}%>
+									</table>
+							<input type="button" value="Fechar" onclick="window.close()">
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+						  												
 								
 </body>
 </html>

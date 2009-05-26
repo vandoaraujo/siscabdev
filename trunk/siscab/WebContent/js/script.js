@@ -53,6 +53,15 @@ function SomenteNumeros(e)
 		return false;
 }
 
+function SomenteNumerosGoogleMaps(e)
+{
+    var tecla=(window.event)?event.keyCode:e.which;
+    if((tecla > 47 && tecla < 58) || (tecla == 9 || tecla == 8 || tecla == 46 || tecla == 109 || tecla == 190)) 
+		return true;
+    else
+		return false;
+}
+
 function SomenteLetras(e)
 {
 	var tecla=(window.event)?event.keyCode:e.which;

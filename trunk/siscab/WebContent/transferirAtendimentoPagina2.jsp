@@ -48,7 +48,7 @@
 						<table>						
 							<tr>
 								<td>Número atendimento:</td>
-								<td><input name="numeroAtendimento" type="text" size=20 value="<%= at.getAtendimento_numero() %>" readonly="readonly"></td>							
+								<td><input name="numeroAtendimento" type="text" size=20 value="<%= at.getAtendimento_numero() %>" readonly="readonly" class="label"></td>							
 							</tr>						
 							<tr>
 							

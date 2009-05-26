@@ -61,7 +61,7 @@ function campoObrigatorio()
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td nowrap="nowrap"><label>Número de registro:</label></td>
-									<td><input name="registro" type="text" value=${usuario.numRegistro} readonly="readonly" /></td>								
+									<td><input name="registro" type="text" value=${usuario.numRegistro} readonly="readonly" class="label"/></td>								
 								</tr>
 								<tr>
 									<td><label>Nome de guerra:</label></td>
@@ -89,7 +89,6 @@ function campoObrigatorio()
 								</tr>
 									<tr><td><label>Perfil:</label></td>
 									<td> <select name="perfil" >
-										<option>- - -</option>
 										<option>ADMINISTRADOR DO SISTEMA</option> 
 										<option selected ><%= usuario.getPerfil().getPerfil_descricao() %></option> 
 										<option>OPERADOR DA OBM</option>
@@ -102,20 +101,30 @@ function campoObrigatorio()
 								<tr>
 								<tr>
 									<td><label>Status:</label></td>
-									<td>Mudar para dropdownlist<%  
+									<td><%  
 									     if(usuario.getStatus().equals("ATIVO")){
 									    %>
 									     
-									    	 	Ativo  <input name="status" type="radio" value="ATIVO" />
-									    	 	Inativo <input name="status" type="radio" value="INATIVO" checked/>
+							    	 	<select name="status">
+											<option>ATIVO</option>
+											<option selected>INATIVO</option>
+										</select> *
 									    	 	 
 									     <%} else if (usuario.getStatus().equals("INATIVO")){
 									    	 %>
-									    
-									    	  	Ativo <input name="status" type="radio" value="ATIVO" checked/>
-									    	 	Inativo <input name="status" type="radio" value="INATIVO" /> *
+									     
+									     <select name="status">
+											<option selected>ATIVO</option>
+											<option>INATIVO</option>
+										 </select> *
 									    	 
-									     <% }%></td>
+									     <% }%>
+									     
+									     
+									    
+									     
+									     
+									     </td>
 								</tr>
 
 								<tr>

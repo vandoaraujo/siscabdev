@@ -14,7 +14,13 @@
 <script>
 function campoObrigatorio()
 {
-	if ( (document.form.registro.value != null) && (document.form.registro.value != "") && (document.form.nomeGuerra.value != null) && (document.form.nomeGuerra.value != "") && (document.form.senha.value != null) && (document.form.senha.value != "") )
+	var indiceOBM = document.form.obm.selectedIndex;
+	var indicePerfil = document.form.perfil.selectedIndex;
+	var indiceStatus = document.form.status.selectedIndex;			
+	
+	
+		
+	if ( (document.form.registro.value != null) && (document.form.registro.value != "") && (document.form.nomeGuerra.value != null) && (document.form.nomeGuerra.value != "") && (document.form.senha.value != null) && (document.form.senha.value != "") && (document.form.tipoViatura.options[indiceOBM].text != "- - -") && (document.form.obm.options[indicePerfil].text != "- - -" ) && (document.form.obm.options[indiceStatus].text != "- - -" ) )
 		return true;
 	else
 	{
@@ -73,7 +79,7 @@ function campoObrigatorio()
 					</tr>					
 					<tr>
 						<td><label>OBM:</label></td>
-						<td>Javascript (obrigatório)<select name="obm">
+						<td><select name="obm">
 
 							<!-- Popula a combo que aparecerá na tela -->
 							<%
@@ -88,7 +94,7 @@ function campoObrigatorio()
 					</tr>
 					<tr>
 						<td><label>Perfil:</label></td>
-						<td>Javascript (obrigatório)<select name="perfil">
+						<td><select name="perfil">
 
 							<!-- Popula a combo que aparecerá na tela -->
 							<%
