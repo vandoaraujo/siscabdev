@@ -103,7 +103,7 @@ public class LiberarViaturasFecharAtendimento extends HttpServlet {
 	logger.info("Cronologia do Atendimento - Finalizacao");
 
 	RequestDispatcher view;
-	request.setAttribute("mensagem", "Finalizado com sucesso");
+	request.setAttribute("mensagem", "finalizado com sucesso");
 	request.setAttribute("numeroAtendimento", atendimento
 		.getAtendimento_numero());
 	view = request.getRequestDispatcher("/finalizaChamadoMensagem.jsp");
