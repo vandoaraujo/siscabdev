@@ -28,7 +28,7 @@
 				<tr>
 					<td style="padding-left:20px;">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="109" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
 					</td>
@@ -38,7 +38,13 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Finalizar Atendimento</h2>
+						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						
+						<br/><br/>
+						<fieldset style="width:450px"><legend>&nbsp;Finalização do atendimento&nbsp;</legend>
 							
 							<form action="FinalizaAtendimentoPorModoFechamento" method="post">
 								
@@ -49,30 +55,26 @@
 										<select name="modoFechamento">
 		 								<% 
 											List<ModoFechamento> tipos =(List<ModoFechamento>) request.getSession().getAttribute("modos");
-											for(int i=0;i<tipos.size();i++){
+											%><option selected>- - -</option><%
+		 									for(int i=0;i<tipos.size();i++){
 												out.print("<option>"+tipos.get(i).getDescricao());
 						 				}
 												out.println("</select>");
 									%>
 									</td>
 								</tr>	
-								<tr>	
-									<td><label>Id Atendimento:</label></td>
-									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
-								</tr>
-								<tr>	
-									<td><label>Numero Atendimento:</label></td>
-									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}"/></td>
-								</tr>
-								
+								<input name="idAtendimento" type="hidden" value="${registroAtendimento}"/></td>
+								<input name="numeroAtendimento" type="hidden" value="${numeroAtendimento}"/></td>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Finalizar Chamado" />					 		 										
+										<input type="submit" value="Salvar" />&nbsp;
+										<input type="button" value="Cancelar" onclick="history.back()" />					 		 										
 									</td>								
 								</tr>
 								</table>
 							</form>
 							</fieldset>
+							( * ) Campo obrigatório
 						</td>																															
 					</tr>				
 			</table>
