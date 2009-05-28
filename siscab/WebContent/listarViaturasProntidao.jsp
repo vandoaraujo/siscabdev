@@ -37,13 +37,14 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-	
-						<div style="width:450px"><legend>&nbsp;${mensagem}&nbsp;</legend></div>											
+					<td style="padding-left:20px; padding-top:20px;" colspan="2">																
 					
 						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Viaturas Empenhadas :: Despachar Viatura</h2>
+						<div style="width:450px"><legend>&nbsp;${mensagem}&nbsp;</legend></div>
 					
-						<fieldset style="width:450px"><legend>&nbsp;Viaturas Em prontidão&nbsp;</legend>						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						<p>&nbsp;</p>
+						<fieldset style="width:450px"><legend>&nbsp;Viaturas em prontidão&nbsp;</legend>						
 								<form action="AssociaViaturaAtendimento" method="post">
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">								
 									<tr>
@@ -68,7 +69,7 @@
 									<% idViatura = via.getId(); %>
 									<tr>										
 										<td>
-											<input type="radio" name="viatura" value="<%= idViatura %>" /> Descrição <%=via.getTipo_viatura().getTipoviatura_descricao() %> Número Viatura: <%= via.getNumero() %>
+											<input type="radio" name="viatura" value="<%= idViatura %>" /><%=via.getTipo_viatura().getTipoviatura_abreviacao() %> - <%= via.getNumero() %>
 										</td>
 									</tr>
 									<tr>
@@ -80,7 +81,7 @@
 										     
 									<tr>
 										<td colspan="2">
-											<input type="submit" value="Despachar" />&nbsp;<input type="button" value="Voltar" onclick="window.back()"/>
+											<input type="submit" value="Despachar" />&nbsp;<input type="button" value="Cancelar" onclick="window.back()"/>
 										</td>								
 									</tr>
 										   

@@ -42,7 +42,7 @@
 						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Vítimas atendidas</h2>
 						
 						<fieldset style="width:200px"><legend>&nbsp;Opções&nbsp;</legend>
-							<a href="novaVitima.jsp">Adicionar Vítima</a>
+							<a href="novaVitima.jsp">Incluir Vítima</a>
 						</fieldset>										
 					</td>
 				</tr>

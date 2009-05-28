@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.Atendimento;
 import modelo.Usuario;
 import modelo.Viatura;
 
@@ -23,6 +24,8 @@ import dao.ViaturaDao;
 public class DespacharViatura extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    private Atendimento at = null;
+    
     static Logger logger = Logger.getLogger(DespacharViatura.class);
 
     /**
@@ -62,9 +65,12 @@ public class DespacharViatura extends HttpServlet {
 		.listaViaturasOBMStatusEmProntidao(obm_Id);
 	// Pegar atendimento atual através do HttpSession
 	// atendimentoAtual
+	at = (Atendimento) request.getSession().getAttribute("atendimentoAtual");
+	
 	String obm = usuario.getObm().getNome();
 
 	HttpSession sessao = request.getSession();
+	sessao.setAttribute("numeroAtendimento", at.getAtendimento_numero());
 	sessao.setAttribute("obm", obm);
 	sessao.setAttribute("viaturasEmProntidao", v);
 	RequestDispatcher view = request
