@@ -10,6 +10,24 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
+<script>
+function campoObrigatorio()
+{
+
+	document.form.operacaoARealizar.value = 1;
+
+	var indicetipoServico = document.form.tipoServico.selectedIndex;			
+		
+	if (document.form.tipoServico.options[indicetipoServico].text != "- - -" )
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
+</script>
 </head>
 <body>
 
@@ -38,9 +56,15 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Incluir Servico&nbsp;</legend>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Serviços Executados :: Incluir Serviço</h2>
+						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						<p>&nbsp;</p>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Dados do novo serviço&nbsp;</legend>
 							
-							<form action="ControlaServico" method="post">
+							<form action="ControlaServico" method="post" name="form">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
@@ -49,24 +73,20 @@
 										<select name="tipoServico">
 		 								<%
 		 									List<TipoServico> tipos = TipoServicoDao.getInstance().listarTodosTiposServicos();
-											for(int i=0;i<tipos.size();i++){
+											%><option selected>- - -</option><%
+		 									for(int i=0;i<tipos.size();i++){
 												out.print("<option>"+tipos.get(i).getTiposervico_descricao());
 						 					}
-												out.println("</select>");
+												out.println("</select> *");
 		 								%>
 		 							</td>
 		 						</tr>	
-								<tr>	
-									<td><label>Id Atendimento:</label></td>
-									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
-								</tr>
-								<tr>	
-									<td><label>Numero Atendimento:</label></td>
-									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}"/></td>
-								</tr>
+									<input name="idAtendimento" type="hidden" value="${registroAtendimento}"/>
+									<input name="numeroAtendimento" type="hidden" value="${numeroAtendimento}"/>
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
+										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>
+										<input type="button" value="Cancelar" onclick="history.back()"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroServico" value ="1">
 									</td>								
@@ -74,6 +94,7 @@
 								</table>
 							</form>
 						</fieldset>
+						( * ) Campos obrigatórios
 						</td>																																							
 					</tr>				
 			</table>
