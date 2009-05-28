@@ -19,12 +19,14 @@
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
 <%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
-<%! int controle,tamanhoModoFechamento,tamanhoNumeroAtendimento=0; %>
-<%		List modoFechamento = (List)request.getAttribute("modosFechamento"); 
-		List numeroAtendimentos = (List)request.getAttribute("qtdAtendimentos");
-		List percentualAtendimento = (List)request.getAttribute("percentualAtendimento");
+<%! int controle,tamanhoModoFechamento=0;
+List modoFechamento, numeroAtendimentos,percentualAtendimento = null; %>
+<%		modoFechamento = (List)request.getAttribute("modosFechamento"); 
+		numeroAtendimentos = (List)request.getAttribute("qtdAtendimentos");
+		percentualAtendimento = (List)request.getAttribute("percentualAtendimento");
 %>
 <%		tamanhoModoFechamento = modoFechamento.size();
+		controle = 0;
 %>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -50,7 +52,7 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 					
-					<h2>Relatórios :: Total de Atendimentos por Tipo de Ocorrência</h2>
+					<h2>Relatórios :: Total de Atendimentos por Modo de Fechamento</h2>
 
 				<fieldset style="width: 900px"><legend>&nbsp;Período de referênca: ${dataInicial} a ${dataFinal}.&nbsp;</legend>
 				<table border="0" cellpadding="0" cellspacing="3" width="100%">

@@ -20,7 +20,7 @@
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
 <%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
-<%! int controle,tamanhotipoOcorrencia,tamanhoNumeroAtendimento=0; 
+<%! int controle,tamanhotipoOcorrencia=0; 
 	List tipoOcorrencia, numeroAtendimentos,percentualAtendimento = null;
 	%>
 <%	
@@ -29,6 +29,7 @@
 		percentualAtendimento = (List)request.getAttribute("percentualAtendimento");
 %>
 <%		tamanhotipoOcorrencia = tipoOcorrencia.size();
+		controle = 0;
 %>
 
 

@@ -58,7 +58,6 @@
 							<input type="hidden" name="hiddenCoordY" id="hiddenCoordY">
 							<input type="hidden" name="q" id="q" value="><%=request.getParameter("endereco") %> <%=request.getParameter("numero") %> <%=request.getParameter("bairro") %> <%=request.getParameter("municipio") %> RJ Brasil ">
 							
-							<br/>
 							<input type="submit" value="Confirmar Coordenadas Geográficas" onclick="window.close();" >																		
 					</fieldset>
 				</td>

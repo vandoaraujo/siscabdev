@@ -88,7 +88,7 @@ public class PopulaGeoRegistrarChamado extends HttpServlet {
 	    request.setAttribute("gravaData", Chamado.getDataHoraInicioChamado());
 
 	    coordX = request.getParameter("hiddenCoordX");
-	    coordY = request.getParameter("hiddenCoordX");
+	    coordY = request.getParameter("hiddenCoordY");
 	    
     	    request.setAttribute("bairro",request.getParameter("bairro"));
     	    request.setAttribute("infoComplementares",request.getParameter("infoComplementares"));

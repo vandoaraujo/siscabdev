@@ -170,9 +170,9 @@ public class AtendimentoDao {
 	Iterator tipoOcorrenciasAtendimento = session
 		.createQuery(
 			"SELECT toc.tipoocorrencia_descricao,COUNT( distinct a.id) from modelo.Atendimento a, modelo.TipoOcorrencia toc,modelo.CronoAtendimento c where toc.id = a.tipoocorrencia and"
-				+ "  c.cronoatendimento_horaevento >=:horaInicial and c.cronoatendimento_horaevento <=:horaFinal and c.atendimento_id = a.id"
+				+ " c.cronoatendimento_horaevento >=:horaInicial and c.cronoatendimento_horaevento <=:horaFinal and c.atendimento_id = a.id"
 				+ " and c.cronoatendimento_tipoevento = 'início'"
-				+ "  group by toc.tipoocorrencia_descricao"
+				+ " group by toc.tipoocorrencia_descricao"
 				+ " order by count(a.id) desc").setDate(
 			"horaInicial", dataInicial).setDate("horaFinal",
 			dataFinal).list().iterator();

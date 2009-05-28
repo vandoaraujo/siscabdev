@@ -64,7 +64,7 @@ function validarEmail()
 				<tr>
 					<td style="padding-left:20px;">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="109" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
 					</td>
@@ -75,31 +75,33 @@ function validarEmail()
 				<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
 				
-				<h2>Administração :: Cadastro de Usuários :: Trocar Senha</h2>
-				<fieldset style="width: 450px"><legend>&nbsp;Dados do usuário&nbsp;</legend>
+				<h2>Administração :: Cadastro de Usuários :: Incluir Usuário</h2>
+				<fieldset style="width: 450px"><legend>&nbsp;Dados do novo usuário&nbsp;</legend>
 
 				<form name="form" action="EfetivaAlteracaoDadosUsuario" method="post">
 
 				<table border="0" cellpadding="0" cellspacing="3" width="100%">
 					<tr>
-						<td width="100px"><label>Perfil:</label></td>
-						<td><strong>${usuario.perfil.perfil_descricao}</strong></td>
-					</tr>
-					<tr>
 						<td><label>Email:</label></td>
-						<td><input name="email" size="40" type="text" value="${usuario.email}" /></td>
+						<td><input name="email" type="text" value="${usuario.email}" /></td>
 					</tr>					
 					<tr>
+						<td><label>Perfil:</label></td>
+						<td><select name="perfil">
+							<option selected>${usuario.perfil.perfil_descricao}</option> 
+						</td>
+					</tr>
+					<tr>
 						<td><label>Senha atual:</label></td>
-						<td><input name="senha" type="password" size="10"/> * </td>
+						<td><input name="senha" type="password" /> * </td>
 					</tr>
 					<tr>
 						<td><label>Nova Senha:</label></td>
-						<td><input name="novaSenha" type="password" size="10"/> *  </td>
+						<td><input name="novaSenha" type="password" /> *  </td>
 					</tr>
 					<tr>
-						<td nowrap="nowrap"><label>Repita a  Senha:</label></td>
-						<td><input name="repeticaoSenha" type="password" size="10"/> *  </td>
+						<td><label>Repita a  Senha:</label></td>
+						<td><input name="repeticaoSenha" type="password" /> *  </td>
 					</tr>
 					
 					<tr>

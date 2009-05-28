@@ -122,7 +122,13 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 
 	    logger.info("Valor da data Final" + comparaDataFinal);
 
-	    if (comparaDataInicial > comparaDataFinal) {
+	    int mesFinal = Integer.parseInt(tokenFinal.get(1));
+	    int mesInicial =  Integer.parseInt(tokenInicial.get(1));
+	    
+	    int anoFinal = Integer.parseInt(tokenFinal.get(2));
+	    int anoInicial =  Integer.parseInt(tokenInicial.get(2));
+	    
+	    if((mesFinal < mesInicial) || (anoFinal < anoInicial) || (comparaDataInicial > comparaDataFinal)){
 
 		request.setAttribute("msg",
 			"A data inicial é maior do que a data final!");
@@ -213,7 +219,15 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 		for (int i = 0; i < numeroChamados.size(); i++) {
 		    double percentual = ((numeroChamados.get(i) * 100) / (double) somaChamados);
 		    logger.info("Percentual " + i + " " + percentual);
-		    percentualChamado.add(formatador.format(percentual));
+		    //Caso o percentual não seja 100% é necessário formatar
+		    if(percentual != 100.0){
+			    percentualChamado.add(formatador.format(percentual));
+
+		    }
+		    else{
+			
+			percentualChamado.add(String.valueOf(percentual));
+		    }
 		}
 
 		GregorianCalendar calendar = new GregorianCalendar();
