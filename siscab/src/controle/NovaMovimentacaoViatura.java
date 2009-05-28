@@ -1,7 +1,11 @@
 package controle;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import modelo.Atendimento;
 import modelo.MovimentaViatura;
+import modelo.MovimentaViaturaPK;
 import modelo.Viatura;
 
 import org.apache.log4j.Logger;
@@ -123,7 +128,9 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 	ViaturaDao.getInstance().atualizar(via);
 
 	logger.info("######### Atualizou o STATUS DA VIATURA!!!   ##############");
-
+	
+	analisaMovimentacoesViatura(atendimento,registroViatura);
+	
 	// Atualiza lista de viaturas
 
 	List<Viatura> viaturas = new ArrayList<Viatura>();
@@ -158,5 +165,47 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 	    e.printStackTrace();
 	}
 
+    }
+
+    private void analisaMovimentacoesViatura(int atendimento, int registroViatura) {
+	
+	//Retorna a ultima movimentacao da viatura  
+	Integer id = MovimentaViaturaDao.getInstance().listaUltimoEvento(
+		atendimento, registroViatura);
+	//Verifica se é diferente de "Retorno à OBM"
+	MovimentaViatura m = MovimentaViaturaDao.getInstance()
+		.BuscaMovimentacaoViaturaId(id);
+	
+	if (!(m.getMovimentaviatura_tipoevento().equals("Retorno à OBM"))) {
+
+	    	Atendimento at = AtendimentoDao.getInstance().BuscaAtendimentoId(atendimento);
+		
+		Viatura v = ViaturaDao.getInstance().BuscaViaturaId(registroViatura);
+		
+		MovimentaViaturaPK mov = new MovimentaViaturaPK();
+		mov.setAtendimentos(at);
+		mov.setViatura(v);
+		
+		//Define relacionamento
+		MovimentaViatura tipoEvento = new MovimentaViatura();
+		tipoEvento.setChaveComposta(mov);
+		tipoEvento.setMovimentaviatura_tipoevento("Retorno à OBM");
+		
+			
+		GregorianCalendar calendar =  new GregorianCalendar();
+		calendar.add(GregorianCalendar.MONTH, 0);
+		calendar.add(GregorianCalendar.HOUR_OF_DAY, 0);
+		calendar.add(GregorianCalendar.MINUTE, 0);
+		DateFormat formata = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		Date data = new Date(formata.format(calendar.getTime()));
+					
+		tipoEvento.setMovimentaviatura_horaEvento(data);
+		
+		MovimentaViaturaDao.getInstance().salvar(tipoEvento);
+		
+		logger.info("Salvo a movimentação da Viatura Retorno à OBM");
+	    
+	}
+	
     }
 }

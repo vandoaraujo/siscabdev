@@ -5,10 +5,10 @@ function mmLoadMenus() {
   mm_menu_0217221104_0.addMenuItem("Registrar&nbsp;Chamado","location='RegistrarChamado'");
   mm_menu_0217221104_0.addMenuItem("Transferir&nbsp;Atendimento","location='TransferirAtendimento'");
   mm_menu_0217221104_0.addMenuItem("Acompanhar&nbsp;Atendimento","location='AcompanharAtendimentos'");
-  mm_menu_0217221104_0.addMenuItem("Situação&nbsp;das&nbsp;Viaturas","location='SituacaoViaturasOBM'");  
   mm_menu_0217221104_0.addMenuItem("Cadastro&nbsp;de&nbsp;Viaturas","location='ViaturasControle'");
+  mm_menu_0217221104_0.addMenuItem("Situação&nbsp;das&nbsp;Viaturas","location='SituacaoViaturasOBM'");
   mm_menu_0217221104_0.hideOnMouseOut=true;
-  mm_menu_0217221104_0.bgColor='#8F8F8F';
+  mm_menu_0217221104_0.bgColor='#555555';
   mm_menu_0217221104_0.menuBorder=1;
   mm_menu_0217221104_0.menuLiteBgColor='#FFFFFF';
   mm_menu_0217221104_0.menuBorderBgColor='#777777';
@@ -17,7 +17,7 @@ function mmLoadMenus() {
   mm_menu_0217221434_0.addMenuItem("Cadastro&nbsp;de&nbsp;Usuários","location='AdministracaoUsuario'");
   mm_menu_0217221434_0.addMenuItem("Cadastro&nbsp;de&nbsp;OBMs","location='ObmControle'");
   mm_menu_0217221434_0.hideOnMouseOut=true;
-  mm_menu_0217221434_0.bgColor='#8F8F8F';
+  mm_menu_0217221434_0.bgColor='#555555';
   mm_menu_0217221434_0.menuBorder=1;
   mm_menu_0217221434_0.menuLiteBgColor='#FFFFFF';
   mm_menu_0217221434_0.menuBorderBgColor='#777777';
@@ -28,7 +28,7 @@ function mmLoadMenus() {
   mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Atendimentos&nbsp;por&nbsp;Modo&nbsp;de&nbsp;Fechamento","location='iniciaTotalAtendimentosPorModoFechamento.jsp'");
   mm_menu_0217221648_0.addMenuItem("Total&nbsp;de&nbsp;Atendimentos&nbsp;por&nbsp;Tipo&nbsp;Ocorrencia","location='iniciaTotalAtendimentosPorTipoOcorrencia.jsp'");
   mm_menu_0217221648_0.hideOnMouseOut=true;
-  mm_menu_0217221648_0.bgColor='#8F8F8F';
+  mm_menu_0217221648_0.bgColor='#555555';
   mm_menu_0217221648_0.menuBorder=1;
   mm_menu_0217221648_0.menuLiteBgColor='#FFFFFF';
   mm_menu_0217221648_0.menuBorderBgColor='#777777';

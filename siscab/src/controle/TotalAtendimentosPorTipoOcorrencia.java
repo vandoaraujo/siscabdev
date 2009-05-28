@@ -114,7 +114,13 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 
 	    logger.info("Valor da data Final" + comparaDataFinal);
 
-	    if (comparaDataInicial > comparaDataFinal) {
+	    int mesFinal = Integer.parseInt(tokenFinal.get(1));
+	    int mesInicial =  Integer.parseInt(tokenInicial.get(1));
+	    
+	    int anoFinal = Integer.parseInt(tokenFinal.get(2));
+	    int anoInicial =  Integer.parseInt(tokenInicial.get(2));
+	    
+	    if((mesFinal < mesInicial) || (anoFinal < anoInicial) || (comparaDataInicial > comparaDataFinal)){
 
 		request.setAttribute("msg",
 			"A data inicial é maior do que a data final!");
@@ -157,7 +163,7 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 	    it = AtendimentoDao.getInstance()
 		    .ParametrosResultadosRelatorioTipoOcorrencia(
 			    formatadaInicial, formatadaFinal);
-
+	    
 	    if (it.hasNext() == false) {
 
 		request.setAttribute("msg",
@@ -203,7 +209,15 @@ public class TotalAtendimentosPorTipoOcorrencia extends HttpServlet {
 		for (int i = 0; i < numeroAtendimentos.size(); i++) {
 		    float percentual = (float) ((numeroAtendimentos.get(i) * 100) / (double) somaAtendimentos);
 		    logger.info("Percentual " + i + " " + percentual);
-		    percentualAtendimento.add(formatador.format(percentual));
+		    //Caso o percentual não seja 100% é necessário formatar
+		    if(percentual != 100.0){
+			    percentualAtendimento.add(formatador.format(percentual));
+
+		    }
+		    else{
+			
+			percentualAtendimento.add(String.valueOf(percentual));
+		    }
 		}
 		GregorianCalendar calendar = new GregorianCalendar();
 		request.setAttribute("percentualAtendimento",

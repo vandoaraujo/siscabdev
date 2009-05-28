@@ -27,7 +27,7 @@
 				<tr>
 					<td style="padding-left:20px;">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="109" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
 					</td>
@@ -37,16 +37,9 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-					
-					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Finalizar Atendimento</h2>
-					
-					
-						<fieldset style="width:450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
-							Atendimento número ${numeroAtendimento} <div style="color:red; display:inline">${mensagem}</div>
+						<fieldset style="width:450px"><legend>&nbsp;Viatura&nbsp;</legend>
+							Atendimento numero: ${numeroAtendimento}, <div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-							<form action="AcompanharAtendimentos" method="POST">
-								<input type="submit" value="OK">
-							</form>
 					    </fieldset>	
 					</td>
 				</tr>				

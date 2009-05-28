@@ -20,12 +20,15 @@
 <body>
 <script language="JavaScript1.2">mmLoadMenus();</script>
 <%Usuario usu =( Usuario) request.getSession().getAttribute("usuario"); %>
-<%! int controle,tamanhochamadosPorNatureza,tamanhoNumeroAtendimento=0; %>
-<%		List chamadosPorNatureza = (List)request.getAttribute("chamadosPorNatureza"); 
-		List numeroAtendimentos = (List)request.getAttribute("qtdChamados");
-		List percentualAtendimento = (List)request.getAttribute("percentualChamados");
+<%! int controle,tamanhochamadosPorNatureza=0;
+List chamadosPorNatureza, numeroAtendimentos,percentualAtendimento = null; %>
+
+<%		chamadosPorNatureza = (List)request.getAttribute("chamadosPorNatureza"); 
+		numeroAtendimentos = (List)request.getAttribute("qtdChamados");
+		percentualAtendimento = (List)request.getAttribute("percentualChamados");
 %>
 <%		tamanhochamadosPorNatureza = chamadosPorNatureza.size();
+		controle = 0;
 %>
 
 
