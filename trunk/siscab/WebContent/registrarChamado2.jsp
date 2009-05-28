@@ -23,6 +23,8 @@ function habilitaCombo(priID, prstHabilita){
 function campoObrigatorioFinalizarChamado()
 {	
 	var indiceMunicipio = document.form.municipio.selectedIndex;
+
+	 document.form.operacaoARealizar.value = 1;
 	
 	if ( (document.form.nomeSolicitante.value != null) && 
 			(document.form.nomeSolicitante.value != "") &&
@@ -264,7 +266,7 @@ function mascaraTelefone(e){
 										<tr>
 											<td colspan="2">
 												<input type="hidden" name="obmSolicitada" value="<%=usu.getObm().getNome() %>">
-												<input type="submit" value="Finalizar Chamado" onclick="return campoObrigatorioFinalizarChamado(); this.form.operacaoARealizar.value=1">
+												<input type="submit" value="Finalizar Chamado" onclick="return campoObrigatorioFinalizarChamado();">
 											</td>
 										</tr>		
 									</table>
