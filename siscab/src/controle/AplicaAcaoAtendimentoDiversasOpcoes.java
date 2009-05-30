@@ -240,6 +240,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	HttpSession sessao = request.getSession();
 	sessao.setAttribute("vitimas", vitimas);
 	sessao.setAttribute("atendimentoAtual", at);
+	sessao.setAttribute("atendimento", at.getAtendimento_numero());
 	view = request.getRequestDispatcher("/iniciarTelaVitimas.jsp");
 
 	try {
