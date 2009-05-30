@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Atendimento;
 import modelo.MovimentaViatura;
 import modelo.Viatura;
 
@@ -27,6 +28,7 @@ public class PreparaNovaMovimentacaoViatura extends HttpServlet {
     private List<String> opcaoEvento = null;
     static Logger logger = Logger
 	    .getLogger(PreparaNovaMovimentacaoViatura.class);
+    private Atendimento at = null;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,13 +39,17 @@ public class PreparaNovaMovimentacaoViatura extends HttpServlet {
 
     private void despacha(HttpServletRequest request,
 	    HttpServletResponse response) {
-
+	
+	at = (Atendimento) request.getSession().getAttribute("atendimentoAtual");
+	
 	Viatura v = ViaturaDao.getInstance().BuscaViaturaId(viaturaAtual);
 
 	RequestDispatcher view;
 	request.setAttribute("viaturaAtual", viaturaAtual);
-	request.setAttribute("numeroViatura", v.getNumero());
+	request.setAttribute("numeroViatura", v.getNumero());	
+	request.setAttribute("tipoViatura", v.getTipo_viatura().getTipoviatura_abreviacao());	
 	request.setAttribute("atendimentoAtual", atendimentoAtual);
+	request.setAttribute("atendimento", at.getAtendimento_numero());
 	request.setAttribute("tipoEvento", opcaoEvento);
 
 	view = request.getRequestDispatcher("/novaMovimentacao.jsp");

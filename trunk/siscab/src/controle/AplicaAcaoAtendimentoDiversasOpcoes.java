@@ -216,6 +216,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	sessao.setAttribute("viaturas", viaturasAtendimento);
 	RequestDispatcher view;
 	sessao.setAttribute("atendimentoAtual", at);
+	sessao.setAttribute("atendimentoID", at.getAtendimento_numero());
 	view = request.getRequestDispatcher("/iniciarViaturasEmpenhadas.jsp");
 
 	try {

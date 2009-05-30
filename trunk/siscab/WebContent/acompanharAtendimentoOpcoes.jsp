@@ -31,7 +31,7 @@ String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
 				<tr>
 					<td style="padding-left:20px;">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="109" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
 					</td>
@@ -83,7 +83,7 @@ String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
 												<td><%= atendimento.getLogradouro() %></td>
 											</tr>
 											<tr>
-												<td nowrap="nowrap">Nro. Complemento:</td>
+												<td nowrap="nowrap">Nº/Complemento:</td>
 												<td><%=atendimento.getNumcompl()%></td>
 											</tr>																						
 											<tr>
@@ -98,24 +98,25 @@ String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
 									</fieldset>	
 								</td>
 								<td valign="top">
-									<fieldset style="width:60%"><legend>&nbsp;Opções&nbsp;</legend>
-										<input type="submit" value="Editar" onclick="this.form.operacaoARealizar.value=2"/>
+									<fieldset style="width:60%"><legend>&nbsp;Opções&nbsp;</legend>										
+										<a href="AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=2&registroAtendimento=<%=atendimento.getAtendimento_numero()%>">Editar Dados do Atendimento</a>
 										<br />
-										<a href="#" onclick="window.open('AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=3&registroAtendimento=<%=atendimento.getAtendimento_numero()%>')"><img src="img/btnSugestaoRota.gif" border="0"></a>
+										<a href="#" onclick="window.open('AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=3&registroAtendimento=<%=atendimento.getAtendimento_numero()%>')">Consultar Sugestão de Rota</a>
 										<br />
-										<input type="submit" value="Viaturas Empenhadas" onclick="this.form.operacaoARealizar.value=4"/>
+										<a href="AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=4&registroAtendimento=<%=atendimento.getAtendimento_numero()%>">Viaturas Empenhadas</a>
 										<br />
-										<input type="submit" value="Vitimas" onclick="this.form.operacaoARealizar.value=5"/>
+										<a href="AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=5&registroAtendimento=<%=atendimento.getAtendimento_numero()%>">Vítimas Atendidas</a>
 										<br />
-										<input type="submit" value="Servicos Executados" onclick="this.form.operacaoARealizar.value=6"/>
+										<a href="AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=6&registroAtendimento=<%=atendimento.getAtendimento_numero()%>">Serviços Executados</a>
 										<br />
-										<input type="submit" value="Finalizar Atendimento" onclick="this.form.operacaoARealizar.value=7"/>							
+										<a href="AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=7&registroAtendimento=<%=atendimento.getAtendimento_numero()%>">Finalizar Atendimento</a>
 										<br />
 										<input type="hidden" name="operacaoARealizar" value ="">								
 										<input type="hidden" name="registroAtendimento" value = "<%= atendimento.getAtendimento_numero() %>"/>
 										</form>
+										<br/>
 										<form action="AcompanharAtendimentos" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
+							 				<input type="submit" value="Voltar para a lista"/>
 							 			</form>	
 							 		</fieldset>
 								</td>
@@ -127,7 +128,7 @@ String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
 									<form action="AplicaAcaoAtendimentoDiversasOpcoes" method="post">
 										<table>
 											<tr>
-												<td nowrap="nowrap">Número Chamado:</td>
+												<td nowrap="nowrap">Número do chamado:</td>
 												<td><strong><%= atendimento.getChamado_id().getId()%></strong></td>
 											</tr>
 											<tr>
@@ -143,15 +144,15 @@ String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
 												<td><%= atendimento.getChamado_id().getObm().getNome()%></td>
 											</tr>
 											<tr>
-												<td>Origem do Chamado:</td>
+												<td>Origem do chamado:</td>
 												<td><%= atendimento.getChamado_id().getOrigem() %></td>
 											</tr>
 											<tr>
-												<td>Nome Solicitante:</td>
+												<td>Nome solicitante:</td>
 												<td><%= atendimento.getChamado_id().getNomeSolicitante() %></td>
 											</tr>
 											<tr>
-												<td>Telefone Solicitante:</td>
+												<td>Telefone solicitante:</td>
 												<td><%=atendimento.getChamado_id().getTelefoneSolicitante()%></td>
 											</tr>																						
 											<tr>
@@ -159,7 +160,7 @@ String FORMATACAO_DATA = "dd/MM/yyyy HH:mm:ss";
 												<td><%=atendimento.getChamado_id().getNumaproxvitimas()%></td>
 											</tr>							
 											<tr>
-												<td>Informações Complementares:</td>
+												<td>Informações complementares:</td>
 												<td><%=atendimento.getChamado_id().getInfocomplementares()%></td>
 											</tr>
 										</table>
