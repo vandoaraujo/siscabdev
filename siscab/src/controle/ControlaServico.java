@@ -61,15 +61,15 @@ public class ControlaServico extends HttpServlet {
 	request.setAttribute("descricaoServico", descricaoServico);
 	if (string.equals("salvar")) {
 
-	    request.setAttribute("mensagem", "salvo com sucesso!!");
+	    request.setAttribute("mensagem", "Serviço foi incluído na lista");
 
 	} else if(string.equals("tipoServicoRepetido")){
 	    
-	    request.setAttribute("mensagem", "Este serviço já foi cadastrado para este Atendimento!!");
+	    request.setAttribute("mensagem", "Este serviço já consta na lista.");
 
 	}
 	else {
-	    request.setAttribute("mensagem", "deletado com sucesso!!");
+	    request.setAttribute("mensagem", "Serviço foi excluído da lista.");
 	}
 	
 	

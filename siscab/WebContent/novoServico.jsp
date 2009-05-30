@@ -57,7 +57,7 @@ function campoObrigatorio()
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 						
-						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Serviços Executados :: Incluir Serviço</h2>
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Serviços Executados :: Incluir Serviço</h2>
 						
 						Número atendimento: <strong>${numeroAtendimento}</strong>
 						<p>&nbsp;</p>
@@ -68,7 +68,7 @@ function campoObrigatorio()
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Tipo Serviço:</label></td>
+									<td><label>Tipo de serviço:</label></td>
 									<td>
 										<select name="tipoServico">
 		 								<%
@@ -85,6 +85,7 @@ function campoObrigatorio()
 									<input name="numeroAtendimento" type="hidden" value="${numeroAtendimento}"/>
 								<tr>
 									<td colspan="2">
+									<br/>
 										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>
 										<input type="button" value="Cancelar" onclick="history.back()"/>
 										<input type="hidden" name="operacaoARealizar" value ="">

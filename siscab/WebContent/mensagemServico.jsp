@@ -37,13 +37,19 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Serviços Executados</h2>
+						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						<p>&nbsp;</p>
+						
 						<fieldset style="width:450px"><legend>&nbsp;Serviço&nbsp;</legend>
-							Servico executado: ${descricaoServico}, <div style="color:red; display:inline">${mensagem}</div>
+							<div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
-										<form action="acompanharAtendimentoOpcoes.jsp" style="display:inline;">
-														
-							 				<input type="submit" value="OK"/>
-							 			</form>																						
+							<form action="AplicaAcaoAtendimentoDiversasOpcoes?operacaoARealizar=6" method="post">
+								<input type="hidden" name="registroAtendimento" value="${numeroAtendimento}">										
+				 				<input type="submit" value="OK"/>
+				 			</form>																						
 						</fieldset>	
 					</td>
 				</tr>				
