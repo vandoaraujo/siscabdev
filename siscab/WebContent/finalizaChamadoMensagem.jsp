@@ -36,9 +36,18 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Viatura&nbsp;</legend>
-							Atendimento numero: ${numeroAtendimento}, <div style="color:red; display:inline">${mensagem}</div>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Finalizar Atendimento</h2>
+						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						<p></p>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
+							<div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
+							<form action="AcompanharAtendimentos" method="post">
+								<input type="submit" value="OK">
+							</form>
 					    </fieldset>	
 					</td>
 				</tr>				

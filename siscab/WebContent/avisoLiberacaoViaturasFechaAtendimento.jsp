@@ -39,51 +39,48 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:750px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Finalizar Atendimento</h2>
+						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						<p></p>
+						
+						<fieldset style="width:750px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
 							
 							<form action="LiberarViaturasFecharAtendimento" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
-									<td><label>Este Atendimento possui as seguintes viaturas abaixo alocadas e serão liberadas após o fechamento deste atendimento</label></td>
+									<td><label>Este Atendimento possui as seguintes viaturas abaixo alocadas que serão liberadas após o fechamento deste atendimento</label></td>
 								</tr>
 								<tr>	
 									<td>
 									<% 
 											List<Viatura> viatura =(List<Viatura>) request.getSession().getAttribute("viaturas"); 
 
+											%><ul><%
 											for(int i=0;i<viatura.size();i++){
-												%><font color="green"> 
-												<%out.print("* Número da Viatura: " + viatura.get(i).getNumero());
-												%> - </font><font color="red">
-												<%
-												out.println("Status: " + viatura.get(i).getViatura_status());
-												%><br></font> <%
+											out.print("<li><font color='green'>Número da Viatura: " + viatura.get(i).getNumero() + "</font> - " + "<font color='red'>Situação: " + viatura.get(i).getViatura_status() + "</font></li>");
+											%>
+											</ul>
+											<%
 						 				}
 												
 									%></td></tr>	
 								<tr>	
-									<td><label style="COLOR: #0000a0;">Modo do Fechamento</label></td>
-									<td><input name="modoFechamento" type="text" size=5 readonly="readonly" value="${modoFechamento}" style=" width : 138px;"/></td>
-								</tr>
-								<tr>	
-									<td><label style="COLOR: #0000a0;">Numero Atendimento:</label></td>
-									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}" style=" width : 138px;"/></td>
-								</tr>
+									<td><label style="COLOR: #0000a0;">Modo de fechamento: </label> <input name="modoFechamento" type="text" readonly="readonly" value="${modoFechamento}" class="label"/></td>							
+								</tr>								
 								<tr>
-										
-									<td><label style="COLOR: #0000a0;">Id Atendimento:</label></td>
-									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${idAtendimento}" style=" width : 138px;"/></td>
-								</tr>
-								
-								<tr>
-									<td colspan="2">
-										<input type="submit" value="Finalizar Chamado" />
-										</form>
-								 		 										
+									<td>
+										<input name="numeroAtendimento" type="hidden" value="${numeroAtendimento}"/>
+										<input name="idAtendimento" type="hidden" value="${idAtendimento}"/>									
+										<input type="submit" value="OK" />																		 		 								
 									</td>								
 								</tr>
-								<tr>																																							
+								</table>
+							</form>
+						</fieldset>
+						</td>																													
 					</tr>				
 			</table>
 		</td>

@@ -124,11 +124,11 @@ function campoObrigatorio()
 							</tr>							
 							<tr>
 								<td>Latitude:</td>
-								<td><input name="coordX" type="text" value=<%= atendimento.getCoordx() %> onkeypress="return SomenteNumerosGoogleMaps(event)"> * </td>
+								<td><input name="coordX" type="text" value="<%=atendimento.getCoordx()%>" onkeydown="return SomenteNumerosGoogleMaps(event);"> * </td>
 							</tr>
 							<tr>
 								<td>Longitude:</td>
-								<td><input name="coordY" type="text" value=<%= atendimento.getCoordy() %> onkeypress="return SomenteNumerosGoogleMaps(event)"> * </td>
+								<td><input name="coordY" type="text" value="<%=atendimento.getCoordy()%>" onkeydown="return SomenteNumerosGoogleMaps(event);"> * </td>
 							</tr>
 							<tr>
 								<td colspan="2">
