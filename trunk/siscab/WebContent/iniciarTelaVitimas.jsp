@@ -39,7 +39,11 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 						
-						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Vítimas atendidas</h2>
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Vítimas Atendidas</h2>
+						
+						
+						Número atendimento: <strong>${atendimento}</strong>
+						<p></p>
 						
 						<fieldset style="width:200px"><legend>&nbsp;Opções&nbsp;</legend>
 							<a href="novaVitima.jsp">Incluir Vítima</a>
@@ -48,7 +52,7 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:60%"><legend>&nbsp;Vítimas registradas&nbsp;</legend>						
+						<fieldset style="width:85%"><legend>&nbsp;Vítimas registradas&nbsp;</legend>						
 								
 							<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
 								<% ArrayList vitimas=(ArrayList<VitimaAtendida>) request.getSession().getAttribute("vitimas");
@@ -62,12 +66,12 @@
 										%>
 										
 										<tr bgcolor="#FFFFFF">
-										  	<th>Nome</th>
+										  	<th nowrap="nowrap">Nome</th>
 										  	<th>Idade</th>
 										  	<th>Sexo</th>
 										  	<th>Cor</th>
-										  	<th>Situação Final</th>
-										  	<th>Hospital Destino</th>
+										  	<th nowrap="nowrap">Situação Final</th>
+										  	<th nowrap="nowrap">Hospital Destino</th>
 										  	<th>Opções</th>
 										</tr>
 									
@@ -90,8 +94,7 @@
 									    	<td><%=vitima.getHospitaldestino()%></td>
 									    	<td>
 									    		<a href="EditaVitima?registro=<%=vitima.getId()%>&atendimentoAtual=<%=vitima.getAtendimento().getId()%>"><img src="img/btnEditar.gif" border="0"></a>&nbsp;
-									    		<a href="CrudVitima?operacaoARealizar=3&registroVitima=<%=vitima.getId()%>&atendimentoAtual" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a>
-										 		<input type="hidden" name="atendimentoAtual" value="${atendimentoAtual}"/> 
+									    		<a href="CrudVitima?operacaoARealizar=3&registroVitima=<%=vitima.getId()%>" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a> 
 									       	</td>									       	
 									    </tr>								    										
 									   <%} 
@@ -99,9 +102,10 @@
 							</table>
 						</fieldset>	
 						<br />					
-								<form action="AcompanharAtendimentos" method="post">
-					 				<input type="submit" value="Voltar"/>
-					 			</form>	
+							<form action="EditaAtendimento" method="post">
+								<input type="hidden" value="${atendimento}" name="registro">
+								<input type="submit" value="Voltar para a ficha do atendimento">
+							</form>					
 					</td>								
 				</tr>
 			</table>

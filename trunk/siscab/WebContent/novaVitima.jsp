@@ -10,6 +10,24 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
+<script>
+function campoObrigatorio()
+{
+
+	document.form.operacaoARealizar.value = 1;
+
+	var indiceSituacaoVitima = document.form.situacaoVitima.selectedIndex;	
+
+	if ( (document.form.nome.value != null) && (document.form.nome.value != "") && (document.form.situacaoVitima.options[indiceSituacaoVitima].text != "- - -") )
+		return true;
+	else
+	{
+		alert("Favor preencher todos campos obrigatórios");	
+		return false;
+	}
+
+}
+</script>
 </head>
 <body>
 
@@ -38,18 +56,25 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Incluir Vitima&nbsp;</legend>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Vítimas Atendidas :: Incluir Vítima</h2>
+				
+				
+							Número atendimento: <strong>${atendimento}</strong>
+							<p></p>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Dados da nova vítima&nbsp;</legend>
 							
-							<form action="CrudVitima" method="post">
+							<form action="CrudVitima" name="form" method="post">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
-									<td colspan="8"><input name="nome" type="text" size=40/></td>
+									<td colspan="8"><input name="nome" type="text" size=40/> *</td>
 								</tr>
 								<tr>	
 									<td><label>Idade:</label></td>
-									<td colspan="8"><input name="idade" type="text" size=3 maxlength="3"/></td>
+									<td colspan="8"><input name="idade" type="text" size=3 maxlength="3" onkeypress="return SomenteNumeros(event);"/></td>
 								</tr>
 								<tr>	
 									<td><label>Sexo:</label></td>
@@ -74,34 +99,35 @@
 									<td>Negra</td>									
 								</tr>
 								<tr>	
-									<td><label>Situacao Vitima:</label></td>
-									<td colspan="8"><select name="situacaoVitima">
+									<td><label>Situação final:</label></td>
+									<td colspan="8">
+									<select name="situacaoVitima">
+									<option selected>- - -</option>
 									<option>1 - Recusou Atendimento</option>
 									<option>2 - Entregue ao hospital</option>
 									<option>3 - Permaneceu no local após ser atendida</option>
 									<option>4 - Encaminhada ao suporte aeromédico</option>
 									<option>5 - Óbito no local</option>
-									</select>
+									</select> *
 								</td>	
 								</tr>
 								<tr>	
-									<td><label>Hospital Destino:</label></td>
+									<td><label>Hospital destino:</label></td>
 									<td colspan="8"><input name="hospital" type="text" size=40/></td>
 								</tr>
 								<tr>
 									<td colspan="9">
-										<input type="submit" value="Incluir" onclick="this.form.operacaoARealizar.value=1"/>
+										<input type="submit" value="Salvar" onclick="return campoObrigatorio();"/>
 										<input type="hidden" name="operacaoARealizar" value ="">
 								 		<input type="hidden" name="registroVitima" value ="1">
 								 		<input type="hidden" name="atendimentoAtual" value="${atendimentoAtual.id}"> 
 								 		</form>
-								 		<form action="paginaPrincipal.jsp" method="post" style="display:inline;">
-							 				<input type="submit" value="Voltar"/>
-							 			</form>							 										
+								 		<input type="button" value="Cancelar" onclick="history.back()"/>							 										
 									</td>								
 								</tr>
-								<tr>																																							
+								</table>																																							
 						</fieldset>	
+						( * ) Campos obrigatórios
 					</td>
 				</tr>				
 			</table>
