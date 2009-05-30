@@ -38,7 +38,7 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 						
-					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Vítimas Atendidas :: Incluir Vítima</h2>
+					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Vítimas Atendidas</h2>
 				
 				
 					Número atendimento: <strong>${atendimento}</strong>

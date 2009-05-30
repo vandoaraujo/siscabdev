@@ -40,6 +40,9 @@
 						
 						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Serviços Executados</h2>
 						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						<p></p>
+						
 						<fieldset style="width:200px"><legend>&nbsp;Opções&nbsp;</legend>
 							<a href="novoServico.jsp?registroAtendimento=<%= request.getSession().getAttribute("registroAtendimento")%>&numeroAtendimento=<%= request.getSession().getAttribute("numeroAtendimento")%>">Incluir Serviço</a>
 						</fieldset>										
@@ -47,14 +50,14 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
-						<fieldset style="width:450px"><legend>&nbsp;Lista de Servicos Cadastrados&nbsp;</legend>						
+						<fieldset style="width:450px"><legend>&nbsp;Serviços registrados&nbsp;</legend>						
 								
 								<table border="0" cellpadding="4" cellspacing="1" width="100%" bgcolor="#000000">
 								<% ArrayList servicos=(ArrayList<ServicoRealizado>) request.getSession().getAttribute("servicos");
 									%>
 									
 									<%if(servicos.size()== 0){ %>
-								     <div style="color:red"> Nenhum serviço cadastrado </div>
+								     <div style="color:red"> Nenhum serviço registrado </div>
 									   
 									<%} else{
 										
@@ -78,7 +81,7 @@
 									     <%} %>
 									    	<td><%=serv.getTiposervico().getTiposervico_descricao()%></td>
 									    	<td>
-									    		<a href="ControlaServico?registroServico=<%=serv.getId()%>&operacaoARealizar=3&idAtendimento=${registroAtendimento}"><img src="img/btnExcluir.gif" border="0"></a>
+									    		<a href="ControlaServico?registroServico=<%=serv.getId()%>&operacaoARealizar=3&idAtendimento=${registroAtendimento}" onclick="if (!confirm('Confirma a exclusão?')) return false"><img src="img/btnExcluir.gif" border="0"></a>
 									       	</td>
 									    </tr>								    										
 									   <%} 
@@ -87,9 +90,10 @@
 									
 						</fieldset>	
 						<br />																
-						<form action="AcompanharAtendimentos" method="post">
-			 				<input type="submit" value="Voltar"/>
-			 			</form>	
+						<form action="EditaAtendimento" method="post">
+							<input type="hidden" value="${numeroAtendimento}" name="registro">
+							<input type="submit" value="Voltar para a ficha do atendimento">
+						</form>
 					</td>									
 				</tr>				
 			</table>
