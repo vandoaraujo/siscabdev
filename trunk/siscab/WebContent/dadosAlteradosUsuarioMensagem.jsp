@@ -40,19 +40,17 @@
 				<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
 				
-				<h2>Administração :: Alteração de Dados Pessoais de Usuários</h2>
-				
+				<h2>Alterar seus dados</h2>				
 				
 				<fieldset style="width: 450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
 
-
 				<font color="red">${mensagem} </font>
-				<p><br>
-				</p>
+				<p><br></p>
 
 				<form action="paginaPrincipal.jsp" 
 					style="display: inline;"><input type="submit" value="OK" />
 				</form>
+				
 				</fieldset>
 				</td>
 			</tr>

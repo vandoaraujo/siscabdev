@@ -10,6 +10,23 @@
 	<link href="css/current.css" rel="stylesheet" type="text/css">
 	<script language="JavaScript" src="js/mm_menu.js"></script>
 	<script language="JavaScript" src="js/script.js"></script>
+
+
+<script>
+function campoObrigatorio()
+{
+	var indiceModoFechamento = document.form.modoFechamento.selectedIndex;			
+		
+	if ( (document.form.modoFechamento.options[indiceModoFechamento].text != "- - -" ) )
+		return true;
+	else
+	{
+		alert("Favor preencher o campo obrigatório");	
+		return false;
+	}
+
+}
+</script>
 </head>
 <body>
 
@@ -38,9 +55,15 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Finalizar Atendimento&nbsp;</legend>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Finalizar Atendimento</h2>
+						
+						Número atendimento: <strong>${numeroAtendimento}</strong>
+						<p></p>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Finalização do atendimento&nbsp;</legend>
 							
-							<form action="FinalizaAtendimentoPorModoFechamento" method="post">
+							<form action="FinalizaAtendimentoPorModoFechamento" method="post" name="form">
 								
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
@@ -49,30 +72,26 @@
 										<select name="modoFechamento">
 		 								<% 
 											List<ModoFechamento> tipos =(List<ModoFechamento>) request.getSession().getAttribute("modos");
-											for(int i=0;i<tipos.size();i++){
+										%><option selected>- - -</option><%	
+		 								for(int i=0;i<tipos.size();i++){
 												out.print("<option>"+tipos.get(i).getDescricao());
 						 				}
-												out.println("</select>");
+												out.println("</select> *");
 									%>
 									</td>
-								</tr>	
-								<tr>	
-									<td><label>Id Atendimento:</label></td>
-									<td><input name="idAtendimento" type="text" size=5 readonly="readonly" value="${registroAtendimento}"/></td>
-								</tr>
-								<tr>	
-									<td><label>Numero Atendimento:</label></td>
-									<td><input name="numeroAtendimento" type="text" size=5 readonly="readonly" value="${numeroAtendimento}"/></td>
-								</tr>
-								
+								</tr>									
 								<tr>
 									<td colspan="2">
-										<input type="submit" value="Finalizar Chamado" />					 		 										
+										<input name="idAtendimento" type="hidden" size=5 readonly="readonly" value="${registroAtendimento}"/>
+										<input name="numeroAtendimento" type="hidden" size=5 readonly="readonly" value="${numeroAtendimento}"/>									
+										<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>
+										<input type="button" value="Cancelar" onclick="history.back()"/>					 		 										
 									</td>								
 								</tr>
 								</table>
 							</form>
 							</fieldset>
+							( * ) Campo obrigatório
 						</td>																															
 					</tr>				
 			</table>

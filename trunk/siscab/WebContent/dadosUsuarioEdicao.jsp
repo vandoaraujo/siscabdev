@@ -16,12 +16,15 @@ function campoObrigatorio()
 {
 	if ( (document.form.novaSenha.value != null) && (document.form.novaSenha.value != "") && (document.form.repeticaoSenha.value != null) && (document.form.repeticaoSenha.value != "") && (document.form.senha.value != null) && (document.form.senha.value != "") )
 	{
-		if (validarEmail())
-			return true;
-		else
+		if ((document.form.email.value != null) && (document.form.email.value != ""))
 		{
-			alert("Email inválido");	
-			return false;
+			if (validarEmail())
+				return true;
+			else
+			{
+				alert("Email inválido");	
+				return false;
+			}
 		}
 	}
 	else
@@ -40,9 +43,7 @@ function validarEmail()
 	var pStr = document.form.email.value;
 	if (reEmail.test(pStr)) {
 		return true;
-	} else if (pStr != null && pStr != "") {
-		return false;
-	}
+	} 
 }
 
 </script>
@@ -75,21 +76,19 @@ function validarEmail()
 				<tr>
 				<td style="padding-left: 20px; padding-top: 20px;">
 				
-				<h2>Administração :: Cadastro de Usuários :: Incluir Usuário</h2>
-				<fieldset style="width: 450px"><legend>&nbsp;Dados do novo usuário&nbsp;</legend>
+				<h2>Alterar seus dados</h2>
+				<fieldset style="width: 450px"><legend>&nbsp;Seus dados cadastrais&nbsp;</legend>
 
 				<form name="form" action="EfetivaAlteracaoDadosUsuario" method="post">
 
 				<table border="0" cellpadding="0" cellspacing="3" width="100%">
 					<tr>
 						<td><label>Email:</label></td>
-						<td><input name="email" type="text" value="${usuario.email}" /></td>
+						<td><input name="email" type="text" size="40" value="${usuario.email}" /></td>
 					</tr>					
 					<tr>
 						<td><label>Perfil:</label></td>
-						<td><select name="perfil">
-							<option selected>${usuario.perfil.perfil_descricao}</option> 
-						</td>
+						<td>${usuario.perfil.perfil_descricao}</td>
 					</tr>
 					<tr>
 						<td><label>Senha atual:</label></td>
@@ -106,7 +105,8 @@ function validarEmail()
 					
 					<tr>
 						<td colspan="2">
-							<input type="hidden" name="registro" value="${usuario.id}">
+							<input type="hidden" name="perfil" value="${usuario.perfil.perfil_descricao}"/>
+							<input type="hidden" name="registro" value="${usuario.id}"/>
 							<input type="submit" value="Salvar" onclick="return campoObrigatorio();"/>
 						</form>
 						<form action="paginaPrincipal.jsp" method="post"

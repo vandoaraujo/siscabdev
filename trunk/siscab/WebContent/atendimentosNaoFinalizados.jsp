@@ -41,6 +41,7 @@
 						<h2>Atendimentos :: Acompanhar Atendimento</h2>
 						
 						OBM Responsável: <strong>${obm} </strong>
+						<p></p>
 						
 						<fieldset style="width:780px"><legend>&nbsp;Atendimentos não finalizados desta OBM&nbsp;</legend>
 				
@@ -49,7 +50,7 @@
 									%>
 									
 									<%if(atendimento.size()== 0){ %>
-									     <div style="color:red"> Nenhum Atendimento com Status = "Pendente" cadastrado </div>
+									     <div style="color:red">Nenhum atendimento na lista</div>
 									   
 									<%} else{
 										

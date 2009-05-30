@@ -102,6 +102,7 @@ public class AplicaAcaoAtendimentoDiversasOpcoes extends HttpServlet {
 	RequestDispatcher view;
 	HttpSession sessao = request.getSession();
 	sessao.setAttribute("atendimentoAtual", at);
+	sessao.setAttribute("numeroAtendimento", at.getAtendimento_numero());
 	view = request.getRequestDispatcher("/editaAtendimento.jsp");
 
 	try {
