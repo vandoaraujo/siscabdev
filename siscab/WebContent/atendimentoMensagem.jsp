@@ -26,7 +26,7 @@
 				<tr>
 					<td style="padding-left:20px;">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="109" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
 					</td>
@@ -36,9 +36,16 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
-						<fieldset style="width:450px"><legend>&nbsp;Mensagem Atendimento&nbsp;</legend>
-							Atendimento ${atendimento.atendimento_numero}, <div style="color:red; display:inline">${mensagem}</div>
+						
+						<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Editar Dados do Atendimento</h2>
+						
+						<fieldset style="width:450px"><legend>&nbsp;Mensagem do Sistema&nbsp;</legend>
+							<div style="color:red; display:inline">${mensagem}</div>
 							<p><br></p>
+							<form action="EditaAtendimento" method="post">
+								<input type="hidden" value="${atendimento.atendimento_numero}" name="registro">
+								<input type="submit" value="OK">
+							</form>
 						</fieldset>	
 					</td>
 				</tr>				

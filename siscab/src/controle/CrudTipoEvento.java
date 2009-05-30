@@ -125,7 +125,7 @@ public class CrudTipoEvento extends HttpServlet {
 		    request.setAttribute("idAtendimento", idAtendimento);
 		    if(string.equals("salvar")){
 			
-			request.setAttribute("mensagem", "salvo com sucesso!!");
+			request.setAttribute("mensagem", "Movimentação registrada no sistema.");
 			
 		    }
     				

@@ -48,7 +48,7 @@ function campoObrigatorio()
 				<tr>
 					<td style="padding-left:20px;">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="109" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
 					</td>
@@ -59,7 +59,7 @@ function campoObrigatorio()
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 					
-					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Editar dados do Atendimento</h2>
+					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Editar Dados do Atendimento</h2>
 					
 					
 						<fieldset style="width:450px"><legend>&nbsp;Dados do Atendimento&nbsp;</legend>
@@ -74,11 +74,11 @@ function campoObrigatorio()
 						
 						<table>
 							<tr>
-								<td>Número Atendimento:</td>
-								<td><input name="numeroAtendimento" type="text" size =10 readonly="readonly" value="<%= atendimento.getAtendimento_numero() %>"></td>
+								<td>Número atendimento:</td>
+								<td><input name="numeroAtendimento" type="text" size =10 readonly="readonly" class="label" value="<%= atendimento.getAtendimento_numero() %>"></td>
 							</tr>
 							<tr>
-								<td>Tipo da Ocorrência:</td>
+								<td>Tipo de ocorrência:</td>
 								<td>
 								<select name="tipoOcorrencia">
 									<option selected> <%= atendimento.getTipoocorrencia().getTipoocorrencia_descricao() %>
@@ -119,33 +119,32 @@ function campoObrigatorio()
 								<td><INPUT TYPE=TEXT NAME="logradouro" SIZE=30 MAXLENGHT=40 value= "<%= logradouro %>"> *</td>
 							</tr>
 							<tr>
-								<td>Num. Complemento:</td>
+								<td>Nº/Complemento:</td>
 								<td><input name="numComplemento" type="text" size=10 value=<%= atendimento.getNumcompl() %>> *</td>
 							</tr>							
 							<tr>
-								<td>Coord X:</td>
-								<td><input name="coordX" type="text" value=<%= atendimento.getCoordx() %> onkeypress="return SomenteNumeros(event)"> * </td>
+								<td>Latitude:</td>
+								<td><input name="coordX" type="text" value=<%= atendimento.getCoordx() %> onkeypress="return SomenteNumerosGoogleMaps(event)"> * </td>
 							</tr>
 							<tr>
-								<td>Coord Y:</td>
-								<td><input name="coordY" type="text" value=<%= atendimento.getCoordy() %> onkeypress="return SomenteNumeros(event)"> * </td>
+								<td>Longitude:</td>
+								<td><input name="coordY" type="text" value=<%= atendimento.getCoordy() %> onkeypress="return SomenteNumerosGoogleMaps(event)"> * </td>
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="submit" value="Alterar" onclick="return campoObrigatorio()"/>							
+									<input type="submit" value="Salvar" onclick="return campoObrigatorio()"/>							
 									<input type="hidden" name="operacaoARealizar" value ="2">
 									<input type="hidden" name="registroAtendimento" value ="<%=atendimento.getId()%>">
 									<input type="hidden" name="obmAtendimento" value ="<%=atendimento.getObm_id().getNome()%>">
 									<input type="hidden" name="status" value ="<%=atendimento.getStatus_atendimento()%>">
 								</form>
-									<form action="AcompanharAtendimentos" method="post" style="display:inline;">
-							 			<input type="submit" value="Voltar"/>
-				 					</form>
+							 		<input type="button" value="Cancelar" onclick="history.back()"/>
 								
 								</td>
 							</tr>
 						</table>			
 					</fieldset>
+					( * ) Campos obrigatórios
 					</td>
 				</tr>
 			</table>

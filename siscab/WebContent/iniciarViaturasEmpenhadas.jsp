@@ -34,7 +34,7 @@
 				<tr>
 					<td style="padding-left:20px;">						
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221104_0,0,17,null,'image1')" onMouseOut="MM_startTimeout();"><img src="img/bt_atendimento.gif" name="image1" width="109" height="17" border="0" id="image1"></a> 
-						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="153" height="17" border="0" id="image3"></a> 
+						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221648_0,0,17,null,'image3')" onMouseOut="MM_startTimeout();"><img src="img/bt_consultas.gif" name="image3" width="109" height="17" border="0" id="image3"></a> 
 						<a href="javascript:;" onMouseOver="MM_showMenu(window.mm_menu_0217221434_0,0,17,null,'image2')" onMouseOut="MM_startTimeout();"><img src="img/bt_administrador.gif" name="image2" width="109" height="17" border="0" id="image2"></a>
 						<form action="Logoff" onsubmit="fechar()" style="display:inline"><input type="image" src="img/bt_sairsistema.gif" name="close"></form>										
 					</td>
@@ -45,7 +45,12 @@
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;" colspan="2">
 					
-					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha de Atendimento :: Viaturas Empenhadas</h2>
+					<h2>Atendimentos :: Acompanhar Atendimento :: Ficha do Atendimento :: Viaturas Empenhadas</h2>
+				
+				
+					Número atendimento: <strong>${atendimentoID}</strong>
+					<p></p>
+				
 					
 						<fieldset style="width:200px"><legend>&nbsp;Opções&nbsp;</legend>
 							<a href="DespacharViatura?numeroAtendimento<%= at.getId() %>">Despachar Viatura</a>
@@ -54,6 +59,8 @@
 				</tr>
 				<tr>
 					<td style="padding-left:20px; padding-top:20px;">
+				
+					
 					<fieldset style="width:800px"><legend>&nbsp;Viaturas empenhadas neste atendimento&nbsp;</legend>						
 								
 								<form action="NovaMovimentacaoViatura" method="post">
@@ -62,16 +69,16 @@
 									%>
 									
 									<%if(viatura.size()== 0){ %>
-									     <div style="color:red"> Nenhuma Viatura no Momento</div>
+									     <div style="color:red"> Nenhuma viatura empenhada no momento</div>
 									   
 									<%} else{
 										
 										%>
 										
 										<tr bgcolor="#FFFFFF">
-										  	<th>Tipo/Número</th>
-										  	<th>Movimentações</th>
-										  	<th>Opções</th>
+										  	<th nowrap="nowrap">Tipo/Número</th>
+										  	<th width="350px" nowrap="nowrap">Movimentações</th>
+										  	<th width="500px">Opções</th>
 										</tr>
 									
 										<%										
@@ -83,10 +90,10 @@
 									     <tr bgcolor="#EFEFEF">
 									     <%}else{ %>
 									     
-									     <tr bgcolor="#F9D8D0" style=" height : 57px;">
+									     <tr bgcolor="#F9D8D0">
 									     <%} %>
-									    	<td style=" width : 159px;"><%=via.getTipo_viatura().getTipoviatura_descricao()%></td>
-									    	<td style=" width : 230px;"><% List <MovimentaViatura> movimentacoes =  MovimentaViaturaDao.getInstance().listaTiposEventosViaturaAtendimento(at.getId(),via.getId());
+									    	<td nowrap="nowrap"><%=via.getTipo_viatura().getTipoviatura_abreviacao()%>-<%=via.getNumero()%></td>
+									    	<td nowrap="nowrap"><% List <MovimentaViatura> movimentacoes =  MovimentaViaturaDao.getInstance().listaTiposEventosViaturaAtendimento(at.getId(),via.getId());
 									    	for(int j = 0 ; j<movimentacoes.size();j++){
 									    		  
 									    		out.println(new SimpleDateFormat(FORMATACAO_DATA).format(movimentacoes.get(j).getMovimentaviatura_horaEvento()) + " - "  + movimentacoes.get(j).getMovimentaviatura_tipoevento() + "<br>");
@@ -94,10 +101,9 @@
 									    	%>
 									    	</td>
 									    	<!--  Aqui deveria entrar a lista de movimentações  -->
-									    	<td style=" width : 192px;">									    						    
-									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a>
-									    		<br />
-									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2"><img src="img/btnLiberarViatura.gif" border="0"></a>
+									    	<td>									    						    
+									    		<a href="PreparaNovaMovimentacaoViatura?viaturaAtual=<%=via.getId()%>&atendimentoAtual=<%= at.getId() %>&operacaoARealizar=1"><img src="img/btnRegistrarMovimentacao.gif" border="0"></a>&nbsp;
+									    		<a href="NovaMovimentacaoViatura?registro=<%=via.getId()%>&numeroAtendimento=<%= at.getId() %>&operacaoARealizar=2" onclick="if (!confirm('Confirma a liberação?')) return false"><img src="img/btnLiberarViatura.gif" border="0"></a>
 									       	</td>
 									    </tr>								    										
 									   <%} 
@@ -105,10 +111,11 @@
 							</table>
 						   </form>
 						   </fieldset> 
-															
-										<form action="AcompanharAtendimentos" method="post">
-							 				<input type="submit" value="Voltar"/>
-							 			</form>	
+									<br/>																
+							 		<form action="EditaAtendimento" method="post">
+										<input type="hidden" value="${atendimentoID}" name="registro">
+										<input type="submit" value="Voltar para a ficha do atendimento">
+									</form>
 					</td>
 				</tr>				
 			</table>
