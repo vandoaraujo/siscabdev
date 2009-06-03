@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Table(name = "municipios")
 public class Municipio implements Serializable{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -89,8 +89,30 @@
 									    	<td><%=vitima.getNome()%></td>
 									    	<td><%=vitima.getIdade()%></td>
 									    	<td><%=vitima.getSexo()%></td>
-									    	<td><%=vitima.getCor()%></td>
-									    	<td><%=vitima.getVitima_situacao()%></td>
+									    	<td><%
+									    		if (vitima.getCor() == 1) {
+									    		    out.print("branca");
+									    		} else if (vitima.getCor() == 2) {
+									    		    out.print("parda");
+									    		} else if (vitima.getCor() == 3) {
+									    		    out.print("amarela");
+									    		} else if (vitima.getCor() == 4) {
+									    		    out.print("negra");
+									    		}
+									    		%></td>
+									    	<td><%
+									    		if (vitima.getVitima_situacao() == 1) {
+									    	    	out.print("Recusou Atendimento");
+									    		} else if (vitima.getVitima_situacao() == 2) {
+									    			out.print("Entregue ao hospital");
+									    		} else if (vitima.getVitima_situacao() == 3) {
+									    			out.print("Permaneceu no local após ser atendida");
+									    		} else if (vitima.getVitima_situacao() == 4) {
+									    	    	out.print("Encaminhada ao suporte aeromédico");
+									    		} else if (vitima.getVitima_situacao() == 5) {
+									    	    	out.print("Óbito no local");
+									    		}
+									    	%></td>
 									    	<td><%=vitima.getHospitaldestino()%></td>
 									    	<td>
 									    		<a href="EditaVitima?registro=<%=vitima.getId()%>&atendimentoAtual=<%=vitima.getAtendimento().getId()%>"><img src="img/btnEditar.gif" border="0"></a>&nbsp;
