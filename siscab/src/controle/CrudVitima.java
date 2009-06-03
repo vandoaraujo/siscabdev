@@ -23,12 +23,12 @@ public class CrudVitima extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private String nome;
-    private int idade;
-    private String sexo;
-    private String cor;
-    private String situacaoVitima;
-    private String hospitalDestino;
-    private int registroVitima;
+    private int idade=0;
+    private String sexo=null;
+    private String cor=null;
+    private String situacaoVitima= null;
+    private String hospitalDestino= null;
+    private int registroVitima= 0;
     private int atendimentoAtualId;
     private char sexoChar;
     private int corNumero;
@@ -54,12 +54,13 @@ public class CrudVitima extends HttpServlet {
 		registroVitima);
 	vitima.setAtendimento(atendimento);
 	vitima.setNome(nome);
-	vitima.setIdade(idade);
 	
-	if(vitima.getIdade() > 150){
+	if(idade > 150){
 	    despacha(request, response, "erro", vitima.getNome());
 	}
 	else{
+
+	vitima.setIdade(idade);
 
 	if (sexo.equals("F")) {
 	    sexoChar = 'F';
@@ -172,29 +173,41 @@ public class CrudVitima extends HttpServlet {
 	    HttpServletResponse response) throws ServletException, IOException {
 
 	logger.info(getServletName());
-	nome = request.getParameter("nome");
-	idade = Integer.parseInt(request.getParameter("idade"));
-	sexo = request.getParameter("sexo");
-	cor = request.getParameter("cor");
-	situacaoVitima = request.getParameter("situacaoVitima");
-	hospitalDestino = request.getParameter("hospital");
 	registroVitima = Integer.parseInt(request
 		.getParameter("registroVitima"));
 	int operacao = Integer.parseInt(request
 		.getParameter("operacaoARealizar"));
-	atendimentoAtualId = Integer.parseInt(request
-		.getParameter("atendimentoAtual"));
 
-	if (operacao == 1) {
+	
+	//Se for diferente da acao de deletar recebe os parâmetros necessários
+	if(operacao != 3){
+	    
+	    atendimentoAtualId = Integer.parseInt(request
+			.getParameter("atendimentoAtual"));
+	    nome = request.getParameter("nome");
+	    sexo = request.getParameter("sexo");
+	    cor = request.getParameter("cor");
+	    situacaoVitima = request.getParameter("situacaoVitima");
+	    hospitalDestino = request.getParameter("hospital");
+	    
+	    if(request.getParameter("idade").equals("")){
+		    //idade = 0;
+		    logger.info("Idade não preenchida - Atribui zero a idade");
+	    }
+	    else{
+		    idade = Integer.parseInt(request.getParameter("idade"));
+	    }
+		    
+	    if (operacao == 1) {	
+		salvar(request, response);
+	    } else {	
+		alterar(request, response, registroVitima);
+	    }
 
-	    salvar(request, response);
-	} else if (operacao == 2) {
-
-	    alterar(request, response, registroVitima);
+	    
 	}
-
-	else {
-
+	
+	else{
 	    deletar(request, response, registroVitima);
 	}
 
@@ -214,6 +227,7 @@ public class CrudVitima extends HttpServlet {
 	if(vitima.getIdade() > 150){
 	    despacha(request, response, "erro", vitima.getNome());
 	}
+	
 	else {
 
 	if (sexo.equals("F")) {
