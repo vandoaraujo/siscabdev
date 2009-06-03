@@ -65,8 +65,8 @@ function campoObrigatorio()
 								</tr>
 								<tr>
 									<td><label>OBM:</label></td>
-									<td>Fazer javascript para informar pelo menos um dos parâmetros.
-										<select name="obm">
+									<td>
+									<select name="obm">
 										<option selected>
 										
 										<!-- Popula a combo que aparecerá na tela -->

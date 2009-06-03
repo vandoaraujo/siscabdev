@@ -335,7 +335,7 @@ function mascaraTelefone(e){
 										</tr>
 										<tr>
 											<td>Nº aprox vítimas:</td>
-											<td><input name="numAproximadoVitimas" type="text" size=8></td>
+											<td><input name="numAproximadoVitimas" type="text" size=8> *</td>
 										</tr>
 										<tr>	
 											<td colspan="2">Informações complementares:</td>			
