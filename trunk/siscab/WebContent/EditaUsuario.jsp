@@ -89,8 +89,8 @@ function campoObrigatorio()
 								</tr>
 									<tr><td><label>Perfil:</label></td>
 									<td> <select name="perfil" >
-										<option>ADMINISTRADOR DO SISTEMA</option> 
 										<option selected ><%= usuario.getPerfil().getPerfil_descricao() %></option> 
+										<option>ADMINISTRADOR DO SISTEMA</option> 
 										<option>OPERADOR DA OBM</option>
 										<option>CONTROLADOR DA OBM</option>
 										<option>COMANDANTE</option>

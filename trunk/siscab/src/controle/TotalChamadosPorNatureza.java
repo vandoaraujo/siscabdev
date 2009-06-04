@@ -102,12 +102,10 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 	    while (stInicial.hasMoreTokens()) {
 		tokenInicial.add(stInicial.nextToken());
 	    }
+	    
+	    String dataInicialParametro = tokenInicial.get(2).concat(tokenInicial.get(1)).concat(tokenInicial.get(0));
 
-	    int comparaDataInicial = Integer.parseInt(tokenInicial.get(0))
-		    + Integer.parseInt(tokenInicial.get(1))
-		    + Integer.parseInt(tokenInicial.get(2));
-
-	    logger.info("Valor da data Inicial" + comparaDataInicial);
+	    logger.info("Valor da data Inicial" + dataInicialParametro);
 
 	    // Quebra a data final ajustando para + 1
 	    StringTokenizer st = new StringTokenizer(dataFinal, "/");
@@ -115,21 +113,16 @@ public class TotalChamadosPorNatureza extends HttpServlet {
 	    while (st.hasMoreTokens()) {
 		tokenFinal.add(st.nextToken());
 	    }
-
-	    int comparaDataFinal = Integer.parseInt(tokenFinal.get(0))
-		    + Integer.parseInt(tokenFinal.get(1))
-		    + Integer.parseInt(tokenFinal.get(2));
-
-	    logger.info("Valor da data Final" + comparaDataFinal);
-
-	    int mesFinal = Integer.parseInt(tokenFinal.get(1));
-	    int mesInicial =  Integer.parseInt(tokenInicial.get(1));
 	    
-	    int anoFinal = Integer.parseInt(tokenFinal.get(2));
-	    int anoInicial =  Integer.parseInt(tokenInicial.get(2));
-	    
-	    if((mesFinal < mesInicial) || (anoFinal < anoInicial) || (comparaDataInicial > comparaDataFinal)){
+	    String dataFinalParametro = tokenFinal.get(2).concat(tokenFinal.get(1)).concat(tokenFinal.get(0));
 
+	    logger.info("Valor da data Final" + dataFinalParametro);
+	    
+	    int dataInicio1 = Integer.parseInt(dataInicialParametro);
+	    int dataFinal1 = Integer.parseInt(dataFinalParametro);
+	    
+	    if (dataInicio1 > dataFinal1){
+		
 		request.setAttribute("msg",
 			"A data inicial é maior do que a data final!");
 		view = request

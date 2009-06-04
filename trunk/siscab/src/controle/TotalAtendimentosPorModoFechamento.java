@@ -94,11 +94,9 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 		tokenInicial.add(stInicial.nextToken());
 	    }
 
-	    int comparaDataInicial = Integer.parseInt(tokenInicial.get(0))
-		    + Integer.parseInt(tokenInicial.get(1))
-		    + Integer.parseInt(tokenInicial.get(2));
+	    String dataInicialParametro = tokenInicial.get(2).concat(tokenInicial.get(1)).concat(tokenInicial.get(0));
 
-	    logger.info("Valor da data Inicial" + comparaDataInicial);
+	    logger.info("Valor da data Inicial" + dataInicialParametro);
 
 	    // Quebra a data final ajustando para + 1
 	    StringTokenizer st = new StringTokenizer(dataFinal, "/");
@@ -111,15 +109,14 @@ public class TotalAtendimentosPorModoFechamento extends HttpServlet {
 		    + Integer.parseInt(tokenFinal.get(1))
 		    + Integer.parseInt(tokenFinal.get(2));
 
-	    logger.info("Valor da data Final" + comparaDataFinal);
+	    String dataFinalParametro = tokenFinal.get(2).concat(tokenFinal.get(1)).concat(tokenFinal.get(0));
+
+	    logger.info("Valor da data Final" + dataFinalParametro);
 	    
-	    int mesFinal = Integer.parseInt(tokenFinal.get(1));
-	    int mesInicial =  Integer.parseInt(tokenInicial.get(1));
+	    int dataInicio1 = Integer.parseInt(dataInicialParametro);
+	    int dataFinal1 = Integer.parseInt(dataFinalParametro);
 	    
-	    int anoFinal = Integer.parseInt(tokenFinal.get(2));
-	    int anoInicial =  Integer.parseInt(tokenInicial.get(2));
-	    
-	    if((mesFinal < mesInicial) || (anoFinal < anoInicial) || (comparaDataInicial > comparaDataFinal)){
+	    if (dataInicio1 > dataFinal1){
 
 		request.setAttribute("msg",
 			"A data inicial é maior do que a data final!");

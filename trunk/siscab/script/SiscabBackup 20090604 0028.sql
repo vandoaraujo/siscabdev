@@ -54,7 +54,7 @@ CREATE TABLE `atendimentos` (
   CONSTRAINT `FK_atendimentos_municipios` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`),
   CONSTRAINT `FK_atendimentos_obm` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK_atendimentos_tiposocorrencias` FOREIGN KEY (`tipoocorrencia_id`) REFERENCES `tiposocorrencias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COMMENT='Dados de atendimentos realizados';
 
 --
 -- Dumping data for table `atendimentos`
@@ -69,11 +69,13 @@ INSERT INTO `atendimentos` (`id`,`numero`,`chamado_id`,`municipio_id`,`bairro`,`
  (6,'20096',13,26,'centro','rua a','10',0,0,9,'Finalizado',1,2),
  (7,'20097',19,61,'Botafogo','Rua São Clemente','10',0,0,9,'Em andamento',1,0),
  (8,'20098',21,61,'Ilha do Governador','Rua Maestro Arturo Toscanini taua','10',0,0,9,'Finalizado',1,1),
- (9,'20099',22,61,'centro','Rua do Ouvidor','20',0,0,9,'Em andamento',1,0),
+ (9,'20099',22,61,'centro','Rua do Ouvidor','20',0,0,9,'Finalizado',1,1),
  (10,'200910',24,26,'centro','rua g','19',0,0,9,'Finalizado',1,1),
- (11,'200911',26,44,'centro','Rua Miguel de Frias','701',-22.90284538269043,-43.11512756347656,9,'Em andamento',1,0),
+ (11,'200911',26,44,'centro','Rua Miguel de Frias','701',-22.90284538269043,-43.11512756347656,9,'Finalizado',1,1),
  (12,'200912',28,18,'centro','rua a','15',0,0,4,'Pendente',1,0),
- (13,'200913',34,61,'Copacabana','Rua Barata Ribeiro','60',0,0,9,'Pendente',1,0);
+ (13,'200913',34,61,'Copacabana','Rua Barata Ribeiro','60',0,0,9,'Em andamento',1,0),
+ (14,'20081',37,61,'centro','rua do ouvidor','90',0,0,9,'Em andamento',1,0),
+ (15,'200915',40,61,'Ilha do Governador','juciape','162',-22.793018341064453,-43.17264175415039,9,'Pendente',1,0);
 /*!40000 ALTER TABLE `atendimentos` ENABLE KEYS */;
 
 
@@ -101,7 +103,7 @@ CREATE TABLE `chamados` (
   CONSTRAINT `FK5550201849BB2B9B` FOREIGN KEY (`naturezachamado_id`) REFERENCES `naturezaschamados` (`id`),
   CONSTRAINT `FK_chamados_naturezaschamados` FOREIGN KEY (`naturezachamado_id`) REFERENCES `naturezaschamados` (`id`),
   CONSTRAINT `FK_chamados_obm` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1 COMMENT='Registro de chamados de socorro';
 
 --
 -- Dumping data for table `chamados`
@@ -141,7 +143,13 @@ INSERT INTO `chamados` (`id`,`naturezachamado_id`,`origem`,`nomesolicitante`,`te
  (32,1,'Telefone','Vando Ribeiro','9487-4930',10,'',9,'2009-05-12 19:42:00','2009-05-12 19:57:00'),
  (33,1,'Telefone','Vando Ribeiro','9487-4930',10,'',9,'2009-05-12 19:42:00','2009-05-12 20:18:00'),
  (34,1,'Telefone','Vando Ribeiro','9487-4930',2,'',9,'2009-05-12 20:41:00','2009-05-12 20:42:00'),
- (35,5,'Telefone','Bruno','8976-0987',0,'',9,'2009-05-12 20:42:00','2009-05-12 20:45:00');
+ (35,5,'Telefone','Bruno','8976-0987',0,'',9,'2009-05-12 20:42:00','2009-05-12 20:45:00'),
+ (36,1,'Telefone','Bruno Lombardi','6786-9876',7,'',9,'2008-11-06 20:25:00','2008-11-06 20:26:00'),
+ (37,1,'Telefone','Bruno Lombardi','6786-9876',7,'',9,'2008-11-06 20:32:00','2008-11-06 20:33:00'),
+ (38,2,'Telefone','Bruno Roque','9089-9877',1,'Atropelada a Laika. :D',9,'2008-11-06 20:33:00','2008-11-06 20:34:00'),
+ (39,2,'Telefone','Carla','7898-0987',0,'',9,'2008-11-06 20:39:00','2008-11-06 20:40:00'),
+ (40,1,'Telefone','Bruno Roque','(21)4556-6778',1,'',9,'2009-05-26 21:12:00','2009-05-26 21:13:00'),
+ (41,5,'Telefone','Pedro','(21)8898-8776',0,'',9,'2009-06-03 00:55:00','2009-06-03 00:57:00');
 /*!40000 ALTER TABLE `chamados` ENABLE KEYS */;
 
 
@@ -160,7 +168,7 @@ CREATE TABLE `cronoatendimento` (
   KEY `horaevento_index` (`horaevento`) USING BTREE,
   CONSTRAINT `FKA197AF8F4DC4F935` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK_cronoatendimento_atendimentos` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1 COMMENT='Armazena horarios associados aos atendimentos';
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1 COMMENT='Armazena horarios associados aos atendimentos';
 
 --
 -- Dumping data for table `cronoatendimento`
@@ -168,15 +176,7 @@ CREATE TABLE `cronoatendimento` (
 
 /*!40000 ALTER TABLE `cronoatendimento` DISABLE KEYS */;
 INSERT INTO `cronoatendimento` (`id`,`atendimento_id`,`tipoevento`,`horaevento`) VALUES 
- (7,3,'início','2009-03-25 18:45:17'),
- (8,3,'início','2009-03-25 18:45:35'),
- (9,3,'início','2009-03-26 15:40:01'),
- (10,3,'início','2009-03-26 15:40:22'),
- (11,3,'início','2009-03-26 15:54:46'),
- (12,3,'início','2009-03-26 15:54:50'),
- (13,3,'início','2009-03-27 00:49:53'),
- (14,3,'início','2009-03-27 00:49:58'),
- (15,3,'início','2009-03-27 01:03:01'),
+ (7,2,'início','2009-03-25 18:45:17'),
  (16,3,'início','2009-03-27 01:03:06'),
  (17,4,'acionamento','2009-03-27 01:16:55'),
  (18,4,'início','2009-03-27 01:17:13'),
@@ -207,7 +207,17 @@ INSERT INTO `cronoatendimento` (`id`,`atendimento_id`,`tipoevento`,`horaevento`)
  (44,12,'repasse','2009-05-06 18:51:23'),
  (45,12,'repasse','2009-05-06 18:52:11'),
  (46,12,'repasse','2009-05-06 18:52:54'),
- (47,13,'acionamento','2009-05-12 20:42:30');
+ (47,13,'acionamento','2009-05-12 20:42:30'),
+ (48,14,'acionamento','2008-11-06 20:33:12'),
+ (49,7,'repasse','2009-05-26 20:18:39'),
+ (50,7,'repasse','2009-05-26 20:21:03'),
+ (51,11,'finalização','2009-05-26 20:35:46'),
+ (52,13,'início','2009-05-26 20:44:27'),
+ (53,15,'acionamento','2009-05-26 21:13:30'),
+ (54,9,'finalização','2009-05-27 01:03:47'),
+ (55,14,'início','2009-06-03 17:51:42'),
+ (56,2,'finalização','2009-03-28 01:00:00'),
+ (57,3,'finalização','2009-03-28 01:01:00');
 /*!40000 ALTER TABLE `cronoatendimento` ENABLE KEYS */;
 
 
@@ -278,7 +288,7 @@ CREATE TABLE `movimentaviatura` (
   CONSTRAINT `FK93D18DB063B96552` FOREIGN KEY (`viatura_id`) REFERENCES `viaturas` (`id`),
   CONSTRAINT `FK_movimentaviatura_atendimentos` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK_movimentaviatura_viaturas` FOREIGN KEY (`viatura_id`) REFERENCES `viaturas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1 COMMENT='Armazenar horarios associados as movimentacoes das viaturas';
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1 COMMENT='Armazenar horarios associados as movimentacoes das viaturas';
 
 --
 -- Dumping data for table `movimentaviatura`
@@ -317,7 +327,18 @@ INSERT INTO `movimentaviatura` (`id`,`atendimento_id`,`viatura_id`,`tipoevento`,
  (42,11,1,'Saída da OBM','2009-05-06 00:37:23'),
  (43,11,1,'Chegada à Cena','2009-05-06 00:37:00'),
  (44,11,1,'Saída da Cena','2009-05-06 18:25:00'),
- (45,7,2,'Saída da Cena','2009-05-12 21:39:00');
+ (45,7,2,'Saída da Cena','2009-05-12 21:39:00'),
+ (46,11,1,'Chegada ao Hospital','2009-05-26 20:27:00'),
+ (47,11,1,'Saída do Hospital','2009-05-26 20:27:00'),
+ (48,11,2,'Saída da OBM','2009-05-26 20:28:06'),
+ (49,11,8,'Saída da OBM','2009-05-26 20:29:05'),
+ (50,13,3,'Saída da OBM','2009-05-26 20:44:27'),
+ (51,9,8,'Saída da OBM','2009-05-27 00:28:49'),
+ (52,9,8,'Retorno à OBM','2009-05-27 01:02:00'),
+ (53,9,1,'Saída da OBM','2009-05-27 01:02:57'),
+ (54,9,2,'Saída da OBM','2009-05-27 01:03:02'),
+ (55,9,8,'Saída da OBM','2009-05-27 01:03:07'),
+ (56,14,1,'Saída da OBM','2009-06-03 17:51:42');
 /*!40000 ALTER TABLE `movimentaviatura` ENABLE KEYS */;
 
 
@@ -479,7 +500,7 @@ CREATE TABLE `obm` (
   KEY `FK_obm_municipios` (`municipio_id`),
   CONSTRAINT `FK1ACFA4D8464F2` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`),
   CONSTRAINT `FK_obm_municipios` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `obm`
@@ -489,12 +510,12 @@ CREATE TABLE `obm` (
 INSERT INTO `obm` (`id`,`nome`,`municipio_id`,`bairro`,`logradouro`,`numcompl`,`coordx`,`coordy`,`status_obm`) VALUES 
  (1,'COCB',61,'Centro','Praça da República','45',-22.95838343909873,-43.200130462646484,1),
  (2,'1º GBM - Humaitá',61,'Humaitá','Rua Humaitá','S/N',-22.95838343909873,-43.200130462646484,1),
- (3,'2º GBM - Méier',61,'Méier','Rua Aristide Caire','56',-22.899699412528445,-43.27735662460327,1),
+ (3,'2º GBM - Méier',61,'Méier','Rua Aristide Cairé','56',-22.8974351,-43.2764638,1),
  (4,'8º GBM - Campinho',61,'Campinho','Rua Domingos Lopes','336',-22.8799215496761,-43.34126830101013,1),
  (5,'11º GBM - Vila Isabel',61,'Vila Isabel','Rua Oito de Dezembro','456',-22.91019503816399,-43.241339921951294,1),
- (6,'12º GBM - Jacarepaguá',61,'Jacarepaguá','Rua Henriqueta','99 - Tanque',-22.919583092024975,-43.3580482006073,0),
+ (6,'12º GBM - Jacarepaguá',61,'Jacarepaguá','Rua Henriqueta','99 - Tanque',-22.919583092024975,-43.3580482006073,1),
  (7,'13º GBM - Campo Grande',61,'Campo Grande','AV. Cesário de Melo','3226',-22.907279668085742,-43.56295824050903,1),
- (8,'17º GBM - Copacabana',61,'Copacabana','Rua Xavier da Silveira','120',-22.976026160554113,-43.19354295730591,1),
+ (8,'17º GBM - Copacabana',61,'Copacabana','Rua Xavier da Silveira','120',-22.976026160554113,-43.19354295730591,0),
  (9,'19º GBM - Ilha do Governador',61,'Ilha do Governador','Estrada do Galeão','S/N - Guarabu',-22.807437421190155,-43.19757699966431,1),
  (10,'24º GBM - Irajá',61,'Irajá','Av. Brasil','19001',-22.826108421544685,-43.33432674407959,1);
 /*!40000 ALTER TABLE `obm` ENABLE KEYS */;
@@ -541,7 +562,7 @@ CREATE TABLE `servicos` (
   CONSTRAINT `FK523511944DC4F935` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK_servicos_atendimentos` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK_servicos_tiposservicos` FOREIGN KEY (`tiposervico_id`) REFERENCES `tiposservicos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='Unidades operacionais do Corpo de Bombeiros';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='Unidades operacionais do Corpo de Bombeiros';
 
 --
 -- Dumping data for table `servicos`
@@ -556,10 +577,10 @@ INSERT INTO `servicos` (`id`,`tiposervico_id`,`atendimento_id`) VALUES
  (5,2,10),
  (6,3,10),
  (7,1,11),
- (8,1,13),
  (9,2,11),
  (10,3,11),
- (11,4,11);
+ (11,4,11),
+ (12,7,11);
 /*!40000 ALTER TABLE `servicos` ENABLE KEYS */;
 
 
@@ -677,16 +698,16 @@ CREATE TABLE `usuario` (
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`,`numregistro`,`nomeguerra`,`email`,`obm_id`,`perfil_id`,`senha`,`status_usuario`) VALUES 
- (1,123,'Araujo','vandoaraujo@hotmail.com',1,1,'000','ATIVO'),
+ (1,123,'araujo','vandoaraujo@hotmail.com',1,1,'000','ATIVO'),
  (2,456,'Amaral','bruno.ramaral@gmail.com',9,3,'000','ATIVO'),
  (3,777,'Flavia','flaviauerj@yahoo.com.br',1,1,'999','ATIVO'),
  (15,890,'Carol','carol@gmail.com',1,2,'000','ATIVO'),
- (16,891,'Salomão','salomao@bol.com.br',1,4,'8787','ATIVO'),
  (17,892,'Luciana','lucianaclemos@gmail.com',1,5,'123','ATIVO'),
  (18,876,'Ronaldo','ronaldo@gmail.com',2,3,'123','ATIVO'),
  (19,990,'Flavia','Flavia_uerj@yahoo.com.br',1,2,'123','INATIVO'),
  (21,908,'Cintia','cintia@cobm.com',4,3,'123','ATIVO'),
- (23,1000,'Reinaldo','reinaldo@gmail.com',1,4,'000','ATIVO');
+ (23,1000,'Reinaldo','reinaldo@gmail.com',1,4,'000','ATIVO'),
+ (24,1001,'Marcelo','marcelo@cobm.com',2,3,'123','ATIVO');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
@@ -709,7 +730,7 @@ CREATE TABLE `viaturas` (
   CONSTRAINT `FK40589EB56C365DB2` FOREIGN KEY (`tipoviatura_id`) REFERENCES `tiposviaturas` (`id`),
   CONSTRAINT `FK_viaturas_obm` FOREIGN KEY (`obm_id`) REFERENCES `obm` (`id`),
   CONSTRAINT `FK_viaturas_tiposviaturas` FOREIGN KEY (`tipoviatura_id`) REFERENCES `tiposviaturas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='Lista de viaturas operacionais usadas no CBMERJ';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='Lista de viaturas operacionais usadas no CBMERJ';
 
 --
 -- Dumping data for table `viaturas`
@@ -718,14 +739,15 @@ CREATE TABLE `viaturas` (
 /*!40000 ALTER TABLE `viaturas` DISABLE KEYS */;
 INSERT INTO `viaturas` (`id`,`tipoviatura_id`,`numero`,`obm_id`,`obs`,`status_viatura`) VALUES 
  (1,5,'C01',9,'nova viatura. ','Em atendimento'),
- (2,2,'V01',9,'teste','Em atendimento'),
- (3,1,'C03',9,'','Inoperante - Em manutenção'),
- (5,2,'V02',2,'teste','Em prontidão'),
- (7,1,'C06',9,NULL,'Em prontidão'),
+ (2,2,'V01',9,'teste','Em prontidão'),
+ (3,1,'C03',9,'','Em atendimento'),
+ (7,1,'C06',9,'','Em prontidão'),
  (8,1,'C09',9,'','Em prontidão'),
  (9,4,'D90',9,'Contactar manutenção preventiva.','Inoperante - Sem tripulação'),
  (10,1,'DA7',4,'','Inoperante - Sem tripulação'),
- (11,1,'E89',9,'','Inoperante - Sem tripulação');
+ (11,1,'E89',9,'','Inoperante - Sem tripulação'),
+ (12,5,'A88',6,NULL,'Inoperante - Sem tripulação'),
+ (13,4,'A89',6,NULL,'Inoperante - Sem tripulação');
 /*!40000 ALTER TABLE `viaturas` ENABLE KEYS */;
 
 
@@ -747,7 +769,7 @@ CREATE TABLE `vitimas` (
   KEY `FK_vitimas_atendimentos` (`atendimento_id`),
   CONSTRAINT `FK1BE02FF74DC4F935` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`),
   CONSTRAINT `FK_vitimas_atendimentos` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimentos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COMMENT='Dados de vítimas atendidas';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COMMENT='Dados de vítimas atendidas';
 
 --
 -- Dumping data for table `vitimas`
@@ -760,7 +782,9 @@ INSERT INTO `vitimas` (`id`,`atendimento_id`,`nome`,`idade`,`sexo`,`cor`,`situac
  (3,10,'Marcelo',56,'M',4,1,''),
  (4,11,'Bruno',60,'M',1,2,'Paullino Werneck'),
  (5,11,'carla',87,'F',1,1,''),
- (7,13,'joao',40,'M',1,1,'');
+ (12,13,'Carlos',60,'M',2,2,''),
+ (14,13,'Bianca',28,'F',1,3,''),
+ (15,13,'Marcos',0,'M',4,2,'');
 /*!40000 ALTER TABLE `vitimas` ENABLE KEYS */;
 
 
