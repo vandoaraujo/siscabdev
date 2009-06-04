@@ -86,8 +86,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 	atendimento.setStatus_atendimento("Em andamento");
 	AtendimentoDao.getInstance().atualizar(atendimento);
 
-	logger
-		.info("Atualizou o Atendimento para situacao Status Em andamento");
+	logger.info("Atualizou o Atendimento para situacao Status Em andamento");
 
 	// fazer uma busca de viaturas empenhadas...
 	// Lógica de na próxima página popular uma lista de viaturas já
@@ -155,8 +154,7 @@ public class AssociaViaturaAtendimento extends HttpServlet {
 	    CronoAtendimentoDao.getInstance().salvar(crono);
 	    logger.info("SALVO a CronologiaAtendimento como início");
 	} else {
-	    logger
-		    .info("TESTE - CLASSE ASSOCIA VIATURA ATENDIMENTO -- NAO ASSOCIOU UMA CRONOLOGIA REPETIDA");
+	    logger.info("TESTE - CLASSE ASSOCIA VIATURA ATENDIMENTO -- NAO ASSOCIOU UMA CRONOLOGIA REPETIDA");
 	}
 
     }

@@ -70,12 +70,10 @@ function campoObrigatorio()
 							
 							<form name="form" action="CrudOBM" method="post">
 								
-								Ver tamanho dos campos
-								Incluir botão para localização das coordenadas
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
-									<td><input name="nome" type="text" size=40/> * </td>
+									<td><input name="nome" type="text" size=40 maxlength="40"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Municipio:</label></td>
@@ -94,19 +92,19 @@ function campoObrigatorio()
 								</tr>
 								<tr>	
 									<td><label>Bairro:</label></td>
-									<td><input name="bairro" type="text" size=40/> * </td>
+									<td><input name="bairro" type="text" size=40 maxlength="40"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Logradouro:</label></td>
-									<td><input name="logradouro" type="text" size=40/> * </td>
+									<td><input name="logradouro" type="text" size=40 maxlength="65"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Nº/Complemento:</label></td>
-									<td><input name="numComplemento" type="text" size=40/> * </td>
+									<td><input name="numComplemento" type="text" size=40 maxlength="30"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Latitude:</label></td>
-									<td><input name="coordX" type="text" size=40 onkeydown="return SomenteNumeros(event)"/> * </td>
+									<td><input name="coordX" type="text" size=40  onkeydown="return SomenteNumeros(event)"/> * </td>
 								</tr>
 								<tr>	
 									<td><label>Longitude:</label></td>
@@ -116,8 +114,8 @@ function campoObrigatorio()
 									<td><label>Status:</label></td>
 									<td><select name="statusObm">
 											<option selected>- - -</option>
-											<option>ATIVO</option>
-											<option>INATIVO</option>
+											<option>ATIVA</option>
+											<option>INATIVA</option>
 										</select> *									
 									</td>	
 								</tr>

@@ -191,7 +191,7 @@ public class CrudVitima extends HttpServlet {
 	    hospitalDestino = request.getParameter("hospital");
 	    
 	    if(request.getParameter("idade").equals("")){
-		    //idade = 0;
+		    idade = 0;
 		    logger.info("Idade não preenchida - Atribui zero a idade");
 	    }
 	    else{
