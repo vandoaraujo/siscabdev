@@ -112,15 +112,15 @@ function campoObrigatorio()
 							</tr>
 							<tr>
 								<td>Bairro:</td>
-								<td><input name="bairro" type="text" size =45 value="<%= atendimento.getBairro() %>"> *</td>
+								<td><input name="bairro" type="text" size =45 value="<%= atendimento.getBairro() %>" maxlength="40"> *</td>
 							</tr>
 							<tr>
 								<td>Logradouro:</td>
-								<td><INPUT TYPE=TEXT NAME="logradouro" SIZE=30 MAXLENGHT=40 value= "<%= logradouro %>"> *</td>
+								<td><INPUT TYPE=TEXT NAME="logradouro" SIZE=30 maxlength=30 value= "<%= logradouro %>"> *</td>
 							</tr>
 							<tr>
 								<td>Nº/Complemento:</td>
-								<td><input name="numComplemento" type="text" size=10 value=<%= atendimento.getNumcompl() %>> *</td>
+								<td><input name="numComplemento" type="text" size=20 value=<%= atendimento.getNumcompl() %> maxlength="20"> *</td>
 							</tr>							
 							<tr>
 								<td>Latitude:</td>
