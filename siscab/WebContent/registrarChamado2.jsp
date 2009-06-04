@@ -22,35 +22,32 @@ function habilitaCombo(priID, prstHabilita){
 
 function campoObrigatorioFinalizarChamado()
 {	
+
+	
 	var indiceMunicipio = document.form.municipio.selectedIndex;
 
 	 document.form.operacaoARealizar.value = 1;
-	
-	if ( (document.form.nomeSolicitante.value != null) && 
-			(document.form.nomeSolicitante.value != "") &&
-				(document.form.telefoneSolicitante.value != null) && 
-					(document.form.telefoneSolicitante.value != "") &&
-						(document.form.bairro.value != null) && 
-							(document.form.bairro.value != "") &&
-								(document.form.endereco.value != null) && 
-									(document.form.endereco.value != "") &&
-										(document.form.numero.value != null) && 
-											(document.form.numero.value != "") && 
-												(document.form.numAproximadoVitimas.value != null) && 
-													(document.form.numAproximadoVitimas.value != "") &&
-														(document.form.CoordX.value != null) && 
-															(document.form.CoordX.value != "") &&
-																(document.form.CoordY.value != null) && 
-																	(document.form.CoordY.value != "") &&
-																		(document.form.municipio.options[indiceMunicipio].text != "- - -") && 
-																			(document.form.statusObm.options[indiceStatus].text != "- - -" ) )
+	 
+	if ( (document.form.bairro.value != null) && 
+			(document.form.bairro.value != "") &&
+				(document.form.endereco.value != null) && 
+					(document.form.endereco.value != "") &&
+						(document.form.numero.value != null) && 
+							(document.form.numero.value != "") && 
+								(document.form.numAproximadoVitimas.value != null) && 
+									(document.form.numAproximadoVitimas.value != "") &&
+										(document.form.CoordX.value != null) && 
+											(document.form.CoordX.value != "") &&
+												(document.form.CoordY.value != null) && 
+													(document.form.CoordY.value != "") &&
+														(document.form.municipio.options[indiceMunicipio].text != "- - -") && 
+																	(document.form.statusObm.options[indiceStatus].text != "- - -" ) )
 		return true;
 	else
 	{
 		alert("Favor preencher todos campos obrigatórios");	
 		return false;
 	}
-
 }
 
 
@@ -80,27 +77,23 @@ function campoObrigatorioLocalizarNoMapa()
 function campoObrigatorioProcurarOcorrenciasProximas()
 {	
 	document.form.operacaoARealizar.value = 2;
-	
+
+
 	var indiceMunicipio = document.form.municipio.selectedIndex;
 	
-	if ( (document.form.nomeSolicitante.value != null) && 
-			(document.form.nomeSolicitante.value != "") &&
-				(document.form.telefoneSolicitante.value != null) && 
-					(document.form.telefoneSolicitante.value != "") &&
-						(document.form.bairro.value != null) && 
-							(document.form.bairro.value != "") &&
-								(document.form.endereco.value != null) && 
-									(document.form.endereco.value != "") &&
-										(document.form.numero.value != null) && 
-											(document.form.numero.value != "") &&
-												(document.form.municipio.options[indiceMunicipio].text != ""))
+	if ( (document.form.bairro.value != null) && 
+			(document.form.bairro.value != "") &&
+				(document.form.endereco.value != null) && 
+					(document.form.endereco.value != "") &&
+						(document.form.numero.value != null) && 
+							(document.form.numero.value != "") &&
+										(document.form.municipio.options[indiceMunicipio].text != ""))
 		return true;
 	else
 	{
 		alert("Favor preencher todos campos obrigatórios");	
 		return false;
 	}
-
 }
 
 
