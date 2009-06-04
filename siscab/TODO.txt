@@ -93,6 +93,6 @@ a query traz uma lista repetidas de viaturas devido a tabela possuir itens repet
 
 ############################
 
-ListaEventosViaturaAtendimento.jsp - Só funciona o primeiro botão excluir...tem dois forms dentro de um for...
+ListaEventosViaturaAtendimento.jsp - Só funciona o primeiro botão excluir...tem dois forms dentro de um for... OK
 Falta edição de data tb... OK (incluido por Bruno)
 
