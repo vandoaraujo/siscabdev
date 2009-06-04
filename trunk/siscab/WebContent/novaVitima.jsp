@@ -70,7 +70,7 @@ function campoObrigatorio()
 								<table border="0" cellpadding="0" cellspacing="3" width="100%">
 								<tr>
 									<td><label>Nome:</label></td>
-									<td colspan="8"><input name="nome" type="text" size=40/> *</td>
+									<td colspan="8"><input name="nome" type="text" size=40 maxlength="40"/> *</td>
 								</tr>
 								<tr>	
 									<td><label>Idade:</label></td>
@@ -113,7 +113,7 @@ function campoObrigatorio()
 								</tr>
 								<tr>	
 									<td><label>Hospital destino:</label></td>
-									<td colspan="8"><input name="hospital" type="text" size=40/></td>
+									<td colspan="8"><input name="hospital" type="text" size=40 maxlength="40"/></td>
 								</tr>
 								<tr>
 									<td colspan="9">

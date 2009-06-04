@@ -203,7 +203,7 @@ function mascaraTelefone(e){
 										</tr>
 										<tr>
 											<td>Nome solicitante:</td>
-											<td><input name="nomeSolicitante" type="text" size=40 value="${nomeSolicitante}"></td>
+											<td><input name="nomeSolicitante" type="text" size=40 value="${nomeSolicitante}" maxlength="60"></td>
 										</tr>
 										<tr>
 											<td>Telefone solicitante:</td>
@@ -309,11 +309,11 @@ function mascaraTelefone(e){
 										</tr>
 										<tr>
 											<td>Bairro:</td>
-											<td><input name="bairro" type="text" size=20 value="${bairro}"> *</td>							
+											<td><input name="bairro" type="text" size=30 value="${bairro}" maxlength="30"> *</td>							
 										</tr>
 										<tr>
 											<td>Logradouro:</td>
-											<td><input name="endereco" type="text" size=30 value="${endereco}"> *</td>							
+											<td><input name="endereco" type="text" size=30 value="${endereco}" maxlength="30"> *</td>							
 										</tr>
 										<tr>
 											<td>Nº/Complemento:</td>
@@ -341,7 +341,7 @@ function mascaraTelefone(e){
 											<td colspan="2">Informações complementares:</td>			
 										</tr>										
 										<tr>	
-											<td colspan="2"><textArea NAME="infoComplementares" COLS=50 ROWS=4>${infoComplementares}</textArea></td>				
+											<td colspan="2"><textArea NAME="infoComplementares" COLS=50 ROWS=4 >${infoComplementares}</textArea></td>				
 										</tr>																			
 									</table>
 									</fieldset>
