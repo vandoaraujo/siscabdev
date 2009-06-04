@@ -55,7 +55,6 @@ public class Login extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	// Faz chamada ao Banco de Dados instanciando uma SessionFactory
 
 	String registro = request.getParameter("numRegistro");
 	String senha = request.getParameter("senha");

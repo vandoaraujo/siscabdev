@@ -183,7 +183,7 @@ public class EfetivaAtendimento extends HttpServlet {
 	
 	}
 	
-	//if o ano mudou referente ao ultimo atendimento, reinicia a numeracao
+	//Se o ano mudou referente ao ultimo atendimento, reinicia a numeracao
 	String concatena = idAno + maior;
 	oid = Integer.parseInt(concatena);
 

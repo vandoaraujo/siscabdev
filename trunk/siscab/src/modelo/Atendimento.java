@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -53,9 +51,9 @@ public class Atendimento implements Serializable {
 
     private int modofechamento_id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "movimentaviatura", schema = "siscab", joinColumns = @JoinColumn(name = "atendimento_id"), inverseJoinColumns = @JoinColumn(name = "viatura_id"))
-    private Collection<Viatura> viaturas;
+    //@ManyToMany(fetch = FetchType.LAZY)
+    //@JoinTable(name = "movimentaviatura", schema = "siscab", joinColumns = @JoinColumn(name = "atendimento_id"), inverseJoinColumns = @JoinColumn(name = "viatura_id"))
+    //private Collection<Viatura> viaturas;
 
     private String bairro;
 
@@ -131,9 +129,9 @@ public class Atendimento implements Serializable {
 	return tipoocorrencia;
     }
 
-    public Collection<Viatura> getViaturas() {
+    /*public Collection<Viatura> getViaturas() {
 	return viaturas;
-    }
+    }*/
 
     public void setAtendimento_numero(int atendimento_numero) {
 	this.atendimento_numero = atendimento_numero;
@@ -187,8 +185,8 @@ public class Atendimento implements Serializable {
 	this.tipoocorrencia = tipoocorrencia;
     }
 
-    public void setViaturas(Collection<Viatura> viaturas) {
+    /*public void setViaturas(Collection<Viatura> viaturas) {
 	this.viaturas = viaturas;
-    }
+    }*/
 
 }

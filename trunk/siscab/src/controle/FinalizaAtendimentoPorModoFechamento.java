@@ -97,13 +97,11 @@ public class FinalizaAtendimentoPorModoFechamento extends HttpServlet {
 
 	AtendimentoDao.getInstance().atualizar(atendimento);
 
-	logger
-		.info(" ############# Atendimento atualizado  e finalizado com sucesso");
+	logger.info(" ############# Atendimento atualizado  e finalizado com sucesso");
 
 	finalizarCronologiaAtendimento(atendimento);
 
-	logger
-		.info(" ############# Seta Cronologia do Atendimento - Finalizacao");
+	logger.info(" ############# Seta Cronologia do Atendimento - Finalizacao");
 
 	RequestDispatcher view;
 	request.setAttribute("mensagem", "Finalizado com sucesso");

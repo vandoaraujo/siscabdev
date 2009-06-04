@@ -167,6 +167,10 @@ public class NovaMovimentacaoViatura extends HttpServlet {
 
     }
 
+   /***
+    * Criado por causa da inconsistencia que era criada pelo fato de a viatura
+    * ser despachada sem ter um tipoEvento Retorno a OBM.
+    */
     private void analisaMovimentacoesViatura(int atendimento, int registroViatura) {
 	
 	//Retorna a ultima movimentacao da viatura  

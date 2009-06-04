@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,11 +17,9 @@ import modelo.Atendimento;
 import modelo.MovimentaViatura;
 import modelo.MovimentaViaturaPK;
 import modelo.Viatura;
-import modelo.VitimaAtendida;
 import dao.AtendimentoDao;
 import dao.MovimentaViaturaDao;
 import dao.ViaturaDao;
-import dao.VitimaAtendidaDao;
 
 /**
  * Servlet implementation class CrudTipoEvento
@@ -71,12 +70,8 @@ public class CrudTipoEvento extends HttpServlet {
 			//deletar(request, response,registroVitima);
 		}
 		    
-		    
-						
 		}
 		
-		
-
 		protected void salvar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 				
@@ -172,9 +167,5 @@ public class CrudTipoEvento extends HttpServlet {
 			VitimaAtendidaDao.getInstance().atualizar(vitima);
 			despacha(request, response, "alterar", vitima.getNome());		
 		}*/
-	
-		
-		
-	
 
 }

@@ -23,13 +23,9 @@ import dao.ViaturaDao;
  */
 public class AlteraStatusViatura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String numeroViatura;
-	private String obm;
-	private String statusViatura;
 	private String novoStatusViatura;
 	private String obsViatura;
 	private int registroViatura;
-	private String tipoViatura;
 	static Logger logger = Logger.getLogger(AlteraStatusViatura.class);
        
     /**
@@ -53,15 +49,10 @@ public class AlteraStatusViatura extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	    	logger.info(getServletName().toString());
-		//numeroViatura = request.getParameter("numero");
-		//obm = request.getParameter("obm");
-		//statusViatura = request.getParameter("status");
 		novoStatusViatura = request.getParameter("novoStatus");
 		obsViatura = request.getParameter("obsViatura");
-		//tipoViatura = request.getParameter("tipoViatura");
 		registroViatura = Integer.parseInt(request
 			.getParameter("registroViatura"));
-
 
 		alterar(request, response, registroViatura);
 
@@ -77,12 +68,7 @@ public class AlteraStatusViatura extends HttpServlet {
 		    despacha(request, response, "Em atendimento", via.getNumero());
 
 		} else {
-		    //OBM obmAtual = OBMDao.getInstance().listarOBMNome(obm);
-		    //TipoViatura tipoV = TipoViaturaDao.getInstance().listarTipoViatura(
-			//    tipoViatura);
-		    //via.setNumero(numeroViatura);
-		    //via.setObm(obmAtual);
-		    //via.setTipo_viatura(tipoV);
+
 		    via.setViatura_obs(obsViatura);
 		    via.setViatura_status(novoStatusViatura);
 		    ViaturaDao.getInstance().atualizar(via);

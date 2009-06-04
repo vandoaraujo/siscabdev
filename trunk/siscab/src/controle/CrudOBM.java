@@ -58,8 +58,10 @@ public class CrudOBM extends HttpServlet {
 	coordX = Double.parseDouble(request.getParameter("coordX"));
 	coordY = Double.parseDouble(request.getParameter("coordY"));
 	status = request.getParameter("statusObm");
+	
+	logger.info("Valor do Status recebido " + status);
 
-	if (status.equals("ativa"))
+	if (status.equals("ATIVA"))
 	    statusObm = 1;
 	else
 	    statusObm = 0;
@@ -269,7 +271,7 @@ public class CrudOBM extends HttpServlet {
 	coordY = Double.parseDouble(request.getParameter("coordY"));
 	status = request.getParameter("statusObm");
 
-	if (status.equals("ativa"))
+	if (status.equals("ATIVA"))
 	    statusObm = 1;
 	else
 	    statusObm = 0;
